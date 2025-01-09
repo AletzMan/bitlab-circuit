@@ -1,0 +1,10 @@
+.box {
+    position: relative;
+}
+
+.value {
+    position: absolute;
+    font-size: 0.7em;
+    bottom: 0;
+    left: 0;
+}
