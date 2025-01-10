@@ -20,3 +20,11 @@ export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
         </svg>
     );
 }
+
+export function BoardIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="4em" height="4em" viewBox="0 0 256 256">
+            <path fill="currentColor" d="M216 44H40a12 12 0 0 0-12 12v144a12 12 0 0 0 12 12h176a12 12 0 0 0 12-12V56a12 12 0 0 0-12-12m4 156a4 4 0 0 1-4 4H40a4 4 0 0 1-4-4V56a4 4 0 0 1 4-4h176a4 4 0 0 1 4 4Z"></path>
+        </svg>
+    );
+}
