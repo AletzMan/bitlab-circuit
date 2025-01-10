@@ -10,7 +10,7 @@ import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
 import { COMPONENTS } from "@/constants";
 import ComponentDetail from "../ComponentDetails/ComponentDetails";
 import { Board } from "../Board/Board";
-import { zoomSelector } from "@/helpers";
+import { isPointInBox, zoomSelector } from "@/helpers";
 
 const initialNodes: Node[] = [
     {
@@ -49,7 +49,7 @@ export function WorkFlow() {
     const showContent = useStore(zoomSelector);
 
     const onConnect = useCallback(
-        (connection: Connection) => setEdges((eds) => addEdge({ ...connection, id: uuid(), type: "wire", markerEnd: { type: MarkerType.ArrowClosed, width: 10, height: 10, color: "#00aaff" } }, eds)),
+        (connection: Connection) => setEdges((eds) => addEdge({ ...connection, id: uuid(), type: "wire", markerEnd: { type: MarkerType.ArrowClosed, width: 10, height: 10, color: "#00aaff", orient: "auto-start-reverse" } }, eds)),
         [setEdges]
     );
 
@@ -73,17 +73,46 @@ export function WorkFlow() {
         e.preventDefault();
         const type = dragOutsideRef.current;
         if (!type) return;
-        const position = screenToFlowPosition({
+        let position = screenToFlowPosition({
             x: e.clientX - 24,
             y: e.clientY - 24
         });
+
+        const boards = nodes?.filter(
+            (node) => node.type === ElectricalComponentType.Board
+        );
+        const board = boards.find((board) => {
+            return isPointInBox(
+                { x: position.x, y: position.y },
+                {
+                    x: board.position?.x || 0,
+                    y: board?.position?.y || 0,
+                    height: board?.measured?.height || 0,
+                    width: board?.measured?.width || 0,
+                }
+            );
+        });
+
+        if (board) {
+            const { x, y } = board?.position || {
+                x: 0,
+                y: 0,
+            };
+            const { x: dragX, y: dragY } = position || {
+                x: 0,
+                y: 0,
+            };
+            position = { x: dragX - x, y: dragY - y };
+        }
+
         let node: Node | undefined;
         if ([ElectricalComponentType.Capacitor, ElectricalComponentType.Resistor].includes(type)) {
             node = {
                 id: uuid(),
                 type: 'electricalComponent',
                 position,
-                data: { type, value: 50 }
+                data: { type, value: 50 },
+                parentId: board?.id
             };
         } else if (type === ElectricalComponentType.Board) {
             node = {
@@ -91,8 +120,8 @@ export function WorkFlow() {
                 type,
                 position,
                 data: {},
+                parentId: board?.id,
                 style: { height: 200, width: 200 },
-
             };
         }
         if (node) {
@@ -293,6 +322,7 @@ export function WorkFlow() {
                 onReconnectEnd={handleReconnectEnd}
                 onNodeDrag={handleOnNodeDrag}
                 onNodeDragStop={handleNodeDragStop}
+                defaultViewport={{ x: 0, y: 0, zoom: 1 }}
             >
                 <Panel position="top-right" className={styles.panelComponents}>
                     <label className={styles.components_title}>Componentes</label>
@@ -306,8 +336,8 @@ export function WorkFlow() {
                 </Panel>
                 {selectedNode && <ComponentDetail node={selectedNode} />}
                 <Background color="#f0f0f0" gap={10} variant={BackgroundVariant.Lines} id='1' />
-                <Background color="#c1c1c1" gap={100} variant={BackgroundVariant.Lines} id='2' />
-                <Controls />
+                <Background color="#e0e0e0" gap={100} variant={BackgroundVariant.Lines} id='2' />
+                <Controls position="bottom-right" />
             </ReactFlow>
         </div>
     );
