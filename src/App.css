@@ -41,3 +41,11 @@ body {
 .react-flow__handle.valid {
     background: #2dd451;
 }
+
+.react-flow__handle.connectionindicator {
+    cursor: copy;
+}
+
+.react-flow__pane.draggable {
+    cursor: copy;
+}
