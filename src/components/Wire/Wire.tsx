@@ -12,6 +12,6 @@ export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targe
     });
 
     return (
-        <BaseEdge path={d} style={{ stroke: "#00aaff", strokeWidth: 2 }} markerEnd={markerEnd} />
+        <BaseEdge path={d} style={{ stroke: "#00aaff", strokeWidth: 2 }} markerEnd={markerEnd} type="smoothstep" />
     );
 };
