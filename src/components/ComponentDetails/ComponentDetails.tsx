@@ -1,25 +1,31 @@
 import { Node, useReactFlow } from "@xyflow/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ElectricalComponentData } from "@/types";
-
+import styles from "./styles.module.css";
 
 export default function ComponentDetail({
     node,
 }: {
-    node: Node<ElectricalComponentData>;
+    node: Node<ElectricalComponentData> | undefined;
 }) {
     const nodeType = node?.data?.type || node?.type;
-    const [value, setValue] = useState(`${node?.data?.value || 0}`);
+    const [value, setValue] = useState<string | undefined>(`${node?.data?.value}`);
+
+    useEffect(() => {
+        setValue(node?.data?.value?.toString());
+    }, [node]);
+
 
     const { updateNodeData } = useReactFlow();
-    const unit = "X";
+    const unit = "KΩ";
 
     return (
-        <div>
-            <div  >{nodeType?.toUpperCase()}</div>
+        <div className={styles.details}>
+            <div className={styles.details_name}  >{nodeType?.toUpperCase()}</div>
             {node?.data?.value && (
-                <div  >
+                <div className={styles.value}>
                     <input
+                        className={styles.value_number}
                         value={value}
                         onChange={(e) => {
                             const newValue = e.target.value ? parseFloat(e.target.value) : 0;
@@ -27,7 +33,7 @@ export default function ComponentDetail({
                             updateNodeData(node.id, { value: newValue });
                         }}
                     />
-                    <div>{unit}</div>
+                    <div className={styles.value_unit}>{unit}</div>
                 </div>
             )}
         </div>

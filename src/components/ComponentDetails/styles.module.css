@@ -1,0 +1,46 @@
+.details {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    background-color: #fafafa;
+    border: 1px solid #979797;
+    width: 12em;
+    padding: 0.5em;
+    border-radius: 0.25em;
+    z-index: 1000;
+}
+
+.details_name {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.value {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    place-items: center start;
+    border: 1px solid #aaaaaa;
+    border-radius: 0.25em;
+    background-color: #f6f6f6;
+}
+
+.value_number {
+    border: none;
+    padding: none;
+    padding: 0.3em 0.5em;
+    width: 95%;
+}
+
+.value_unit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-self: center;
+    justify-self: center;
+    background-color: #b3b2b2;
+}
