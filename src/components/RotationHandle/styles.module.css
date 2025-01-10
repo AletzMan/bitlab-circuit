@@ -1,0 +1,11 @@
+.handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #33d96d;
+    left: 50%;
+    top: -30px;
+    border-radius: 100%;
+    transform: translate(-50%, 120%);
+    cursor: url("rotate_svg.png") 30 30, pointer;
+}
