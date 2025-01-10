@@ -17,4 +17,5 @@ export type ElectricalComponentData = {
     type?: ElectricalComponentType
     rotation?: number
     state?: ElectricalComponentState
+    isLock?: boolean
 }
