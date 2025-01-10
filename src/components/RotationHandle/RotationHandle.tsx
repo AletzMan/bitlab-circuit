@@ -47,7 +47,7 @@ export default function RotationHandle({
     if (!selected) return null;
 
     return (
-        <div
+        <div style={{ transform: `rotate(${90}deg)!important` }}
             className={styles.handle}
             ref={rotatorRef}
         />
