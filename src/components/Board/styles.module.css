@@ -1,10 +1,11 @@
 .board {
-    border: 2px solid #000000;
     border-radius: 8px;
     height: 100%;
     width: 100%;
+    border: 1px dashed #103fd7;
+    background-color: #feffac20;
 }
 
 .board_selected {
-    box-shadow: 0px 0px 6px 1px #00000050;
+    box-shadow: 0px 0px 6px 1px #103fd750;
 }
