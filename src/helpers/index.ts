@@ -1,5 +1,5 @@
 import { ReactFlowState } from "@xyflow/react";
-import { ElectricalComponentType } from "../types";
+import { ComponentType } from "../types";
 
 export const zoomSelector = (s: ReactFlowState) => s.transform[2] >= 0.7;
 
@@ -15,18 +15,18 @@ export const isPointInBox = (
     );
 };
 
-export function getUnit(type: ElectricalComponentType) {
+export function getUnit(type: ComponentType) {
     let unit;
     switch (type) {
-        case ElectricalComponentType.Resistor: {
+        case ComponentType.Resistor: {
             unit = "kΩ";
             break;
         }
-        case ElectricalComponentType.Capacitor: {
+        case ComponentType.Capacitor: {
             unit = "μF";
             break;
         }
-        case ElectricalComponentType.Battery: {
+        case ComponentType.Battery: {
             unit = "V";
             break;
         }
