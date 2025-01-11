@@ -1,5 +1,5 @@
 
-import { Background, BackgroundVariant, Connection, Edge, ReactFlow, addEdge, useEdgesState, useNodesState, ConnectionMode, Controls, MarkerType, Panel, useReactFlow, reconnectEdge, OnNodeDrag, useStore } from "@xyflow/react";
+import { Background, BackgroundVariant, Connection, Edge, ReactFlow, addEdge, useEdgesState, useNodesState, ConnectionMode, Controls, MarkerType, useReactFlow, reconnectEdge, OnNodeDrag, useStore, Viewport, MiniMap } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, } from "react";
 import { ElectricalComponent } from "@/components/ElectricalComponents/ElectricalComponent";
 import { ElectricalComponentNode, ElectricalComponentState, ElectricalComponentType, UnitsType } from "@/types";
@@ -8,10 +8,12 @@ import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
 import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
 import { COMPONENTS } from "@/constants";
-import ComponentDetail from "../ComponentDetails/ComponentDetails";
+import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { isPointInBox, zoomSelector } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
+import { Button, Card, Tooltip } from "antd";
+import { OpenFileIcon, ResetZoomIcon, SaveIcon } from "@/icons";
 
 const initialNodes: ElectricalComponentNode[] = [
     {
@@ -46,6 +48,7 @@ export function WorkFlow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const [selectedNode, setSelectedNode] = useState<ElectricalComponentNode | undefined>();
+    const [viewPort, setViewPort] = useState<Viewport>({ x: 0, y: 0, zoom: 1 });
     const [selectedEdge, setSelectedEdge] = useState<Edge | undefined>();
     const dragOutsideRef = useRef<ElectricalComponentType | null>(null);
     const edgeReconnectSuccessful = useRef(false);
@@ -64,7 +67,7 @@ export function WorkFlow() {
         return true;
     };
 
-    const handleOnDragStart = (e: DragEvent<HTMLButtonElement>, type: ElectricalComponentType) => {
+    const handleOnDragStart = (e: DragEvent<HTMLElement>, type: ElectricalComponentType) => {
         dragOutsideRef.current = type;
         e.dataTransfer.effectAllowed = 'move';
     };
@@ -285,7 +288,7 @@ export function WorkFlow() {
             );
         }
 
-        if (overlappingNodeRef?.current?.type === ElectricalComponentType.Board) {
+        if (overlappingNodeRef?.current?.type === ElectricalComponentType.Board && selectedNode?.data.type !== ElectricalComponentType.Board) {
             setNodes((prevNodes) => [
                 overlappingNodeRef?.current as ElectricalComponentNode,
                 ...prevNodes
@@ -344,6 +347,13 @@ export function WorkFlow() {
         }
     };
 
+    const handleChangeViewPort = (viewport: Viewport) => {
+        setViewPort(viewport);
+    };
+    const handleZoomReset = () => {
+        setViewPort({ x: 0, y: 0, zoom: 1 });
+    };
+
     return (
         <div className={styles.board}>
             <ReactFlow
@@ -370,23 +380,37 @@ export function WorkFlow() {
                 onNodeDrag={handleOnNodeDrag}
                 onNodeDragStop={handleNodeDragStop}
                 defaultViewport={{ x: 0, y: 0, zoom: 1 }}
+                viewport={viewPort}
+                onViewportChange={handleChangeViewPort}
+
             >
-                <Panel position="top-right" className={styles.panelComponents}>
-                    <label className={styles.components_title}>Componentes</label>
+                <Card className={styles.panelComponents} size="small" title="Componentes" type="inner" extra={<Button variant="solid" color="geekblue">{`>`}</Button>} actions={actions}>
                     <div className={styles.components}>
                         {COMPONENTS.map(component => (
-                            <button key={component.label} className={styles.components_button} draggable onDragStart={(e) => handleOnDragStart(e, component.type)} title={component.label}>
-                                {component.icon}
-                            </button>
+                            <Tooltip key={component.label} placement="top" title={component.label}  >
+                                <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}  >
+                                    {component.icon}
+                                </Button>
+                            </Tooltip>
                         ))}
                     </div>
-                </Panel>
-                {selectedNode && <ComponentDetail node={selectedNode} />}
+                </Card>
+                {selectedNode && <ComponentProperties node={selectedNode} />}
                 {selectedEdge && <EdgeDetails edge={selectedEdge} setEdges={setEdges} setSelectedEdge={setSelectedEdge} />}
                 <Background color="#f0f0f0" gap={10} variant={BackgroundVariant.Lines} id='1' />
                 <Background color="#e0e0e0" gap={100} variant={BackgroundVariant.Lines} id='2' />
-                <Controls position="bottom-right" />
+                <Controls position="bottom-right">
+                    <button className="react-flow__controls-button" title="reset zoom" onClick={handleZoomReset}>
+                        <ResetZoomIcon />
+                    </button>
+                </Controls>
+                <MiniMap position="bottom-left" />
             </ReactFlow>
         </div>
     );
 }
+
+const actions: React.ReactNode[] = [
+    <OpenFileIcon key="openfile" />,
+    <SaveIcon key="save" />,
+];
