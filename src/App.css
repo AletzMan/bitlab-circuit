@@ -30,6 +30,12 @@ body {
 }
 */
 
+.react-flow__node {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .react-flow__attribution {
     display: none;
 }
@@ -46,6 +52,10 @@ body {
     cursor: copy;
 }
 
-.react-flow__pane.draggable {
-    cursor: copy;
+.react-flow__edge.selectable:hover .react-flow__edge-path {
+    stroke: #737373;
+}
+
+.react-flow__edge.selectable.selected .react-flow__edge-path {
+    stroke: #ff6600;
 }
