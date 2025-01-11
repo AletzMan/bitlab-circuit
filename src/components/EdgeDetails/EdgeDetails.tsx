@@ -22,10 +22,10 @@ export default function EdgeDetails({
     };
 
     return (
-        <Card className={styles.details} title="Edge" size="small">
+        <Card className={styles.details} title="Edge" size="small" type="inner" >
             <label>Actions</label>
             <Flex gap={10} wrap>
-                <Button onClick={handleDelete}>
+                <Button className={styles.button} variant="filled" color="danger" onClick={handleDelete}>
                     <DeletetIcon />
                 </Button>
             </Flex>
