@@ -1,0 +1,30 @@
+.details {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    background-color: #fafafa;
+    border: 1px solid #979797;
+    width: 18.25em;
+    padding: 0;
+    border-radius: 0.25em;
+    z-index: 1000;
+}
+
+.details_name {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.value {
+    border: 1px solid #aaaaaa;
+    border-radius: 0.25em;
+    background-color: #f6f6f6;
+}
+
+.value_number {
+    border: none;
+    padding: none;
+}
