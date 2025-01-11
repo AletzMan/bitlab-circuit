@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family);
     background-color: #201f1f;
+}
+
+:root {
+    --border-color: #DEDEDE;
+    --font-family: "Jost", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /*
@@ -58,4 +66,18 @@ body {
 
 .react-flow__edge.selectable.selected .react-flow__edge-path {
     stroke: #ff6600;
+}
+
+.ant-card-head-title {
+    font-weight: 500;
+}
+
+.ant-input {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.ant-tooltip {
+    font-family: var(--font-family);
 }
