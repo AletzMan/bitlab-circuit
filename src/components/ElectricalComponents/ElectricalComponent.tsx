@@ -1,11 +1,10 @@
-import { Node, NodeProps, Position, useReactFlow } from "@xyflow/react";
-import { ElectricalComponentData, ElectricalComponentState, ElectricalComponentType } from "@/types";
+import { NodeProps, Position, useReactFlow } from "@xyflow/react";
+import { ElectricalComponentNode, ElectricalComponentState, ElectricalComponentType } from "@/types";
 import { CapacitorIcon, LockIcon, ResistorIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
-//import RotationHandle from "../RotationHandle/RotationHandle";
 
-type ElectricalComponentNode = Node<ElectricalComponentData, 'string'>;
+
 
 export function ElectricalComponent({ data: { type, value, rotation, state, isLock }, selected, id, parentId }: NodeProps<ElectricalComponentNode>) {
     const { updateNode } = useReactFlow();
@@ -22,7 +21,6 @@ export function ElectricalComponent({ data: { type, value, rotation, state, isLo
             ...(isAdditionValid && { background: "#58ed58" }),
             ...(isAdditionInvalid && { background: "#ff0505" }),
         }}>
-            {/*<RotationHandle selected={selected} id={id} />*/}
             {parentId && selected &&
                 <div className={styles.lock} onClick={() => updateNode(id, (prevNode) => ({ extent: prevNode.extent === 'parent' ? undefined : 'parent', data: { ...prevNode.data, isLock: !isLock } }))}>
                     {!isLock && <UnlockIcon style={{ transform: `rotate(-${rotation}deg)` }} />}
