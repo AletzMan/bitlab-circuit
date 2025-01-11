@@ -1,5 +1,5 @@
 import { Node } from "@xyflow/react";
-export enum ElectricalComponentType {
+export enum ComponentType {
     Resistor = 'resistor',
     Capacitor = 'capacitor',
     Led = "led",
@@ -27,21 +27,22 @@ export const UNITS = {
     henrio: ['μH', 'mH', 'H']
 };
 
-export enum ElectricalComponentState {
+export enum ComponentState {
     Add = 'add',
     NotAdd = 'NnotAdd',
     Undefined = 'undefined'
 
 }
 
-export type ElectricalComponentData = {
+export type ComponentData = {
     value: number
-    type: ElectricalComponentType
+    type: ComponentType
     rotation: number
-    state?: ElectricalComponentState
+    state?: ComponentState
     isLock: boolean
     unit: UnitsType
     prefix: string
+    has_properties?: boolean
 }
 
-export type ElectricalComponentNode = Node<ElectricalComponentData, string>;
+export type ComponentNode = Node<ComponentData, string>;
