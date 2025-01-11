@@ -47,23 +47,18 @@ export default function ComponentDetail({
     };
 
     const handleRotateLeft = () => {
-        console.log("OLD", node?.data?.rotation);
         if (node) {
             const checkRoation = node?.data?.rotation === 0 ? 360 : node?.data?.rotation;
             let newRotation = checkRoation - 90;
             newRotation = newRotation === 360 ? 0 : newRotation;
-            console.log("NEW", newRotation);
             updateNodeData(node?.id, { rotation: newRotation });
         }
     };
 
     const handleRotateRight = () => {
-        console.log("OLD", node?.data?.rotation);
         if (node) {
             let newRotation = node.data.rotation + 90;
             newRotation = newRotation === 360 ? 0 : newRotation;
-            console.log("NEW", newRotation);
-            console.log(newRotation);
             if (node) {
                 updateNodeData(node.id, { rotation: newRotation });
             }
