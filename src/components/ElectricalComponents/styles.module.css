@@ -8,6 +8,14 @@
     height: 60px;
 }
 
+.box_valid {
+    background-color: #03a13035;
+}
+
+.box_invalid {
+    background-color: #de340935;
+}
+
 .box_selected {
     border: 1px dashed #66040490;
     border-radius: 0.25em;
@@ -16,7 +24,7 @@
 .value {
     position: absolute;
     font-size: 0.85em;
-    bottom: 4px;
+    bottom: -2px;
     left: 0;
 }
 
