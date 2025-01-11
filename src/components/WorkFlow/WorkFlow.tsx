@@ -1,7 +1,7 @@
 
 import { Background, BackgroundVariant, Connection, Edge, ReactFlow, addEdge, useEdgesState, useNodesState, ConnectionMode, Controls, MarkerType, useReactFlow, reconnectEdge, OnNodeDrag, Viewport, MiniMap } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, } from "react";
-import { ElectricalComponent } from "@/components/ElectricalComponents/ElectricalComponent";
+import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
 import { ComponentNode, ComponentState, ComponentType, UnitsType } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
@@ -33,7 +33,7 @@ const initialNodes: ComponentNode[] = [
 const initialEdges: Edge[] = [];
 
 const nodeTypes = {
-    analogComponent: ElectricalComponent,
+    analogComponent: AnalogComponent,
     board: Board
 };
 
