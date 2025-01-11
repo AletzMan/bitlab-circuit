@@ -1,6 +1,11 @@
 .box {
     position: relative;
     border: 1px solid transparent;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 60px;
+    height: 60px;
 }
 
 .box_selected {
@@ -27,4 +32,13 @@
     color: #0355a1;
     padding: 0;
     z-index: 2;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 58px;
+    height: 58px;
 }

@@ -9,11 +9,14 @@ import { Terminal } from "@/components/Terminal/Terminal";
 export function ElectricalComponent({ data: { type, value, rotation, state, isLock }, selected, id, parentId }: NodeProps<ElectricalComponentNode>) {
     const { updateNode } = useReactFlow();
 
+
     const isAdditionValid = state === ElectricalComponentState.Add;
     const isAdditionInvalid = state === ElectricalComponentState.NotAdd;
 
     let positionTerminals: Position[] = [Position.Right, Position.Left];
     if (rotation === 90) positionTerminals = [Position.Bottom, Position.Top];
+    if (rotation === 180) positionTerminals = [Position.Left, Position.Right];
+    if (rotation === 270) positionTerminals = [Position.Top, Position.Bottom];
 
     return (
         <div className={`${styles.box} ${selected && styles.box_selected}`} style={{
@@ -27,14 +30,13 @@ export function ElectricalComponent({ data: { type, value, rotation, state, isLo
                     {isLock && <LockIcon style={{ transform: `rotate(-${rotation}deg)` }} />}
                 </div>
             }
-            <div style={{ transform: `rotate(${rotation}deg) ` }} >
+            <div style={{ transform: `rotate(${rotation}deg)` }} className={styles.icon}>
                 {type === ElectricalComponentType.Resistor && <ResistorIcon />}
                 {type === ElectricalComponentType.Capacitor && <CapacitorIcon />}
             </div>
-            <span className={styles.value} style={{ transform: `rotate(-${rotation}deg)` }}>{value}</span>
-            <span style={{ position: "absolute", margin: "0 0 0 30px" }}>{rotation}</span>
-            <Terminal type="source" style={{ position: "absolute", bottom: 0 }} position={positionTerminals[0]} id="right" />
-            <Terminal type="source" position={positionTerminals[1]} id="left" />
+            <span className={styles.value} style={{ transform: `rotate(${rotation - rotation}deg)` }}>{value}</span>
+            <Terminal type="source" position={positionTerminals[0]} id="1" />
+            <Terminal type="source" position={positionTerminals[1]} id="2" />
         </div>
     );
 }
