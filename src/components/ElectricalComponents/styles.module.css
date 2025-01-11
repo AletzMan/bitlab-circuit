@@ -28,6 +28,11 @@
     left: 0;
 }
 
+.value_90,
+.value_270 {
+    left: 45px;
+}
+
 .lock {
     position: absolute;
     top: 2px;
@@ -40,6 +45,13 @@
     color: #0355a1;
     padding: 0;
     z-index: 2;
+}
+
+.lock_90,
+.lock_270 {
+    top: -1px;
+    right: auto;
+    left: -2px;
 }
 
 .icon {
