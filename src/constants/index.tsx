@@ -1,20 +1,20 @@
 import { BoardIcon, CapacitorIcon, ResistorIcon } from "../icons";
-import { ElectricalComponentType } from "../types";
+import { ComponentType } from "../types";
 
 export const COMPONENTS = [
     {
         icon: <ResistorIcon />,
-        type: ElectricalComponentType.Resistor,
+        type: ComponentType.Resistor,
         label: "Resistor"
     },
     {
         icon: <CapacitorIcon />,
-        type: ElectricalComponentType.Capacitor,
+        type: ComponentType.Capacitor,
         label: "Capacitor"
     },
     {
         icon: <BoardIcon />,
-        type: ElectricalComponentType.Board,
+        type: ComponentType.Board,
         label: 'Board'
     }
 ];
