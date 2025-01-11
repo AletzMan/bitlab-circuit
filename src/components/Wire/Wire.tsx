@@ -1,7 +1,7 @@
 import { BaseEdge, EdgeProps, getSmoothStepPath } from "@xyflow/react";
+import styles from "./styles.module.css";
 
-
-export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, markerEnd }: EdgeProps) {
+export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition }: EdgeProps) {
     const [d] = getSmoothStepPath({
         sourceX,
         sourceY,
@@ -12,6 +12,6 @@ export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targe
     });
 
     return (
-        <BaseEdge path={d} style={{ stroke: "#00aaff", strokeWidth: 2 }} markerEnd={markerEnd} type="smoothstep" />
+        <BaseEdge path={d} className={styles.wire} type="smoothstep" />
     );
 };
