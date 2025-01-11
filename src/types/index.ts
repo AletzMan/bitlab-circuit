@@ -4,8 +4,28 @@ export enum ElectricalComponentType {
     Capacitor = 'capacitor',
     Led = "led",
     Battery = 'battery',
-    Board = 'board'
+    Board = 'board',
 }
+
+export enum OhmType {
+    Ohm = 'Ω',
+    kiloOhm = 'KΩ',
+    MegaOhm = 'MΩ'
+}
+
+export enum UnitsType {
+    Ohm = 'ohm',
+    Voltage = 'volt',
+    Current = 'amper',
+    Henrio = 'henrio'
+}
+
+export const UNITS = {
+    ohm: ['Ω', 'KΩ', 'MΩ'],
+    volt: ['mV', 'V'],
+    amper: ['μA', 'mA', 'A'],
+    henrio: ['μH', 'mH', 'H']
+};
 
 export enum ElectricalComponentState {
     Add = 'add',
@@ -20,6 +40,8 @@ export type ElectricalComponentData = {
     rotation: number
     state?: ElectricalComponentState
     isLock: boolean
+    unit: UnitsType
+    prefix: string
 }
 
 export type ElectricalComponentNode = Node<ElectricalComponentData, string>;
