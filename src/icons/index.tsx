@@ -44,3 +44,36 @@ export function UnlockIcon(props: SVGProps<SVGSVGElement>) {
         </svg>
     );
 }
+
+export function FlipHIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="1.25em" height="1.25em" viewBox="0 0 16 16"><path fill="currentColor" d="m0 15l6-5l-6-4.9zm9-4.9l6 4.9V5zm5 2.8l-3.4-2.8l3.4-3zM7 5h1v1H7zm0-2h1v1H7zm0 4h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7zm0 2h1v1H7z"></path>
+            <path fill="currentColor" d="M7.5 1c1.3 0 2.6.7 3.6 1.9L10 4h3V1l-1.2 1.2C10.6.8 9.1 0 7.5 0C5.6 0 3.9 1 2.6 2.9l.8.6C4.5 1.9 5.9 1 7.5 1"></path>
+        </svg>
+    );
+}
+
+export function FlipVIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="1.25em" height="1.25em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="m1 1l5 6l4.94-6zm4.94 9L1 16h10zm-2.82 5l2.83-3.44l3 3.44zM10 8h1v1h-1zm2 0h1v1h-1zM8 8h1v1H8zM6 8h1v1H6zM4 8h1v1H4zM2 8h1v1H2zM0 8h1v1H0z"></path>
+            <path fill="currentColor" d="M15 8.47a4.8 4.8 0 0 1-1.879 3.632L12 11v3h3l-1.18-1.18A5.76 5.76 0 0 0 16 8.478V8.47a6.06 6.06 0 0 0-2.884-4.905l-.596.805a5.1 5.1 0 0 1 2.479 4.087z"></path>
+        </svg>
+    );
+}
+
+export function RotateLeftIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="1.25em" height="1.25em" viewBox="0 0 15 15">
+            <path fill="currentColor" fillRule="evenodd" d="M7.597 2.936A.25.25 0 0 0 8 2.74V2c1.981 0 3.185.364 3.91 1.09C12.637 3.814 13 5.018 13 7a.5.5 0 0 0 1 0c0-2.056-.367-3.603-1.382-4.618C11.603 1.368 10.056 1 8 1V.261a.25.25 0 0 0-.403-.197L6.004 1.303a.25.25 0 0 0 0 .394zM9.5 5h-7a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5m-7-1A1.5 1.5 0 0 0 1 5.5v7A1.5 1.5 0 0 0 2.5 14h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 9.5 4z" clipRule="evenodd"></path>
+        </svg>
+    );
+}
+
+export function RotateRightIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="1.25em" height="1.25em" viewBox="0 0 15 15" style={{ transform: "scaleX(-1)" }}>
+            <path fill="currentColor" fillRule="evenodd" d="M7.597 2.936A.25.25 0 0 0 8 2.74V2c1.981 0 3.185.364 3.91 1.09C12.637 3.814 13 5.018 13 7a.5.5 0 0 0 1 0c0-2.056-.367-3.603-1.382-4.618C11.603 1.368 10.056 1 8 1V.261a.25.25 0 0 0-.403-.197L6.004 1.303a.25.25 0 0 0 0 .394zM9.5 5h-7a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5m-7-1A1.5 1.5 0 0 0 1 5.5v7A1.5 1.5 0 0 0 2.5 14h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 9.5 4z" clipRule="evenodd"></path>
+        </svg>
+    );
+}
