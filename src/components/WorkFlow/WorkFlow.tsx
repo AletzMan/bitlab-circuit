@@ -1,8 +1,8 @@
 
 import { Background, BackgroundVariant, Connection, Edge, ReactFlow, addEdge, useEdgesState, useNodesState, ConnectionMode, Controls, MarkerType, Panel, useReactFlow, reconnectEdge, OnNodeDrag, useStore } from "@xyflow/react";
-import { DragEvent, useCallback, useRef, useState } from "react";
+import { DragEvent, useCallback, useRef, useState, } from "react";
 import { ElectricalComponent } from "@/components/ElectricalComponents/ElectricalComponent";
-import { ElectricalComponentNode, ElectricalComponentState, ElectricalComponentType } from "@/types";
+import { ElectricalComponentNode, ElectricalComponentState, ElectricalComponentType, UnitsType } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
@@ -11,18 +11,19 @@ import { COMPONENTS } from "@/constants";
 import ComponentDetail from "../ComponentDetails/ComponentDetails";
 import { Board } from "../Board/Board";
 import { isPointInBox, zoomSelector } from "@/helpers";
+import EdgeDetails from "../EdgeDetails/EdgeDetails";
 
 const initialNodes: ElectricalComponentNode[] = [
     {
-        id: '1',
+        id: uuid(),
         type: 'electricalComponent',
-        data: { type: ElectricalComponentType.Resistor, value: 100, rotation: 0, state: ElectricalComponentState.Undefined, isLock: false },
+        data: { type: ElectricalComponentType.Resistor, value: 100, rotation: 0, state: ElectricalComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'Ω' },
         position: { x: 50, y: 200 },
     },
     {
-        id: '2',
+        id: uuid(),
         type: 'electricalComponent',
-        data: { type: ElectricalComponentType.Capacitor, value: 50, rotation: 0, state: ElectricalComponentState.Undefined, isLock: false },
+        data: { type: ElectricalComponentType.Capacitor, value: 50, rotation: 0, state: ElectricalComponentState.Undefined, isLock: false, unit: UnitsType.Henrio, prefix: 'mH' },
         position: { x: 250, y: 200 },
     },
 ];
@@ -35,13 +36,17 @@ const nodeTypes = {
 };
 
 const edgeTypes = {
-    wire: Wire
+    wire: Wire,
+    custom: Wire
 };
+
+const gridSize = 10; // Tamaño del grid
 
 export function WorkFlow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const [selectedNode, setSelectedNode] = useState<ElectricalComponentNode | undefined>();
+    const [selectedEdge, setSelectedEdge] = useState<Edge | undefined>();
     const dragOutsideRef = useRef<ElectricalComponentType | null>(null);
     const edgeReconnectSuccessful = useRef(false);
     const overlappingNodeRef = useRef<ElectricalComponentNode | null>(null);
@@ -112,7 +117,7 @@ export function WorkFlow() {
                 id: uuid(),
                 type: 'electricalComponent',
                 position,
-                data: { type, value: 50, isLock: false, rotation: 0, state: ElectricalComponentState.Undefined },
+                data: { type, value: 50, isLock: false, rotation: 0, state: ElectricalComponentState.Undefined, unit: UnitsType.Ohm, prefix: "Ω" },
                 parentId: board?.id
             };
         } else if (type === ElectricalComponentType.Board) {
@@ -120,7 +125,7 @@ export function WorkFlow() {
                 id: uuid(),
                 type,
                 position,
-                data: { type: ElectricalComponentType.Board, value: 0, isLock: false, rotation: 0, state: ElectricalComponentState.Undefined },
+                data: { type: ElectricalComponentType.Board, value: 0, isLock: false, rotation: 0, state: ElectricalComponentState.Undefined, unit: UnitsType.Henrio, prefix: 'mH' },
                 parentId: board?.id,
                 style: { height: 200, width: 200 },
             };
@@ -133,10 +138,22 @@ export function WorkFlow() {
     const handleNodeClick = (e: React.MouseEvent<Element>, node: ElectricalComponentNode) => {
         e.preventDefault();
         setSelectedNode(node);
+        setSelectedEdge(undefined);
     };
 
     const handlePaneClick = () => {
         setSelectedNode(undefined);
+        setSelectedEdge(undefined);
+    };
+
+    const handleOnEdgeClick = (e: React.MouseEvent<Element, MouseEvent>, edge: Edge) => {
+        e.preventDefault();
+        setSelectedEdge(edge);
+        setSelectedNode(undefined);
+    };
+
+    const handleOnEdgeMouseLeave = () => {
+
     };
 
     const handleReconnectStart = () => {
@@ -155,17 +172,28 @@ export function WorkFlow() {
     };
 
 
+
+
     const handleOnNodeDrag: OnNodeDrag<ElectricalComponentNode> = (e, dragNode) => {
         e.preventDefault();
 
+        const snapToGrid = (value: number) => Math.round(value / gridSize) * gridSize;
+
+        // Ajustar la posición del nodo al grid
+        const snappedX = snapToGrid(dragNode.position.x);
+        const snappedY = snapToGrid(dragNode.position.y);
+
+        // Encontrar nodos superpuestos
         const overlappingNode = getIntersectingNodes(dragNode)?.[0];
         overlappingNodeRef.current = overlappingNode as ElectricalComponentNode;
 
+        // Actualizar nodos y su posición ajustada
         setNodes((prevNodes) =>
             prevNodes.map((node) => {
                 if (node.id === dragNode.id) {
                     return {
                         ...node,
+                        position: { x: snappedX, y: snappedY },
                         data: {
                             ...node.data,
                             state:
@@ -173,9 +201,7 @@ export function WorkFlow() {
                                     [
                                         ElectricalComponentType.Capacitor,
                                         ElectricalComponentType.Resistor,
-                                    ].includes(
-                                        overlappingNode?.data?.type as ElectricalComponentType
-                                    )
+                                    ].includes(overlappingNode?.data?.type as ElectricalComponentType)
                                     ? overlappingNode?.data?.type === dragNode?.data?.type
                                         ? ElectricalComponentState.Add
                                         : ElectricalComponentState.NotAdd
@@ -186,7 +212,9 @@ export function WorkFlow() {
                 return node;
             })
         );
+
     };
+
 
     const handleNodeDragStop: OnNodeDrag<ElectricalComponentNode> = (e, dragNode) => {
         e.preventDefault();
@@ -205,12 +233,26 @@ export function WorkFlow() {
                         const { x, y } = board?.position || { x: 0, y: 0 };
                         const { x: dragX, y: dragY } = dragNode?.position || { x: 0, y: 0 };
 
-                        const position = { x: dragX + x, y: dragY + y };
+                        // Define el tamaño del grid
+                        const gridSize = 10;
 
-                        return { ...node, position, parentId: undefined };
+                        // Función para ajustar las coordenadas al grid
+                        const snapToGrid = (value: number) => Math.round(value / gridSize) * gridSize;
+
+                        // Ajustar la posición del nodo al grid
+                        const snappedX = snapToGrid(dragX + x);
+                        const snappedY = snapToGrid(dragY + y);
+
+                        // Devuelve el nodo con la posición ajustada
+                        return {
+                            ...node,
+                            position: { x: snappedX, y: snappedY },
+                            parentId: undefined,
+                        };
                     }
                     return node;
                 });
+
             });
         }
 
@@ -317,6 +359,9 @@ export function WorkFlow() {
                 isValidConnection={isConnectionValid}
                 onDragOver={handleOnDragover}
                 onDrop={handleOnDrop}
+                onNodeDragStart={handleNodeClick}
+                onEdgeClick={handleOnEdgeClick}
+                onEdgeMouseLeave={handleOnEdgeMouseLeave}
                 onNodeClick={handleNodeClick}
                 onPaneClick={handlePaneClick}
                 onReconnectStart={handleReconnectStart}
@@ -337,6 +382,7 @@ export function WorkFlow() {
                     </div>
                 </Panel>
                 {selectedNode && <ComponentDetail node={selectedNode} />}
+                {selectedEdge && <EdgeDetails edge={selectedEdge} setEdges={setEdges} setSelectedEdge={setSelectedEdge} />}
                 <Background color="#f0f0f0" gap={10} variant={BackgroundVariant.Lines} id='1' />
                 <Background color="#e0e0e0" gap={100} variant={BackgroundVariant.Lines} id='2' />
                 <Controls position="bottom-right" />
