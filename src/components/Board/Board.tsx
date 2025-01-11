@@ -1,11 +1,11 @@
 
 
 import { Node, NodeProps, NodeResizer, useStore } from "@xyflow/react";
-import { ElectricalComponentData } from "@/types";
+import { ComponentData } from "@/types";
 import { zoomSelector } from "@/helpers";
 import styles from "./styles.module.css";
 
-type BoardNode = Node<ElectricalComponentData, "string">;
+type BoardNode = Node<ComponentData, "string">;
 
 export function Board({ selected }: NodeProps<BoardNode>) {
     const showContent = useStore(zoomSelector);
