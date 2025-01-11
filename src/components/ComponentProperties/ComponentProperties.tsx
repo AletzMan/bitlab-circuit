@@ -3,24 +3,23 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
 import { Input, Select, Button, Flex, Divider, Card, Tooltip } from "antd";
-import { ElectricalComponentData, ElectricalComponentNode, UNITS } from "@/types";
+import { ComponentData, ComponentNode, UNITS } from "@/types";
 const { Option } = Select;
 
 
 export default function ComponentProperties({
     node,
 }: {
-    node: ElectricalComponentNode | undefined;
+    node: ComponentNode | undefined;
 }) {
     const nodeType = node?.data?.type || node?.type;
-    const [dataComponent, setDataComponent] = useState<ElectricalComponentData | undefined>();
+    const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
     const updateNodeInternals = useUpdateNodeInternals();
+    const { updateNodeData } = useReactFlow();
 
     useEffect(() => {
         setDataComponent(node?.data);
     }, [node, node?.data]);
-
-    const { updateNodeData } = useReactFlow();
 
     const handleFlipHorizontal = () => {
         if (node && dataComponent) {
@@ -62,13 +61,16 @@ export default function ComponentProperties({
     };
 
     const handleChangeUnit = (value: string) => {
-        console.log(value);
+        if (node && dataComponent) {
+            updateNodeData(node?.id, { prefix: value });
+            setDataComponent({ ...dataComponent, prefix: value });
+        }
     };
 
     return (
         <Card className={styles.details} title="Properties" size="small" type="inner" >
             <div className={styles.details_name}  >{nodeType}</div>
-            {node?.data?.value && (
+            {node?.data?.has_properties && (
                 <Input
                     className={styles.value_number}
                     value={dataComponent?.value}
