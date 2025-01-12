@@ -15,7 +15,6 @@ export default function useHistoryManager() {
     const { setNodes, setEdges, getNodes, getEdges } = useReactFlow();
 
     console.log(history);
-    console.log(getNodes());
 
     const addToHistory = useCallback(
         (newStates: HistoryItem[]) => {
@@ -145,5 +144,8 @@ export default function useHistoryManager() {
         }
     }, [addEdge, addNode, history, removeEdge, removeNode]);
 
-    return { addNode, removeNode, addEdge, removeEdge, undo, redo };
+    const canUndo = currentIndex.current > -1;
+    const canRedo = currentIndex.current < history.length - 1;
+
+    return { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo };
 }
