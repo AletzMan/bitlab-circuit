@@ -12,12 +12,14 @@ export default function ComponentProperties({
     node,
     selectedNodes,
     removeNode,
-    isSingleNode
+    isSingleNode,
+    duplicateComponents
 }: {
     node: ComponentNode | undefined,
     selectedNodes: ComponentNode[] | undefined,
     removeNode: (node: ComponentNode[] | undefined, shouldAddToHistory?: boolean) => void,
-    isSingleNode: boolean
+    isSingleNode: boolean,
+    duplicateComponents: () => void
 }) {
     const nodeType = node?.data?.type || node?.type;
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
@@ -145,7 +147,7 @@ export default function ComponentProperties({
             <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
             <Flex gap={10} wrap>
                 <Tooltip placement="top" title="Duplicate (CTRL + ALT + D)"  >
-                    <Button className={styles.button} variant="filled" color="primary" onClick={handleRotateRight}>
+                    <Button className={styles.button} variant="filled" color="primary" onClick={duplicateComponents}>
                         <DuplicateIcon />
                     </Button>
                 </Tooltip>
