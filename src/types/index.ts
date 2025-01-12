@@ -46,3 +46,11 @@ export type ComponentData = {
 }
 
 export type ComponentNode = Node<ComponentData, string>;
+
+
+export enum HistoryAction {
+    AddNode = "addNode",
+    RemoveNode = "removeNode",
+    AddEdge = "addEdge",
+    RemoveEdge = "removeEdge",
+}
