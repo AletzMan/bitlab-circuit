@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ComponentNode } from "@/types";
 import { Edge, useReactFlow } from "@xyflow/react";
 import { useEffect } from "react";
@@ -39,27 +40,7 @@ export default function useShortcuts({
                     break;
                 }
                 case e.ctrlKey && e.altKey && key === "d": {
-                    const selectedNodes = getNodes().filter((node) => node.selected);
-                    if (selectedNodes.length === 0) return;
-
-                    setNodes((prevNodes) => {
-                        const duplicatedNodes = selectedNodes.map((node) => ({
-                            ...node,
-                            id: uuid(),
-                            position: {
-                                x: node.position.x + 40,
-                                y: node.position.y + 40,
-                            },
-                            selected: true,
-                        }));
-
-                        return [
-                            ...prevNodes.map((node) =>
-                                node.selected ? { ...node, selected: false } : node
-                            ),
-                            ...duplicatedNodes,
-                        ];
-                    });
+                    duplicateComponents();
                     break;
                 }
             }
@@ -71,5 +52,31 @@ export default function useShortcuts({
         };
     }, [getNodes, removeNode, setNodes, undo, redo, getEdges, removeEdge]);
 
-    return null;
+
+    const duplicateComponents = () => {
+        const selectedNodes = getNodes().filter((node) => node.selected);
+        if (selectedNodes.length === 0) return;
+
+        setNodes((prevNodes) => {
+            const duplicatedNodes = selectedNodes.map((node) => ({
+                ...node,
+                id: uuid(),
+                position: {
+                    x: node.position.x + 60,
+                    y: node.position.y + 60,
+                },
+                selected: true,
+            }));
+
+            return [
+                ...prevNodes.map((node) =>
+                    node.selected ? { ...node, selected: false } : node
+                ),
+                ...duplicatedNodes,
+            ];
+        });
+    };
+
+
+    return { duplicateComponents };
 }
