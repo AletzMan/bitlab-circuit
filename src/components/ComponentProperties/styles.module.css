@@ -41,3 +41,7 @@
 .label {
     padding: 0 0 0.5em 0;
 }
+
+.groupNodes {
+    text-transform: capitalize;
+}
