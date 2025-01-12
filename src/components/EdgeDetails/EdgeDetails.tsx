@@ -7,17 +7,25 @@ import { Dispatch, SetStateAction } from "react";
 
 export default function EdgeDetails({
     edge,
-    setEdges,
-    setSelectedEdge
+    setSelectedEdge,
+    removeEdges,
+    isSingleEdgeSelection,
+    selectedEdges,
 }: {
     edge: Edge;
-    setEdges: Dispatch<SetStateAction<Edge[]>>,
-    setSelectedEdge: Dispatch<SetStateAction<Edge | undefined>>
+    setSelectedEdge: Dispatch<SetStateAction<Edge | undefined>>,
+    removeEdges: (edges: Edge[] | undefined) => void,
+    isSingleEdgeSelection: boolean,
+    selectedEdges: Edge[]
 }) {
 
 
     const handleDelete = () => {
-        setEdges(prevEdges => prevEdges.filter(prevEdge => prevEdge.id !== edge.id));
+        if (isSingleEdgeSelection) {
+            removeEdges([edge]);
+        } else {
+            removeEdges(selectedEdges);
+        }
         setSelectedEdge(undefined);
     };
 
