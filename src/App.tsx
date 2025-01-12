@@ -2,7 +2,7 @@
 import { ReactFlowProvider } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import './App.css';
-import { WorkFlow } from '@/components/WorkFlow/WorkFlow';
+import { BoardFlow } from '@/components/BoardFlow/BoardFlow';
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <ReactFlowProvider>
-      <WorkFlow />
+      <BoardFlow />
     </ReactFlowProvider>
   );
 }
