@@ -60,7 +60,7 @@ export function BoardFlow() {
     const edgeReconnectSuccessful = useRef(false);
     const overlappingNodeRef = useRef<ComponentNode | null>(null);
     const { screenToFlowPosition, getIntersectingNodes, } = useReactFlow();
-    const { addNode, removeNode, addEdge, removeEdge, undo, redo } = useHistoryManager();
+    const { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo } = useHistoryManager();
     const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
 
     const onConnect = useCallback(
@@ -413,8 +413,26 @@ export function BoardFlow() {
                         ))}
                     </div>
                 </Card>
-                {selectedNode && selectedNodes?.length > 0 && <ComponentProperties node={selectedNode} removeNode={removeNode} selectedNodes={selectedNodes} isSingleNode={isSingleNodeSelection} duplicateComponents={duplicateComponents} />}
-                {selectedEdge && <EdgeDetails edge={selectedEdge} setSelectedEdge={setSelectedEdge} removeEdges={removeEdge} isSingleEdgeSelection={isSingleEdgeSelection} selectedEdges={selectedEdges} />}
+                {selectedNode && selectedNodes?.length > 0 &&
+                    <ComponentProperties
+                        node={selectedNode}
+                        removeNode={removeNode}
+                        selectedNodes={selectedNodes}
+                        isSingleNode={isSingleNodeSelection}
+                        duplicateComponents={duplicateComponents}
+                        undo={undo}
+                        redo={redo}
+                        canUndo={canUndo}
+                        canRedo={canRedo} />
+                }
+                {selectedEdge &&
+                    <EdgeDetails
+                        edge={selectedEdge}
+                        setSelectedEdge={setSelectedEdge}
+                        removeEdges={removeEdge}
+                        isSingleEdgeSelection={isSingleEdgeSelection}
+                        selectedEdges={selectedEdges} />
+                }
                 <Background color="#f0f0f0" gap={10} variant={BackgroundVariant.Lines} id='1' />
                 <Background color="#e0e0e0" gap={100} variant={BackgroundVariant.Lines} id='2' />
                 <Controls position="bottom-right">
