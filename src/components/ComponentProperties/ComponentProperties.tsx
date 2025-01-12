@@ -2,7 +2,7 @@ import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
-import { Input, Select, Button, Flex, Divider, Card, Tooltip } from "antd";
+import { Input, Select, Button, Flex, Divider, Card, Tooltip, Tag } from "antd";
 import { ComponentData, ComponentNode, UNITS } from "@/types";
 //import useHistoryManager from "@/hooks/useHistoryManager";
 const { Option } = Select;
@@ -25,7 +25,7 @@ export default function ComponentProperties({
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
     const updateNodeInternals = useUpdateNodeInternals();
     const { updateNodeData } = useReactFlow();
-    //const { removeNode } = useHistoryManager();
+
 
     useEffect(() => {
         setDataComponent(node?.data);
@@ -113,6 +113,16 @@ export default function ComponentProperties({
                     )}
                     <Divider style={{ margin: "16px 0" }} />
                 </>
+            }
+            {!isSingleNode &&
+                <Flex className={styles.groupNodes} wrap gap="4px 0" >
+                    {selectedNodes?.map(node => (
+                        <Tag key={node.id} color="cyan">{`${node.data?.type}`}</Tag>
+                    ))
+
+                    }
+                    <Divider style={{ margin: "16px 0" }} />
+                </Flex>
             }
             {isSingleNode &&
                 <>
