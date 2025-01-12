@@ -14,8 +14,6 @@ export default function useHistoryManager() {
 
     const { setNodes, setEdges, getNodes, getEdges } = useReactFlow();
 
-    console.log(history);
-
     const addToHistory = useCallback(
         (newStates: HistoryItem[]) => {
             const newHistory = [...history].slice(0, currentIndex.current + 1);
