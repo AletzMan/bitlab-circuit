@@ -61,7 +61,7 @@ export function BoardFlow() {
     const overlappingNodeRef = useRef<ComponentNode | null>(null);
     const { screenToFlowPosition, getIntersectingNodes, } = useReactFlow();
     const { addNode, removeNode, addEdge, removeEdge, undo, redo } = useHistoryManager();
-    useShortcuts({ removeEdge, removeNode, undo, redo });
+    const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
 
     const onConnect = useCallback(
         (connection: Connection) => {
@@ -413,7 +413,7 @@ export function BoardFlow() {
                         ))}
                     </div>
                 </Card>
-                {selectedNode && selectedNodes?.length > 0 && <ComponentProperties node={selectedNode} removeNode={removeNode} selectedNodes={selectedNodes} isSingleNode={isSingleNodeSelection} />}
+                {selectedNode && selectedNodes?.length > 0 && <ComponentProperties node={selectedNode} removeNode={removeNode} selectedNodes={selectedNodes} isSingleNode={isSingleNodeSelection} duplicateComponents={duplicateComponents} />}
                 {selectedEdge && <EdgeDetails edge={selectedEdge} setSelectedEdge={setSelectedEdge} removeEdges={removeEdge} isSingleEdgeSelection={isSingleEdgeSelection} selectedEdges={selectedEdges} />}
                 <Background color="#f0f0f0" gap={10} variant={BackgroundVariant.Lines} id='1' />
                 <Background color="#e0e0e0" gap={100} variant={BackgroundVariant.Lines} id='2' />
