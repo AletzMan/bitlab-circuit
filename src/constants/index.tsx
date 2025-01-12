@@ -18,3 +18,8 @@ export const COMPONENTS = [
         label: 'Board'
     }
 ];
+
+export const ARRAY_COMPONENTS: ComponentType[] = [
+    ComponentType.Resistor,
+    ComponentType.Capacitor,
+];
