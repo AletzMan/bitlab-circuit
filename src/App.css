@@ -81,3 +81,8 @@ body {
 .ant-tooltip {
     font-family: var(--font-family);
 }
+
+.react-flow__nodesselection-rect,
+.react-flow__selection {
+    border: 1px dashed #2db8d4;
+}
