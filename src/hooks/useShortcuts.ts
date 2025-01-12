@@ -39,22 +39,25 @@ export default function useShortcuts({
                     break;
                 }
                 case e.ctrlKey && e.altKey && key === "d": {
-                    const selectedNode = getNodes().find((node) => node.selected);
-                    if (!selectedNode) return;
+                    const selectedNodes = getNodes().filter((node) => node.selected);
+                    if (selectedNodes.length === 0) return;
+
                     setNodes((prevNodes) => {
+                        const duplicatedNodes = selectedNodes.map((node) => ({
+                            ...node,
+                            id: uuid(),
+                            position: {
+                                x: node.position.x + 40,
+                                y: node.position.y + 40,
+                            },
+                            selected: true,
+                        }));
+
                         return [
                             ...prevNodes.map((node) =>
                                 node.selected ? { ...node, selected: false } : node
                             ),
-                            {
-                                ...selectedNode,
-                                id: uuid(),
-                                position: {
-                                    x: selectedNode?.position?.x + 40,
-                                    y: selectedNode?.position?.y + 40,
-                                },
-                                selected: true,
-                            },
+                            ...duplicatedNodes,
                         ];
                     });
                     break;
