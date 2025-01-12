@@ -1,7 +1,7 @@
 import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
+import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RedoIcon, RotateLeftIcon, RotateRightIcon, UndoIcon } from "@/icons";
 import { Input, Select, Button, Flex, Divider, Card, Tooltip, Tag } from "antd";
 import { ComponentData, ComponentNode, UNITS } from "@/types";
 //import useHistoryManager from "@/hooks/useHistoryManager";
@@ -13,13 +13,21 @@ export default function ComponentProperties({
     selectedNodes,
     removeNode,
     isSingleNode,
-    duplicateComponents
+    duplicateComponents,
+    undo,
+    redo,
+    canUndo,
+    canRedo
 }: {
     node: ComponentNode | undefined,
     selectedNodes: ComponentNode[] | undefined,
     removeNode: (node: ComponentNode[] | undefined, shouldAddToHistory?: boolean) => void,
     isSingleNode: boolean,
-    duplicateComponents: () => void
+    duplicateComponents: () => void,
+    undo: () => void,
+    redo: () => void,
+    canUndo: boolean,
+    canRedo: boolean
 }) {
     const nodeType = node?.data?.type || node?.type;
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
@@ -156,6 +164,16 @@ export default function ComponentProperties({
             <label className={styles.label}>Actions</label>
             <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
             <Flex gap={10} wrap>
+                <Tooltip placement="top" title="Undo (CTRL + Z)"  >
+                    <Button className={styles.button} variant="filled" color="primary" onClick={undo} disabled={!canUndo}>
+                        <UndoIcon />
+                    </Button>
+                </Tooltip>
+                <Tooltip placement="top" title="Redo (CTRL + Y)"  >
+                    <Button className={styles.button} variant="filled" color="primary" onClick={redo} disabled={!canRedo}>
+                        <RedoIcon />
+                    </Button>
+                </Tooltip>
                 <Tooltip placement="top" title="Duplicate (CTRL + ALT + D)"  >
                     <Button className={styles.button} variant="filled" color="primary" onClick={duplicateComponents}>
                         <DuplicateIcon />
