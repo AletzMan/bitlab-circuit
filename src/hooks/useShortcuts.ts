@@ -66,7 +66,7 @@ export default function useShortcuts({
         return () => {
             document.removeEventListener("keydown", handleKeyDown);
         };
-    }, [getNodes, removeNode, setNodes, undo, redo]);
+    }, [getNodes, removeNode, setNodes, undo, redo, getEdges, removeEdge]);
 
     return null;
 }
