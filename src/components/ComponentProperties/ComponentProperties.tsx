@@ -94,7 +94,7 @@ export default function ComponentProperties({
     };
 
     return (
-        <Card className={styles.details} title="Properties" size="small" type="inner" >
+        <Card className={styles.details} size="small" type="inner" >
             {isSingleNode &&
                 <>
                     <div className={styles.details_name}  >{nodeType}</div>
