@@ -1,13 +1,10 @@
 .details {
-    position: absolute;
-    top: 1em;
-    right: 1em;
     display: flex;
     flex-direction: column;
     gap: 0.25em;
     border: 1px solid var(--border-color);
-    width: 17.25em;
     padding: 0;
+    width: 100%;
     border-radius: 0.25em;
     z-index: 1000;
     font-family: var(--font-family);
