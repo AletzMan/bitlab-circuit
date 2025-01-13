@@ -12,7 +12,7 @@ import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
-import { Button, Card, Tooltip } from "antd";
+import { Button, Card, Divider, Flex, Tabs, Tooltip } from "antd";
 import { OpenFileIcon, ResetZoomIcon, SaveIcon } from "@/icons";
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
@@ -48,6 +48,7 @@ const gridSize = 10; // Tamaño del grid
 
 export function BoardFlow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+    const [activeTab, setActiveTab] = useState('components');
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const [selectedNode, setSelectedNode] = useState<ComponentNode | undefined>();
     const [selectedNodes, setSelectedNodes] = useState<ComponentNode[]>([]);
@@ -161,17 +162,20 @@ export function BoardFlow() {
         e.preventDefault();
         setSelectedNode(node);
         setSelectedEdge(undefined);
+        setActiveTab("properties");
     };
 
     const handlePaneClick = () => {
         setSelectedNode(undefined);
         setSelectedEdge(undefined);
+        setActiveTab("components");
     };
 
     const handleOnEdgeClick = (e: React.MouseEvent<Element, MouseEvent>, edge: Edge) => {
         e.preventDefault();
         setSelectedEdge(edge);
         setSelectedNode(undefined);
+        setActiveTab("properties");
     };
 
     const handleOnEdgeMouseLeave = () => {
@@ -348,15 +352,27 @@ export function BoardFlow() {
     };
 
     const handleOnSelectionChange: OnSelectionChangeFunc = (params: OnSelectionChangeParams) => {
-        const isUniqueNode = params.nodes.length === 1;
-        const isUniqueEdge = params.edges.length === 1;
+        const numberNodes = params.nodes.length;
+        const numberEdges = params.edges.length;
+        const isUniqueNode = numberNodes === 1;
+        const isUniqueEdge = numberEdges === 1;
         setIsSingleNodeSelection(isUniqueNode);
         setIsSingleEdgeSelection(isUniqueEdge);
         if (isUniqueNode) setSelectedNode(params.nodes[0] as ComponentNode);
         if (isUniqueEdge) setSelectedEdge(params.edges[0]);
         setSelectedNodes(params.nodes as ComponentNode[]);
         setSelectedEdges(params.edges);
+        if (numberNodes > 0 || numberEdges > 0)
+            setActiveTab("properties");
+        else {
+            setActiveTab("components");
+        }
 
+    };
+
+    const handleOnChangeTab = (activeKey: string) => {
+        console.log(activeKey);
+        setActiveTab(activeKey);
     };
 
     const handleChangeViewPort = (viewport: Viewport) => {
@@ -402,29 +418,6 @@ export function BoardFlow() {
                 selectionMode={SelectionMode.Partial}
 
             >
-                <Card className={styles.panelComponents} size="small" title="Componentes" type="inner" extra={<Button variant="solid" color="geekblue">{`>`}</Button>} actions={actions} >
-                    <div className={styles.components}>
-                        {COMPONENTS.map(component => (
-                            <Tooltip key={component.label} placement="top" title={component.label}  >
-                                <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
-                                    {component.icon}
-                                </Button>
-                            </Tooltip>
-                        ))}
-                    </div>
-                </Card>
-                {selectedNode && selectedNodes?.length > 0 &&
-                    <ComponentProperties
-                        node={selectedNode}
-                        removeNode={removeNode}
-                        selectedNodes={selectedNodes}
-                        isSingleNode={isSingleNodeSelection}
-                        duplicateComponents={duplicateComponents}
-                        undo={undo}
-                        redo={redo}
-                        canUndo={canUndo}
-                        canRedo={canRedo} />
-                }
                 {selectedEdge &&
                     <EdgeDetails
                         edge={selectedEdge}
@@ -435,13 +428,53 @@ export function BoardFlow() {
                 }
                 <Background color="#f0f0f0" gap={10} variant={BackgroundVariant.Lines} id='1' />
                 <Background color="#e0e0e0" gap={100} variant={BackgroundVariant.Lines} id='2' />
-                <Controls position="bottom-right">
+                <Controls position="bottom-center" orientation="horizontal">
                     <button className="react-flow__controls-button" title="reset zoom" onClick={handleZoomReset}>
                         <ResetZoomIcon />
                     </button>
                 </Controls>
                 <MiniMap position="bottom-left" pannable />
             </ReactFlow>
+            <Flex className={styles.containerTabs}>
+                <Tabs className={styles.tabs} type="card" size="small" items={[
+                    {
+                        label: "Components",
+                        key: "components",
+                        children:
+                            <Flex wrap className={styles.divider}>
+                                <label className={styles.label}>Analog</label>
+                                <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
+                                <div className={styles.components}>
+                                    {COMPONENTS.map(component => (
+                                        <Tooltip key={component.label} placement="top" title={component.label}  >
+                                            <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
+                                                {component.icon}
+                                            </Button>
+                                        </Tooltip>
+                                    ))}
+                                </div>
+                                <Divider style={{ margin: "12px 0 24px 0" }} />
+                            </Flex>
+                    },
+                    {
+                        label: "Properties",
+                        key: "properties",
+                        disabled: false,
+                        children: selectedNode && selectedNodes?.length > 0 &&
+                            <ComponentProperties
+                                node={selectedNode}
+                                removeNode={removeNode}
+                                selectedNodes={selectedNodes}
+                                isSingleNode={isSingleNodeSelection}
+                                duplicateComponents={duplicateComponents}
+                                undo={undo}
+                                redo={redo}
+                                canUndo={canUndo}
+                                canRedo={canRedo} />
+                    }
+                ]} activeKey={activeTab} onChange={handleOnChangeTab} />
+            </Flex>
+
         </div>
     );
 }
