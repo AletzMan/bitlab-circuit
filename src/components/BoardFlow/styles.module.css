@@ -1,29 +1,17 @@
 .board {
     position: relative;
     background-color: #FFFFFF;
-    margin: 1em;
-    width: calc(100svw - 2em);
-    height: calc(100svh - 2em);
+    margin: 0em;
+    width: 100svw;
+    height: 100svh;
 }
 
-.panelComponents {
-    position: absolute;
-    left: 1em;
-    top: 1em;
-    display: flex;
-    flex-direction: column;
-    border-radius: 0.25em;
-    border: 1px solid var(--border-color);
-    gap: 0.5em;
-    width: 250px;
-    z-index: 100;
-    font-family: var(--font-family);
-}
 
 .components {
     display: flex;
     flex-flow: row;
     gap: 0.5em;
+    padding: 0.5em;
 }
 
 .components_title {
@@ -34,4 +22,28 @@
     width: 3em;
     padding: 0.25em;
     height: 3em;
+}
+
+.containerTabs {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    background-color: #FFFFFF;
+    min-width: 240px;
+    height: 100svh;
+    border-left: 1px solid #DEDEDE;
+}
+
+.tabs {
+    width: 100%;
+}
+
+.divider {
+    width: 100%;
+}
+
+.label {
+    padding: 0 0 0 0.5em;
+    font-family: var(--font-family);
 }
