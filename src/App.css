@@ -177,3 +177,9 @@ body {
 :where(.css-dev-only-do-not-override-poerbe).ant-tabs-bottom>div>.ant-tabs-nav {
     margin: 0;
 }
+
+.react-flow__connection {
+    &>path {
+        stroke: var(--foregorund-color);
+    }
+}
