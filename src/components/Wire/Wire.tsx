@@ -10,8 +10,13 @@ export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targe
         sourcePosition,
         targetPosition
     });
+    function convertToStraightLines(path: string) {
+        // Reemplaza todas las curvas Q por líneas rectas L
+        return path.replace(/Q/g, 'L');
+    }
 
+    const modifiedPath = convertToStraightLines(d);
     return (
-        <BaseEdge path={d} className={styles.wire} type="smoothstep" />
+        <BaseEdge path={modifiedPath} className={styles.wire} type="smoothstep" />
     );
 };
