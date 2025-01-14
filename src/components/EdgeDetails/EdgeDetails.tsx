@@ -2,8 +2,9 @@
 import styles from "./styles.module.css";
 import { DeletetIcon } from "@/icons";
 import { Button, Flex, Card, Divider, Input } from "antd";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState, ChangeEvent } from "react";
 import { ComponentEdge } from "@/types";
+import useDebounce from "@/hooks/useDebounce";
 
 interface IEdgeProps {
     edge: ComponentEdge;
@@ -11,7 +12,7 @@ interface IEdgeProps {
     removeEdges: (edges: ComponentEdge[] | undefined) => void,
     isSingleEdgeSelection: boolean,
     selectedEdges: ComponentEdge[],
-    setEdges: React.Dispatch<React.SetStateAction<ComponentEdge[]>>
+    setEdges: Dispatch<SetStateAction<ComponentEdge[]>>
 }
 
 export default function EdgeDetails({
@@ -23,11 +24,21 @@ export default function EdgeDetails({
     setEdges,
 }: IEdgeProps) {
     const [currentColor, setCurrentColor] = useState(edge?.data?.color);
-
+    const debouncedColor = useDebounce(currentColor, 500);
 
     useEffect(() => {
         setCurrentColor(edge?.data?.color);
     }, [edge]);
+
+    useEffect(() => {
+        setEdges((prevEdges) =>
+            prevEdges.map((edgePrev) =>
+                edgePrev.id === edge.id
+                    ? { ...edgePrev, data: { ...edgePrev.data, color: debouncedColor as string, path: "" } }
+                    : edgePrev
+            )
+        );
+    }, [debouncedColor, edge.id, setEdges]);
 
     const handleDelete = () => {
         if (isSingleEdgeSelection) {
@@ -38,15 +49,8 @@ export default function EdgeDetails({
         setSelectedEdge(undefined);
     };
 
-    const handleChangeColorWire = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeColorWire = (e: ChangeEvent<HTMLInputElement>) => {
         const newColor = e.currentTarget.value;
-        setEdges((prevEdges) =>
-            prevEdges.map((edgePrev) =>
-                edgePrev.id === edge.id
-                    ? { ...edgePrev, data: { ...edgePrev.data, color: newColor, path: "" } }
-                    : edgePrev
-            )
-        );
         setCurrentColor(newColor);
     };
 
@@ -54,7 +58,7 @@ export default function EdgeDetails({
         <Card className={styles.details} size="small" type="inner" >
             <Flex vertical>
                 <label className="details_name"  >Wire</label>
-                <Input type="color" value={currentColor} onChange={handleChangeColorWire} />
+                <Input type="color" value={currentColor} onChange={handleChangeColorWire} width="15px" />
                 <Divider style={{ margin: "16px 0" }} />
                 <label className="label">Actions</label>
                 <Flex gap={10} wrap>
