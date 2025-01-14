@@ -1,4 +1,4 @@
-import { Node } from "@xyflow/react";
+import { Edge, Node } from "@xyflow/react";
 export enum ComponentType {
     Resistor = 'resistor',
     Capacitor = 'capacitor',
@@ -47,6 +47,12 @@ export type ComponentData = {
 
 export type ComponentNode = Node<ComponentData, string>;
 
+export type EdgeData = {
+    color: string,
+    path: string,
+};
+
+export type ComponentEdge = Edge<EdgeData, string>
 
 export enum HistoryAction {
     AddNode = "addNode",
