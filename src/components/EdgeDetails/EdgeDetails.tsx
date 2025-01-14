@@ -5,6 +5,14 @@ import { Button, Flex, Card, Divider, Input } from "antd";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ComponentEdge } from "@/types";
 
+interface IEdgeProps {
+    edge: ComponentEdge;
+    setSelectedEdge: Dispatch<SetStateAction<ComponentEdge | undefined>>,
+    removeEdges: (edges: ComponentEdge[] | undefined) => void,
+    isSingleEdgeSelection: boolean,
+    selectedEdges: ComponentEdge[],
+    setEdges: React.Dispatch<React.SetStateAction<ComponentEdge[]>>
+}
 
 export default function EdgeDetails({
     edge,
@@ -13,16 +21,9 @@ export default function EdgeDetails({
     isSingleEdgeSelection,
     selectedEdges,
     setEdges,
-}: {
-    edge: ComponentEdge;
-    setSelectedEdge: Dispatch<SetStateAction<ComponentEdge | undefined>>,
-    removeEdges: (edges: ComponentEdge[] | undefined) => void,
-    isSingleEdgeSelection: boolean,
-    selectedEdges: ComponentEdge[],
-    setEdges: React.Dispatch<React.SetStateAction<ComponentEdge[]>>
-}) {
-
+}: IEdgeProps) {
     const [currentColor, setCurrentColor] = useState(edge?.data?.color);
+
 
     useEffect(() => {
         setCurrentColor(edge?.data?.color);
