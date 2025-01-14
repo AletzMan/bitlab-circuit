@@ -102,20 +102,49 @@ export function OpenFileIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function ExportIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="1.5em" height="1.5em" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M15.25 15.75c-.41 0-.75.34-.75.75V18c0 .69-.56 1.25-1.25 1.25h-7.5c-.69 0-1.25-.56-1.25-1.25V6c0-.69.56-1.25 1.25-1.25H9V9.5c0 .41.34.75.75.75h4.75v1.25c0 .41.34.75.75.75s.75-.34.75-.75v-2c0-.2-.08-.39-.22-.53l-5.5-5.5a.75.75 0 0 0-.53-.22h-4C4.23 3.25 3 4.48 3 6v12c0 1.52 1.23 2.75 2.75 2.75h7.5c1.52 0 2.75-1.23 2.75-2.75v-1.5c0-.41-.34-.75-.75-.75M10.5 5.81l2.94 2.94H10.5zm10.44 8.48c-.04.09-.09.17-.16.24l-3 3c-.15.15-.34.22-.53.22s-.38-.07-.53-.22a.754.754 0 0 1 0-1.06l1.72-1.72H9.75c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h8.69l-1.72-1.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l3 3c.07.07.12.15.16.24c.08.18.08.39 0 .57Z"></path>
+        </svg>
+    );
+}
+
 export function DuplicateIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} width="2em" height="2em" viewBox="0 0 20 20">
             <g fill="currentColor"><path fillRule="evenodd" d="M15 7.5H8a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V8a.5.5 0 0 0-.5-.5m-6.5 7v-6h6v6z" clipRule="evenodd"></path>
-                <path d="M5.5 11.5h3v1H5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v3.5h-1v-3h-6z"></path></g>
+                <path d="M5.5 11.5h3v1H5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v3.5h-1v-3h-6z"></path>
+            </g>
+        </svg>
+    );
+}
+
+export function FitZoomIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="2em" height="2em" viewBox="0 0 32 32" style={{ transform: "scale(0.8)" }}>
+            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+                <circle cx={14} cy={14} r={12}></circle><path d="m23 23l7 7M9 12V9h3m4 0h3v3M9 16v3h3m7-3v3h-3"></path>
+            </g>
         </svg>
     );
 }
 
 export function ResetZoomIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} width="2em" height="2em" viewBox="0 0 32 32" style={{ transform: "scale(1.3)" }}>
-            <path fill="currentColor" d="M21.448 20A10.86 10.86 0 0 0 24 13a11 11 0 1 0-11 11a10.86 10.86 0 0 0 7-2.552L27.586 29L29 27.586ZM13 22a9 9 0 1 1 9-9a9.01 9.01 0 0 1-9 9"></path>
-            <path fill="currentColor" d="M10 12H8v-2a2 2 0 0 1 2-2h2v2h-2zm8 0h-2v-2h-2V8h2a2 2 0 0 1 2 2zm-6 6h-2a2 2 0 0 1-2-2v-2h2v2h2zm4 0h-2v-2h2v-2h2v2a2 2 0 0 1-2 2"></path>
+        <svg {...props} width="2em" height="2em" viewBox="0 0 24 24" style={{ transform: "scale(0.8)" }}>
+            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+                <path d="m21 21l-6-6M3.268 12.043A7.02 7.02 0 0 0 9.902 17a7.01 7.01 0 0 0 7.043-6.131a7 7 0 0 0-5.314-7.672A7.02 7.02 0 0 0 3.39 7.6"></path>
+                <path d="M3 4v4h4"></path>
+            </g>
+        </svg>
+    );
+}
+
+export function MenuIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="1.5em" height="1.5em" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4 7a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1m0 5a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1m0 5a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1"></path>
         </svg>
     );
 }
@@ -128,10 +157,34 @@ export function UndoIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function PlusIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="1.1em" height="1.1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M9 3a1 1 0 0 0-2 0v4H3a1 1 0 0 0 0 2h4v4a1 1 0 0 0 2 0V9h4a1 1 0 0 0 0-2H9z"></path>
+        </svg>
+    );
+}
+
+export function MinusIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="1.25em" height="1.25em" viewBox="0 0 20 20">
+            <path fill="currentColor" fillRule="evenodd" d="M5 10a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1" clipRule="evenodd"></path>
+        </svg>
+    );
+}
+
 export function RedoIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} width="2em" height="2em" viewBox="0 0 24 24" style={{ transform: "scaleX(-1)" }}>
             <path fill="currentColor" fillRule="evenodd" d="M7.53 3.47a.75.75 0 0 1 0 1.06L5.81 6.25H15a5.75 5.75 0 0 1 0 11.5H8a.75.75 0 0 1 0-1.5h7a4.25 4.25 0 0 0 0-8.5H5.81l1.72 1.72a.75.75 0 1 1-1.06 1.06l-3-3a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0" clipRule="evenodd"></path>
+        </svg>
+    );
+}
+
+export function FileIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="1.3em" height="1.3em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2"></path></g>
         </svg>
     );
 }
