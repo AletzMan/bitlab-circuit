@@ -6,6 +6,28 @@
     height: 100svh;
 }
 
+.flow {
+    position: relative;
+    margin: 0em;
+    width: calc(100svw - 270px);
+    height: 100svh;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2.85em;
+    padding: 0 0 0 0.25em;
+    border-radius: 0;
+    box-sizing: border-box;
+    width: 100svw;
+    z-index: 5;
+}
 
 .components {
     display: flex;
@@ -27,12 +49,13 @@
 .containerTabs {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 2.89em;
     z-index: 0;
-    background-color: #FFFFFF;
-    min-width: 240px;
-    height: 100svh;
-    border-left: 1px solid #DEDEDE;
+    border-radius: 0;
+    min-width: 270px;
+    height: calc(100svh - 2.89em);
+
+
 }
 
 .tabs {
