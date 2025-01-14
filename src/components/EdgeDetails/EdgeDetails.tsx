@@ -58,7 +58,12 @@ export default function EdgeDetails({
         <Card className={styles.details} size="small" type="inner" >
             <Flex vertical>
                 <label className="details_name"  >Wire</label>
-                <Input className={styles.input} type="color" value={currentColor} onChange={handleChangeColorWire} />
+                <Flex>
+                    <Flex vertical align="center">
+                        <Input className={styles.input} type="color" value={currentColor} onChange={handleChangeColorWire} />
+                        <label className={styles.label}>Color</label>
+                    </Flex>
+                </Flex>
                 <Divider style={{ margin: "16px 0" }} />
                 <label className="label">Actions</label>
                 <Flex gap={10} wrap>
