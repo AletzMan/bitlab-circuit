@@ -2,9 +2,10 @@
 
 import {
     Background, BackgroundVariant, Connection, Edge, ReactFlow, useEdgesState, useNodesState,
-    ConnectionMode, MarkerType, useReactFlow, reconnectEdge, OnNodeDrag, Viewport, MiniMap,
+    ConnectionMode, useReactFlow, reconnectEdge, OnNodeDrag, Viewport, MiniMap,
     SelectionMode, OnSelectionChangeFunc,
     OnSelectionChangeParams,
+    OnEdgesChange,
 } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, KeyboardEvent, useEffect } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
@@ -72,6 +73,8 @@ export function BoardFlow() {
     const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
     const { currentTheme, setCurrentTheme } = useTheme();
 
+
+
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", currentTheme);
     }, []);
@@ -80,18 +83,17 @@ export function BoardFlow() {
         (connection: Connection) => {
             const edge = {
                 ...connection, id: uuid(),
-                type: "wire", markerEnd: {
-                    type: MarkerType.ArrowClosed,
-                    width: 10,
-                    height: 10,
-                    color: "#00aaff",
-                    orient: "auto-start-reverse"
+                data: {
+                    color: "var(--primary-color)"
                 }
+
             };
             addEdge(edge);
         },
         [addEdge]
     );
+
+
 
     const isConnectionValid = (connection: Edge | Connection) => {
         const { source, target } = connection;
@@ -207,6 +209,13 @@ export function BoardFlow() {
         if (!edgeReconnectSuccessful.current) {
             removeEdge([edge]);
         }
+    };
+
+
+
+
+    const handleOnEdgesChanges: OnEdgesChange<Edge> = (changes) => {
+        onEdgesChange(changes);
     };
 
 
@@ -513,10 +522,11 @@ export function BoardFlow() {
 
                 <div className={styles.flow} >
                     <ReactFlow
+                        defaultEdgeOptions={{ type: "wire" }}
                         nodes={nodes}
                         edges={edges}
                         onNodesChange={onNodesChange}
-                        onEdgesChange={onEdgesChange}
+                        onEdgesChange={handleOnEdgesChanges}
                         onConnect={onConnect}
                         connectionMode={ConnectionMode.Loose}
                         nodeTypes={nodeTypes}
