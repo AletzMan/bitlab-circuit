@@ -1,5 +1,10 @@
 
-import { Background, BackgroundVariant, Connection, Edge, ReactFlow, useEdgesState, useNodesState, ConnectionMode, Controls, MarkerType, useReactFlow, reconnectEdge, OnNodeDrag, Viewport, MiniMap, SelectionMode, OnSelectionChangeFunc, OnSelectionChangeParams } from "@xyflow/react";
+import {
+    Background, BackgroundVariant, Connection, Edge, ReactFlow, useEdgesState, useNodesState,
+    ConnectionMode, Controls, MarkerType, useReactFlow, reconnectEdge, OnNodeDrag, Viewport, MiniMap,
+    SelectionMode, OnSelectionChangeFunc,
+    OnSelectionChangeParams,
+} from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, KeyboardEvent } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
 import { ComponentNode, ComponentState, ComponentType, UnitsType } from "@/types";
@@ -12,10 +17,12 @@ import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
-import { Button, Card, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Space, Tabs, Tooltip, theme } from "antd";
-import { DeletetIcon, ExportIcon, FitZoomIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
+import { Button, Card, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Space, Switch, Tabs, Tooltip, theme } from "antd";
+import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
+import { useTheme } from "@/store";
+
 
 const initialNodes: ComponentNode[] = [
     {
@@ -44,8 +51,7 @@ const edgeTypes = {
     custom: Wire
 };
 
-const gridSize = 10; // Tamaño del grid
-
+const gridSize = 10; // Tamaño del grid 
 export function BoardFlow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [activeTab, setActiveTab] = useState('components');
@@ -63,6 +69,7 @@ export function BoardFlow() {
     const { screenToFlowPosition, getIntersectingNodes, fitView } = useReactFlow();
     const { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo } = useHistoryManager();
     const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
+    const { currentTheme, setCurrentTheme } = useTheme();
 
     const onConnect = useCallback(
         (connection: Connection) => {
@@ -444,93 +451,108 @@ export function BoardFlow() {
     };
 
     return (
-        <div className={styles.board}>
-            <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
-                <Card className={styles.menu} size="small" styles={{ body: { padding: "0" } }}>
-                    <Flex gap={30}>
+        <ConfigProvider theme={{ algorithm: currentTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
+            <div className={styles.board}>
+                <Card className={styles.menu} size="small" styles={{ body: { padding: "0", width: "100%" } }}>
+                    <Flex gap={30} >
                         <Dropdown menu={{ items: itemsFileMenu, onClick: handleClickMenu }}>
                             <Button styles={{ icon: { display: 'flex', alignItems: 'center', justifyContent: 'center' } }} icon={<MenuIcon />} variant="filled" color="default" />
                         </Dropdown>
-                        <Flex gap={10}>
-                            <Divider type="vertical" orientation="center" />
-                            <Button icon={<UndoIcon />} variant="dashed" color="default" />
-                            <Button icon={<RedoIcon />} variant="dashed" color="default" />
-                            <Divider type="vertical" orientation="center" />
+                        <Flex gap={10} style={{ width: "100%" }}>
+                            <Divider type="vertical" orientation="center" style={{ height: "100%" }} />
+                            <Tooltip placement="top" title="Undo (Ctrl+Z)"  >
+                                <Button icon={<UndoIcon />} variant="dashed" color="default" onClick={undo} disabled={!canUndo} />
+                            </Tooltip>
+                            <Tooltip placement="top" title="Redo (Ctrl+Y)"  >
+                                <Button icon={<RedoIcon />} variant="dashed" color="default" onClick={redo} disabled={!canRedo} />
+                            </Tooltip>
+                            <Divider type="vertical" orientation="center" style={{ height: "100%" }} />
                             <Space.Compact size="middle" >
-                                <Button
-                                    type="primary"
-                                    variant="outlined"
-                                    color="default" icon={<PlusIcon />}
-                                    styles={{ icon: { display: 'flex', alignItems: 'center', justifyContent: 'center' } }}
-                                    onClick={() => handleZoom('in')}
-                                    disabled={viewPort.zoom >= 3} />
-                                <Input value={`${Math.floor(viewPort.zoom * 100)}`.concat('%')} size="small" style={{ width: "50px" }} contentEditable={false} />
-                                <Button
-                                    type="primary"
-                                    variant="outlined"
-                                    color="default"
-                                    icon={<MinusIcon />}
-                                    styles={{ icon: { display: 'flex', alignItems: 'center', justifyContent: 'center' } }}
-                                    onClick={() => handleZoom('out')}
-                                    disabled={viewPort.zoom === 0.5} />
+                                <Tooltip placement="top" title="Zoom In (Ctrl+Scroll)"  >
+                                    <Button
+                                        type="primary"
+                                        variant="outlined"
+                                        color="default" icon={<PlusIcon />}
+                                        styles={{ icon: { display: 'flex', alignItems: 'center', justifyContent: 'center' } }}
+
+                                        onClick={() => handleZoom('in')}
+                                        disabled={viewPort.zoom >= 3} />
+                                </Tooltip>
+                                <Input value={`${Math.floor(viewPort.zoom * 100)}`.concat('%')} size="small" style={{ width: "50px", pointerEvents: 'none', textAlign: 'center' }} contentEditable={false} />
+                                <Tooltip placement="top" title="Zoom Out (Ctrl+Scroll)"  >
+                                    <Button
+                                        type="primary"
+                                        variant="outlined"
+                                        color="default"
+                                        icon={<MinusIcon />}
+                                        styles={{ icon: { display: 'flex', alignItems: 'center', justifyContent: 'center' } }}
+                                        onClick={() => handleZoom('out')}
+                                        disabled={viewPort.zoom === 0.5} />
+                                </Tooltip>
                             </Space.Compact>
-                            <Button icon={<ResetZoomIcon />} variant="dashed" color="default" onClick={() => handleZoom('reset')} />
-                            <Button icon={<FitZoomIcon />} variant="dashed" color="default" onClick={() => handleZoom('fit')} />
-                            <Divider type="vertical" orientation="center" />
+                            <Tooltip placement="top" title="Reset Zoom "  >
+                                <Button icon={<ResetZoomIcon />} variant="dashed" color="default" onClick={() => handleZoom('reset')} />
+                            </Tooltip>
+                            <Tooltip placement="top" title="Fit Zoom "  >
+                                <Button icon={<FitZoomIcon />} variant="dashed" color="default" onClick={() => handleZoom('fit')} />
+                            </Tooltip>
+                            <Divider type="vertical" orientation="center" style={{ height: "100%" }} />
+                        </Flex>
+                        <Flex align="center" style={{ padding: "0 10px 0 0" }} >
+                            <Switch value={currentTheme === "light"} checkedChildren={<DarkIcon />} unCheckedChildren={<LightIcon />} onChange={(e) => e ? setCurrentTheme('light') : setCurrentTheme('dark')} />
                         </Flex>
                     </Flex>
                 </Card>
-            </ConfigProvider>
-            <div className={styles.flow}>
-                <ReactFlow
-                    nodes={nodes}
-                    edges={edges}
-                    onNodesChange={onNodesChange}
-                    onEdgesChange={onEdgesChange}
-                    onConnect={onConnect}
-                    connectionMode={ConnectionMode.Loose}
-                    nodeTypes={nodeTypes}
-                    edgeTypes={edgeTypes}
-                    connectionLineComponent={ConnectionLine}
-                    isValidConnection={isConnectionValid}
-                    onDragOver={handleOnDragover}
-                    onDrop={handleOnDrop}
-                    onNodeDragStart={handleNodeClick}
-                    onEdgeClick={handleOnEdgeClick}
-                    onEdgeMouseLeave={handleOnEdgeMouseLeave}
-                    onNodeClick={handleNodeClick}
-                    onPaneClick={handlePaneClick}
-                    onReconnectStart={handleReconnectStart}
-                    onReconnect={handleReconnect}
-                    onReconnectEnd={handleReconnectEnd}
-                    onNodeDrag={handleOnNodeDrag}
-                    onNodeDragStop={handleNodeDragStop}
-                    defaultViewport={{ x: 0, y: 0, zoom: 1 }}
-                    viewport={viewPort}
-                    onViewportChange={handleChangeViewPort}
-                    panOnScroll
-                    maxZoom={3}
-                    minZoom={0.5}
-                    zoomOnPinch
-                    selectionOnDrag
-                    onSelectionChange={handleOnSelectionChange}
-                    onSelectionEnd={handleSelectionEnd}
-                    panOnDrag={[1, 2]} selectNodesOnDrag
-                    selectionMode={SelectionMode.Partial} onKeyDown={handleOnKeyDown}
 
-                >
+                <div className={styles.flow}>
+                    <ReactFlow
+                        nodes={nodes}
+                        edges={edges}
+                        onNodesChange={onNodesChange}
+                        onEdgesChange={onEdgesChange}
+                        onConnect={onConnect}
+                        connectionMode={ConnectionMode.Loose}
+                        nodeTypes={nodeTypes}
+                        edgeTypes={edgeTypes}
+                        connectionLineComponent={ConnectionLine}
+                        isValidConnection={isConnectionValid}
+                        onDragOver={handleOnDragover}
+                        onDrop={handleOnDrop}
+                        onNodeDragStart={handleNodeClick}
+                        onEdgeClick={handleOnEdgeClick}
+                        onEdgeMouseLeave={handleOnEdgeMouseLeave}
+                        onNodeClick={handleNodeClick}
+                        onPaneClick={handlePaneClick}
+                        onReconnectStart={handleReconnectStart}
+                        onReconnect={handleReconnect}
+                        onReconnectEnd={handleReconnectEnd}
+                        onNodeDrag={handleOnNodeDrag}
+                        onNodeDragStop={handleNodeDragStop}
+                        defaultViewport={{ x: 0, y: 0, zoom: 1 }}
+                        viewport={viewPort}
+                        onViewportChange={handleChangeViewPort}
+                        panOnScroll
+                        maxZoom={3}
+                        minZoom={0.5}
+                        zoomOnPinch
+                        selectionOnDrag
+                        onSelectionChange={handleOnSelectionChange}
+                        onSelectionEnd={handleSelectionEnd}
+                        panOnDrag={[1, 2]} selectNodesOnDrag
+                        selectionMode={SelectionMode.Partial} onKeyDown={handleOnKeyDown}
 
-                    <Background color="#f0f0f0" gap={10} variant={BackgroundVariant.Lines} id='1' />
-                    <Background color="#e0e0e0" gap={100} variant={BackgroundVariant.Lines} id='2' />
-                    <Controls position="bottom-center" orientation="horizontal">
-                        <button className="react-flow__controls-button" title="reset zoom" onClick={handleZoomReset}>
-                            <ResetZoomIcon />
-                        </button>
-                    </Controls>
-                    <MiniMap position="bottom-left" pannable />
-                </ReactFlow>
-            </div>
-            <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
+                    >
+
+                        <Background color="var(--grid-small-color-dark)" gap={10} variant={BackgroundVariant.Lines} id='1' />
+                        <Background color="var(--grid-large-color-dark)" gap={100} variant={BackgroundVariant.Lines} id='2' />
+                        <Controls position="bottom-center" orientation="horizontal">
+                            <button className="react-flow__controls-button" title="reset zoom" onClick={handleZoomReset}>
+                                <ResetZoomIcon />
+                            </button>
+                        </Controls>
+                        <MiniMap position="bottom-left" pannable />
+                    </ReactFlow>
+                </div>
                 <Card className={styles.containerTabs} styles={{ body: { padding: "0" } }}>
                     <Tabs className={styles.tabs} type="card" size="small" items={[
                         {
@@ -562,11 +584,7 @@ export function BoardFlow() {
                                         removeNode={removeNode}
                                         selectedNodes={selectedNodes}
                                         isSingleNode={isSingleNodeSelection}
-                                        duplicateComponents={duplicateComponents}
-                                        undo={undo}
-                                        redo={redo}
-                                        canUndo={canUndo}
-                                        canRedo={canRedo} />
+                                        duplicateComponents={duplicateComponents} />
                                 }
                                 {selectedEdge && selectedEdges?.length > 0 &&
                                     <EdgeDetails
@@ -580,8 +598,8 @@ export function BoardFlow() {
                         }
                     ]} activeKey={activeTab} onChange={handleOnChangeTab} />
                 </Card>
-            </ConfigProvider>
-        </div>
+            </div>
+        </ConfigProvider>
     );
 }
 
