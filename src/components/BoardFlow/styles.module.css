@@ -1,6 +1,5 @@
 .board {
     position: relative;
-    background-color: var(--board-background-color-dark);
     margin: 0em;
     width: 100svw;
     height: 100svh;
@@ -11,6 +10,7 @@
     margin: 0em;
     width: calc(100svw - 270px);
     height: 100svh;
+    background-color: var(--board-background-color);
 }
 
 .menu {
@@ -60,13 +60,23 @@
 
 .tabs {
     width: 100%;
+    height: 100%;
 }
 
 .divider {
+    position: relative;
     width: 100%;
+    height: 100%;
 }
 
 .label {
     padding: 0 0 0 0.5em;
     font-family: var(--font-family);
+}
+
+.minimap {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--fill-minimap-node-mask);
 }
