@@ -1,22 +1,19 @@
 import { BaseEdge, EdgeProps, getSmoothStepPath } from "@xyflow/react";
 import styles from "./styles.module.css";
+import { ComponentEdge } from "@/types";
 
-export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition }: EdgeProps) {
+export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition }: EdgeProps<ComponentEdge>) {
     const [d] = getSmoothStepPath({
         sourceX,
         sourceY,
         targetX,
         targetY,
         sourcePosition,
-        targetPosition
+        targetPosition,
+        borderRadius: 0,
     });
-    function convertToStraightLines(path: string) {
-        // Reemplaza todas las curvas Q por líneas rectas L
-        return path.replace(/Q/g, 'L');
-    }
 
-    const modifiedPath = convertToStraightLines(d);
     return (
-        <BaseEdge path={modifiedPath} className={styles.wire} type="smoothstep" />
+        <BaseEdge path={d} className={styles.wire} type="smoothstep" />
     );
 };
