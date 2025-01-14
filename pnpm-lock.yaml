@@ -32,6 +32,9 @@ dependencies:
   uuid:
     specifier: ^11.0.4
     version: 11.0.4
+  zustand:
+    specifier: ^5.0.3
+    version: 5.0.3(@types/react@18.3.18)(react@18.3.1)
 
 devDependencies:
   '@eslint/js':
@@ -2856,4 +2859,26 @@ packages:
       '@types/react': 18.3.18
       react: 18.3.1
       use-sync-external-store: 1.4.0(react@18.3.1)
+    dev: false
+
+  /zustand@5.0.3(@types/react@18.3.18)(react@18.3.1):
+    resolution: {integrity: sha512-14fwWQtU3pH4dE0dOpdMiWjddcH+QzKIgk1cl8epwSE7yag43k/AD/m4L6+K7DytAOr9gGBe3/EXj9g7cdostg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
+    dependencies:
+      '@types/react': 18.3.18
+      react: 18.3.1
     dev: false
