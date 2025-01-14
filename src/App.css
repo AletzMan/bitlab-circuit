@@ -8,6 +8,8 @@ body {
 }
 
 :root {
+    --background-color: #292929;
+    --background-color-tab: #1f1f1f;
     --border-color: #DEDEDE;
     --font-family: "Jost", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -85,4 +87,39 @@ body {
 .react-flow__nodesselection-rect,
 .react-flow__selection {
     border: 1px dashed #2db8d4;
+}
+
+:where(.css-dev-only-do-not-override-poerbe).ant-card {
+    background-color: var(--background-color);
+}
+
+
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab-active,
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab-active {
+    background-color: var(--background-color-tab);
+}
+
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card.ant-tabs-top>.ant-tabs-nav .ant-tabs-tab-active,
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card.ant-tabs-top>div>.ant-tabs-nav .ant-tabs-tab-active {
+    border-bottom-color: var(--background-color-tab);
+}
+
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #2fd4f9;
+}
+
+
+.label {
+    padding: 0 0 0.5em 0;
+}
+
+.details_name {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95em;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: rgb(0, 110, 255);
+    max-width: 270px;
 }
