@@ -12,13 +12,24 @@ body {
     --background-color-tab: #1f1f1f;
     --primary-color: #2db8d4;
     --border-color: #DEDEDE;
-    --board-background-color-light: #fbfbfb;
-    --grid-large-color-light: #E0E0E0;
-    --grid-small-color-light: #F0F0F0;
-    --board-background-color-dark: #0e0d0d;
-    --grid-large-color-dark: #656565;
-    --grid-small-color-dark: #404040;
+    --board-background-color: #fbfbfb;
+    --grid-large-color: #E0E0E0;
+    --grid-small-color: #F0F0F0;
+    --foregorund-color: #050505;
+    --fill-minimap-node: #aca9a9;
+    --fill-minimap-node-mask: #e9e5e5;
+    --background-minimap: #f9f8f8;
     --font-family: "Jost", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+[data-theme="dark"] {
+    --foregorund-color: #fdfdfd;
+    --fill-minimap-node: #e4e4e4;
+    --background-minimap: #5f5f5f;
+    --fill-minimap-node-mask: #1a1a1a;
+    --board-background-color: #141414;
+    --grid-large-color: #3c3c3c;
+    --grid-small-color: #313131;
 }
 
 /*
@@ -137,4 +148,32 @@ body {
 
 :where(.css-dev-only-do-not-override-7ny38l).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
     color: var(--primary-color);
+}
+
+.react-flow__minimap-node {
+    fill: var(--fill-minimap-node);
+}
+
+.react-flow__minimap {
+    background-color: var(--background-minimap);
+}
+
+.react-flow__minimap-mask {
+    fill: var(--fill-minimap-node-mask);
+}
+
+:where(.css-dev-only-do-not-override-poerbe).ant-collapse,
+:where(.css-dev-only-do-not-override-7ny38l).ant-collapse {
+    border-radius: 0;
+}
+
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-top>.ant-tabs-nav,
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-bottom>.ant-tabs-nav,
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-top>div>.ant-tabs-nav,
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-bottom>div>.ant-tabs-nav,
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-top>.ant-tabs-nav,
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-bottom>.ant-tabs-nav,
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-top>div>.ant-tabs-nav,
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-bottom>div>.ant-tabs-nav {
+    margin: 0;
 }
