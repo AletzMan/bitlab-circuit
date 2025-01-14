@@ -94,31 +94,34 @@ export default function ComponentProperties({
     };
 
     return (
+
         <Card className={styles.details} size="small" type="inner" >
             {isSingleNode &&
                 <>
-                    <div className={styles.details_name}  >{nodeType}</div>
-                    {node?.data?.has_properties && (
-                        <Input
-                            className={styles.value_number}
-                            value={dataComponent?.value}
-                            onChange={(e) => {
-                                const newValue = e.target.value ? parseFloat(e.target.value) : 0;
-                                if (dataComponent) {
-                                    setDataComponent({ ...dataComponent, value: newValue });
-                                    updateNodeData(node.id, { value: newValue });
-                                }
-                            }}
-                            addonAfter={dataComponent &&
-                                <Select defaultValue={dataComponent.prefix} value={dataComponent.prefix} onChange={handleChangeUnit}>
-                                    {UNITS[dataComponent.unit].map(value => (
-                                        <Option key={value} value={value}>{value}</Option>
-                                    )
+                    <Flex vertical>
+                        <label className="details_name"  >{nodeType}</label>
+                        {node?.data?.has_properties && (
+                            <Input
+                                className={styles.value_number}
+                                value={dataComponent?.value}
+                                onChange={(e) => {
+                                    const newValue = e.target.value ? parseFloat(e.target.value) : 0;
+                                    if (dataComponent) {
+                                        setDataComponent({ ...dataComponent, value: newValue });
+                                        updateNodeData(node.id, { value: newValue });
+                                    }
+                                }}
+                                addonAfter={dataComponent &&
+                                    <Select defaultValue={dataComponent.prefix} value={dataComponent.prefix} onChange={handleChangeUnit}>
+                                        {UNITS[dataComponent.unit].map(value => (
+                                            <Option key={value} value={value}>{value}</Option>
+                                        )
 
-                                    )}
-                                </Select>}
-                        />
-                    )}
+                                        )}
+                                    </Select>}
+                            />
+                        )}
+                    </Flex>
                     <Divider style={{ margin: "16px 0" }} />
                 </>
             }
@@ -134,25 +137,25 @@ export default function ComponentProperties({
             }
             {isSingleNode &&
                 <>
-                    <label className={styles.label}>Transform</label>
+                    <label className="label">Transform</label>
                     <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
                     <Flex gap={10} wrap  >
-                        <Tooltip placement="top" title="Flip Horizontal (CTRL + ALT + Left)"  >
+                        <Tooltip placement="top" title="Flip Horizontal (Ctrl+Alt+Left)"  >
                             <Button className={styles.button} variant="filled" color="primary" onClick={handleFlipHorizontal}>
                                 <FlipHIcon />
                             </Button>
                         </Tooltip>
-                        <Tooltip placement="top" title="Flip Vertical (CTRL + ALT + Down)"  >
+                        <Tooltip placement="top" title="Flip Vertical (Ctrl+Alt+Down)"  >
                             <Button className={styles.button} variant="filled" color="primary" onClick={handleFlipVertical}>
                                 <FlipVIcon />
                             </Button>
                         </Tooltip>
-                        <Tooltip placement="top" title="Rotate Left (CTRL + ALT + L)"  >
+                        <Tooltip placement="top" title="Rotate Left (Ctrl+Alt+L)"  >
                             <Button className={styles.button} variant="filled" color="primary" onClick={handleRotateLeft}>
                                 <RotateLeftIcon />
                             </Button>
                         </Tooltip>
-                        <Tooltip placement="top" title="Rotate Right (CTRL + ALT + R)"  >
+                        <Tooltip placement="top" title="Rotate Right (Ctrl+Alt+R)"  >
                             <Button className={styles.button} variant="filled" color="primary" onClick={handleRotateRight}>
                                 <RotateRightIcon />
                             </Button>
@@ -164,17 +167,17 @@ export default function ComponentProperties({
             <label className={styles.label}>Actions</label>
             <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
             <Flex gap={10} wrap>
-                <Tooltip placement="top" title="Undo (CTRL + Z)"  >
+                <Tooltip placement="top" title="Undo (Ctrl+Z)"  >
                     <Button className={styles.button} variant="filled" color="primary" onClick={undo} disabled={!canUndo}>
                         <UndoIcon />
                     </Button>
                 </Tooltip>
-                <Tooltip placement="top" title="Redo (CTRL + Y)"  >
+                <Tooltip placement="top" title="Redo (Ctrl+Y)"  >
                     <Button className={styles.button} variant="filled" color="primary" onClick={redo} disabled={!canRedo}>
                         <RedoIcon />
                     </Button>
                 </Tooltip>
-                <Tooltip placement="top" title="Duplicate (CTRL + ALT + D)"  >
+                <Tooltip placement="top" title="Duplicate (Ctrl+Alt+D)"  >
                     <Button className={styles.button} variant="filled" color="primary" onClick={duplicateComponents}>
                         <DuplicateIcon />
                     </Button>
