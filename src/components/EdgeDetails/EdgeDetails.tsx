@@ -1,7 +1,7 @@
 import { Edge } from "@xyflow/react";
 import styles from "./styles.module.css";
 import { DeletetIcon } from "@/icons";
-import { Button, Flex, Card } from "antd";
+import { Button, Flex, Card, Divider } from "antd";
 import { Dispatch, SetStateAction } from "react";
 
 
@@ -30,12 +30,16 @@ export default function EdgeDetails({
     };
 
     return (
-        <Card className={styles.details} title="Edge" size="small" type="inner" >
-            <label>Actions</label>
-            <Flex gap={10} wrap>
-                <Button className={styles.button} variant="filled" color="danger" onClick={handleDelete}>
-                    <DeletetIcon />
-                </Button>
+        <Card className={styles.details} size="small" type="inner" >
+            <Flex vertical>
+                <label className="details_name"  >Wire</label>
+                <Divider style={{ margin: "16px 0" }} />
+                <label className="label">Actions</label>
+                <Flex gap={10} wrap>
+                    <Button className={styles.button} variant="filled" color="danger" onClick={handleDelete}>
+                        <DeletetIcon />
+                    </Button>
+                </Flex>
             </Flex>
         </Card>
     );

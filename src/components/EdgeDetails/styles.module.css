@@ -1,13 +1,8 @@
 .details {
-    position: absolute;
-    top: 1em;
-    right: 1em;
     display: flex;
     flex-direction: column;
     gap: 0.25em;
-    background-color: #fafafa;
-    border: 1px solid #979797;
-    width: 17.25em;
+    width: 100%;
     padding: 0;
     border-radius: 0.25em;
     z-index: 1000;
