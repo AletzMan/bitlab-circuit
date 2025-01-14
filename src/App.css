@@ -10,7 +10,14 @@ body {
 :root {
     --background-color: #292929;
     --background-color-tab: #1f1f1f;
+    --primary-color: #2db8d4;
     --border-color: #DEDEDE;
+    --board-background-color-light: #fbfbfb;
+    --grid-large-color-light: #E0E0E0;
+    --grid-small-color-light: #F0F0F0;
+    --board-background-color-dark: #0e0d0d;
+    --grid-large-color-dark: #656565;
+    --grid-small-color-dark: #404040;
     --font-family: "Jost", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -86,7 +93,7 @@ body {
 
 .react-flow__nodesselection-rect,
 .react-flow__selection {
-    border: 1px dashed #2db8d4;
+    border: 1px dashed var(--primary-color);
 }
 
 :where(.css-dev-only-do-not-override-poerbe).ant-card {
@@ -105,7 +112,7 @@ body {
 }
 
 :where(.css-dev-only-do-not-override-poerbe).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-    color: #2fd4f9;
+    color: var(--primary-color);
 }
 
 
@@ -120,6 +127,14 @@ body {
     font-size: 0.95em;
     font-weight: 500;
     text-transform: capitalize;
-    color: rgb(0, 110, 255);
+    color: var(--primary-color);
     max-width: 270px;
+}
+
+:where(.css-dev-only-do-not-override-7ny38l).ant-switch.ant-switch-checked {
+    background-color: var(--primary-color);
+}
+
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--primary-color);
 }
