@@ -5,7 +5,6 @@ import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 
 
-
 export function AnalogComponent({ data: { type, value, rotation, state, isLock, prefix }, selected, id, parentId }: NodeProps<ComponentNode>) {
     const { updateNode } = useReactFlow();
 
