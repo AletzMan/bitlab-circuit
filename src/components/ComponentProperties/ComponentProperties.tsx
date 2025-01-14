@@ -1,7 +1,7 @@
 import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RedoIcon, RotateLeftIcon, RotateRightIcon, UndoIcon } from "@/icons";
+import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
 import { Input, Select, Button, Flex, Divider, Card, Tooltip, Tag } from "antd";
 import { ComponentData, ComponentNode, UNITS } from "@/types";
 //import useHistoryManager from "@/hooks/useHistoryManager";
@@ -14,20 +14,12 @@ export default function ComponentProperties({
     removeNode,
     isSingleNode,
     duplicateComponents,
-    undo,
-    redo,
-    canUndo,
-    canRedo
 }: {
     node: ComponentNode | undefined,
     selectedNodes: ComponentNode[] | undefined,
     removeNode: (node: ComponentNode[] | undefined, shouldAddToHistory?: boolean) => void,
     isSingleNode: boolean,
-    duplicateComponents: () => void,
-    undo: () => void,
-    redo: () => void,
-    canUndo: boolean,
-    canRedo: boolean
+    duplicateComponents: () => void
 }) {
     const nodeType = node?.data?.type || node?.type;
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
@@ -141,22 +133,22 @@ export default function ComponentProperties({
                     <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
                     <Flex gap={10} wrap  >
                         <Tooltip placement="top" title="Flip Horizontal (Ctrl+Alt+Left)"  >
-                            <Button className={styles.button} variant="filled" color="primary" onClick={handleFlipHorizontal}>
+                            <Button className={styles.button} variant="outlined" color="default" onClick={handleFlipHorizontal}>
                                 <FlipHIcon />
                             </Button>
                         </Tooltip>
                         <Tooltip placement="top" title="Flip Vertical (Ctrl+Alt+Down)"  >
-                            <Button className={styles.button} variant="filled" color="primary" onClick={handleFlipVertical}>
+                            <Button className={styles.button} variant="outlined" color="default" onClick={handleFlipVertical}>
                                 <FlipVIcon />
                             </Button>
                         </Tooltip>
                         <Tooltip placement="top" title="Rotate Left (Ctrl+Alt+L)"  >
-                            <Button className={styles.button} variant="filled" color="primary" onClick={handleRotateLeft}>
+                            <Button className={styles.button} variant="outlined" color="default" onClick={handleRotateLeft}>
                                 <RotateLeftIcon />
                             </Button>
                         </Tooltip>
                         <Tooltip placement="top" title="Rotate Right (Ctrl+Alt+R)"  >
-                            <Button className={styles.button} variant="filled" color="primary" onClick={handleRotateRight}>
+                            <Button className={styles.button} variant="outlined" color="default" onClick={handleRotateRight}>
                                 <RotateRightIcon />
                             </Button>
                         </Tooltip>
@@ -167,23 +159,14 @@ export default function ComponentProperties({
             <label className={styles.label}>Actions</label>
             <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
             <Flex gap={10} wrap>
-                <Tooltip placement="top" title="Undo (Ctrl+Z)"  >
-                    <Button className={styles.button} variant="filled" color="primary" onClick={undo} disabled={!canUndo}>
-                        <UndoIcon />
-                    </Button>
-                </Tooltip>
-                <Tooltip placement="top" title="Redo (Ctrl+Y)"  >
-                    <Button className={styles.button} variant="filled" color="primary" onClick={redo} disabled={!canRedo}>
-                        <RedoIcon />
-                    </Button>
-                </Tooltip>
+
                 <Tooltip placement="top" title="Duplicate (Ctrl+Alt+D)"  >
-                    <Button className={styles.button} variant="filled" color="primary" onClick={duplicateComponents}>
+                    <Button className={styles.button} variant="outlined" color="default" onClick={duplicateComponents}>
                         <DuplicateIcon />
                     </Button>
                 </Tooltip>
                 <Tooltip placement="top" title="Delete (Delete)"  >
-                    <Button className={styles.button} variant="filled" color="red" onClick={handleRemoveNode}>
+                    <Button className={styles.button} variant="outlined" color="red" onClick={handleRemoveNode}>
                         <DeletetIcon />
                     </Button>
                 </Tooltip>
