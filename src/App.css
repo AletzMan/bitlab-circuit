@@ -15,7 +15,7 @@ body {
     --board-background-color: #fbfbfb;
     --grid-large-color: #E0E0E0;
     --grid-small-color: #F0F0F0;
-    --foregorund-color: #050505;
+    --foreground-color: #050505;
     --fill-minimap-node: #aca9a9;
     --fill-minimap-node-mask: #e9e5e5;
     --background-minimap: #f9f8f8;
@@ -23,7 +23,7 @@ body {
 }
 
 [data-theme="dark"] {
-    --foregorund-color: #fdfdfd;
+    --foreground-color: #fdfdfd;
     --fill-minimap-node: #e4e4e4;
     --background-minimap: #5f5f5f;
     --fill-minimap-node-mask: #1a1a1a;
@@ -180,6 +180,6 @@ body {
 
 .react-flow__connection {
     &>path {
-        stroke: var(--foregorund-color);
+        stroke: var(--foreground-color);
     }
 }
