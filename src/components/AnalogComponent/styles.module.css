@@ -6,6 +6,7 @@
     margin: 0;
     width: 60px;
     height: 60px;
+    color: var(--foregorund-color);
 }
 
 .box_valid {
@@ -17,7 +18,7 @@
 }
 
 .box_selected {
-    border: 1px dashed #66040490;
+    border: 1px dashed #c3781cee;
     border-radius: 0.25em;
 }
 
