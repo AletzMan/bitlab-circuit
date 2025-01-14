@@ -1,11 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import {
     Background, BackgroundVariant, Connection, Edge, ReactFlow, useEdgesState, useNodesState,
-    ConnectionMode, Controls, MarkerType, useReactFlow, reconnectEdge, OnNodeDrag, Viewport, MiniMap,
+    ConnectionMode, MarkerType, useReactFlow, reconnectEdge, OnNodeDrag, Viewport, MiniMap,
     SelectionMode, OnSelectionChangeFunc,
     OnSelectionChangeParams,
 } from "@xyflow/react";
-import { DragEvent, useCallback, useRef, useState, KeyboardEvent } from "react";
+import { DragEvent, useCallback, useRef, useState, KeyboardEvent, useEffect } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
 import { ComponentNode, ComponentState, ComponentType, UnitsType } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
@@ -17,7 +18,7 @@ import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
-import { Button, Card, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Space, Switch, Tabs, Tooltip, theme } from "antd";
+import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Space, Switch, Tabs, Tooltip, theme } from "antd";
 import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
@@ -66,10 +67,14 @@ export function BoardFlow() {
     const dragOutsideRef = useRef<ComponentType | null>(null);
     const edgeReconnectSuccessful = useRef(false);
     const overlappingNodeRef = useRef<ComponentNode | null>(null);
-    const { screenToFlowPosition, getIntersectingNodes, fitView } = useReactFlow();
+    const { screenToFlowPosition, getIntersectingNodes, fitView, } = useReactFlow();
     const { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo } = useHistoryManager();
     const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
     const { currentTheme, setCurrentTheme } = useTheme();
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", currentTheme);
+    }, []);
 
     const onConnect = useCallback(
         (connection: Connection) => {
@@ -379,11 +384,6 @@ export function BoardFlow() {
         setViewPort(viewport);
     };
 
-    const handleZoomReset = (e: React.MouseEvent<Element, MouseEvent>) => {
-        e.preventDefault();
-        setViewPort({ x: 0, y: 0, zoom: 1 });
-    };
-
     const handleSelectionEnd = (e: React.MouseEvent<Element, MouseEvent>) => {
         e.preventDefault();
         if (selectedNode || selectedEdge) {
@@ -450,6 +450,13 @@ export function BoardFlow() {
         }
     };
 
+    const handleChangeTheme = (checked: boolean, e: React.MouseEvent<HTMLButtonElement, MouseEvent> | KeyboardEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        const newTheme = checked ? 'light' : 'dark';
+        setCurrentTheme(newTheme);
+        document.documentElement.setAttribute("data-theme", newTheme);
+    };
+
     return (
         <ConfigProvider theme={{ algorithm: currentTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
             <div className={styles.board}>
@@ -499,12 +506,12 @@ export function BoardFlow() {
                             <Divider type="vertical" orientation="center" style={{ height: "100%" }} />
                         </Flex>
                         <Flex align="center" style={{ padding: "0 10px 0 0" }} >
-                            <Switch value={currentTheme === "light"} checkedChildren={<DarkIcon />} unCheckedChildren={<LightIcon />} onChange={(e) => e ? setCurrentTheme('light') : setCurrentTheme('dark')} />
+                            <Switch value={currentTheme === "light"} checkedChildren={<DarkIcon />} unCheckedChildren={<LightIcon />} onChange={handleChangeTheme} />
                         </Flex>
                     </Flex>
                 </Card>
 
-                <div className={styles.flow}>
+                <div className={styles.flow} >
                     <ReactFlow
                         nodes={nodes}
                         edges={edges}
@@ -539,40 +546,51 @@ export function BoardFlow() {
                         onSelectionChange={handleOnSelectionChange}
                         onSelectionEnd={handleSelectionEnd}
                         panOnDrag={[1, 2]} selectNodesOnDrag
-                        selectionMode={SelectionMode.Partial} onKeyDown={handleOnKeyDown}
-
-                    >
-
-                        <Background color="var(--grid-small-color-dark)" gap={10} variant={BackgroundVariant.Lines} id='1' />
-                        <Background color="var(--grid-large-color-dark)" gap={100} variant={BackgroundVariant.Lines} id='2' />
-                        <Controls position="bottom-center" orientation="horizontal">
-                            <button className="react-flow__controls-button" title="reset zoom" onClick={handleZoomReset}>
-                                <ResetZoomIcon />
-                            </button>
-                        </Controls>
-                        <MiniMap position="bottom-left" pannable />
+                        selectionMode={SelectionMode.Partial} onKeyDown={handleOnKeyDown}>
+                        <Background color={'var(--grid-small-color)'} gap={10} variant={BackgroundVariant.Lines} id='1' />
+                        <Background color={'var(--grid-large-color)'} gap={100} variant={BackgroundVariant.Lines} id='2' />
                     </ReactFlow>
                 </div>
                 <Card className={styles.containerTabs} styles={{ body: { padding: "0" } }}>
                     <Tabs className={styles.tabs} type="card" size="small" items={[
                         {
-                            label: "Components",
+                            label: "Tools",
                             key: "components",
                             children:
-                                <Flex wrap className={styles.divider}>
-                                    <label className={styles.label}>Analog</label>
-                                    <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
-                                    <div className={styles.components}>
-                                        {COMPONENTS.map(component => (
-                                            <Tooltip key={component.label} placement="top" title={component.label}  >
-                                                <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
-                                                    {component.icon}
-                                                </Button>
-                                            </Tooltip>
-                                        ))}
-                                    </div>
-                                    <Divider style={{ margin: "12px 0 24px 0" }} />
-                                </Flex>
+                                <Collapse className={styles.divider} size="small" defaultActiveKey={['1']} items={
+                                    [{
+                                        key: "1",
+                                        label: "Components",
+                                        showArrow: false,
+                                        children: <>
+                                            <label className={styles.label}>Analog</label>
+                                            <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
+                                            <div className={styles.components}>
+                                                {COMPONENTS.map(component => (
+                                                    <Tooltip key={component.label} placement="top" title={component.label}  >
+                                                        <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
+                                                            {component.icon}
+                                                        </Button>
+                                                    </Tooltip>
+                                                ))}
+                                            </div>
+                                            <Divider style={{ margin: "12px 0 24px 0" }} />
+                                        </>
+                                    },
+                                    {
+                                        key: "2",
+                                        label: 'Overview',
+                                        showArrow: false,
+                                        children: <>
+                                            <Flex className={styles.minimap} vertical>
+                                                <MiniMap pannable style={{ alignSelf: 'center', justifySelf: 'flex-end', position: 'relative', bottom: 0 }} />
+                                            </Flex>
+                                        </>
+                                    }
+                                    ]
+                                }>
+
+                                </Collapse>
                         },
                         {
                             label: "Properties",
@@ -597,6 +615,7 @@ export function BoardFlow() {
                             </>
                         }
                     ]} activeKey={activeTab} onChange={handleOnChangeTab} />
+
                 </Card>
             </div>
         </ConfigProvider>
