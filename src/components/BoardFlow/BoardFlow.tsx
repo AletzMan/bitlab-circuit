@@ -9,7 +9,7 @@ import {
 } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, KeyboardEvent, useEffect } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
-import { ComponentNode, ComponentState, ComponentType, UnitsType } from "@/types";
+import { ComponentEdge, ComponentNode, ComponentState, ComponentType, UnitsType } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
@@ -41,7 +41,7 @@ const initialNodes: ComponentNode[] = [
     },
 ];
 
-const initialEdges: Edge[] = [];
+const initialEdges: ComponentEdge[] = [];
 
 const nodeTypes = {
     analogComponent: AnalogComponent,
@@ -57,12 +57,12 @@ const gridSize = 10; // Tamaño del grid
 export function BoardFlow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [activeTab, setActiveTab] = useState('components');
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const [edges, setEdges, onEdgesChange] = useEdgesState<ComponentEdge>(initialEdges);
     const [selectedNode, setSelectedNode] = useState<ComponentNode | undefined>();
     const [selectedNodes, setSelectedNodes] = useState<ComponentNode[]>([]);
-    const [selectedEdges, setSelectedEdges] = useState<Edge[]>([]);
+    const [selectedEdges, setSelectedEdges] = useState<ComponentEdge[]>([]);
     const [viewPort, setViewPort] = useState<Viewport>({ x: 0, y: 0, zoom: 1 });
-    const [selectedEdge, setSelectedEdge] = useState<Edge | undefined>();
+    const [selectedEdge, setSelectedEdge] = useState<ComponentEdge | undefined>();
     const [isSingleNodeSelection, setIsSingleNodeSelection] = useState(false);
     const [isSingleEdgeSelection, setIsSingleEdgeSelection] = useState(false);
     const dragOutsideRef = useRef<ComponentType | null>(null);
@@ -84,7 +84,7 @@ export function BoardFlow() {
             const edge = {
                 ...connection, id: uuid(),
                 data: {
-                    color: "var(--primary-color)"
+                    color: getComputedStyle(document.documentElement).getPropertyValue('--foreground-color').trim()
                 }
 
             };
@@ -185,9 +185,9 @@ export function BoardFlow() {
         setActiveTab("components");
     };
 
-    const handleOnEdgeClick = (e: React.MouseEvent<Element, MouseEvent>, edge: Edge) => {
+    const handleOnEdgeClick = (e: React.MouseEvent<Element, MouseEvent>, edge: ComponentEdge | Edge) => {
         e.preventDefault();
-        setSelectedEdge(edge);
+        setSelectedEdge(edge as ComponentEdge);
         setSelectedNode(undefined);
         setActiveTab("properties");
     };
@@ -200,7 +200,7 @@ export function BoardFlow() {
         edgeReconnectSuccessful.current = false;
     };
 
-    const handleReconnect = (oldEdge: Edge, newConnection: Connection) => {
+    const handleReconnect = (oldEdge: ComponentEdge, newConnection: Connection) => {
         edgeReconnectSuccessful.current = true;
         setEdges((prevEdges) => reconnectEdge(oldEdge, newConnection, prevEdges));
     };
@@ -214,7 +214,7 @@ export function BoardFlow() {
 
 
 
-    const handleOnEdgesChanges: OnEdgesChange<Edge> = (changes) => {
+    const handleOnEdgesChanges: OnEdgesChange<ComponentEdge> = (changes) => {
         onEdgesChange(changes);
     };
 
@@ -380,9 +380,9 @@ export function BoardFlow() {
         setIsSingleNodeSelection(isUniqueNode);
         setIsSingleEdgeSelection(isUniqueEdge);
         if (isUniqueNode) setSelectedNode(params.nodes[0] as ComponentNode);
-        if (isUniqueEdge) setSelectedEdge(params.edges[0]);
+        if (isUniqueEdge) setSelectedEdge(params.edges[0] as ComponentEdge);
         setSelectedNodes(params.nodes as ComponentNode[]);
-        setSelectedEdges(params.edges);
+        setSelectedEdges(params.edges as ComponentEdge[]);
     };
 
     const handleOnChangeTab = (activeKey: string) => {
@@ -465,7 +465,7 @@ export function BoardFlow() {
         setCurrentTheme(newTheme);
         document.documentElement.setAttribute("data-theme", newTheme);
     };
-
+    console.log(edges);
     return (
         <ConfigProvider theme={{ algorithm: currentTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
             <div className={styles.board}>
@@ -617,6 +617,7 @@ export function BoardFlow() {
                                 {selectedEdge && selectedEdges?.length > 0 &&
                                     <EdgeDetails
                                         edge={selectedEdge}
+                                        setEdges={setEdges}
                                         setSelectedEdge={setSelectedEdge}
                                         removeEdges={removeEdge}
                                         isSingleEdgeSelection={isSingleEdgeSelection}
