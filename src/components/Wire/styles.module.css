@@ -1,5 +1,5 @@
 .wire {
-    stroke: #006aff;
+    stroke: var(--foregorund-color);
     stroke-width: 2;
 
 }
