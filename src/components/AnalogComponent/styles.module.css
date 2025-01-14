@@ -6,7 +6,7 @@
     margin: 0;
     width: 60px;
     height: 60px;
-    color: var(--foregorund-color);
+    color: var(--foreground-color);
 }
 
 .box_valid {
