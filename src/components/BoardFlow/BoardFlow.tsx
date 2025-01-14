@@ -1,6 +1,6 @@
 
 import { Background, BackgroundVariant, Connection, Edge, ReactFlow, useEdgesState, useNodesState, ConnectionMode, Controls, MarkerType, useReactFlow, reconnectEdge, OnNodeDrag, Viewport, MiniMap, SelectionMode, OnSelectionChangeFunc, OnSelectionChangeParams } from "@xyflow/react";
-import { DragEvent, useCallback, useRef, useState, } from "react";
+import { DragEvent, useCallback, useRef, useState, KeyboardEvent } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
 import { ComponentNode, ComponentState, ComponentType, UnitsType } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
@@ -12,8 +12,8 @@ import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
-import { Button, Card, Divider, Flex, Tabs, Tooltip } from "antd";
-import { OpenFileIcon, ResetZoomIcon, SaveIcon } from "@/icons";
+import { Button, Card, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Space, Tabs, Tooltip, theme } from "antd";
+import { DeletetIcon, ExportIcon, FitZoomIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
 
@@ -60,7 +60,7 @@ export function BoardFlow() {
     const dragOutsideRef = useRef<ComponentType | null>(null);
     const edgeReconnectSuccessful = useRef(false);
     const overlappingNodeRef = useRef<ComponentNode | null>(null);
-    const { screenToFlowPosition, getIntersectingNodes, } = useReactFlow();
+    const { screenToFlowPosition, getIntersectingNodes, fitView } = useReactFlow();
     const { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo } = useHistoryManager();
     const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
 
@@ -362,16 +362,9 @@ export function BoardFlow() {
         if (isUniqueEdge) setSelectedEdge(params.edges[0]);
         setSelectedNodes(params.nodes as ComponentNode[]);
         setSelectedEdges(params.edges);
-        if (numberNodes > 0 || numberEdges > 0)
-            setActiveTab("properties");
-        else {
-            setActiveTab("components");
-        }
-
     };
 
     const handleOnChangeTab = (activeKey: string) => {
-        console.log(activeKey);
         setActiveTab(activeKey);
     };
 
@@ -379,107 +372,244 @@ export function BoardFlow() {
         setViewPort(viewport);
     };
 
-    const handleZoomReset = () => {
+    const handleZoomReset = (e: React.MouseEvent<Element, MouseEvent>) => {
+        e.preventDefault();
         setViewPort({ x: 0, y: 0, zoom: 1 });
+    };
+
+    const handleSelectionEnd = (e: React.MouseEvent<Element, MouseEvent>) => {
+        e.preventDefault();
+        if (selectedNode || selectedEdge) {
+            setActiveTab("properties");
+        } else {
+            setActiveTab("components");
+        }
+    };
+
+    const handleClickMenu: MenuProps['onClick'] = (info) => {
+        console.log(info);
+    };
+
+    const handleOnKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        const movement = {
+            ArrowUp: { dx: 0, dy: -gridSize / 2 },
+            ArrowDown: { dx: 0, dy: gridSize / 2 },
+            ArrowLeft: { dx: -gridSize / 2, dy: 0 },
+            ArrowRight: { dx: gridSize / 2, dy: 0 },
+        }[e.key];
+
+        if (movement) {
+            setNodes((currentNodes) =>
+                currentNodes.map((node) => {
+                    if (node.selected) {
+                        return {
+                            ...node,
+                            position: {
+                                x: node.position.x + movement.dx,
+                                y: node.position.y + movement.dy,
+                            },
+                        };
+                    }
+                    return node;
+                })
+            );
+        }
+    };
+
+    const handleZoom = (position: 'in' | 'out' | 'reset' | 'fit') => {
+        const newZoom = viewPort.zoom;
+
+        switch (position) {
+            case "in":
+                if (newZoom < 3)
+                    setViewPort({ x: 0, y: 0, zoom: newZoom + 0.1 });
+                break;
+            case "out":
+                if (newZoom > 0.5)
+                    if ((newZoom - 0.1) < 0.5)
+                        setViewPort({ x: 0, y: 0, zoom: 0.5 });
+                    else
+                        setViewPort({ x: 0, y: 0, zoom: newZoom - 0.1 });
+                break;
+            case "reset":
+                setViewPort({ x: 0, y: 0, zoom: 1 });
+                break;
+            case "fit":
+                fitView({ maxZoom: 2, });
+                break;
+            default:
+                break;
+        }
     };
 
     return (
         <div className={styles.board}>
-            <ReactFlow
-                nodes={nodes}
-                edges={edges}
-                onNodesChange={onNodesChange}
-                onEdgesChange={onEdgesChange}
-                onConnect={onConnect}
-                connectionMode={ConnectionMode.Loose}
-                nodeTypes={nodeTypes}
-                edgeTypes={edgeTypes}
-                connectionLineComponent={ConnectionLine}
-                isValidConnection={isConnectionValid}
-                onDragOver={handleOnDragover}
-                onDrop={handleOnDrop}
-                onNodeDragStart={handleNodeClick}
-                onEdgeClick={handleOnEdgeClick}
-                onEdgeMouseLeave={handleOnEdgeMouseLeave}
-                onNodeClick={handleNodeClick}
-                onPaneClick={handlePaneClick}
-                onReconnectStart={handleReconnectStart}
-                onReconnect={handleReconnect}
-                onReconnectEnd={handleReconnectEnd}
-                onNodeDrag={handleOnNodeDrag}
-                onNodeDragStop={handleNodeDragStop}
-                defaultViewport={{ x: 0, y: 0, zoom: 1 }}
-                viewport={viewPort}
-                onViewportChange={handleChangeViewPort}
-                panOnScroll
-                selectionOnDrag
-                onSelectionChange={handleOnSelectionChange}
-                panOnDrag={[1, 2]} selectNodesOnDrag
-                selectionMode={SelectionMode.Partial}
+            <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
+                <Card className={styles.menu} size="small" styles={{ body: { padding: "0" } }}>
+                    <Flex gap={30}>
+                        <Dropdown menu={{ items: itemsFileMenu, onClick: handleClickMenu }}>
+                            <Button styles={{ icon: { display: 'flex', alignItems: 'center', justifyContent: 'center' } }} icon={<MenuIcon />} variant="filled" color="default" />
+                        </Dropdown>
+                        <Flex gap={10}>
+                            <Divider type="vertical" orientation="center" />
+                            <Button icon={<UndoIcon />} variant="dashed" color="default" />
+                            <Button icon={<RedoIcon />} variant="dashed" color="default" />
+                            <Divider type="vertical" orientation="center" />
+                            <Space.Compact size="middle" >
+                                <Button
+                                    type="primary"
+                                    variant="outlined"
+                                    color="default" icon={<PlusIcon />}
+                                    styles={{ icon: { display: 'flex', alignItems: 'center', justifyContent: 'center' } }}
+                                    onClick={() => handleZoom('in')}
+                                    disabled={viewPort.zoom >= 3} />
+                                <Input value={`${Math.floor(viewPort.zoom * 100)}`.concat('%')} size="small" style={{ width: "50px" }} contentEditable={false} />
+                                <Button
+                                    type="primary"
+                                    variant="outlined"
+                                    color="default"
+                                    icon={<MinusIcon />}
+                                    styles={{ icon: { display: 'flex', alignItems: 'center', justifyContent: 'center' } }}
+                                    onClick={() => handleZoom('out')}
+                                    disabled={viewPort.zoom === 0.5} />
+                            </Space.Compact>
+                            <Button icon={<ResetZoomIcon />} variant="dashed" color="default" onClick={() => handleZoom('reset')} />
+                            <Button icon={<FitZoomIcon />} variant="dashed" color="default" onClick={() => handleZoom('fit')} />
+                            <Divider type="vertical" orientation="center" />
+                        </Flex>
+                    </Flex>
+                </Card>
+            </ConfigProvider>
+            <div className={styles.flow}>
+                <ReactFlow
+                    nodes={nodes}
+                    edges={edges}
+                    onNodesChange={onNodesChange}
+                    onEdgesChange={onEdgesChange}
+                    onConnect={onConnect}
+                    connectionMode={ConnectionMode.Loose}
+                    nodeTypes={nodeTypes}
+                    edgeTypes={edgeTypes}
+                    connectionLineComponent={ConnectionLine}
+                    isValidConnection={isConnectionValid}
+                    onDragOver={handleOnDragover}
+                    onDrop={handleOnDrop}
+                    onNodeDragStart={handleNodeClick}
+                    onEdgeClick={handleOnEdgeClick}
+                    onEdgeMouseLeave={handleOnEdgeMouseLeave}
+                    onNodeClick={handleNodeClick}
+                    onPaneClick={handlePaneClick}
+                    onReconnectStart={handleReconnectStart}
+                    onReconnect={handleReconnect}
+                    onReconnectEnd={handleReconnectEnd}
+                    onNodeDrag={handleOnNodeDrag}
+                    onNodeDragStop={handleNodeDragStop}
+                    defaultViewport={{ x: 0, y: 0, zoom: 1 }}
+                    viewport={viewPort}
+                    onViewportChange={handleChangeViewPort}
+                    panOnScroll
+                    maxZoom={3}
+                    minZoom={0.5}
+                    zoomOnPinch
+                    selectionOnDrag
+                    onSelectionChange={handleOnSelectionChange}
+                    onSelectionEnd={handleSelectionEnd}
+                    panOnDrag={[1, 2]} selectNodesOnDrag
+                    selectionMode={SelectionMode.Partial} onKeyDown={handleOnKeyDown}
 
-            >
-                {selectedEdge &&
-                    <EdgeDetails
-                        edge={selectedEdge}
-                        setSelectedEdge={setSelectedEdge}
-                        removeEdges={removeEdge}
-                        isSingleEdgeSelection={isSingleEdgeSelection}
-                        selectedEdges={selectedEdges} />
-                }
-                <Background color="#f0f0f0" gap={10} variant={BackgroundVariant.Lines} id='1' />
-                <Background color="#e0e0e0" gap={100} variant={BackgroundVariant.Lines} id='2' />
-                <Controls position="bottom-center" orientation="horizontal">
-                    <button className="react-flow__controls-button" title="reset zoom" onClick={handleZoomReset}>
-                        <ResetZoomIcon />
-                    </button>
-                </Controls>
-                <MiniMap position="bottom-left" pannable />
-            </ReactFlow>
-            <Flex className={styles.containerTabs}>
-                <Tabs className={styles.tabs} type="card" size="small" items={[
-                    {
-                        label: "Components",
-                        key: "components",
-                        children:
-                            <Flex wrap className={styles.divider}>
-                                <label className={styles.label}>Analog</label>
-                                <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
-                                <div className={styles.components}>
-                                    {COMPONENTS.map(component => (
-                                        <Tooltip key={component.label} placement="top" title={component.label}  >
-                                            <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
-                                                {component.icon}
-                                            </Button>
-                                        </Tooltip>
-                                    ))}
-                                </div>
-                                <Divider style={{ margin: "12px 0 24px 0" }} />
-                            </Flex>
-                    },
-                    {
-                        label: "Properties",
-                        key: "properties",
-                        disabled: false,
-                        children: selectedNode && selectedNodes?.length > 0 &&
-                            <ComponentProperties
-                                node={selectedNode}
-                                removeNode={removeNode}
-                                selectedNodes={selectedNodes}
-                                isSingleNode={isSingleNodeSelection}
-                                duplicateComponents={duplicateComponents}
-                                undo={undo}
-                                redo={redo}
-                                canUndo={canUndo}
-                                canRedo={canRedo} />
-                    }
-                ]} activeKey={activeTab} onChange={handleOnChangeTab} />
-            </Flex>
+                >
 
+                    <Background color="#f0f0f0" gap={10} variant={BackgroundVariant.Lines} id='1' />
+                    <Background color="#e0e0e0" gap={100} variant={BackgroundVariant.Lines} id='2' />
+                    <Controls position="bottom-center" orientation="horizontal">
+                        <button className="react-flow__controls-button" title="reset zoom" onClick={handleZoomReset}>
+                            <ResetZoomIcon />
+                        </button>
+                    </Controls>
+                    <MiniMap position="bottom-left" pannable />
+                </ReactFlow>
+            </div>
+            <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
+                <Card className={styles.containerTabs} styles={{ body: { padding: "0" } }}>
+                    <Tabs className={styles.tabs} type="card" size="small" items={[
+                        {
+                            label: "Components",
+                            key: "components",
+                            children:
+                                <Flex wrap className={styles.divider}>
+                                    <label className={styles.label}>Analog</label>
+                                    <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
+                                    <div className={styles.components}>
+                                        {COMPONENTS.map(component => (
+                                            <Tooltip key={component.label} placement="top" title={component.label}  >
+                                                <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
+                                                    {component.icon}
+                                                </Button>
+                                            </Tooltip>
+                                        ))}
+                                    </div>
+                                    <Divider style={{ margin: "12px 0 24px 0" }} />
+                                </Flex>
+                        },
+                        {
+                            label: "Properties",
+                            key: "properties",
+                            children: <>
+                                {selectedNode && selectedNodes?.length > 0 &&
+                                    <ComponentProperties
+                                        node={selectedNode}
+                                        removeNode={removeNode}
+                                        selectedNodes={selectedNodes}
+                                        isSingleNode={isSingleNodeSelection}
+                                        duplicateComponents={duplicateComponents}
+                                        undo={undo}
+                                        redo={redo}
+                                        canUndo={canUndo}
+                                        canRedo={canRedo} />
+                                }
+                                {selectedEdge && selectedEdges?.length > 0 &&
+                                    <EdgeDetails
+                                        edge={selectedEdge}
+                                        setSelectedEdge={setSelectedEdge}
+                                        removeEdges={removeEdge}
+                                        isSingleEdgeSelection={isSingleEdgeSelection}
+                                        selectedEdges={selectedEdges} />
+                                }
+                            </>
+                        }
+                    ]} activeKey={activeTab} onChange={handleOnChangeTab} />
+                </Card>
+            </ConfigProvider>
         </div>
     );
 }
 
-const actions: React.ReactNode[] = [
-    <OpenFileIcon key="openfile" />,
-    <SaveIcon key="save" />,
+const itemsFileMenu: MenuProps['items'] = [
+    {
+        label: 'Open File',
+        key: '1',
+        icon: <OpenFileIcon />,
+        extra: 'Ctrl+Alt+O',
+    },
+    {
+        label: 'Save File',
+        key: '2',
+        icon: <SaveIcon />,
+        extra: 'Ctrl+Alt+S',
+    },
+    {
+        label: 'Export Image...',
+        key: '3',
+        icon: <ExportIcon />,
+        extra: 'Ctrl+Shift+E',
+    },
+    {
+        label: 'Delete All',
+        key: '4',
+        icon: <DeletetIcon />,
+        extra: 'Ctrl+Delete',
+    }
 ];
+
+
