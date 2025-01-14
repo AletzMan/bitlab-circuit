@@ -185,9 +185,9 @@ export function BoardFlow() {
         setActiveTab("components");
     };
 
-    const handleOnEdgeClick = (e: React.MouseEvent<Element, MouseEvent>, edge: ComponentEdge | Edge) => {
+    const handleOnEdgeClick = (e: React.MouseEvent<Element, MouseEvent>, edge: ComponentEdge) => {
         e.preventDefault();
-        setSelectedEdge(edge as ComponentEdge);
+        setSelectedEdge(edge);
         setSelectedNode(undefined);
         setActiveTab("properties");
     };
@@ -465,7 +465,7 @@ export function BoardFlow() {
         setCurrentTheme(newTheme);
         document.documentElement.setAttribute("data-theme", newTheme);
     };
-    console.log(edges);
+    console.log(selectedEdge);
     return (
         <ConfigProvider theme={{ algorithm: currentTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
             <div className={styles.board}>
