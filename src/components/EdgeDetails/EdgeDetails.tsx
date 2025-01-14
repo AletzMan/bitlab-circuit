@@ -1,8 +1,8 @@
 
 import styles from "./styles.module.css";
 import { DeletetIcon } from "@/icons";
-import { Button, Flex, Card, Divider } from "antd";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Button, Flex, Card, Divider, Input } from "antd";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ComponentEdge } from "@/types";
 
 
@@ -23,6 +23,11 @@ export default function EdgeDetails({
 }) {
 
     const [currentColor, setCurrentColor] = useState(edge?.data?.color);
+
+    useEffect(() => {
+        setCurrentColor(edge?.data?.color);
+    }, [edge]);
+
     const handleDelete = () => {
         if (isSingleEdgeSelection) {
             removeEdges([edge]);
@@ -48,7 +53,7 @@ export default function EdgeDetails({
         <Card className={styles.details} size="small" type="inner" >
             <Flex vertical>
                 <label className="details_name"  >Wire</label>
-                <input type="color" value={currentColor} onChange={handleChangeColorWire} />
+                <Input type="color" value={currentColor} onChange={handleChangeColorWire} />
                 <Divider style={{ margin: "16px 0" }} />
                 <label className="label">Actions</label>
                 <Flex gap={10} wrap>
