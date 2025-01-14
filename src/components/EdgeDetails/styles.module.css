@@ -19,3 +19,7 @@
     min-height: 3em;
     padding: 4px 8px;
 }
+
+.label {
+    font-size: 0.85em;
+}
