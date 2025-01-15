@@ -17,15 +17,13 @@ import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
 import { ARRAY_COMPONENTS, COMPONENTS } from "@/constants";
 import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
-import { getComponentProperties, isPointInBox } from "@/helpers";
+import { getComponentProperties, getImageBackgroundDrag, isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
 import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Space, Switch, Tabs, Tooltip, theme } from "antd";
 import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
 import { useTheme } from "@/store";
-import { createRoot } from 'react-dom/client';
-
 
 const initialNodes: ComponentNode[] = [
     {
@@ -103,24 +101,8 @@ export function BoardFlow() {
     };
 
     const handleOnDragStart = (e: DragEvent<HTMLElement>, type: ComponentType) => {
-        const currentComponent = COMPONENTS.find(component => component.type === type);
-        if (currentComponent) {
-            const tempContainer = document.createElement('div');
-            tempContainer.className = "elementDrag";
-
-            // Renderizar el ResistorIcon en el contenedor 
-            const root = createRoot(tempContainer as HTMLElement);
-            root.render(currentComponent.icon);
-            document.body.appendChild(tempContainer);
-
-            // Usar el contenedor como la imagen de arrastre
-            e.dataTransfer.setDragImage(tempContainer, 25, 25);
-
-            setTimeout(() => {
-                root.unmount(); // Desmontar el componente
-                document.body.removeChild(tempContainer);
-            }, 0);
-        }
+        const imageBackgroundDrag = getImageBackgroundDrag(type);
+        e.dataTransfer.setDragImage(imageBackgroundDrag, 30, 25);
         dragOutsideRef.current = type;
         e.dataTransfer.effectAllowed = 'move';
 
