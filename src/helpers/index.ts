@@ -1,5 +1,5 @@
 import { ReactFlowState } from "@xyflow/react";
-import { ComponentNode, ComponentType, Presets } from "../types";
+import { ComponentNode, ComponentType, Presets, UnitsType } from "../types";
 
 export const zoomSelector = (s: ReactFlowState) => s.transform[2] >= 0.7;
 
@@ -67,31 +67,47 @@ export function genPresets(customColors: { [key: string]: string[] }) {
     }));
 }
 
+
+export type ComponentPropertiesDefault = {
+    value: number,
+    prefix: string,
+    unit: UnitsType,
+    reference: string
+}
+
 // Mapa para almacenar contadores por tipo
-const typeToPrefixMap: Record<ComponentType, string> = {
-    [ComponentType.Resistor]: "R",
-    [ComponentType.Capacitor]: "C",
-    [ComponentType.Led]: "D",
-    [ComponentType.Battery]: "B",
-    [ComponentType.Board]: "BR",
+const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
+    [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R" },
+    [ComponentType.Capacitor]: { value: 4.7, unit: UnitsType.Ohm, prefix: "µF", reference: "C" },
+    [ComponentType.Diode]: { value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D" },
+    [ComponentType.Led]: { value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED" },
+    [ComponentType.Battery]: { value: 12, unit: UnitsType.Voltage, prefix: "V", reference: "B" },
+    [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR" },
 };
 
+export function getComponentProperties(type: ComponentType, components: ComponentNode[]): ComponentPropertiesDefault {
 
-export function findComponentReference(type: ComponentType, components: ComponentNode[]): string {
-
-    const prefix = typeToPrefixMap[type];
-    if (!prefix) {
+    const reference = typePropertiesMap[type].reference;
+    if (!reference) {
         throw new Error(`Unknown component type: ${type}`);
     }
 
     const matchingComponents = components.filter(component => component.data.type === type);
-    return `${prefix}${matchingComponents.length + 1}`;
+
+    const properties: ComponentPropertiesDefault = {
+        reference: `${reference}${matchingComponents.length + 1}`,
+        prefix: typePropertiesMap[type].prefix,
+        unit: typePropertiesMap[type].unit,
+        value: typePropertiesMap[type].value
+    };
+    return properties;
 }
 
 export function reorderComponentReferences(components: ComponentNode[]): ComponentNode[] {
     const typeCounters: Record<ComponentType, number> = {
         [ComponentType.Resistor]: 0,
         [ComponentType.Capacitor]: 0,
+        [ComponentType.Diode]: 0,
         [ComponentType.Led]: 0,
         [ComponentType.Battery]: 0,
         [ComponentType.Board]: 0,
@@ -104,7 +120,7 @@ export function reorderComponentReferences(components: ComponentNode[]): Compone
         typeCounters[type] += 1;
 
         // Actualizar la referencia con el nuevo identificador
-        const newReference = `${typeToPrefixMap[type].toUpperCase()}${typeCounters[type]}`;
+        const newReference = `${typePropertiesMap[type].reference.toUpperCase()}${typeCounters[type]}`;
         return {
             ...component,
             data: {
