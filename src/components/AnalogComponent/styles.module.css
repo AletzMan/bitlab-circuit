@@ -71,4 +71,9 @@
     box-sizing: border-box;
     width: 58px;
     height: 58px;
+
+    &>svg {
+        width: 60px;
+        height: 60px;
+    }
 }
