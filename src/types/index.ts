@@ -18,15 +18,18 @@ export enum OhmType {
 export enum UnitsType {
     Ohm = 'ohm',
     Voltage = 'volt',
-    Current = 'amper',
-    Henrio = 'henrio'
+    Current = 'ampere',
+    Capacitance = 'farad',
+    Henrio = 'henry',
+    Undefined = "undefined"
 }
 
 export const UNITS = {
     ohm: ['Ω', 'KΩ', 'MΩ'],
     volt: ['mV', 'V'],
+    capacitance: ['pF', 'nF', 'μF'],
     amper: ['μA', 'mA', 'A'],
-    henrio: ['μH', 'mH', 'H']
+    inductance: ['μH', 'mH', 'H']
 };
 
 export enum ComponentState {
