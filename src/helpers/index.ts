@@ -1,5 +1,5 @@
 import { ReactFlowState } from "@xyflow/react";
-import { ComponentType } from "../types";
+import { ComponentType, Presets } from "../types";
 
 export const zoomSelector = (s: ReactFlowState) => s.transform[2] >= 0.7;
 
@@ -57,4 +57,12 @@ export function hasGoodContrast(colorHex: string, theme: "dark" | "light"): bool
         (Math.min(colorLuminance, themeLuminance) + 0.05);
 
     return contrastRatio >= 4.5;
+}
+
+export function genPresets(customColors: { [key: string]: string[] }) {
+    return Object.entries(customColors).map<Presets>(([label, colors]) => ({
+        label,
+        colors,
+        key: label,
+    }));
 }
