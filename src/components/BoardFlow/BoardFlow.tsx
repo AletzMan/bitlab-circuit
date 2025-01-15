@@ -24,6 +24,7 @@ import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, Mi
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
 import { useTheme } from "@/store";
+import { createRoot } from 'react-dom/client';
 
 
 const initialNodes: ComponentNode[] = [
@@ -102,8 +103,27 @@ export function BoardFlow() {
     };
 
     const handleOnDragStart = (e: DragEvent<HTMLElement>, type: ComponentType) => {
+        const currentComponent = COMPONENTS.find(component => component.type === type);
+        if (currentComponent) {
+            const tempContainer = document.createElement('div');
+            tempContainer.className = "elementDrag";
+
+            // Renderizar el ResistorIcon en el contenedor 
+            const root = createRoot(tempContainer as HTMLElement);
+            root.render(currentComponent.icon);
+            document.body.appendChild(tempContainer);
+
+            // Usar el contenedor como la imagen de arrastre
+            e.dataTransfer.setDragImage(tempContainer, 25, 25);
+
+            setTimeout(() => {
+                root.unmount(); // Desmontar el componente
+                document.body.removeChild(tempContainer);
+            }, 0);
+        }
         dragOutsideRef.current = type;
         e.dataTransfer.effectAllowed = 'move';
+
     };
 
     const handleOnDragover = (e: DragEvent<HTMLDivElement>) => {
@@ -566,7 +586,7 @@ export function BoardFlow() {
                 <Card className={styles.containerTabs} styles={{ body: { padding: "0" } }}>
                     <Tabs className={styles.tabs} type="card" size="small" items={[
                         {
-                            label: "Tools",
+                            label: "Design",
                             key: "components",
                             children:
                                 <Collapse className={styles.divider} size="small" defaultActiveKey={['1']} items={
