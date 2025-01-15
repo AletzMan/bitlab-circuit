@@ -1,13 +1,13 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useRef, useState } from "react";
-import { ComponentNode, HistoryAction } from "@/types";
+import { AnalogNode, HistoryAction } from "@/types";
 import { Edge, useReactFlow } from "@xyflow/react";
 import { reorderComponentReferences } from "@/helpers";
 
 type HistoryItem = {
     action: HistoryAction;
-    data: ComponentNode | ComponentNode[] | Edge | Edge[] | undefined;
+    data: AnalogNode | AnalogNode[] | Edge | Edge[] | undefined;
 };
 
 export default function useHistoryManager() {
@@ -29,7 +29,7 @@ export default function useHistoryManager() {
     );
 
     const addNode = useCallback(
-        (node: ComponentNode | undefined, shouldAddToHistory = true) => {
+        (node: AnalogNode | undefined, shouldAddToHistory = true) => {
             if (node) setNodes((prevNodes) => prevNodes.concat(node));
             if (shouldAddToHistory)
                 addToHistory([{
@@ -55,12 +55,12 @@ export default function useHistoryManager() {
     );
 
     const removeNode = useCallback(
-        (nodes: ComponentNode[] | undefined, shouldAddToHistory = true) => {
+        (nodes: AnalogNode[] | undefined, shouldAddToHistory = true) => {
             if (nodes) {
                 const filteredNodes = getNodes().filter(
                     node => !nodes.some(n => n.id === node.id)
                 );
-                const newOrder = reorderComponentReferences(filteredNodes as ComponentNode[]);
+                const newOrder = reorderComponentReferences(filteredNodes as AnalogNode[]);
                 debugger;
                 setNodes(newOrder);
             }
@@ -101,7 +101,7 @@ export default function useHistoryManager() {
             currentIndex.current -= 1;
             switch (action) {
                 case HistoryAction.AddNode: {
-                    removeNode([data as ComponentNode], false);
+                    removeNode([data as AnalogNode], false);
                     break;
                 }
                 case HistoryAction.AddEdge: {
@@ -109,7 +109,7 @@ export default function useHistoryManager() {
                     break;
                 }
                 case HistoryAction.RemoveNode: {
-                    addNode(data as ComponentNode, false);
+                    addNode(data as AnalogNode, false);
                     break;
                 }
                 case HistoryAction.RemoveEdge: {
@@ -127,7 +127,7 @@ export default function useHistoryManager() {
             const { action, data } = history[currentIndex.current] || {};
             switch (action) {
                 case HistoryAction.AddNode: {
-                    addNode(data as ComponentNode, false);
+                    addNode(data as AnalogNode, false);
                     break;
                 }
                 case HistoryAction.AddEdge: {
@@ -135,7 +135,7 @@ export default function useHistoryManager() {
                     break;
                 }
                 case HistoryAction.RemoveNode: {
-                    removeNode([data as ComponentNode], false);
+                    removeNode([data as AnalogNode], false);
                     break;
                 }
                 case HistoryAction.RemoveEdge: {
