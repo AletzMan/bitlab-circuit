@@ -1,3 +1,4 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import {
@@ -9,12 +10,12 @@ import {
 } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, KeyboardEvent, useEffect } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
-import { ComponentEdge, ComponentNode, ComponentState, ComponentType, UnitsType } from "@/types";
+import { ComponentEdge, AnalogNode, ComponentState, ComponentType, UnitsType } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
 import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
-import { ARRAY_COMPONENTS, COMPONENTS } from "@/constants";
+import { ARRAY_COMPONENTS, ANALOG_COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
 import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { getComponentProperties, getImageBackgroundDrag, isPointInBox } from "@/helpers";
@@ -24,8 +25,9 @@ import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, Mi
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
 import { useTheme } from "@/store";
+import { NodeComponent } from "../NodeComponent/NodeComponent";
 
-const initialNodes: ComponentNode[] = [
+const initialNodes: AnalogNode[] = [
     {
         id: uuid(),
         type: 'analogComponent',
@@ -38,13 +40,21 @@ const initialNodes: ComponentNode[] = [
         data: { type: ComponentType.Capacitor, value: 4.7, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, reference: "C1" },
         position: { x: 250, y: 200 },
     },
+    {
+        id: uuid(),
+        type: 'nodeComponent',
+        data: { type: ComponentType.Node, value: 0, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1" },
+        position: { x: 250, y: 200 },
+    },
 ];
 
 const initialEdges: ComponentEdge[] = [];
 
 const nodeTypes = {
     analogComponent: AnalogComponent,
-    board: Board
+    nodeComponent: NodeComponent,
+    board: Board,
+
 };
 
 const edgeTypes = {
@@ -57,8 +67,8 @@ export function BoardFlow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [activeTab, setActiveTab] = useState('components');
     const [edges, setEdges, onEdgesChange] = useEdgesState<ComponentEdge>(initialEdges);
-    const [selectedNode, setSelectedNode] = useState<ComponentNode | undefined>();
-    const [selectedNodes, setSelectedNodes] = useState<ComponentNode[]>([]);
+    const [selectedNode, setSelectedNode] = useState<AnalogNode | undefined>();
+    const [selectedNodes, setSelectedNodes] = useState<AnalogNode[]>([]);
     const [selectedEdges, setSelectedEdges] = useState<ComponentEdge[]>([]);
     const [viewPort, setViewPort] = useState<Viewport>({ x: 0, y: 0, zoom: 1 });
     const [selectedEdge, setSelectedEdge] = useState<ComponentEdge | undefined>();
@@ -66,7 +76,7 @@ export function BoardFlow() {
     const [isSingleEdgeSelection, setIsSingleEdgeSelection] = useState(false);
     const dragOutsideRef = useRef<ComponentType | null>(null);
     const edgeReconnectSuccessful = useRef(false);
-    const overlappingNodeRef = useRef<ComponentNode | null>(null);
+    const overlappingNodeRef = useRef<AnalogNode | null>(null);
     const { screenToFlowPosition, getIntersectingNodes, fitView, } = useReactFlow();
     const { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo } = useHistoryManager();
     const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
@@ -149,15 +159,15 @@ export function BoardFlow() {
             position = { x: dragX - x, y: dragY - y };
         }
 
-        let node: ComponentNode | undefined;
+        let node: AnalogNode | undefined;
 
-        const { value, unit, prefix, reference } = getComponentProperties(type, nodes);
+        const { value, unit, prefix, reference, type: typeComponent } = getComponentProperties(type, nodes);
 
         if (ARRAY_COMPONENTS.includes(type)) {
 
             node = {
                 id: uuid(),
-                type: 'analogComponent',
+                type: typeComponent,
                 position,
                 data: { type, value, isLock: false, rotation: 0, state: ComponentState.Undefined, unit, prefix, has_properties: true, reference },
                 parentId: board?.id
@@ -177,7 +187,7 @@ export function BoardFlow() {
         }
     };
 
-    const handleNodeClick = (e: React.MouseEvent<Element>, node: ComponentNode) => {
+    const handleNodeClick = (e: React.MouseEvent<Element>, node: AnalogNode) => {
         e.preventDefault();
         setSelectedNode(node);
         setSelectedEdge(undefined);
@@ -224,7 +234,7 @@ export function BoardFlow() {
     };
 
 
-    const handleOnNodeDrag: OnNodeDrag<ComponentNode> = (e, dragNode) => {
+    const handleOnNodeDrag: OnNodeDrag<AnalogNode> = (e, dragNode) => {
         e.preventDefault();
 
         const snapToGrid = (value: number) => Math.round(value / gridSize) * gridSize;
@@ -235,7 +245,7 @@ export function BoardFlow() {
 
         // Encontrar nodos superpuestos
         const overlappingNode = getIntersectingNodes(dragNode)?.[0];
-        overlappingNodeRef.current = overlappingNode as ComponentNode;
+        overlappingNodeRef.current = overlappingNode as AnalogNode;
 
         // Actualizar nodos y su posición ajustada
         setNodes((prevNodes) =>
@@ -263,7 +273,7 @@ export function BoardFlow() {
     };
 
 
-    const handleNodeDragStop: OnNodeDrag<ComponentNode> = (e, dragNode) => {
+    const handleNodeDragStop: OnNodeDrag<AnalogNode> = (e, dragNode) => {
         e.preventDefault();
         if (
             !overlappingNodeRef.current ||
@@ -299,12 +309,11 @@ export function BoardFlow() {
                     }
                     return node;
                 });
-
             });
         }
-
+        const typeComponent = overlappingNodeRef?.current?.data?.type as ComponentType;
         if (
-            ARRAY_COMPONENTS.includes(overlappingNodeRef?.current?.data?.type as ComponentType) && dragNode?.data?.type === overlappingNodeRef?.current?.data?.type) {
+            ARRAY_COMPONENTS.includes(typeComponent) && dragNode?.data?.type === overlappingNodeRef?.current?.data?.type) {
             setNodes((prevNodes) =>
                 prevNodes
                     .map((node) => {
@@ -327,7 +336,7 @@ export function BoardFlow() {
 
         if (overlappingNodeRef?.current?.type === ComponentType.Board && selectedNode?.data.type !== ComponentType.Board) {
             setNodes((prevNodes) => [
-                overlappingNodeRef?.current as ComponentNode,
+                overlappingNodeRef?.current as AnalogNode,
                 ...prevNodes
                     .filter((node) => node.id !== overlappingNodeRef?.current?.id)
                     .map((node) => {
@@ -384,9 +393,9 @@ export function BoardFlow() {
         const isUniqueEdge = numberEdges === 1;
         setIsSingleNodeSelection(isUniqueNode);
         setIsSingleEdgeSelection(isUniqueEdge);
-        if (isUniqueNode) setSelectedNode(params.nodes[0] as ComponentNode);
+        if (isUniqueNode) setSelectedNode(params.nodes[0] as AnalogNode);
         if (isUniqueEdge) setSelectedEdge(params.edges[0] as ComponentEdge);
-        setSelectedNodes(params.nodes as ComponentNode[]);
+        setSelectedNodes(params.nodes as AnalogNode[]);
         setSelectedEdges(params.edges as ComponentEdge[]);
     };
 
@@ -553,7 +562,7 @@ export function BoardFlow() {
                         viewport={viewPort}
                         onViewportChange={handleChangeViewPort}
                         panOnScroll
-                        maxZoom={3}
+                        maxZoom={8}
                         minZoom={0.5}
                         zoomOnPinch
                         selectionOnDrag
@@ -577,10 +586,22 @@ export function BoardFlow() {
                                         label: "Components",
                                         showArrow: false,
                                         children: <>
+                                            <label className={styles.label}>Structure</label>
+                                            <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
+                                            <div className={styles.components}>
+                                                {STRUCTURE_COMPONENTS.map(component => (
+                                                    <Tooltip key={component.label} placement="top" title={component.label}  >
+                                                        <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
+                                                            {component.icon}
+                                                        </Button>
+                                                    </Tooltip>
+                                                ))}
+                                            </div>
+                                            <Divider style={{ margin: "12px 0 24px 0" }} />
                                             <label className={styles.label}>Analog</label>
                                             <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
                                             <div className={styles.components}>
-                                                {COMPONENTS.map(component => (
+                                                {ANALOG_COMPONENTS.map(component => (
                                                     <Tooltip key={component.label} placement="top" title={component.label}  >
                                                         <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
                                                             {component.icon}
