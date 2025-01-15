@@ -31,9 +31,11 @@
 
 .id {
     position: absolute;
-    font-size: 0.85em;
+    font-size: 0.8em;
     top: -2px;
     left: 0;
+    font-style: italic;
+    color: var(--reference-color);
 }
 
 .value_90,
