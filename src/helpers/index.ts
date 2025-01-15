@@ -79,6 +79,7 @@ export type ComponentPropertiesDefault = {
 const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
     [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R" },
     [ComponentType.Capacitor]: { value: 4.7, unit: UnitsType.Ohm, prefix: "µF", reference: "C" },
+    [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L" },
     [ComponentType.Diode]: { value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D" },
     [ComponentType.Led]: { value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED" },
     [ComponentType.Battery]: { value: 12, unit: UnitsType.Voltage, prefix: "V", reference: "B" },
@@ -107,6 +108,7 @@ export function reorderComponentReferences(components: ComponentNode[]): Compone
     const typeCounters: Record<ComponentType, number> = {
         [ComponentType.Resistor]: 0,
         [ComponentType.Capacitor]: 0,
+        [ComponentType.Inductor]: 0,
         [ComponentType.Diode]: 0,
         [ComponentType.Led]: 0,
         [ComponentType.Battery]: 0,
