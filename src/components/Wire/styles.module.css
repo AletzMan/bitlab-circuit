@@ -1,4 +1,4 @@
 .wire {
-    stroke-width: 1.25;
+    stroke-width: 2;
     stroke: var(--wire-color, var(--foreground-color));
 }
