@@ -28,7 +28,7 @@ export function AnalogComponent({ data: { type, value, rotation, state, isLock, 
             <div style={{ transform: `rotate(${rotation}deg)` }} className={styles.icon}>
                 {type === ComponentType.Resistor && <ResistorIcon />}
                 {type === ComponentType.Capacitor && <CapacitorIcon />}
-                {type === ComponentType.Capacitor && <DiodeIcon />}
+                {type === ComponentType.Diode && <DiodeIcon />}
             </div>
             <span className={`${styles.value} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }}>{value}{prefix}</span>
             <span className={`${styles.id} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }}>{reference}</span>
