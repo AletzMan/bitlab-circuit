@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
 import { Input, Select, Button, Flex, Divider, Card, Tooltip, Tag } from "antd";
-import { ComponentData, ComponentNode, UNITS } from "@/types";
+import { ComponentData, AnalogNode, UNITS } from "@/types";
 //import useHistoryManager from "@/hooks/useHistoryManager";
 const { Option } = Select;
 
@@ -15,9 +15,9 @@ export default function ComponentProperties({
     isSingleNode,
     duplicateComponents,
 }: {
-    node: ComponentNode | undefined,
-    selectedNodes: ComponentNode[] | undefined,
-    removeNode: (node: ComponentNode[] | undefined, shouldAddToHistory?: boolean) => void,
+    node: AnalogNode | undefined,
+    selectedNodes: AnalogNode[] | undefined,
+    removeNode: (node: AnalogNode[] | undefined, shouldAddToHistory?: boolean) => void,
     isSingleNode: boolean,
     duplicateComponents: () => void
 }) {
@@ -79,7 +79,7 @@ export default function ComponentProperties({
 
     const handleRemoveNode = () => {
         if (isSingleNode) {
-            removeNode([node as ComponentNode], true);
+            removeNode([node as AnalogNode], true);
         } else {
             removeNode(selectedNodes, true);
         }
