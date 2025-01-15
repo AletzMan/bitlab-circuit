@@ -1,4 +1,5 @@
 import { Edge, Node } from "@xyflow/react";
+import { ColorPickerProps } from "antd";
 export enum ComponentType {
     Resistor = 'resistor',
     Capacitor = 'capacitor',
@@ -60,3 +61,4 @@ export enum HistoryAction {
     AddEdge = "addEdge",
     RemoveEdge = "removeEdge",
 }
+export type Presets = Required<ColorPickerProps>['presets'][number];
