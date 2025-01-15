@@ -1,5 +1,5 @@
 import { ReactFlowState } from "@xyflow/react";
-import { ComponentType, Presets } from "../types";
+import { ComponentNode, ComponentType, Presets } from "../types";
 
 export const zoomSelector = (s: ReactFlowState) => s.transform[2] >= 0.7;
 
@@ -65,4 +65,25 @@ export function genPresets(customColors: { [key: string]: string[] }) {
         colors,
         key: label,
     }));
+}
+
+export function findComponentReference(type: ComponentType, components: ComponentNode[]): string {
+    let reference = "";
+    switch (type) {
+        case ComponentType.Resistor: {
+            const numberOfResistor = components.filter(component => component.data.type === ComponentType.Resistor);
+            reference = `R${numberOfResistor.length + 1}`;
+        }
+            break;
+        case ComponentType.Capacitor: {
+            const numberOfCapacitor = components.filter(component => component.data.type === ComponentType.Capacitor);
+            reference = `C${numberOfCapacitor.length + 1}`;
+        }
+
+            break;
+
+        default:
+            break;
+    }
+    return reference;
 }
