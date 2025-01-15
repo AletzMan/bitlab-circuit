@@ -56,6 +56,12 @@ export type ComponentData = {
     reference: string
 }
 
+export type GroupComponent = {
+    icon: JSX.Element,
+    type: ComponentType,
+    label: string
+}
+
 /*
 export type UnionData = {
     type: UnionType
