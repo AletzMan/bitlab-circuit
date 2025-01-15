@@ -5,7 +5,7 @@ import { SVGProps } from "react";
 
 export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="60px" width="60px" viewBox="144 144 512 512" transform="rotate(90)"  >
+        <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)"  >
             <path fill="currentColor" d="m471.69 331.23c0-4.0117-2.5508-7.5781-6.3438-8.875l-98.719-33.859 36.414-12.492c3.793-1.3008 6.3359-4.8672 6.3359-8.8789v-86.59c0-5.1836-4.1953-9.3828-9.3828-9.3828-5.1836 0-9.3867 4.2031-9.3867 9.3828v79.883l-55.953 19.195c-3.7969 1.3008-6.3438 4.8672-6.3438 8.8789 0 4.0078 2.5469 7.5781 6.3438 8.875l98.719 33.859-98.719 33.855c-3.7969 1.2969-6.3438 4.8672-6.3438 8.8789s2.5469 7.5742 6.3438 8.875l98.719 33.855-98.719 33.863c-3.7969 1.3008-6.3438 4.8672-6.3438 8.8789 0 4.0078 2.5469 7.5742 6.3438 8.8789l98.715 33.852-26.684 9.1523c-13.621 4.668-16.078 5.5117-16.078 12.215v95.934c0 5.1836 4.2031 9.3867 9.3867 9.3867 5.1836 0 9.3828-4.2031 9.3828-9.3867v-89.238c15.832-5.4297 55.969-19.188 55.969-19.188 3.793-1.2969 6.3438-4.8672 6.3438-8.8789 0-4.0039-2.5508-7.5781-6.3438-8.8789l-98.719-33.852 98.719-33.863c3.793-1.3047 6.3438-4.8711 6.3438-8.8789 0-4.0117-2.5508-7.5781-6.3438-8.8828l-98.715-33.852 98.715-33.855c3.793-1.293 6.3438-4.8594 6.3438-8.8672z"></path>
         </svg>
     );
@@ -13,7 +13,7 @@ export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="60px" width="60px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
+        <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
             <g id="SVGRepo_iconCarrier"> <defs>
                 <clipPath id="capacitor">
@@ -31,7 +31,7 @@ export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function CapacitorElectrolyticIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="60px" width="60px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
+        <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
             <g id="SVGRepo_iconCarrier"> <defs>
@@ -55,7 +55,7 @@ export function CapacitorElectrolyticIcon(props: SVGProps<SVGSVGElement>) {
 
 export function InductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="60px" width="60px" viewBox="144 144 512 512" transform="rotate(90)" >
+        <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)" >
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
@@ -67,7 +67,7 @@ export function InductorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="60px" width="60px" fill="currentColor" viewBox="144 144 512 512">
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512">
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
@@ -86,7 +86,7 @@ export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
 
 export function BoardIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="60px" width="60px" viewBox="0 0 256 256" style={{ display: "flex" }}>
+        <svg {...props} height="33px" width="33px" viewBox="0 0 256 256" style={{ display: "flex" }}>
             <path fill="currentColor" d="M76 48a4 4 0 0 1-4 4H40a4 4 0 0 0-4 4v16a4 4 0 0 1-8 0V56a12 12 0 0 1 12-12h32a4 4 0 0 1 4 4M32 148a4 4 0 0 0 4-4v-32a4 4 0 0 0-8 0v32a4 4 0 0 0 4 4m40 56H40a4 4 0 0 1-4-4v-16a4 4 0 0 0-8 0v16a12 12 0 0 0 12 12h32a4 4 0 0 0 0-8m72 0h-32a4 4 0 0 0 0 8h32a4 4 0 0 0 0-8m80-24a4 4 0 0 0-4 4v16a4 4 0 0 1-4 4h-32a4 4 0 0 0 0 8h32a12 12 0 0 0 12-12v-16a4 4 0 0 0-4-4m0-72a4 4 0 0 0-4 4v32a4 4 0 0 0 8 0v-32a4 4 0 0 0-4-4m-8-64h-32a4 4 0 0 0 0 8h32a4 4 0 0 1 4 4v16a4 4 0 0 0 8 0V56a12 12 0 0 0-12-12m-72 0h-32a4 4 0 0 0 0 8h32a4 4 0 0 0 0-8"></path>
         </svg>
     );
