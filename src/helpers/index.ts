@@ -1,6 +1,6 @@
 import { ReactFlowState } from "@xyflow/react";
-import { AnalogNode, ComponentType, Presets, UnitsType } from "../types";
-import { ANALOG_COMPONENTS } from "@/constants";
+import { AnalogNode, ComponentType, GroupComponent, Presets, UnitsType } from "../types";
+import { ANALOG_COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
 import { createRoot } from "react-dom/client";
 
 export const zoomSelector = (s: ReactFlowState) => s.transform[2] >= 0.7;
@@ -143,7 +143,12 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
 
 
 export function getImageBackgroundDrag(type: ComponentType): HTMLDivElement {
-    const currentComponent = ANALOG_COMPONENTS.find(component => component.type === type);
+    let currentComponent: GroupComponent | undefined = undefined;
+
+    currentComponent = ANALOG_COMPONENTS.find(component => component.type === type);
+
+    if (!currentComponent) currentComponent = STRUCTURE_COMPONENTS.find(component => component.type === type);
+
     const tempContainer = document.createElement('div');
     if (currentComponent) {
         tempContainer.className = "elementDrag";
