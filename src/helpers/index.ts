@@ -67,23 +67,50 @@ export function genPresets(customColors: { [key: string]: string[] }) {
     }));
 }
 
+// Mapa para almacenar contadores por tipo
+const typeToPrefixMap: Record<ComponentType, string> = {
+    [ComponentType.Resistor]: "R",
+    [ComponentType.Capacitor]: "C",
+    [ComponentType.Led]: "D",
+    [ComponentType.Battery]: "B",
+    [ComponentType.Board]: "BR",
+};
+
+
 export function findComponentReference(type: ComponentType, components: ComponentNode[]): string {
-    let reference = "";
-    switch (type) {
-        case ComponentType.Resistor: {
-            const numberOfResistor = components.filter(component => component.data.type === ComponentType.Resistor);
-            reference = `R${numberOfResistor.length + 1}`;
-        }
-            break;
-        case ComponentType.Capacitor: {
-            const numberOfCapacitor = components.filter(component => component.data.type === ComponentType.Capacitor);
-            reference = `C${numberOfCapacitor.length + 1}`;
-        }
 
-            break;
-
-        default:
-            break;
+    const prefix = typeToPrefixMap[type];
+    if (!prefix) {
+        throw new Error(`Unknown component type: ${type}`);
     }
-    return reference;
+
+    const matchingComponents = components.filter(component => component.data.type === type);
+    return `${prefix}${matchingComponents.length + 1}`;
+}
+
+export function reorderComponentReferences(components: ComponentNode[]): ComponentNode[] {
+    const typeCounters: Record<ComponentType, number> = {
+        [ComponentType.Resistor]: 0,
+        [ComponentType.Capacitor]: 0,
+        [ComponentType.Led]: 0,
+        [ComponentType.Battery]: 0,
+        [ComponentType.Board]: 0,
+    };
+
+    return components.map((component) => {
+        const { type } = component.data;
+
+        // Incrementar el contador para este tipo
+        typeCounters[type] += 1;
+
+        // Actualizar la referencia con el nuevo identificador
+        const newReference = `${typeToPrefixMap[type].toUpperCase()}${typeCounters[type]}`;
+        return {
+            ...component,
+            data: {
+                ...component.data,
+                reference: newReference,
+            },
+        };
+    });
 }
