@@ -29,6 +29,13 @@
     left: 0;
 }
 
+.id {
+    position: absolute;
+    font-size: 0.85em;
+    top: -2px;
+    left: 0;
+}
+
 .value_90,
 .value_270 {
     left: 45px;
