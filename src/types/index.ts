@@ -3,6 +3,7 @@ import { ColorPickerProps } from "antd";
 export enum ComponentType {
     Resistor = 'resistor',
     Capacitor = 'capacitor',
+    CapacitorElectrlytic = 'capacitorelectrolytic',
     Inductor = 'inductor',
     Diode = 'diode',
     Led = "led",
@@ -28,7 +29,7 @@ export enum UnitsType {
 export const UNITS = {
     ohm: ['Ω', 'KΩ', 'MΩ'],
     volt: ['mV', 'V'],
-    farad: ['pF', 'nF', 'μF'],
+    farad: ['pF', 'nF', 'µF'],
     ampere: ['μA', 'mA', 'A'],
     henry: ['μH', 'mH', 'H'],
     undefined: [],
