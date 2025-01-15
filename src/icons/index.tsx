@@ -21,7 +21,7 @@ export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
                 </clipPath>
             </defs>
                 <path d="m408.86 443.29v198.77c0 11.809-19.68 11.809-19.68 0v-198.77h-108.24c-13.777 0-13.777-19.68 0-19.68h238.13c11.809 0 11.809 19.68 0 19.68z"></path>
-                <g clip-Path="url(#capacitor)">
+                <g clipPath="url(#capacitor)">
                     <path d="m389.18 157.93c0-13.777 19.68-13.777 19.68 0v196.8h110.21c11.809 0 11.809 19.68 0 19.68h-238.13c-13.777 0-13.777-19.68 0-19.68h108.24z"></path>
                 </g>
             </g>
@@ -80,6 +80,17 @@ export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
                     <path d="m481.7 392.34-141.27-64.68c-6.8086-3.4023-13.617 1.7031-13.617 8.5117v57.871h-171.91c-3.4023 0-6.8086 1.7031-6.8086 6.8086 0 3.4023 3.4023 6.8086 6.8086 6.8086h171.91v57.871c0 6.8086 6.8086 11.914 13.617 8.5117l141.27-64.68c1.7031 0 3.4023-1.7031 3.4023-1.7031v45.957c0 10.211 15.32 10.211 15.32 0v-45.957h144.68c8.5117 0 8.5117-13.617 0-13.617h-144.68v-47.656c0-8.5117-15.32-8.5117-15.32 0v47.656s-1.7031-1.7031-3.4023-1.7031z" fillRule="evenodd"></path>
                 </g>
             </g>
+        </svg>
+    );
+}
+
+export function NodeIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px"
+            viewBox="0 0 512 512"
+            fill="currentColor"
+        >
+            <circle cx="256" cy="256" r="150" fill="currentColor" />
         </svg>
     );
 }
