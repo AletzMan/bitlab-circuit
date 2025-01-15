@@ -20,6 +20,16 @@ body {
     --fill-minimap-node-mask: #e9e5e5;
     --background-minimap: #f9f8f8;
     --font-family: "Jost", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --color-wire-one: #000000;
+    --color-wire-two: #FF0000;
+    --color-wire-three: #FF7F00;
+    --color-wire-four: #FFFF00;
+    --color-wire-five: #00FF00;
+    --color-wire-six: #00FFFF;
+    --color-wire-seven: #0000FF;
+    --color-wire-eight: #7F00FF;
+    --color-wire-nine: #FF00FF;
+    --color-wire-ten: #FFFFFF;
 }
 
 [data-theme="dark"] {
@@ -30,6 +40,15 @@ body {
     --board-background-color: #141414;
     --grid-large-color: #3c3c3c;
     --grid-small-color: #313131;
+    --color-wire-one: #FFFFFF;
+    --color-wire-two: #FF6F61;
+    --color-wire-three: #FFA500;
+    --color-wire-four: #FFD700;
+    --color-wire-five: #32CD32;
+    --color-wire-six: #4682B4;
+    --color-wire-nine: #1E90FF;
+    --color-wire-eight: #9370DB;
+    --color-wire-ten: #000000;
 }
 
 /*
@@ -81,7 +100,7 @@ body {
 }
 
 .react-flow__edge.selectable:hover .react-flow__edge-path {
-    filter: drop-shadow(0 0 1px var(--wire-color));
+    filter: drop-shadow(0 0 2px var(--wire-color));
 }
 
 .react-flow__edge.selectable.selected .react-flow__edge-path {
