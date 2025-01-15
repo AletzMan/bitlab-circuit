@@ -17,7 +17,7 @@ import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
 import { ARRAY_COMPONENTS, COMPONENTS } from "@/constants";
 import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
-import { isPointInBox } from "@/helpers";
+import { findComponentReference, isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
 import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Space, Switch, Tabs, Tooltip, theme } from "antd";
 import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
@@ -148,13 +148,17 @@ export function BoardFlow() {
         }
 
         let node: ComponentNode | undefined;
+        const componentReference = findComponentReference(type, nodes);
+
+
+
         if (ARRAY_COMPONENTS.includes(type)) {
 
             node = {
                 id: uuid(),
                 type: 'analogComponent',
                 position,
-                data: { type, value: 50, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Ohm, prefix: "Ω", has_properties: true, id: "R1" },
+                data: { type, value: 50, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Ohm, prefix: "Ω", has_properties: true, id: componentReference },
                 parentId: board?.id
             };
         } else if (type === ComponentType.Board) {
@@ -162,7 +166,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type,
                 position,
-                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Henrio, prefix: 'mH', id: "C1" },
+                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Henrio, prefix: 'mH', id: "" },
                 parentId: board?.id,
                 style: { height: 200, width: 200 },
             };
