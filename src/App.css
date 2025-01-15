@@ -222,3 +222,12 @@ body {
     flex-flow: row wrap;
     max-width: 100px;
 }
+
+.elementDrag {
+    color: var(--foreground-color);
+
+    &>svg {
+        width: 60px;
+        height: 60px;
+    }
+}
