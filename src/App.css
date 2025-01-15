@@ -184,3 +184,20 @@ body {
         stroke: var(--foreground-color);
     }
 }
+
+.ant-color-picker-panel,
+:where(.css-dev-only-do-not-override-poerbe).ant-color-picker .ant-color-picker-inner .ant-color-picker-input-container,
+:where(.css-dev-only-do-not-override-poerbe).ant-color-picker .ant-color-picker-inner-content>.ant-divider,
+:where(.css-dev-only-do-not-override-poerbe).ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-header,
+:where(.css-dev-only-do-not-override-7ny38l).ant-color-picker .ant-color-picker-inner .ant-color-picker-input-container,
+:where(.css-dev-only-do-not-override-7ny38l).ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-header,
+:where(.css-dev-only-do-not-override-7ny38l).ant-color-picker .ant-color-picker-inner-content>.ant-divider {
+    display: none;
+}
+
+:where(.css-dev-only-do-not-override-poerbe).ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-content>.ant-collapse-content-box,
+:where(.css-dev-only-do-not-override-7ny38l).ant-color-picker .ant-color-picker-inner .ant-color-picker-presets-items {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 100px;
+}
