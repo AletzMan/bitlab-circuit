@@ -81,11 +81,12 @@ body {
 }
 
 .react-flow__edge.selectable:hover .react-flow__edge-path {
-    stroke: #737373;
+    filter: drop-shadow(0 0 1px var(--wire-color));
 }
 
 .react-flow__edge.selectable.selected .react-flow__edge-path {
-    stroke: #ff6600;
+    stroke: #06d7c9;
+    filter: drop-shadow(0 0 1px #00ffee);
 }
 
 .ant-card-head-title {
