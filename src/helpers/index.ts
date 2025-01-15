@@ -1,5 +1,7 @@
 import { ReactFlowState } from "@xyflow/react";
 import { ComponentNode, ComponentType, Presets, UnitsType } from "../types";
+import { COMPONENTS } from "@/constants";
+import { createRoot } from "react-dom/client";
 
 export const zoomSelector = (s: ReactFlowState) => s.transform[2] >= 0.7;
 
@@ -133,4 +135,25 @@ export function reorderComponentReferences(components: ComponentNode[]): Compone
             },
         };
     });
+}
+
+
+export function getImageBackgroundDrag(type: ComponentType): HTMLDivElement {
+    const currentComponent = COMPONENTS.find(component => component.type === type);
+    const tempContainer = document.createElement('div');
+    if (currentComponent) {
+        tempContainer.className = "elementDrag";
+
+        // Renderizar el ResistorIcon en el contenedor 
+        const root = createRoot(tempContainer as HTMLElement);
+        root.render(currentComponent.icon);
+        document.body.appendChild(tempContainer);
+
+        // Usar el contenedor como la imagen de arrastre
+        setTimeout(() => {
+            root.unmount(); // Desmontar el componente
+            document.body.removeChild(tempContainer);
+        }, 0);
+    }
+    return tempContainer;
 }
