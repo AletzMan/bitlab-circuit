@@ -17,7 +17,7 @@ import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
 import { ARRAY_COMPONENTS, COMPONENTS } from "@/constants";
 import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
-import { findComponentReference, isPointInBox } from "@/helpers";
+import { getComponentProperties, isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
 import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Space, Switch, Tabs, Tooltip, theme } from "antd";
 import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
@@ -148,9 +148,8 @@ export function BoardFlow() {
         }
 
         let node: ComponentNode | undefined;
-        const componentReference = findComponentReference(type, nodes);
 
-
+        const { value, unit, prefix, reference } = getComponentProperties(type, nodes);
 
         if (ARRAY_COMPONENTS.includes(type)) {
 
@@ -158,7 +157,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: 'analogComponent',
                 position,
-                data: { type, value: 50, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Ohm, prefix: "Ω", has_properties: true, reference: componentReference },
+                data: { type, value, isLock: false, rotation: 0, state: ComponentState.Undefined, unit, prefix, has_properties: true, reference },
                 parentId: board?.id
             };
         } else if (type === ComponentType.Board) {
