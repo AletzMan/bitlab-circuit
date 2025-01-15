@@ -1,11 +1,11 @@
 import { NodeProps, Position, useReactFlow } from "@xyflow/react";
-import { ComponentNode, ComponentState, ComponentType } from "@/types";
+import { AnalogNode, ComponentState, ComponentType } from "@/types";
 import { CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LockIcon, ResistorIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 
 
-export function AnalogComponent({ data: { type, value, rotation, state, isLock, prefix, reference }, selected, id, parentId }: NodeProps<ComponentNode>) {
+export function AnalogComponent({ data: { type, value, rotation, state, isLock, prefix, reference }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
 
 
@@ -18,13 +18,15 @@ export function AnalogComponent({ data: { type, value, rotation, state, isLock, 
     if (rotation === 270) positionTerminals = [Position.Top, Position.Bottom];
 
     return (
-        <div className={`${styles.box} ${selected && styles.box_selected} ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
+        <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
             {parentId && selected &&
                 <div className={`${styles.lock} ${rotation === 90 && styles.lock_90}   ${rotation === 270 && styles.lock_270}`} onClick={() => updateNode(id, (prevNode) => ({ extent: prevNode.extent === 'parent' ? undefined : 'parent', data: { ...prevNode.data, isLock: !isLock } }))}>
                     {!isLock && <UnlockIcon />}
                     {isLock && <LockIcon />}
                 </div>
-            }
+            }<div className={`${selected && styles.box_selected}`}>
+
+            </div>
             <div style={{ transform: `rotate(${rotation}deg)` }} className={styles.icon}>
                 {type === ComponentType.Resistor && <ResistorIcon />}
                 {type === ComponentType.Capacitor && <CapacitorIcon />}
