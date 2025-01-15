@@ -44,6 +44,7 @@ export type ComponentData = {
     unit: UnitsType
     prefix: string
     has_properties?: boolean
+    id: string
 }
 
 export type ComponentNode = Node<ComponentData, string>;
