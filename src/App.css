@@ -8,6 +8,8 @@ body {
 }
 
 :root {
+    --foreground-color: #000000;
+    --reference-color: #690303;
     --background-color: #292929;
     --background-color-tab: #1f1f1f;
     --primary-color: #2db8d4;
@@ -15,7 +17,6 @@ body {
     --board-background-color: #fbfbfb;
     --grid-large-color: #E0E0E0;
     --grid-small-color: #F0F0F0;
-    --foreground-color: #000000;
     --fill-minimap-node: #aca9a9;
     --fill-minimap-node-mask: #e9e5e5;
     --background-minimap: #f9f8f8;
@@ -34,6 +35,7 @@ body {
 
 [data-theme="dark"] {
     --foreground-color: #FFFFFF;
+    --reference-color: #c39950;
     --fill-minimap-node: #e4e4e4;
     --background-minimap: #5f5f5f;
     --fill-minimap-node-mask: #1a1a1a;
