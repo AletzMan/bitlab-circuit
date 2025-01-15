@@ -8,6 +8,7 @@ import useDebounce from "@/hooks/useDebounce";
 import { genPresets } from "@/helpers";
 import { CustomColorsWire } from "@/constants";
 import { AggregationColor } from "antd/es/color-picker/color";
+import { useTheme } from "@/store";
 
 interface IEdgeProps {
     edge: ComponentEdge;
@@ -26,6 +27,7 @@ export default function EdgeDetails({
     selectedEdges,
     setEdges,
 }: IEdgeProps) {
+    const { currentTheme } = useTheme();
     const [currentColor, setCurrentColor] = useState(edge?.data?.color);
     const debouncedColor = useDebounce(currentColor, 500);
     const presets = genPresets(CustomColorsWire);
@@ -65,7 +67,7 @@ export default function EdgeDetails({
                 <Flex>
                     <Flex vertical align="center">
                         <ColorPicker
-                            presets={presets}
+                            presets={currentTheme === "dark" ? [presets[1]] : [presets[0]]}
                             value={currentColor} styles={{ popupOverlayInner: { maxWidth: "85px" } }}
                             onChange={handleChangeColorWire} format="hex" disabledFormat
                         />
