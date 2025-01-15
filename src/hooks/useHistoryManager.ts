@@ -1,7 +1,9 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useRef, useState } from "react";
 import { ComponentNode, HistoryAction } from "@/types";
 import { Edge, useReactFlow } from "@xyflow/react";
+import { reorderComponentReferences } from "@/helpers";
 
 type HistoryItem = {
     action: HistoryAction;
@@ -58,7 +60,9 @@ export default function useHistoryManager() {
                 const filteredNodes = getNodes().filter(
                     node => !nodes.some(n => n.id === node.id)
                 );
-                setNodes(filteredNodes);
+                const newOrder = reorderComponentReferences(filteredNodes as ComponentNode[]);
+                debugger;
+                setNodes(newOrder);
             }
             if (shouldAddToHistory) {
                 addToHistory([{
