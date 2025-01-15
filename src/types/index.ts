@@ -9,7 +9,9 @@ export enum ComponentType {
     Led = "led",
     Battery = 'battery',
     Board = 'board',
+    Node = 'node',
 }
+
 
 export enum OhmType {
     Ohm = 'Ω',
@@ -54,7 +56,18 @@ export type ComponentData = {
     reference: string
 }
 
-export type ComponentNode = Node<ComponentData, string>;
+/*
+export type UnionData = {
+    type: UnionType
+    state?: ComponentState
+    isLock: boolean
+    has_properties?: boolean
+    reference: string
+}
+*/
+//export type UnionNode = Node<UnionData, string>;
+
+export type AnalogNode = Node<ComponentData, string>;
 
 export type EdgeData = {
     color: string,
