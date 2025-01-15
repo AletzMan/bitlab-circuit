@@ -1,10 +1,13 @@
 
 import styles from "./styles.module.css";
 import { DeletetIcon } from "@/icons";
-import { Button, Flex, Card, Divider, Input } from "antd";
-import { Dispatch, SetStateAction, useEffect, useState, ChangeEvent } from "react";
+import { Button, Flex, Card, Divider, ColorPicker } from "antd";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ComponentEdge } from "@/types";
 import useDebounce from "@/hooks/useDebounce";
+import { genPresets } from "@/helpers";
+import { CustomColorsWire } from "@/constants";
+import { AggregationColor } from "antd/es/color-picker/color";
 
 interface IEdgeProps {
     edge: ComponentEdge;
@@ -25,6 +28,7 @@ export default function EdgeDetails({
 }: IEdgeProps) {
     const [currentColor, setCurrentColor] = useState(edge?.data?.color);
     const debouncedColor = useDebounce(currentColor, 500);
+    const presets = genPresets(CustomColorsWire);
 
     useEffect(() => {
         setCurrentColor(edge?.data?.color);
@@ -49,9 +53,9 @@ export default function EdgeDetails({
         setSelectedEdge(undefined);
     };
 
-    const handleChangeColorWire = (e: ChangeEvent<HTMLInputElement>) => {
-        const newColor = e.currentTarget.value;
-        setCurrentColor(newColor);
+    const handleChangeColorWire = (_value: AggregationColor, css: string) => {
+        setCurrentColor(css);
+        console.log(css);
     };
 
     return (
@@ -60,7 +64,11 @@ export default function EdgeDetails({
                 <label className="details_name"  >Wire</label>
                 <Flex>
                     <Flex vertical align="center">
-                        <Input className={styles.input} type="color" value={currentColor} onChange={handleChangeColorWire} />
+                        <ColorPicker
+                            presets={presets}
+                            value={currentColor} styles={{ popupOverlayInner: { maxWidth: "85px" } }}
+                            onChange={handleChangeColorWire} format="hex" disabledFormat
+                        />
                         <label className={styles.label}>Color</label>
                     </Flex>
                 </Flex>
