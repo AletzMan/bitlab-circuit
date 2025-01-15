@@ -465,7 +465,6 @@ export function BoardFlow() {
         setCurrentTheme(newTheme);
         document.documentElement.setAttribute("data-theme", newTheme);
     };
-    console.log(selectedEdge);
     return (
         <ConfigProvider theme={{ algorithm: currentTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
             <div className={styles.board}>
