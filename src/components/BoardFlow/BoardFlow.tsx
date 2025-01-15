@@ -30,13 +30,13 @@ const initialNodes: ComponentNode[] = [
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { type: ComponentType.Resistor, value: 100, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'Ω', has_properties: true, id: "R1" },
+        data: { type: ComponentType.Resistor, value: 100, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'Ω', has_properties: true, reference: "R1" },
         position: { x: 50, y: 200 },
     },
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { type: ComponentType.Capacitor, value: 50, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Henrio, prefix: 'mH', has_properties: true, id: "C1" },
+        data: { type: ComponentType.Capacitor, value: 50, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Henrio, prefix: 'mH', has_properties: true, reference: "C1" },
         position: { x: 250, y: 200 },
     },
 ];
@@ -158,7 +158,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: 'analogComponent',
                 position,
-                data: { type, value: 50, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Ohm, prefix: "Ω", has_properties: true, id: componentReference },
+                data: { type, value: 50, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Ohm, prefix: "Ω", has_properties: true, reference: componentReference },
                 parentId: board?.id
             };
         } else if (type === ComponentType.Board) {
@@ -166,7 +166,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type,
                 position,
-                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Henrio, prefix: 'mH', id: "" },
+                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Henrio, prefix: 'mH', reference: "" },
                 parentId: board?.id,
                 style: { height: 200, width: 200 },
             };
