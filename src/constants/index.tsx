@@ -1,7 +1,7 @@
-import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, ResistorIcon } from "../icons";
+import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, NodeIcon, ResistorIcon } from "../icons";
 import { ComponentType } from "../types";
 
-export const COMPONENTS = [
+export const ANALOG_COMPONENTS = [
     {
         icon: <ResistorIcon />,
         type: ComponentType.Resistor,
@@ -15,7 +15,7 @@ export const COMPONENTS = [
     {
         icon: <CapacitorElectrolyticIcon />,
         type: ComponentType.CapacitorElectrlytic,
-        label: "Capacitor"
+        label: "CapacitorE"
     },
     {
         icon: <DiodeIcon />,
@@ -34,13 +34,23 @@ export const COMPONENTS = [
     }
 ];
 
+export const STRUCTURE_COMPONENTS = [
+    {
+        icon: <NodeIcon />,
+        type: ComponentType.Node,
+        label: "Node"
+    }
+];
+
 export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Resistor,
     ComponentType.Capacitor,
     ComponentType.CapacitorElectrlytic,
     ComponentType.Diode,
     ComponentType.Inductor,
+    ComponentType.Node,
 ];
+
 
 export const CustomColorsWire = {
     lightPalette: [
