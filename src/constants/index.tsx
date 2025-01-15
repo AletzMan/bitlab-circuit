@@ -1,7 +1,7 @@
 import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, NodeIcon, ResistorIcon } from "../icons";
-import { ComponentType } from "../types";
+import { ComponentType, GroupComponent } from "../types";
 
-export const ANALOG_COMPONENTS = [
+export const ANALOG_COMPONENTS: GroupComponent[] = [
     {
         icon: <ResistorIcon />,
         type: ComponentType.Resistor,
@@ -34,7 +34,7 @@ export const ANALOG_COMPONENTS = [
     }
 ];
 
-export const STRUCTURE_COMPONENTS = [
+export const STRUCTURE_COMPONENTS: GroupComponent[] = [
     {
         icon: <NodeIcon />,
         type: ComponentType.Node,
