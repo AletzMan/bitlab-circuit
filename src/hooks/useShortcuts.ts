@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ComponentNode } from "@/types";
+import { AnalogNode } from "@/types";
 import { Edge, useReactFlow } from "@xyflow/react";
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
@@ -10,7 +10,7 @@ export default function useShortcuts({
     undo,
     redo,
 }: {
-    removeNode: (node: ComponentNode[] | undefined) => void;
+    removeNode: (node: AnalogNode[] | undefined) => void;
     removeEdge: (node: Edge[] | undefined) => void;
     undo: () => void;
     redo: () => void;
@@ -31,7 +31,7 @@ export default function useShortcuts({
                     break;
                 }
                 case key === "delete": {
-                    const selectedNodes = getNodes().filter((node) => node.selected) as ComponentNode[];
+                    const selectedNodes = getNodes().filter((node) => node.selected) as AnalogNode[];
                     removeNode(selectedNodes);
                     if (selectedNodes.length === 0) {
                         const selectedEdges = getEdges().filter((edge) => edge.selected);
