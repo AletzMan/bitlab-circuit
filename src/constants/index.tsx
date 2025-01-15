@@ -1,4 +1,4 @@
-import { BoardIcon, CapacitorIcon, ResistorIcon } from "../icons";
+import { BoardIcon, CapacitorIcon, DiodeIcon, ResistorIcon } from "../icons";
 import { ComponentType } from "../types";
 
 export const COMPONENTS = [
@@ -13,6 +13,11 @@ export const COMPONENTS = [
         label: "Capacitor"
     },
     {
+        icon: <DiodeIcon />,
+        type: ComponentType.Diode,
+        label: "Diode"
+    },
+    {
         icon: <BoardIcon />,
         type: ComponentType.Board,
         label: 'Board'
@@ -22,6 +27,7 @@ export const COMPONENTS = [
 export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Resistor,
     ComponentType.Capacitor,
+    ComponentType.Diode,
 ];
 
 export const CustomColorsWire = {
