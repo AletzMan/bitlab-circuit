@@ -15,7 +15,7 @@ export const COMPONENTS = [
     {
         icon: <CapacitorElectrolyticIcon />,
         type: ComponentType.CapacitorElectrlytic,
-        label: "Capacitors"
+        label: "Capacitor"
     },
     {
         icon: <DiodeIcon />,
