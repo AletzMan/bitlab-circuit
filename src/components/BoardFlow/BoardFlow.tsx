@@ -30,13 +30,13 @@ const initialNodes: ComponentNode[] = [
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { type: ComponentType.Resistor, value: 100, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'Ω', has_properties: true },
+        data: { type: ComponentType.Resistor, value: 100, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'Ω', has_properties: true, id: "R1" },
         position: { x: 50, y: 200 },
     },
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { type: ComponentType.Capacitor, value: 50, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Henrio, prefix: 'mH', has_properties: true },
+        data: { type: ComponentType.Capacitor, value: 50, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Henrio, prefix: 'mH', has_properties: true, id: "C1" },
         position: { x: 250, y: 200 },
     },
 ];
@@ -154,7 +154,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: 'analogComponent',
                 position,
-                data: { type, value: 50, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Ohm, prefix: "Ω", has_properties: true },
+                data: { type, value: 50, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Ohm, prefix: "Ω", has_properties: true, id: "R1" },
                 parentId: board?.id
             };
         } else if (type === ComponentType.Board) {
@@ -162,7 +162,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type,
                 position,
-                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Henrio, prefix: 'mH' },
+                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Henrio, prefix: 'mH', id: "C1" },
                 parentId: board?.id,
                 style: { height: 200, width: 200 },
             };
@@ -289,7 +289,7 @@ export function BoardFlow() {
                         return {
                             ...node,
                             position: { x: snappedX, y: snappedY },
-                            parentId: undefined,
+                            parentId: undefined, data: { ...node.data, id: "R1" }
                         };
                     }
                     return node;
