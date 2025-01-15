@@ -21,6 +21,23 @@ export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="60px" width="60px" fill="currentColor">
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <defs>
+                    <clipPath id="a">
+                        <path d="m148.09 326h503.81v150h-503.81z"></path>
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#a)">
+                    <path d="m481.7 392.34-141.27-64.68c-6.8086-3.4023-13.617 1.7031-13.617 8.5117v57.871h-171.91c-3.4023 0-6.8086 1.7031-6.8086 6.8086 0 3.4023 3.4023 6.8086 6.8086 6.8086h171.91v57.871c0 6.8086 6.8086 11.914 13.617 8.5117l141.27-64.68c1.7031 0 3.4023-1.7031 3.4023-1.7031v45.957c0 10.211 15.32 10.211 15.32 0v-45.957h144.68c8.5117 0 8.5117-13.617 0-13.617h-144.68v-47.656c0-8.5117-15.32-8.5117-15.32 0v47.656s-1.7031-1.7031-3.4023-1.7031z" fill-rule="evenodd"></path>
+                </g> </g></svg>
+    );
+}
+
 export function BoardIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="60px" width="60px" viewBox="0 0 256 256" style={{ display: "flex" }}>
