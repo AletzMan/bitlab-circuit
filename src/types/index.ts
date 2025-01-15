@@ -20,16 +20,17 @@ export enum UnitsType {
     Voltage = 'volt',
     Current = 'ampere',
     Capacitance = 'farad',
-    Henrio = 'henry',
+    Inductance = 'henry',
     Undefined = "undefined"
 }
 
 export const UNITS = {
     ohm: ['Ω', 'KΩ', 'MΩ'],
     volt: ['mV', 'V'],
-    capacitance: ['pF', 'nF', 'μF'],
-    amper: ['μA', 'mA', 'A'],
-    inductance: ['μH', 'mH', 'H']
+    farad: ['pF', 'nF', 'μF'],
+    ampere: ['μA', 'mA', 'A'],
+    henry: ['μH', 'mH', 'H'],
+    undefined: [],
 };
 
 export enum ComponentState {
