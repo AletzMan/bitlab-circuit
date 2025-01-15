@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 
 
-export function AnalogComponent({ data: { type, value, rotation, state, isLock, prefix }, selected, id, parentId }: NodeProps<ComponentNode>) {
+export function AnalogComponent({ data: { type, value, rotation, state, isLock, prefix, id: idRes }, selected, id, parentId }: NodeProps<ComponentNode>) {
     const { updateNode } = useReactFlow();
 
 
@@ -30,6 +30,7 @@ export function AnalogComponent({ data: { type, value, rotation, state, isLock, 
                 {type === ComponentType.Capacitor && <CapacitorIcon />}
             </div>
             <span className={`${styles.value} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }}>{value}{prefix}</span>
+            <span className={`${styles.id} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }}>{idRes}</span>
             <Terminal type="source" position={positionTerminals[0]} id="1" />
             <Terminal type="source" position={positionTerminals[1]} id="2" />
         </div>
