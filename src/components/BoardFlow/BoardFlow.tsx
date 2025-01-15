@@ -293,7 +293,7 @@ export function BoardFlow() {
                         return {
                             ...node,
                             position: { x: snappedX, y: snappedY },
-                            parentId: undefined, data: { ...node.data, id: "R1" }
+                            parentId: undefined,
                         };
                     }
                     return node;
