@@ -15,9 +15,10 @@ export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targe
         targetPosition,
         borderRadius: 0,
     });
-    console.log(currentTheme);
-    console.log(data?.color);
+
+
+
     return (
-        <BaseEdge path={d} className={styles.wire} style={{ "--wire-color": (data?.color === "#000000" && currentTheme === 'dark') ? '#FFFFFF' : (data?.color === "#FFFFFF" && currentTheme === 'light') ? "#000000" : data?.color } as CSSProperties} type="smoothstep" />
+        <BaseEdge path={d} className={styles.wire} style={{ "--wire-color": (data?.color === "#000000" && currentTheme === 'dark') ? '#FFFFFF' : (data?.color.toLowerCase() === "#ffffff" && currentTheme === 'light') ? "#000000" : data?.color } as CSSProperties} type="smoothstep" />
     );
 };
