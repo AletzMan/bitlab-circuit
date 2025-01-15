@@ -1,6 +1,6 @@
 import { ReactFlowState } from "@xyflow/react";
-import { ComponentNode, ComponentType, Presets, UnitsType } from "../types";
-import { COMPONENTS } from "@/constants";
+import { AnalogNode, ComponentType, Presets, UnitsType } from "../types";
+import { ANALOG_COMPONENTS } from "@/constants";
 import { createRoot } from "react-dom/client";
 
 export const zoomSelector = (s: ReactFlowState) => s.transform[2] >= 0.7;
@@ -75,21 +75,23 @@ export type ComponentPropertiesDefault = {
     prefix: string,
     unit: UnitsType,
     reference: string
+    type: 'analogComponent' | 'nodeComponent'
 }
 
 // Mapa para almacenar contadores por tipo
 const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
-    [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R" },
-    [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C" },
-    [ComponentType.CapacitorElectrlytic]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C" },
-    [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L" },
-    [ComponentType.Diode]: { value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D" },
-    [ComponentType.Led]: { value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED" },
-    [ComponentType.Battery]: { value: 12, unit: UnitsType.Voltage, prefix: "V", reference: "B" },
-    [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR" },
+    [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent' },
+    [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent' },
+    [ComponentType.CapacitorElectrlytic]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent' },
+    [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L", type: 'analogComponent' },
+    [ComponentType.Diode]: { value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D", type: 'analogComponent' },
+    [ComponentType.Led]: { value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED", type: 'analogComponent' },
+    [ComponentType.Battery]: { value: 12, unit: UnitsType.Voltage, prefix: "V", reference: "B", type: 'analogComponent' },
+    [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'analogComponent' },
+    [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent' },
 };
 
-export function getComponentProperties(type: ComponentType, components: ComponentNode[]): ComponentPropertiesDefault {
+export function getComponentProperties(type: ComponentType, components: AnalogNode[]): ComponentPropertiesDefault {
 
     const reference = typePropertiesMap[type].reference;
     if (!reference) {
@@ -102,12 +104,13 @@ export function getComponentProperties(type: ComponentType, components: Componen
         reference: `${reference}${matchingComponents.length + 1}`,
         prefix: typePropertiesMap[type].prefix,
         unit: typePropertiesMap[type].unit,
-        value: typePropertiesMap[type].value
+        value: typePropertiesMap[type].value,
+        type: typePropertiesMap[type].type
     };
     return properties;
 }
 
-export function reorderComponentReferences(components: ComponentNode[]): ComponentNode[] {
+export function reorderComponentReferences(components: AnalogNode[]): AnalogNode[] {
     const typeCounters: Record<ComponentType, number> = {
         [ComponentType.Resistor]: 0,
         [ComponentType.Capacitor]: 0,
@@ -117,6 +120,7 @@ export function reorderComponentReferences(components: ComponentNode[]): Compone
         [ComponentType.Led]: 0,
         [ComponentType.Battery]: 0,
         [ComponentType.Board]: 0,
+        [ComponentType.Node]: 0,
     };
 
     return components.map((component) => {
@@ -139,7 +143,7 @@ export function reorderComponentReferences(components: ComponentNode[]): Compone
 
 
 export function getImageBackgroundDrag(type: ComponentType): HTMLDivElement {
-    const currentComponent = COMPONENTS.find(component => component.type === type);
+    const currentComponent = ANALOG_COMPONENTS.find(component => component.type === type);
     const tempContainer = document.createElement('div');
     if (currentComponent) {
         tempContainer.className = "elementDrag";
