@@ -31,6 +31,8 @@ body {
     --color-wire-eight: #7F00FF;
     --color-wire-nine: #FF00FF;
     --color-wire-ten: #FFFFFF;
+    --selection-border-color: #c3781cee;
+    --selection-background-color: #c3781c17;
 }
 
 [data-theme="dark"] {
@@ -51,6 +53,8 @@ body {
     --color-wire-nine: #1E90FF;
     --color-wire-eight: #9370DB;
     --color-wire-ten: #000000;
+    --selection-border-color: #b9ff57ee;
+    --selection-background-color: #b9ff5717;
 }
 
 /*
