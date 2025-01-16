@@ -127,7 +127,7 @@ export default function ComponentProperties({
                     <Divider style={{ margin: "16px 0" }} />
                 </Flex>
             }
-            {isSingleNode &&
+            {isSingleNode && node?.data.has_properties &&
                 <>
                     <label className="label">Transform</label>
                     <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
