@@ -6,7 +6,7 @@ import { Terminal } from "@/components/Terminal/Terminal";
 import { useState } from "react";
 
 
-export function AnalogComponent({ data: { type, value, rotation, state, isLock, prefix, reference }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function AnalogComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -45,7 +45,7 @@ export function AnalogComponent({ data: { type, value, rotation, state, isLock, 
     if (rotation === 90) positionTerminals = [Position.Bottom, Position.Top];
     if (rotation === 180) positionTerminals = [Position.Left, Position.Right];
     if (rotation === 270) positionTerminals = [Position.Top, Position.Bottom];
-
+    console.log(flip);
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
             {parentId && selected &&
@@ -56,14 +56,14 @@ export function AnalogComponent({ data: { type, value, rotation, state, isLock, 
             }<div className={`${selected && styles.box_selected}`}>
 
             </div>
-            <div style={{ transform: `rotate(${rotation}deg)` }} className={styles.icon}>
+            <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
                 {type === ComponentType.Resistor && <ResistorIcon />}
                 {type === ComponentType.Capacitor && <CapacitorIcon />}
                 {type === ComponentType.CapacitorElectrlytic && <CapacitorElectrolyticIcon />}
                 {type === ComponentType.Diode && <DiodeIcon />}
                 {type === ComponentType.Inductor && <InductorIcon />}
             </div>
-            <span className={`${styles.value} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }}>{value}{prefix}</span>
+            <span className={`${styles.value} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>
             <span className={`${styles.id} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }}>{reference}</span>
             <Terminal type="source" position={positionTerminals[0]} id="1" isConnectable={!isConnected[0]} />
             <Terminal type="source" position={positionTerminals[1]} id="2" isConnectable={!isConnected[1]} />
