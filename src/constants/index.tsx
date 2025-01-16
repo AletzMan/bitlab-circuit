@@ -1,4 +1,4 @@
-import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, NodeIcon, ResistorIcon } from "../icons";
+import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, ResistorIcon } from "../icons";
 import { ComponentType, GroupComponent } from "../types";
 
 export const ANALOG_COMPONENTS: GroupComponent[] = [
@@ -21,6 +21,11 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
         icon: <DiodeIcon />,
         type: ComponentType.Diode,
         label: "Diode"
+    },
+    {
+        icon: <LEDIcon />,
+        type: ComponentType.Led,
+        label: "LED"
     },
     {
         icon: <InductorIcon />,
@@ -48,6 +53,7 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Capacitor,
     ComponentType.CapacitorElectrlytic,
     ComponentType.Diode,
+    ComponentType.Led,
     ComponentType.Inductor,
     ComponentType.Node,
 ];
