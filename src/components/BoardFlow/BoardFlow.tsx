@@ -32,19 +32,19 @@ const initialNodes: AnalogNode[] = [
         id: uuid(),
         type: 'analogComponent',
         data: { type: ComponentType.Resistor, value: 1, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'KΩ', has_properties: true, reference: "R1" },
-        position: { x: 50, y: 200 },
+        position: { x: 100, y: 170 },
     },
     {
         id: uuid(),
         type: 'analogComponent',
         data: { type: ComponentType.Capacitor, value: 4.7, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, reference: "C1" },
-        position: { x: 250, y: 200 },
+        position: { x: 240, y: 170 },
     },
     {
         id: uuid(),
         type: 'nodeComponent',
         data: { type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1" },
-        position: { x: 250, y: 200 },
+        position: { x: 390, y: 190 },
     },
 ];
 
