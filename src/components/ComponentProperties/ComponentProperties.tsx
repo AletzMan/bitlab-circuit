@@ -33,18 +33,18 @@ export default function ComponentProperties({
 
     const handleFlipHorizontal = () => {
         if (node && dataComponent) {
-            const newRotation = dataComponent.rotation === 90 ? 270 : 90;
-            setDataComponent({ ...dataComponent, rotation: newRotation });
-            updateNodeData(node.id, { rotation: newRotation });
+            const newFlipX = dataComponent.flip.x === 1 ? -1 : 1;
+            setDataComponent({ ...dataComponent, flip: { ...dataComponent.flip, x: newFlipX } });
+            updateNodeData(node.id, { flip: { x: newFlipX } });
             updateNodeInternals(node.id);
         }
     };
 
     const handleFlipVertical = () => {
         if (node && dataComponent) {
-            const newRotation = dataComponent.rotation === 0 ? 180 : 0;
-            setDataComponent({ ...dataComponent, rotation: newRotation });
-            updateNodeData(node.id, { rotation: newRotation });
+            const newFlipY = dataComponent.flip.y === 1 ? -1 : 1;
+            setDataComponent({ ...dataComponent, flip: { ...dataComponent.flip, y: newFlipY } });
+            updateNodeData(node.id, { flip: { y: newFlipY } });
             updateNodeInternals(node.id);
         }
     };

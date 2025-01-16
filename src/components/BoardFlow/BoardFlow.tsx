@@ -31,19 +31,19 @@ const initialNodes: AnalogNode[] = [
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { type: ComponentType.Resistor, value: 1, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'KΩ', has_properties: true, reference: "R1" },
+        data: { type: ComponentType.Resistor, value: 1, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'KΩ', has_properties: true, reference: "R1" },
         position: { x: 50, y: 200 },
     },
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { type: ComponentType.Capacitor, value: 4.7, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, reference: "C1" },
+        data: { type: ComponentType.Capacitor, value: 4.7, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, reference: "C1" },
         position: { x: 250, y: 200 },
     },
     {
         id: uuid(),
         type: 'nodeComponent',
-        data: { type: ComponentType.Node, value: 0, rotation: 0, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1" },
+        data: { type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1" },
         position: { x: 250, y: 200 },
     },
 ];
@@ -169,7 +169,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: typeComponent,
                 position,
-                data: { type, value, isLock: false, rotation: 0, state: ComponentState.Undefined, unit, prefix, has_properties, reference },
+                data: { type, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit, prefix, has_properties, reference },
                 parentId: board?.id
             };
         } else if (type === ComponentType.Board) {
@@ -177,7 +177,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type,
                 position,
-                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, state: ComponentState.Undefined, unit: UnitsType.Undefined, prefix: 'mH', reference: "" },
+                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit: UnitsType.Undefined, prefix: 'mH', reference: "" },
                 parentId: board?.id,
                 style: { height: 200, width: 200 },
             };
