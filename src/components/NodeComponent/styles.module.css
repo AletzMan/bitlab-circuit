@@ -7,6 +7,12 @@
     width: 20px;
     height: 20px;
     color: var(--foreground-color);
+
+    &:hover {
+        .terminal {
+            background-color: var(--foreground-color);
+        }
+    }
 }
 
 .box_valid {
@@ -34,6 +40,21 @@
 }
 
 
+.lock {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5em;
+    cursor: pointer;
+    color: #0355a1;
+    padding: 0;
+    z-index: 2;
+}
+
+
 .icon {
     display: flex;
     align-items: center;
@@ -55,20 +76,65 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    transition: all 0.2s ease-in-out;
+    z-index: 50;
 
     background-color: var(--foreground-color);
 
-    &.terminal_vertical {
-        height: 28px;
+    &.terminal_top {
+        height: 14px;
         width: 2px;
         top: -4px;
         right: 9px;
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--foreground-color);
+        }
     }
 
-    &.terminal_horizontal {
+    &.terminal_right {
         height: 2px;
-        width: 28px;
+        width: 14px;
+        top: 9px;
+        right: -4px;
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--foreground-color);
+        }
+    }
+
+    &.terminal_bottom {
+        height: 14px;
+        width: 2px;
+        bottom: -4px;
+        right: 9px;
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--foreground-color);
+        }
+    }
+
+    &.terminal_left {
+        height: 2px;
+        width: 10px;
         top: 9px;
         left: -4px;
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--foreground-color);
+        }
     }
+
+
+    &.terminal_top_connected,
+    &.terminal_right_connected,
+    &.terminal_bottom_connected,
+    &.terminal_left_connected {
+        background-color: var(--foreground-color);
+    }
+
 }
