@@ -35,7 +35,7 @@ export default function ComponentProperties({
         if (node && dataComponent) {
             const newFlipX = dataComponent.flip.x === 1 ? -1 : 1;
             setDataComponent({ ...dataComponent, flip: { ...dataComponent.flip, x: newFlipX } });
-            updateNodeData(node.id, { flip: { x: newFlipX } });
+            updateNodeData(node.id, { flip: { ...dataComponent.flip, x: newFlipX } });
             updateNodeInternals(node.id);
         }
     };
@@ -44,7 +44,7 @@ export default function ComponentProperties({
         if (node && dataComponent) {
             const newFlipY = dataComponent.flip.y === 1 ? -1 : 1;
             setDataComponent({ ...dataComponent, flip: { ...dataComponent.flip, y: newFlipY } });
-            updateNodeData(node.id, { flip: { y: newFlipY } });
+            updateNodeData(node.id, { flip: { ...dataComponent.flip, y: newFlipY } });
             updateNodeInternals(node.id);
         }
     };
@@ -132,22 +132,22 @@ export default function ComponentProperties({
                     <label className="label">Transform</label>
                     <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
                     <Flex gap={10} wrap  >
-                        <Tooltip placement="top" title="Flip Horizontal (Ctrl+Alt+Left)"  >
+                        <Tooltip placement="top" title="Flip Horizontal (Ctrl+Alt+Left)" color="cyan" >
                             <Button className={styles.button} variant="outlined" color="default" onClick={handleFlipHorizontal}>
                                 <FlipHIcon />
                             </Button>
                         </Tooltip>
-                        <Tooltip placement="top" title="Flip Vertical (Ctrl+Alt+Down)"  >
+                        <Tooltip placement="top" title="Flip Vertical (Ctrl+Alt+Down)" color="cyan"  >
                             <Button className={styles.button} variant="outlined" color="default" onClick={handleFlipVertical}>
                                 <FlipVIcon />
                             </Button>
                         </Tooltip>
-                        <Tooltip placement="top" title="Rotate Left (Ctrl+Alt+L)"  >
+                        <Tooltip placement="top" title="Rotate Left (Ctrl+Alt+L)" color="cyan"  >
                             <Button className={styles.button} variant="outlined" color="default" onClick={handleRotateLeft}>
                                 <RotateLeftIcon />
                             </Button>
                         </Tooltip>
-                        <Tooltip placement="top" title="Rotate Right (Ctrl+Alt+R)"  >
+                        <Tooltip placement="top" title="Rotate Right (Ctrl+Alt+R)" color="cyan"  >
                             <Button className={styles.button} variant="outlined" color="default" onClick={handleRotateRight}>
                                 <RotateRightIcon />
                             </Button>
@@ -160,12 +160,12 @@ export default function ComponentProperties({
             <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
             <Flex gap={10} wrap>
 
-                <Tooltip placement="top" title="Duplicate (Ctrl+Alt+D)"  >
+                <Tooltip placement="top" title="Duplicate (Ctrl+Alt+D)" color="cyan" >
                     <Button className={styles.button} variant="outlined" color="default" onClick={duplicateComponents}>
                         <DuplicateIcon />
                     </Button>
                 </Tooltip>
-                <Tooltip placement="top" title="Delete (Delete)"  >
+                <Tooltip placement="top" title="Delete (Delete)" color="red" >
                     <Button className={styles.button} variant="outlined" color="red" onClick={handleRemoveNode}>
                         <DeletetIcon />
                     </Button>
