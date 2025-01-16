@@ -48,6 +48,10 @@ export type ComponentData = {
     value: number
     type: ComponentType
     rotation: number
+    flip: {
+        x: number,
+        y: number
+    }
     state?: ComponentState
     isLock: boolean
     unit: UnitsType
