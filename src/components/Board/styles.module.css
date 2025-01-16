@@ -2,8 +2,8 @@
     border-radius: 8px;
     height: 100%;
     width: 100%;
-    border: 1px dashed #103fd7;
-    background-color: #feffac20;
+    border: 1px dashed var(--group-border-color);
+    background-color: var(--group-background-color);
 }
 
 .board_selected {
