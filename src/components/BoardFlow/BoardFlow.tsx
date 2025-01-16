@@ -592,7 +592,7 @@ export function BoardFlow() {
                                             <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
                                             <div className={styles.components}>
                                                 {STRUCTURE_COMPONENTS.map(component => (
-                                                    <Tooltip key={component.label} placement="top" title={component.label}  >
+                                                    <Tooltip key={component.label} placement="top" title={component.label} color="cyan" >
                                                         <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
                                                             {component.icon}
                                                         </Button>
@@ -604,7 +604,7 @@ export function BoardFlow() {
                                             <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
                                             <div className={styles.components}>
                                                 {ANALOG_COMPONENTS.map(component => (
-                                                    <Tooltip key={component.label} placement="top" title={component.label}  >
+                                                    <Tooltip key={component.label} placement="top" title={component.label} color="cyan"  >
                                                         <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
                                                             {component.icon}
                                                         </Button>
