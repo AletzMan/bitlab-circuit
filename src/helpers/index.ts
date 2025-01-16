@@ -1,9 +1,7 @@
-import { ReactFlowState } from "@xyflow/react";
+
 import { AnalogNode, ComponentType, GroupComponent, Presets, UnitsType } from "../types";
 import { ANALOG_COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
 import { createRoot } from "react-dom/client";
-
-export const zoomSelector = (s: ReactFlowState) => s.transform[2] >= 0.7;
 
 export const isPointInBox = (
     point: { x: number; y: number },
