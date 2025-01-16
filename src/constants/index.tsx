@@ -26,12 +26,8 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
         icon: <InductorIcon />,
         type: ComponentType.Inductor,
         label: "Inductor"
-    },
-    {
-        icon: <BoardIcon />,
-        type: ComponentType.Board,
-        label: 'Board'
     }
+
 ];
 
 export const STRUCTURE_COMPONENTS: GroupComponent[] = [
@@ -39,6 +35,11 @@ export const STRUCTURE_COMPONENTS: GroupComponent[] = [
         icon: <NodeIcon />,
         type: ComponentType.Node,
         label: "Node"
+    },
+    {
+        icon: <BoardIcon />,
+        type: ComponentType.Board,
+        label: 'Board Group'
     }
 ];
 
