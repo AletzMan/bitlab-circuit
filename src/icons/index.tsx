@@ -86,11 +86,13 @@ export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
 
 export function NodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px"
-            viewBox="0 0 512 512"
-            fill="currentColor"
-        >
-            <circle cx="256" cy="256" r="150" fill="currentColor" />
+        <svg {...props} height="33px" width="33px" viewBox="0 0 100 100">
+
+            <circle cx="50" cy="50" r="20" fill="currentColor" />
+
+            <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="10" />
+
+            <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="10" />
         </svg>
     );
 }
