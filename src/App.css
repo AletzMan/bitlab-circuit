@@ -91,10 +91,12 @@ body {
 
 .react-flow__handle.connectingto {
     background: #f33524;
+    border-color: #f33524;
 }
 
 .react-flow__handle.valid {
     background: #2dd451;
+    border-color: #2dd451;
 }
 
 .react-flow__handle.connectionindicator {
