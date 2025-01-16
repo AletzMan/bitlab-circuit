@@ -67,19 +67,21 @@ export function InductorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512">
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <defs>
-                    <clipPath id="diode">
-                        <path d="m148.09 326h503.81v150h-503.81z"></path>
-                    </clipPath>
-                </defs>
-                <g clipPath="url(#diode)">
-                    <path d="m481.7 392.34-141.27-64.68c-6.8086-3.4023-13.617 1.7031-13.617 8.5117v57.871h-171.91c-3.4023 0-6.8086 1.7031-6.8086 6.8086 0 3.4023 3.4023 6.8086 6.8086 6.8086h171.91v57.871c0 6.8086 6.8086 11.914 13.617 8.5117l141.27-64.68c1.7031 0 3.4023-1.7031 3.4023-1.7031v45.957c0 10.211 15.32 10.211 15.32 0v-45.957h144.68c8.5117 0 8.5117-13.617 0-13.617h-144.68v-47.656c0-8.5117-15.32-8.5117-15.32 0v47.656s-1.7031-1.7031-3.4023-1.7031z" fillRule="evenodd"></path>
-                </g>
-            </g>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier">
+                <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59v-82.121h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z"></path> </g>
+        </svg>
+    );
+}
+
+export function LEDIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+            <g id="SVGRepo_iconCarrier"> <g>
+                <path d="m482.12 311.83h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59z"></path>
+                <path d="m381.36 308.81 26.195-37.281 8.0625 5.543 22.168-59.449-48.871 40.809 8.0625 5.5391-25.695 37.281z"></path>
+                <path d="m418.14 334 25.691-36.777 8.5664 5.5391 21.664-59.953-48.871 41.312 8.5664 5.543-26.199 37.281z"></path> </g> </g>
         </svg>
     );
 }
