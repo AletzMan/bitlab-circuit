@@ -57,10 +57,10 @@ export function NodeComponent({ data: { type, state, isLock, reference }, select
                 {type === ComponentType.Node && <NodeIcon />}
             </div>
             <span className={`${styles.id}  `} >{reference}</span>
-            <Terminal type="source" position={Position.Top} id="1" nodeid={id} style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[0]} />
-            <Terminal type="source" position={Position.Right} id="2" nodeid={id} style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[1]} />
-            <Terminal type="source" position={Position.Bottom} id="3" nodeid={id} style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[2]} />
-            <Terminal type="source" position={Position.Left} id="4" nodeid={id} style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[3]} />
+            <Terminal type="source" position={Position.Top} id="1" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[0]} />
+            <Terminal type="source" position={Position.Right} id="2" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[1]} />
+            <Terminal type="source" position={Position.Bottom} id="3" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[2]} />
+            <Terminal type="source" position={Position.Left} id="4" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[3]} />
         </div>
     );
 }
