@@ -161,7 +161,7 @@ export function BoardFlow() {
 
         let node: AnalogNode | undefined;
 
-        const { value, unit, prefix, reference, type: typeComponent } = getComponentProperties(type, nodes);
+        const { value, unit, prefix, reference, type: typeComponent, has_properties } = getComponentProperties(type, nodes);
 
         if (ARRAY_COMPONENTS.includes(type)) {
 
@@ -169,7 +169,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: typeComponent,
                 position,
-                data: { type, value, isLock: false, rotation: 0, state: ComponentState.Undefined, unit, prefix, has_properties: true, reference },
+                data: { type, value, isLock: false, rotation: 0, state: ComponentState.Undefined, unit, prefix, has_properties, reference },
                 parentId: board?.id
             };
         } else if (type === ComponentType.Board) {
