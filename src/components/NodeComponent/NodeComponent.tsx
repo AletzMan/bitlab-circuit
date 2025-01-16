@@ -51,6 +51,7 @@ export function NodeComponent({ data: { type, state, isLock, reference }, select
                     {isLock && <LockIcon />}
                 </div>
             }
+            <div className={`${selected && styles.box_selected}`}></div>
             <div className={`${styles.terminal} ${styles.terminal_top} ${isConnected[0] && styles.terminal_top_connected}`}></div>
             <div className={`${styles.terminal} ${styles.terminal_right} ${isConnected[1] && styles.terminal_right_connected}`}></div>
             <div className={`${styles.terminal} ${styles.terminal_bottom} ${isConnected[2] && styles.terminal_bottom_connected}`}></div>
