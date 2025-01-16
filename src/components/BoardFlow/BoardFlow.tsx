@@ -77,7 +77,7 @@ export function BoardFlow() {
     const dragOutsideRef = useRef<ComponentType | null>(null);
     const edgeReconnectSuccessful = useRef(false);
     const overlappingNodeRef = useRef<AnalogNode | null>(null);
-    const { screenToFlowPosition, getIntersectingNodes, fitView, } = useReactFlow();
+    const { screenToFlowPosition, getIntersectingNodes, fitView } = useReactFlow();
     const { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo } = useHistoryManager();
     const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
     const { currentTheme, setCurrentTheme } = useTheme();
@@ -479,6 +479,8 @@ export function BoardFlow() {
         setCurrentTheme(newTheme);
         document.documentElement.setAttribute("data-theme", newTheme);
     };
+
+
     return (
         <ConfigProvider theme={{ algorithm: currentTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
             <div className={styles.board}>
