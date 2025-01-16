@@ -61,7 +61,6 @@ export default function useHistoryManager() {
                     node => !nodes.some(n => n.id === node.id)
                 );
                 const newOrder = reorderComponentReferences(filteredNodes as AnalogNode[]);
-                debugger;
                 setNodes(newOrder);
             }
             if (shouldAddToHistory) {
