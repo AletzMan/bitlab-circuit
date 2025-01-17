@@ -47,6 +47,7 @@ export enum ComponentState {
 
 export type ComponentData = {
     value: number
+
     type: ComponentType
     rotation: number
     flip: {
@@ -59,6 +60,8 @@ export type ComponentData = {
     prefix: string
     has_properties?: boolean
     reference: string
+    isValueVisible: boolean
+    isReferenceVisible: boolean
 }
 
 export type GroupComponent = {
