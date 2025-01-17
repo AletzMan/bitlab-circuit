@@ -12,6 +12,8 @@ body {
     --reference-color: #690303;
     --background-color: #292929;
     --background-color-tab: #1f1f1f;
+    --label-color: #343434;
+    --label-second-color: #343434;
     --primary-color: #2db8d4;
     --border-color: #DEDEDE;
     --board-background-color: #fbfbfb;
@@ -41,6 +43,8 @@ body {
     --foreground-color: #FFFFFF;
     --reference-color: #c39950;
     --fill-minimap-node: #e4e4e4;
+    --label-color: #a4eeff;
+    --label-second-color: #c2c2c2;
     --background-minimap: #5f5f5f;
     --fill-minimap-node-mask: #1a1a1a;
     --board-background-color: #141414;
@@ -167,7 +171,7 @@ body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-size: 0.95em;
+    font-size: 1em;
     font-weight: 500;
     text-transform: capitalize;
     color: var(--primary-color);
