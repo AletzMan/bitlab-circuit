@@ -2,7 +2,7 @@ import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
-import { Input, Select, Button, Flex, Divider, Card, Tooltip, Tag } from "antd";
+import { Input, Select, Button, Flex, Divider, Card, Tooltip, Tag, Checkbox } from "antd";
 import { ComponentData, AnalogNode, UNITS } from "@/types";
 //import useHistoryManager from "@/hooks/useHistoryManager";
 const { Option } = Select;
@@ -90,30 +90,53 @@ export default function ComponentProperties({
         <Card className={styles.details} size="small" type="inner" >
             {isSingleNode &&
                 <>
-                    <Flex vertical>
-                        <label className="details_name"  >{nodeType}</label>
-                        {node?.data?.has_properties && (
-                            <Input
-                                className={styles.value_number}
-                                value={dataComponent?.value}
-                                onChange={(e) => {
-                                    const newValue = e.target.value ? parseFloat(e.target.value) : 0;
-                                    if (dataComponent) {
-                                        setDataComponent({ ...dataComponent, value: newValue });
-                                        updateNodeData(node.id, { value: newValue });
-                                    }
-                                }}
-                                addonAfter={dataComponent &&
-                                    <Select defaultValue={dataComponent.prefix} value={dataComponent.prefix} onChange={handleChangeUnit}>
-                                        {UNITS[dataComponent.unit].map(value => (
-                                            <Option key={value} value={value}>{value}</Option>
-                                        )
+                    <label className="details_name"  >{nodeType}</label>
+                    {node?.data?.has_properties && (
+                        <>
+                            <Divider style={{ margin: "6px 0" }} />
+                            <div className={styles.value}>
+                                <Flex vertical>
+                                    <Flex vertical>
+                                        <label className={styles.value_label}>Reference</label>
+                                        <label>{node.data.reference}</label>
+                                    </Flex>
 
-                                        )}
-                                    </Select>}
-                            />
-                        )}
-                    </Flex>
+                                </Flex>
+                                <label className={`${styles.value_label} ${styles.value_hidden}`}>
+                                    Hidden
+                                    <Checkbox  ></Checkbox>
+                                </label>
+                            </div>
+                            <Divider style={{ margin: "4px 0" }} variant="dashed" />
+                            <div className={styles.value}>
+                                <Flex vertical>
+                                    <Flex vertical>
+                                        <label className={styles.value_label}>Value</label>
+                                        <Input className={styles.value_number}
+                                            value={dataComponent?.value} size="middle"
+                                            onChange={(e) => {
+                                                const newValue = e.target.value ? parseFloat(e.target.value) : 0;
+                                                if (dataComponent) {
+                                                    setDataComponent({ ...dataComponent, value: newValue });
+                                                    updateNodeData(node.id, { value: newValue });
+                                                }
+                                            }}
+                                            addonAfter={dataComponent &&
+                                                <Select defaultValue={dataComponent.prefix} value={dataComponent.prefix} onChange={handleChangeUnit}>
+                                                    {UNITS[dataComponent.unit].map(value => (
+                                                        <Option key={value} value={value}>{value}</Option>
+                                                    ))}
+                                                </Select>}
+                                        />
+                                    </Flex>
+                                </Flex>
+                                <label className={`${styles.value_label} ${styles.value_hidden}`}>
+                                    Hidden
+                                    <Checkbox  ></Checkbox>
+                                </label>
+                            </div>
+                        </>
+                    )}
                     <Divider style={{ margin: "16px 0" }} />
                 </>
             }
