@@ -15,8 +15,8 @@ body {
     --primary-color: #2db8d4;
     --border-color: #DEDEDE;
     --board-background-color: #fbfbfb;
-    --grid-large-color: #E0E0E0;
-    --grid-small-color: #F0F0F0;
+    --grid-large-color: #d6d6d6;
+    --grid-small-color: #e0e0e0;
     --fill-minimap-node: #aca9a9;
     --fill-minimap-node-mask: #e9e5e5;
     --background-minimap: #f9f8f8;
