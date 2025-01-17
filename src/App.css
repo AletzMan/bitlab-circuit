@@ -108,7 +108,7 @@ body {
 }
 
 .react-flow__handle.connectionindicator {
-    cursor: copy;
+    cursor: crosshair;
 }
 
 .react-flow__edge.selectable:hover .react-flow__edge-path {
@@ -213,8 +213,10 @@ body {
 .react-flow__connection {
     &>path {
         stroke: var(--foreground-color);
+        stroke: red;
     }
 }
+
 
 .ant-color-picker-panel,
 :where(.css-dev-only-do-not-override-poerbe).ant-color-picker .ant-color-picker-inner .ant-color-picker-input-container,
