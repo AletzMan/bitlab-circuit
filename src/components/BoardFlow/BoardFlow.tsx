@@ -20,7 +20,7 @@ import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { getComponentProperties, getImageBackgroundDrag, isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
-import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Space, Switch, Tabs, Tooltip, theme } from "antd";
+import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Select, Space, Switch, Tabs, Tooltip, theme } from "antd";
 import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
@@ -44,7 +44,7 @@ const initialNodes: AnalogNode[] = [
         id: uuid(),
         type: 'nodeComponent',
         data: { type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1" },
-        position: { x: 390, y: 190 },
+        position: { x: 0, y: 0 },
     },
 ];
 
@@ -70,6 +70,7 @@ export function BoardFlow() {
     const [selectedNode, setSelectedNode] = useState<AnalogNode | undefined>();
     const [selectedNodes, setSelectedNodes] = useState<AnalogNode[]>([]);
     const [selectedEdges, setSelectedEdges] = useState<ComponentEdge[]>([]);
+    const [currentTypeGrid, setCurrentTypeGrid] = useState<BackgroundVariant | undefined>(BackgroundVariant.Lines);
     const [viewPort, setViewPort] = useState<Viewport>({ x: 0, y: 0, zoom: 1 });
     const [selectedEdge, setSelectedEdge] = useState<ComponentEdge | undefined>();
     const [isSingleNodeSelection, setIsSingleNodeSelection] = useState(false);
@@ -128,8 +129,8 @@ export function BoardFlow() {
         const type = dragOutsideRef.current;
         if (!type) return;
         let position = screenToFlowPosition({
-            x: e.clientX - 24,
-            y: e.clientY - 24
+            x: e.clientX - 30,
+            y: e.clientY - 30
         });
 
         const boards = nodes?.filter(
@@ -237,12 +238,6 @@ export function BoardFlow() {
     const handleOnNodeDrag: OnNodeDrag<AnalogNode> = (e, dragNode) => {
         e.preventDefault();
 
-        const snapToGrid = (value: number) => Math.round(value / gridSize) * gridSize;
-
-        // Ajustar la posición del nodo al grid
-        const snappedX = snapToGrid(dragNode.position.x);
-        const snappedY = snapToGrid(dragNode.position.y);
-
         // Encontrar nodos superpuestos
         const overlappingNode = getIntersectingNodes(dragNode)?.[0];
         overlappingNodeRef.current = overlappingNode as AnalogNode;
@@ -253,7 +248,7 @@ export function BoardFlow() {
                 if (node.id === dragNode.id) {
                     return {
                         ...node,
-                        position: { x: snappedX, y: snappedY },
+                        position: { x: dragNode.position.x, y: dragNode.position.y },
                         data: {
                             ...node.data,
                             state:
@@ -290,20 +285,10 @@ export function BoardFlow() {
                         const { x, y } = board?.position || { x: 0, y: 0 };
                         const { x: dragX, y: dragY } = dragNode?.position || { x: 0, y: 0 };
 
-                        // Define el tamaño del grid
-                        const gridSize = 10;
-
-                        // Función para ajustar las coordenadas al grid
-                        const snapToGrid = (value: number) => Math.round(value / gridSize) * gridSize;
-
-                        // Ajustar la posición del nodo al grid
-                        const snappedX = snapToGrid(dragX + x);
-                        const snappedY = snapToGrid(dragY + y);
-
                         // Devuelve el nodo con la posición ajustada
                         return {
                             ...node,
-                            position: { x: snappedX, y: snappedY },
+                            position: { x: dragX + x, y: dragY + y },
                             parentId: undefined,
                         };
                     }
@@ -423,10 +408,10 @@ export function BoardFlow() {
     const handleOnKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
         e.preventDefault();
         const movement = {
-            ArrowUp: { dx: 0, dy: -gridSize / 2 },
-            ArrowDown: { dx: 0, dy: gridSize / 2 },
-            ArrowLeft: { dx: -gridSize / 2, dy: 0 },
-            ArrowRight: { dx: gridSize / 2, dy: 0 },
+            ArrowUp: { dx: 0, dy: (-gridSize / 2) + 5 },
+            ArrowDown: { dx: 0, dy: (gridSize / 2) - 5 },
+            ArrowLeft: { dx: (-gridSize / 2) + 5, dy: 0 },
+            ArrowRight: { dx: (gridSize / 2) - 5, dy: 0 },
         }[e.key];
 
         if (movement) {
@@ -521,11 +506,19 @@ export function BoardFlow() {
                                         disabled={viewPort.zoom === 0.5} />
                                 </Tooltip>
                             </Space.Compact>
-                            <Tooltip placement="top" title="Reset Zoom "  >
+                            <Tooltip placement="top" title="Reset Zoom" >
                                 <Button icon={<ResetZoomIcon />} variant="dashed" color="default" onClick={() => handleZoom('reset')} />
                             </Tooltip>
-                            <Tooltip placement="top" title="Fit Zoom "  >
+                            <Tooltip placement="top" title="Fit Zoom" >
                                 <Button icon={<FitZoomIcon />} variant="dashed" color="default" onClick={() => handleZoom('fit')} />
+                            </Tooltip>
+                            <Divider type="vertical" orientation="center" style={{ height: "100%" }} />
+                            <Tooltip placement="top" title="Grid Pattern" >
+                                <Select options={[
+                                    { title: 'Lines', label: 'Lines', value: BackgroundVariant.Lines },
+                                    { title: 'Dots', label: 'Dots', value: BackgroundVariant.Dots },
+                                    { title: 'Cross', label: 'Cross', value: BackgroundVariant.Cross },
+                                ]} defaultValue={currentTypeGrid} onChange={(e) => setCurrentTypeGrid(e)} />
                             </Tooltip>
                             <Divider type="vertical" orientation="center" style={{ height: "100%" }} />
                         </Flex>
@@ -560,20 +553,19 @@ export function BoardFlow() {
                         onReconnectEnd={handleReconnectEnd}
                         onNodeDrag={handleOnNodeDrag}
                         onNodeDragStop={handleNodeDragStop}
-                        defaultViewport={{ x: 0, y: 0, zoom: 1 }}
                         viewport={viewPort}
                         onViewportChange={handleChangeViewPort}
                         panOnScroll
-                        maxZoom={8}
+                        maxZoom={25}
                         minZoom={0.5}
                         zoomOnPinch
                         selectionOnDrag
                         onSelectionChange={handleOnSelectionChange}
-                        onSelectionEnd={handleSelectionEnd}
+                        onSelectionEnd={handleSelectionEnd} snapGrid={[gridSize, gridSize]} snapToGrid
                         panOnDrag={[1, 2]} selectNodesOnDrag
                         selectionMode={SelectionMode.Partial} onKeyDown={handleOnKeyDown}>
-                        <Background color={'var(--grid-small-color)'} gap={10} variant={BackgroundVariant.Lines} id='1' />
-                        <Background color={'var(--grid-large-color)'} gap={100} variant={BackgroundVariant.Lines} id='2' />
+                        <Background color={'var(--grid-small-color)'} gap={gridSize} variant={currentTypeGrid} id='1' size={1.5} />
+                        <Background color={'var(--grid-large-color)'} gap={gridSize * 10} variant={currentTypeGrid} id='2' />
                     </ReactFlow>
                 </div>
                 <Card className={styles.containerTabs} styles={{ body: { padding: "0" } }}>
