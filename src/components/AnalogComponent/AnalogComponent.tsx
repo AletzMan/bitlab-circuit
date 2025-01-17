@@ -1,6 +1,6 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
 import { AnalogNode, ComponentState, ComponentType } from "@/types";
-import { CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, LockIcon, ResistorIcon, UnlockIcon } from "@/icons";
+import { CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, LockIcon, ResistorIcon, UnlockIcon, ZenerIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useState } from "react";
@@ -45,7 +45,7 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
     if (rotation === 90) positionTerminals = [Position.Bottom, Position.Top];
     if (rotation === 180) positionTerminals = [Position.Left, Position.Right];
     if (rotation === 270) positionTerminals = [Position.Top, Position.Bottom];
-    console.log(flip);
+
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
             {parentId && selected &&
@@ -62,6 +62,7 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
                 {type === ComponentType.CapacitorElectrlytic && <CapacitorElectrolyticIcon />}
                 {type === ComponentType.Diode && <DiodeIcon />}
                 {type === ComponentType.Led && <LEDIcon />}
+                {type === ComponentType.Zener && <ZenerIcon />}
                 {type === ComponentType.Inductor && <InductorIcon />}
             </div>
             <span className={`${styles.value} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>

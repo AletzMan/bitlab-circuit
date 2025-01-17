@@ -74,10 +74,20 @@ export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function ZenerIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v83.633h43.832v-12.594h-31.234v-75.574h144.59v-12.594h-144.59v-88.168h-44.336v12.598h31.738v70.531l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z"></path>
+            </g></svg>
+    );
+}
+
 export function LEDIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
             <g id="SVGRepo_iconCarrier"> <g>
                 <path d="m482.12 311.83h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59z"></path>
                 <path d="m381.36 308.81 26.195-37.281 8.0625 5.543 22.168-59.449-48.871 40.809 8.0625 5.5391-25.695 37.281z"></path>
