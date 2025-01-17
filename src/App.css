@@ -44,8 +44,8 @@ body {
     --background-minimap: #5f5f5f;
     --fill-minimap-node-mask: #1a1a1a;
     --board-background-color: #141414;
-    --grid-large-color: #3c3c3c;
-    --grid-small-color: #313131;
+    --grid-large-color: #3a3a3a;
+    --grid-small-color: #292929;
     --color-wire-one: #FFFFFF;
     --color-wire-two: #FF6F61;
     --color-wire-three: #FFA500;
@@ -235,6 +235,10 @@ body {
 
 .elementDrag {
     color: var(--foreground-color);
+    border: 1px dashed var(--foreground-color);
+    border-radius: 0.25em;
+    width: 60px;
+    height: 60px;
 
     &>svg {
         width: 60px;
