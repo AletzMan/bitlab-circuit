@@ -561,8 +561,10 @@ export function BoardFlow() {
                         zoomOnPinch
                         selectionOnDrag
                         onSelectionChange={handleOnSelectionChange}
-                        onSelectionEnd={handleSelectionEnd} snapGrid={[gridSize, gridSize]} snapToGrid
-                        panOnDrag={[1, 2]} selectNodesOnDrag
+                        onSelectionEnd={handleSelectionEnd}
+                        snapGrid={[gridSize, gridSize]} snapToGrid
+                        panOnDrag={[1, 2]}
+                        selectNodesOnDrag
                         selectionMode={SelectionMode.Partial} onKeyDown={handleOnKeyDown}>
                         <Background color={'var(--grid-small-color)'} gap={gridSize} variant={currentTypeGrid} id='1' size={1.5} />
                         <Background color={'var(--grid-large-color)'} gap={gridSize * 10} variant={currentTypeGrid} id='2' />
