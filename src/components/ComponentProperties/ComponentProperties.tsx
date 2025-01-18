@@ -108,44 +108,39 @@ export default function ComponentProperties({
             {isSingleNode &&
                 <>
                     <label className="details_name"  >{nodeType}</label>
+                    <Divider style={{ margin: "6px 0" }} />
+                    <div className={styles.value}>
+                        <Flex vertical>
+                            <label className={styles.value_label}>Reference</label>
+                            <label className={styles.label_reference}>{node?.data.reference}</label>
+                        </Flex>
+                        <label className={`${styles.value_label} ${styles.value_hidden}`}>
+                            Hidden
+                            <Checkbox onChange={handleChangeHiddenReference} checked={!dataComponent?.isReferenceVisible} type="" />
+                        </label>
+                    </div>
                     {node?.data?.has_properties && (
                         <>
-                            <Divider style={{ margin: "6px 0" }} />
-                            <div className={styles.value}>
-                                <Flex vertical>
-                                    <Flex vertical>
-                                        <label className={styles.value_label}>Reference</label>
-                                        <label className={styles.label_reference}>{node.data.reference}</label>
-                                    </Flex>
-
-                                </Flex>
-                                <label className={`${styles.value_label} ${styles.value_hidden}`}>
-                                    Hidden
-                                    <Checkbox onChange={handleChangeHiddenReference} checked={!dataComponent?.isReferenceVisible} type="" />
-                                </label>
-                            </div>
                             <Divider style={{ margin: "4px 0" }} variant="dashed" />
                             <div className={styles.value}>
                                 <Flex vertical>
-                                    <Flex vertical>
-                                        <label className={styles.value_label}>Value</label>
-                                        <Input className={styles.value_number}
-                                            value={dataComponent?.value} size="middle"
-                                            onChange={(e) => {
-                                                const newValue = e.target.value ? parseFloat(e.target.value) : 0;
-                                                if (dataComponent) {
-                                                    setDataComponent({ ...dataComponent, value: newValue });
-                                                    updateNodeData(node.id, { value: newValue });
-                                                }
-                                            }}
-                                            addonAfter={dataComponent &&
-                                                <Select defaultValue={dataComponent.prefix} value={dataComponent.prefix} onChange={handleChangeUnit}>
-                                                    {UNITS[dataComponent.unit].map(value => (
-                                                        <Option key={value} value={value}>{value}</Option>
-                                                    ))}
-                                                </Select>}
-                                        />
-                                    </Flex>
+                                    <label className={styles.value_label}>Value</label>
+                                    <Input className={styles.value_number}
+                                        value={dataComponent?.value} size="middle"
+                                        onChange={(e) => {
+                                            const newValue = e.target.value ? parseFloat(e.target.value) : 0;
+                                            if (dataComponent) {
+                                                setDataComponent({ ...dataComponent, value: newValue });
+                                                updateNodeData(node.id, { value: newValue });
+                                            }
+                                        }}
+                                        addonAfter={dataComponent &&
+                                            <Select defaultValue={dataComponent.prefix} value={dataComponent.prefix} onChange={handleChangeUnit}>
+                                                {UNITS[dataComponent.unit].map(value => (
+                                                    <Option key={value} value={value}>{value}</Option>
+                                                ))}
+                                            </Select>}
+                                    />
                                 </Flex>
                                 <label className={`${styles.value_label} ${styles.value_hidden}`}>
                                     Hidden
