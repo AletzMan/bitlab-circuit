@@ -7,6 +7,7 @@ import {
     SelectionMode, OnSelectionChangeFunc,
     OnSelectionChangeParams,
     OnEdgesChange,
+    XYPosition,
 } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, KeyboardEvent, useEffect } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
@@ -18,7 +19,7 @@ import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
 import { ARRAY_COMPONENTS, ANALOG_COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
 import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
-import { getComponentProperties, getImageBackgroundDrag, isPointInBox } from "@/helpers";
+import { getComponentProperties, getImageBackgroundDrag, getNewPositionByOverlapping, isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
 import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Select, Space, Switch, Tabs, Tooltip, theme } from "antd";
 import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
@@ -297,25 +298,32 @@ export function BoardFlow() {
             });
         }
         const typeComponent = overlappingNodeRef?.current?.data?.type as ComponentType;
+
         if (
-            ARRAY_COMPONENTS.includes(typeComponent) && dragNode?.data?.type === overlappingNodeRef?.current?.data?.type) {
+            ARRAY_COMPONENTS.includes(typeComponent)/* && dragNode?.data?.type !== overlappingNodeRef?.current?.data?.type*/) {
+
+            console.log(dragNode.position);
+            console.log(overlappingNodeRef?.current?.position);
+            const newPosition = getNewPositionByOverlapping(dragNode.position, overlappingNodeRef?.current?.position as XYPosition);
             setNodes((prevNodes) =>
                 prevNodes
                     .map((node) => {
-                        if (node.id === overlappingNodeRef?.current?.id) {
+                        if (node.id === dragNode?.id) {
                             return {
                                 ...node,
+                                position: newPosition,
                                 data: {
                                     ...node?.data,
-                                    value:
+                                    state: ComponentState.Undefined
+                                    /*value:
                                         (dragNode?.data?.value as number) +
-                                        (node?.data?.value as number),
+                                        (node?.data?.value as number),*/
                                 },
                             };
                         }
                         return node;
                     })
-                    .filter((node) => node.id !== dragNode?.id)
+                /*.filter((node) => node.id !== dragNode?.id)*/
             );
         }
 
