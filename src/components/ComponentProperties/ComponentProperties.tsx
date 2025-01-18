@@ -2,7 +2,7 @@ import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
-import { Input, Select, Button, Flex, Divider, Card, Tooltip, Tag, Checkbox, CheckboxChangeEvent } from "antd";
+import { Input, Select, Button, Flex, Divider, Card, Tooltip, Checkbox, CheckboxChangeEvent } from "antd";
 import { ComponentData, AnalogNode, UNITS } from "@/types";
 //import useHistoryManager from "@/hooks/useHistoryManager";
 const { Option } = Select;
@@ -24,7 +24,7 @@ export default function ComponentProperties({
     const nodeType = node?.data?.type || node?.type;
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
     const updateNodeInternals = useUpdateNodeInternals();
-    const { updateNodeData } = useReactFlow();
+    const { updateNodeData, updateNode, getNodes } = useReactFlow();
 
 
     useEffect(() => {
@@ -100,6 +100,19 @@ export default function ComponentProperties({
         }
     };
 
+    const handleClickSelectedNode = (nodeSelected: AnalogNode) => {
+        const nodes = getNodes(); // Obtén la lista de nodos actual
+        nodes.forEach((node) => {
+            if (node.id === nodeSelected.id) {
+                // Marca el nodo seleccionado y alterna la visibilidad 
+                updateNode(node.id, (prevNode) => ({ ...prevNode, selected: true }));
+            } else {
+                // Desmarca los demás nodos
+                updateNode(node.id, (prevNode) => ({ ...prevNode, selected: false }));
+            }
+        });
+    };
+
     return (
 
         <Card className={styles.details} size="small" type="inner" >
@@ -151,9 +164,13 @@ export default function ComponentProperties({
                 </>
             }
             {!isSingleNode &&
-                <Flex className={styles.groupNodes} wrap gap="4px 0" >
+                <Flex className={styles.groupNodes} wrap gap="4px" >
                     {selectedNodes?.map(node => (
-                        <Tag key={node.id} color="cyan">{`${node.data?.type}`}</Tag>
+                        <Tooltip placement="top" color="cyan" title={node.data?.reference}>
+                            <Button key={node.id} size="middle" variant="filled" color="cyan"
+                                style={{ textTransform: "capitalize", display: "flex", alignItems: 'center', justifyContent: 'center', flexDirection: "column", gap: '0', fontSize: '0.85em' }}
+                                onClick={() => handleClickSelectedNode(node)}> {node.data?.type} </Button>
+                        </Tooltip>
                     ))
 
                     }
