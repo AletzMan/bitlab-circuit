@@ -87,7 +87,6 @@ export default function ComponentProperties({
 
     const handleChangeHiddenReference = (e: CheckboxChangeEvent) => {
         const newValue = e.target.checked;
-        console.log(newValue);
         if (node && dataComponent) {
             updateNodeData(node?.id, { isReferenceVisible: !newValue });
             setDataComponent({ ...dataComponent, isReferenceVisible: !newValue });
@@ -95,7 +94,6 @@ export default function ComponentProperties({
     };
     const handleChangeHiddenValue = (e: CheckboxChangeEvent) => {
         const newValue = e.target.checked;
-        console.log(newValue);
         if (node && dataComponent) {
             updateNodeData(node?.id, { isValueVisible: !newValue });
             setDataComponent({ ...dataComponent, isValueVisible: !newValue });

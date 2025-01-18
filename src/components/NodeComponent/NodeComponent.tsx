@@ -47,8 +47,6 @@ export function NodeComponent({ data: { type, state, isLock, reference, isRefere
         });
     };
 
-    console.log(connectedHandles);
-
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
             {parentId && selected &&
