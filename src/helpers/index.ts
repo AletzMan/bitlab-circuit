@@ -1,6 +1,7 @@
 
 import { AnalogNode, ComponentType, GroupComponent, Presets, UnitsType } from "../types";
 import { ANALOG_COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
+import { XYPosition } from "@xyflow/react";
 import { createRoot } from "react-dom/client";
 
 export const isPointInBox = (
@@ -168,3 +169,47 @@ export function getImageBackgroundDrag(type: ComponentType): HTMLDivElement {
     }
     return tempContainer;
 }
+
+
+export const getNewPositionByOverlapping = (dragNodePosition: XYPosition, overlappingNodePosition: XYPosition): XYPosition => {
+    const widthNode = 60;
+    const horizontalOverlapping: 'right' | 'left' | 'none' = overlappingNodePosition.x === dragNodePosition.x ? 'none' : overlappingNodePosition.x > dragNodePosition.x ? 'left' : 'right';
+    const verticalOverlapping: 'top' | 'bottom' | 'none' = overlappingNodePosition.y === dragNodePosition.y ? 'none' : overlappingNodePosition.y > dragNodePosition.y ? 'top' : 'bottom';
+
+    // Si no hay solapamiento en ninguna dirección, no mover el nodo
+    if (horizontalOverlapping === 'none' && verticalOverlapping === 'none') {
+        return {
+            x: dragNodePosition.x + widthNode * 2, // Mover a la derecha
+            y: dragNodePosition.y, // Mover hacia abajo
+        };
+    }
+    // Desplazamientos predeterminados en caso de solapamiento
+    let offsetX = verticalOverlapping === "none" ? 20 : 0;
+    let offsetY = horizontalOverlapping === "none" ? 20 : 0;
+
+    // Desplazar al lado más cercano en horizontal
+    if (horizontalOverlapping !== 'none') {
+        const distanceLeft = dragNodePosition.x - overlappingNodePosition.x;
+        const distanceRight = overlappingNodePosition.x - dragNodePosition.x;
+        console.log(distanceLeft, distanceRight);
+        if (distanceLeft < distanceRight) {
+            offsetX = widthNode; // Mover a la derecha
+        } else {
+            offsetX = -widthNode; // Mover a la izquierda
+        }
+    }
+
+    // Desplazar al lado más cercano en vertical
+    if (verticalOverlapping !== 'none') {
+        const distanceTop = dragNodePosition.y - overlappingNodePosition.y;
+        const distanceBottom = overlappingNodePosition.y - dragNodePosition.y;
+
+        if (distanceTop < distanceBottom) {
+            offsetY = widthNode; // Mover hacia abajo
+        } else {
+            offsetY = -widthNode; // Mover hacia arriba
+        }
+    }
+
+    return { x: dragNodePosition.x - offsetX, y: dragNodePosition.y - offsetY };
+};
