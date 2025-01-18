@@ -76,20 +76,22 @@ export type ComponentPropertiesDefault = {
     reference: string
     type: 'analogComponent' | 'nodeComponent',
     has_properties: boolean
+    isValueVisible: boolean,
+    isReferenceVisible: boolean
 }
 
 // Mapa para almacenar contadores por tipo
 const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
-    [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true },
-    [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent', has_properties: true },
-    [ComponentType.CapacitorElectrlytic]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent', has_properties: true },
-    [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L", type: 'analogComponent', has_properties: true },
-    [ComponentType.Diode]: { value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true },
-    [ComponentType.Led]: { value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED", type: 'analogComponent', has_properties: true },
-    [ComponentType.Zener]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true },
-    [ComponentType.Battery]: { value: 12, unit: UnitsType.Voltage, prefix: "V", reference: "B", type: 'analogComponent', has_properties: true },
-    [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'analogComponent', has_properties: false },
-    [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false },
+    [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true },
+    [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true },
+    [ComponentType.CapacitorElectrlytic]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true },
+    [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true },
+    [ComponentType.Diode]: { value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true },
+    [ComponentType.Led]: { value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true },
+    [ComponentType.Zener]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true },
+    [ComponentType.Battery]: { value: 12, unit: UnitsType.Voltage, prefix: "V", reference: "B", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true },
+    [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'analogComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false },
+    [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false },
 };
 
 export function getComponentProperties(type: ComponentType, components: AnalogNode[]): ComponentPropertiesDefault {
@@ -107,7 +109,9 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         unit: typePropertiesMap[type].unit,
         value: typePropertiesMap[type].value,
         type: typePropertiesMap[type].type,
-        has_properties: typePropertiesMap[type].has_properties
+        has_properties: typePropertiesMap[type].has_properties,
+        isReferenceVisible: typePropertiesMap[type].isReferenceVisible,
+        isValueVisible: typePropertiesMap[type].isValueVisible
     };
     return properties;
 }
