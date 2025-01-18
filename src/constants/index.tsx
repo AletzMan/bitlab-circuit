@@ -80,13 +80,13 @@ export const CustomColorsWire = {
     ],
     darkPalette: [
         '#FFFFFF', // Blanco
-        '#FF6F61', // Coral
+        '#337BFF', // Azul medio
+        '#e91e0c', // Coral
         '#FF914D', // Naranja oscuro
         '#FFC300', // Oro
         '#B8E986', // Verde amarillento
         '#33FF88', // Verde lima
         '#33D1FF', // Azul acero
-        '#337BFF', // Azul medio
         '#A569BD', // Púrpura medio
         '#6C3483', // Púrpura oscuro 
     ],

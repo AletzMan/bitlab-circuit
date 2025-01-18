@@ -6,7 +6,7 @@ import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useState } from "react";
 
 
-export function NodeComponent({ data: { type, state, isLock, reference, isReferenceVisible, connectedHandles }, selected, id, parentId, }: NodeProps<AnalogNode>) {
+export function NodeComponent({ data: { type, state, isLock, reference, isReferenceVisible, connectedHandles, color }, selected, id, parentId, }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([]);
 
@@ -56,11 +56,11 @@ export function NodeComponent({ data: { type, state, isLock, reference, isRefere
                 </div>
             }
             <div className={`${selected && styles.box_selected}`}></div>
-            <div className={`${styles.terminal} ${styles.terminal_top} ${isConnected[0] && styles.terminal_top_connected}`}></div>
-            <div className={`${styles.terminal} ${styles.terminal_right} ${isConnected[1] && styles.terminal_right_connected}`}></div>
-            <div className={`${styles.terminal} ${styles.terminal_bottom} ${isConnected[2] && styles.terminal_bottom_connected}`}></div>
-            <div className={`${styles.terminal} ${styles.terminal_left} ${isConnected[3] && styles.terminal_left_connected}`}></div>
-            <div className={styles.icon}>
+            <div className={`${styles.terminal} ${styles.terminal_top} ${isConnected[0] && styles.terminal_top_connected}`} style={{ backgroundColor: isConnected[0] ? color : 'transparent' }}></div>
+            <div className={`${styles.terminal} ${styles.terminal_right} ${isConnected[1] && styles.terminal_right_connected}`} style={{ backgroundColor: isConnected[1] ? color : 'transparent' }}></div>
+            <div className={`${styles.terminal} ${styles.terminal_bottom} ${isConnected[2] && styles.terminal_bottom_connected}`} style={{ backgroundColor: isConnected[2] ? color : 'transparent' }}></div>
+            <div className={`${styles.terminal} ${styles.terminal_left} ${isConnected[3] && styles.terminal_left_connected}`} style={{ backgroundColor: isConnected[3] ? color : 'transparent' }}></div>
+            <div className={styles.icon} style={{ color: color }}>
                 {type === ComponentType.Node && <NodeIcon />}
             </div>
             {isReferenceVisible && <span className={`${styles.id} `} >{reference}</span>}

@@ -72,7 +72,7 @@
         box-sizing: border-box;
         width: 20px;
         height: 20px;
-        color: var(--foreground-color);
+        color: currentColor;
     }
 }
 

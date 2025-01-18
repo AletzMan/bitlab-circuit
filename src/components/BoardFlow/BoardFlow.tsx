@@ -44,7 +44,7 @@ const initialNodes: AnalogNode[] = [
     {
         id: uuid(),
         type: 'nodeComponent',
-        data: { type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1", isValueVisible: false, isReferenceVisible: false, connectedHandles: [false, false, false, false] },
+        data: { type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1", isValueVisible: false, isReferenceVisible: false, connectedHandles: [false, false, false, false], color: "var(--foreground-color)" },
         position: { x: 90, y: 90 },
     },
 ];
@@ -95,7 +95,8 @@ export function BoardFlow() {
             const edge = {
                 ...connection, id: uuid(),
                 data: {
-                    color: getComputedStyle(document.documentElement).getPropertyValue('--foreground-color').trim()
+                    //color: getComputedStyle(document.documentElement).getPropertyValue('--foreground-color').trim()
+                    color: nodes.find(node => node.id === connection.target)?.data.color || nodes.find(node => node.id === connection.source)?.data.color || 'var(--foreground-color)'
                 }
 
             };
@@ -163,7 +164,7 @@ export function BoardFlow() {
 
         let node: AnalogNode | undefined;
 
-        const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles } = getComponentProperties(type, nodes);
+        const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color } = getComponentProperties(type, nodes);
 
         if (ARRAY_COMPONENTS.includes(type)) {
 
@@ -171,7 +172,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: typeComponent,
                 position,
-                data: { type, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit, prefix, has_properties, reference, isReferenceVisible, isValueVisible, connectedHandles },
+                data: { type, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit, prefix, has_properties, reference, isReferenceVisible, isValueVisible, connectedHandles, color },
                 parentId: board?.id
             };
         } else if (type === ComponentType.Board) {
@@ -309,8 +310,6 @@ export function BoardFlow() {
         if (
             ARRAY_COMPONENTS.includes(typeComponent)) {
 
-            console.log(dragNode.position);
-            console.log(overlappingNodeRef?.current?.position);
             const newPosition = getNewPositionByOverlapping(dragNode.position, overlappingNodeRef?.current?.position as XYPosition);
             setNodes((prevNodes) =>
                 prevNodes

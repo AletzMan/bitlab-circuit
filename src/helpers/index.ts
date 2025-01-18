@@ -78,7 +78,8 @@ export type ComponentPropertiesDefault = {
     has_properties: boolean
     isValueVisible: boolean,
     isReferenceVisible: boolean
-    connectedHandles: boolean[]
+    connectedHandles: boolean[],
+    color?: string
 }
 
 // Mapa para almacenar contadores por tipo
@@ -92,7 +93,7 @@ const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
     [ComponentType.Zener]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.Battery]: { value: 12, unit: UnitsType.Voltage, prefix: "V", reference: "B", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'analogComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [] },
-    [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [false, false, false, false] },
+    [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [false, false, false, false], color: 'var(--foreground-color)' },
 };
 
 export function getComponentProperties(type: ComponentType, components: AnalogNode[]): ComponentPropertiesDefault {
@@ -114,6 +115,7 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         isReferenceVisible: typePropertiesMap[type].isReferenceVisible,
         isValueVisible: typePropertiesMap[type].isValueVisible,
         connectedHandles: typePropertiesMap[type].connectedHandles,
+        color: typePropertiesMap[type].color
     };
     return properties;
 }
@@ -197,7 +199,6 @@ export const getNewPositionByOverlapping = (dragNodePosition: XYPosition, overla
     if (horizontalOverlapping !== 'none') {
         const distanceLeft = dragNodePosition.x - overlappingNodePosition.x;
         const distanceRight = overlappingNodePosition.x - dragNodePosition.x;
-        console.log(distanceLeft, distanceRight);
         if (distanceLeft < distanceRight) {
             offsetX = widthNode; // Mover a la derecha
         } else {
