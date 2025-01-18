@@ -112,11 +112,11 @@ export default function ComponentProperties({
                     <div className={styles.value}>
                         <Flex vertical>
                             <label className={styles.value_label}>Reference</label>
-                            <label className={styles.label_reference}>{node?.data.reference}</label>
+                            <label className={styles.label_reference}>{!dataComponent?.reference}</label>
                         </Flex>
                         <label className={`${styles.value_label} ${styles.value_hidden}`}>
                             Hidden
-                            <Checkbox onChange={handleChangeHiddenReference} checked={!dataComponent?.isReferenceVisible} type="" />
+                            <Checkbox onChange={handleChangeHiddenReference} checked={!dataComponent?.isReferenceVisible} />
                         </label>
                     </div>
                     {node?.data?.has_properties && (
