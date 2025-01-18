@@ -14,7 +14,7 @@ export function ConnectionLine({ fromX, fromY, toX, toY, fromPosition, toPositio
     });
 
 
-    let color = 'white';
+    let color = 'var(--foreground-color)';
     if (connectionStatus === 'valid') color = '#2dd451';
     if (connectionStatus === 'invalid') color = '#f33524';
 
