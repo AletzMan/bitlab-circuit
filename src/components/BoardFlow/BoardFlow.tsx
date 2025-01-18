@@ -163,7 +163,7 @@ export function BoardFlow() {
 
         let node: AnalogNode | undefined;
 
-        const { value, unit, prefix, reference, type: typeComponent, has_properties } = getComponentProperties(type, nodes);
+        const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible } = getComponentProperties(type, nodes);
 
         if (ARRAY_COMPONENTS.includes(type)) {
 
@@ -171,7 +171,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: typeComponent,
                 position,
-                data: { type, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit, prefix, has_properties, reference, isReferenceVisible: true, isValueVisible: true },
+                data: { type, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit, prefix, has_properties, reference, isReferenceVisible, isValueVisible },
                 parentId: board?.id
             };
         } else if (type === ComponentType.Board) {
@@ -179,7 +179,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type,
                 position,
-                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit: UnitsType.Undefined, prefix: 'mH', reference: "", isReferenceVisible: true, isValueVisible: true },
+                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit: UnitsType.Undefined, prefix: '', reference: "", isReferenceVisible, isValueVisible },
                 parentId: board?.id,
                 style: { height: 200, width: 200 },
             };
