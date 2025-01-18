@@ -6,7 +6,7 @@ import { Terminal } from "@/components/Terminal/Terminal";
 import { useState } from "react";
 
 
-export function NodeComponent({ data: { type, state, isLock, reference }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function NodeComponent({ data: { type, state, isLock, reference, isReferenceVisible }, selected, id, parentId, }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false, false, false]);
 
@@ -59,7 +59,7 @@ export function NodeComponent({ data: { type, state, isLock, reference }, select
             <div className={styles.icon}>
                 {type === ComponentType.Node && <NodeIcon />}
             </div>
-            <span className={`${styles.id}  `} >{reference}</span>
+            {isReferenceVisible && <span className={`${styles.id}  `} >{reference}</span>}
             <Terminal type="source" position={Position.Top} id="1" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[0]} />
             <Terminal type="source" position={Position.Right} id="2" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[1]} />
             <Terminal type="source" position={Position.Bottom} id="3" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[2]} />
