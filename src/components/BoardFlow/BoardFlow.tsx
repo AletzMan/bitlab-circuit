@@ -255,9 +255,7 @@ export function BoardFlow() {
                             state:
                                 overlappingNode &&
                                     ARRAY_COMPONENTS.includes(overlappingNode?.data?.type as ComponentType)
-                                    ? overlappingNode?.data?.type === dragNode?.data?.type
-                                        ? ComponentState.Add
-                                        : ComponentState.NotAdd
+                                    ? ComponentState.NotAdd
                                     : undefined,
                         },
                     };
@@ -286,7 +284,6 @@ export function BoardFlow() {
                         const { x, y } = board?.position || { x: 0, y: 0 };
                         const { x: dragX, y: dragY } = dragNode?.position || { x: 0, y: 0 };
 
-                        // Devuelve el nodo con la posición ajustada
                         return {
                             ...node,
                             position: { x: dragX + x, y: dragY + y },
@@ -300,7 +297,7 @@ export function BoardFlow() {
         const typeComponent = overlappingNodeRef?.current?.data?.type as ComponentType;
 
         if (
-            ARRAY_COMPONENTS.includes(typeComponent)/* && dragNode?.data?.type !== overlappingNodeRef?.current?.data?.type*/) {
+            ARRAY_COMPONENTS.includes(typeComponent)) {
 
             console.log(dragNode.position);
             console.log(overlappingNodeRef?.current?.position);
@@ -315,15 +312,11 @@ export function BoardFlow() {
                                 data: {
                                     ...node?.data,
                                     state: ComponentState.Undefined
-                                    /*value:
-                                        (dragNode?.data?.value as number) +
-                                        (node?.data?.value as number),*/
                                 },
                             };
                         }
                         return node;
                     })
-                /*.filter((node) => node.id !== dragNode?.id)*/
             );
         }
 
