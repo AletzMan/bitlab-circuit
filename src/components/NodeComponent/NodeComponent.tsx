@@ -59,7 +59,7 @@ export function NodeComponent({ data: { type, state, isLock, reference, isRefere
             <div className={styles.icon}>
                 {type === ComponentType.Node && <NodeIcon />}
             </div>
-            {isReferenceVisible && <span className={`${styles.id}  `} >{reference}</span>}
+            {isReferenceVisible && <span className={`${styles.id} `} >{reference}</span>}
             <Terminal type="source" position={Position.Top} id="1" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[0]} />
             <Terminal type="source" position={Position.Right} id="2" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[1]} />
             <Terminal type="source" position={Position.Bottom} id="3" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[2]} />
