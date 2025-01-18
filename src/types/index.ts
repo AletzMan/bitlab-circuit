@@ -47,7 +47,6 @@ export enum ComponentState {
 
 export type ComponentData = {
     value: number
-
     type: ComponentType
     rotation: number
     flip: {
@@ -62,6 +61,7 @@ export type ComponentData = {
     reference: string
     isValueVisible: boolean
     isReferenceVisible: boolean
+    connectedHandles: boolean[]
 }
 
 export type GroupComponent = {
