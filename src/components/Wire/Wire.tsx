@@ -13,7 +13,7 @@ export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targe
         targetY,
         sourcePosition,
         targetPosition,
-        borderRadius: 0, offset: 16.6
+        borderRadius: 2, offset: 18
     });
 
 
