@@ -44,8 +44,8 @@ const initialNodes: AnalogNode[] = [
     {
         id: uuid(),
         type: 'nodeComponent',
-        data: { type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1", isValueVisible: true, isReferenceVisible: true },
-        position: { x: 0, y: 0 },
+        data: { type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1", isValueVisible: false, isReferenceVisible: false },
+        position: { x: 90, y: 90 },
     },
 ];
 
