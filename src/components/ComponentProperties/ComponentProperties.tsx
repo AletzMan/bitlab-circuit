@@ -2,7 +2,7 @@ import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
-import { Input, Select, Button, Flex, Divider, Card, Tooltip, Tag, Checkbox } from "antd";
+import { Input, Select, Button, Flex, Divider, Card, Tooltip, Tag, Checkbox, CheckboxChangeEvent } from "antd";
 import { ComponentData, AnalogNode, UNITS } from "@/types";
 //import useHistoryManager from "@/hooks/useHistoryManager";
 const { Option } = Select;
@@ -85,6 +85,23 @@ export default function ComponentProperties({
         }
     };
 
+    const handleChangeHiddenReference = (e: CheckboxChangeEvent) => {
+        const newValue = e.target.checked;
+        console.log(newValue);
+        if (node && dataComponent) {
+            updateNodeData(node?.id, { isReferenceVisible: !newValue });
+            setDataComponent({ ...dataComponent, isReferenceVisible: !newValue });
+        }
+    };
+    const handleChangeHiddenValue = (e: CheckboxChangeEvent) => {
+        const newValue = e.target.checked;
+        console.log(newValue);
+        if (node && dataComponent) {
+            updateNodeData(node?.id, { isValueVisible: !newValue });
+            setDataComponent({ ...dataComponent, isValueVisible: !newValue });
+        }
+    };
+
     return (
 
         <Card className={styles.details} size="small" type="inner" >
@@ -98,13 +115,13 @@ export default function ComponentProperties({
                                 <Flex vertical>
                                     <Flex vertical>
                                         <label className={styles.value_label}>Reference</label>
-                                        <label>{node.data.reference}</label>
+                                        <label className={styles.label_reference}>{node.data.reference}</label>
                                     </Flex>
 
                                 </Flex>
                                 <label className={`${styles.value_label} ${styles.value_hidden}`}>
                                     Hidden
-                                    <Checkbox  ></Checkbox>
+                                    <Checkbox onChange={handleChangeHiddenReference} checked={!dataComponent?.isReferenceVisible} type="" />
                                 </label>
                             </div>
                             <Divider style={{ margin: "4px 0" }} variant="dashed" />
@@ -132,7 +149,7 @@ export default function ComponentProperties({
                                 </Flex>
                                 <label className={`${styles.value_label} ${styles.value_hidden}`}>
                                     Hidden
-                                    <Checkbox  ></Checkbox>
+                                    <Checkbox onChange={handleChangeHiddenValue} checked={!dataComponent?.isValueVisible} />
                                 </label>
                             </div>
                         </>
