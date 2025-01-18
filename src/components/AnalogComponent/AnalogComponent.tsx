@@ -3,12 +3,17 @@ import { AnalogNode, ComponentState, ComponentType } from "@/types";
 import { CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, LockIcon, ResistorIcon, UnlockIcon, ZenerIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-export function AnalogComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function AnalogComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
+
+    useEffect(() => {
+        setIsConnected(connectedHandles);
+    }, [connectedHandles]);
+
 
     const isAdditionValid = state === ComponentState.Add;
     const isAdditionInvalid = state === ComponentState.NotAdd;
@@ -30,12 +35,14 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
                 const handleNumber = Number(connection.targetHandle) - 1;
                 newState[handleNumber] = isOnConnect;
                 setIsConnected(newState);
+                updateNode(id, (prevNode) => ({ data: { ...prevNode.data, connectedHandles: newState } }));
                 return connection.target === id;
             }
             if (connection.source === id) {
                 const handleNumber = Number(connection.sourceHandle) - 1;
                 newState[handleNumber] = isOnConnect;
                 setIsConnected(newState);
+                updateNode(id, (prevNode) => ({ data: { ...prevNode.data, connectedHandles: newState } }));
                 return connection.source === id;
             }
         });

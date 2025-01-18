@@ -3,12 +3,16 @@ import { AnalogNode, ComponentState, ComponentType } from "@/types";
 import { LockIcon, NodeIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-export function NodeComponent({ data: { type, state, isLock, reference, isReferenceVisible }, selected, id, parentId, }: NodeProps<AnalogNode>) {
+export function NodeComponent({ data: { type, state, isLock, reference, isReferenceVisible, connectedHandles }, selected, id, parentId, }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
-    const [isConnected, setIsConnected] = useState<boolean[]>([false, false, false, false]);
+    const [isConnected, setIsConnected] = useState<boolean[]>([]);
+
+    useEffect(() => {
+        setIsConnected(connectedHandles);
+    }, [connectedHandles]);
 
     const isAdditionValid = state === ComponentState.Add;
     const isAdditionInvalid = state === ComponentState.NotAdd;
@@ -25,23 +29,25 @@ export function NodeComponent({ data: { type, state, isLock, reference, isRefere
 
     const setConnectionsTerminals = (connections: Connection[], isOnConnect: boolean) => {
         connections.map((connection) => {
-            const newState = [...isConnected];
+            const newState = [...connectedHandles];
             if (connection.target === id) {
                 const handleNumber = Number(connection.targetHandle) - 1;
                 newState[handleNumber] = isOnConnect;
                 setIsConnected(newState);
+                updateNode(id, (prevNode) => ({ data: { ...prevNode.data, connectedHandles: newState } }));
                 return connection.target === id;
             }
             if (connection.source === id) {
                 const handleNumber = Number(connection.sourceHandle) - 1;
                 newState[handleNumber] = isOnConnect;
                 setIsConnected(newState);
+                updateNode(id, (prevNode) => ({ data: { ...prevNode.data, connectedHandles: newState } }));
                 return connection.source === id;
             }
         });
     };
 
-
+    console.log(connectedHandles);
 
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
