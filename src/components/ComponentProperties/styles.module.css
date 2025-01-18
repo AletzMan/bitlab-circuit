@@ -14,8 +14,9 @@
 
 .value {
     display: grid;
-    grid-template-columns: 1fr 3em;
-    gap: 0.5em;
+    grid-template-columns: 1fr 0.5fr;
+    place-items: center start;
+    gap: 1em;
 }
 
 .value_number {
@@ -28,15 +29,22 @@
 .value_label {
     font-size: 0.9em;
     color: var(--label-color);
+
+}
+
+.label_reference {
+    padding: 0.25em 0;
 }
 
 .value_hidden {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    align-self: flex-end;
+    padding: 0 0 0.5em 0;
     font-size: 0.8em;
-    gap: 4px;
+    gap: 8px;
     font-style: italic;
     color: var(--label-second-color);
 }
