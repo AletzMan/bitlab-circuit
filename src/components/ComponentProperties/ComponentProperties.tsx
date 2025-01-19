@@ -160,7 +160,7 @@ export default function ComponentProperties({
                             </div>
                         </>
                     )}
-                    <Divider style={{ margin: "16px 0" }} />
+                    <Divider style={{ margin: "12px 0 24px 0" }} />
                 </>
             }
             {!isSingleNode &&
