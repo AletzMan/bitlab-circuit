@@ -11,12 +11,16 @@ body {
     --foreground-color: #000000;
     --reference-color: #690303;
     --background-color: #292929;
-    --background-color-tab: #1f1f1f;
+    --background-color-tab: #ffffff;
+    --background-color-tab-inactive: #e6e6e6;
+    --foreground-color-tab-inactive: #909090;
+    --foreground-color-tab-active: #909090;
+    --border-color-tab: #d5d5d5;
+    --board-background-color: #fbfbfb;
     --label-color: #343434;
     --label-second-color: #343434;
     --primary-color: #2db8d4;
     --border-color: #DEDEDE;
-    --board-background-color: #fbfbfb;
     --grid-large-color: #d6d6d6;
     --grid-small-color: #e0e0e0;
     --fill-minimap-node: #aca9a9;
@@ -45,6 +49,9 @@ body {
     --fill-minimap-node: #e4e4e4;
     --label-color: #a4eeff;
     --label-second-color: #c2c2c2;
+    --background-color-tab: #141414;
+    --background-color-tab-inactive: #414141;
+    --border-color-tab: #424242;
     --background-minimap: #5f5f5f;
     --fill-minimap-node-mask: #1a1a1a;
     --board-background-color: #141414;
@@ -147,10 +154,28 @@ body {
     background-color: var(--background-color);
 }
 
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab,
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab,
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab,
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab {
+    background-color: var(--background-color-tab-inactive);
+    color: var(--foreground-color-tab-inactive);
+}
 
+
+
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab-active,
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab-active,
 :where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab-active,
 :where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab-active {
     background-color: var(--background-color-tab);
+    border-color: var(--border-color-tab);
+}
+
+
+:where(.css-dev-only-do-not-override-7ny38l).ant-tabs .ant-tabs-tab:hover,
+:where(.css-dev-only-do-not-override-poerbe).ant-tabs .ant-tabs-tab:hover {
+    color: #18b6f5;
 }
 
 :where(.css-dev-only-do-not-override-poerbe).ant-tabs-card.ant-tabs-top>.ant-tabs-nav .ant-tabs-tab-active,
@@ -177,6 +202,7 @@ body {
     color: var(--primary-color);
     max-width: 270px;
 }
+
 
 :where(.css-dev-only-do-not-override-7ny38l).ant-switch.ant-switch-checked {
     background-color: var(--primary-color);
