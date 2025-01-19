@@ -3,12 +3,14 @@ import { AnalogNode, ComponentState, ComponentType } from "@/types";
 import { LockIcon, NodeIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
+import { useTheme } from "@/store";
 
 
 export function NodeComponent({ data: { type, state, isLock, reference, isReferenceVisible, connectedHandles, color }, selected, id, parentId, }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([]);
+    const { currentTheme } = useTheme();
 
     useEffect(() => {
         setIsConnected(connectedHandles);
@@ -56,11 +58,11 @@ export function NodeComponent({ data: { type, state, isLock, reference, isRefere
                 </div>
             }
             <div className={`${selected && styles.box_selected}`}></div>
-            <div className={`${styles.terminal} ${styles.terminal_top} ${isConnected[0] && styles.terminal_top_connected}`} style={{ backgroundColor: isConnected[0] ? color : 'transparent' }}></div>
-            <div className={`${styles.terminal} ${styles.terminal_right} ${isConnected[1] && styles.terminal_right_connected}`} style={{ backgroundColor: isConnected[1] ? color : 'transparent' }}></div>
-            <div className={`${styles.terminal} ${styles.terminal_bottom} ${isConnected[2] && styles.terminal_bottom_connected}`} style={{ backgroundColor: isConnected[2] ? color : 'transparent' }}></div>
-            <div className={`${styles.terminal} ${styles.terminal_left} ${isConnected[3] && styles.terminal_left_connected}`} style={{ backgroundColor: isConnected[3] ? color : 'transparent' }}></div>
-            <div className={styles.icon} style={{ color: color }}>
+            <div className={`${styles.terminal} ${styles.terminal_top} ${isConnected[0] && styles.terminal_top_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>
+            <div className={`${styles.terminal} ${styles.terminal_right} ${isConnected[1] && styles.terminal_right_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>
+            <div className={`${styles.terminal} ${styles.terminal_bottom} ${isConnected[2] && styles.terminal_bottom_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>
+            <div className={`${styles.terminal} ${styles.terminal_left} ${isConnected[3] && styles.terminal_left_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>
+            <div className={styles.icon} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}>
                 {type === ComponentType.Node && <NodeIcon />}
             </div>
             {isReferenceVisible && <span className={`${styles.id} `} >{reference}</span>}
