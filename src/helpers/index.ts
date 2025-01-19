@@ -85,6 +85,8 @@ export type ComponentPropertiesDefault = {
 // Mapa para almacenar contadores por tipo
 const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
     [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
+    [ComponentType.Rheostat]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
+    [ComponentType.Thermistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.CapacitorElectrlytic]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
@@ -111,6 +113,11 @@ const typeGroupDiode: ComponentType[] = [
     ComponentType.Varactor,
 ];
 
+const typeGroupResistor: ComponentType[] = [
+    ComponentType.Resistor,
+    ComponentType.Rheostat,
+];
+
 export function getComponentProperties(type: ComponentType, components: AnalogNode[]): ComponentPropertiesDefault {
 
     const reference = typePropertiesMap[type].reference;
@@ -120,6 +127,8 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
     let matchingComponents: AnalogNode[] = [];
     if (typeGroupDiode.includes(type)) {
         matchingComponents = components.filter(component => typeGroupDiode.includes(component.data.type));
+    } else if (typeGroupResistor.includes(type)) {
+        matchingComponents = components.filter(component => typeGroupResistor.includes(component.data.type));
     } else {
         matchingComponents = components.filter(component => component.data.type === type);
     }
@@ -138,10 +147,11 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
     };
     return properties;
 }
-
 export function reorderComponentReferences(components: AnalogNode[]): AnalogNode[] {
-    const typeCounters: Record<ComponentType | 'GenericDiode', number> = {
+    const typeCounters: Record<ComponentType | 'GenericDiode' | 'GenericResistor', number> = {
         [ComponentType.Resistor]: 0,
+        [ComponentType.Rheostat]: 0,
+        [ComponentType.Thermistor]: 0,
         [ComponentType.Capacitor]: 0,
         [ComponentType.CapacitorElectrlytic]: 0,
         [ComponentType.Inductor]: 0,
@@ -157,6 +167,7 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         [ComponentType.Board]: 0,
         [ComponentType.Node]: 0,
         GenericDiode: 0, // Contador para todos los diodos excepto LED
+        GenericResistor: 0, // Contador para resistores y reóstatos
     };
 
     // Lista de tipos que se consideran "diodos genéricos"
@@ -170,23 +181,37 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         ComponentType.Varactor,
     ]);
 
+    // Lista de tipos que se consideran "resistores genéricos"
+    const resistorTypes = new Set<ComponentType>([
+        ComponentType.Resistor,
+        ComponentType.Rheostat,
+        ComponentType.Thermistor,
+    ]);
+
     return components.map((component) => {
         const { type } = component.data;
 
         // Determinar si el tipo es un diodo genérico
         const isGenericDiode = diodeTypes.has(type) && type !== ComponentType.Led;
 
+        // Determinar si el tipo es un resistor genérico
+        const isGenericResistor = resistorTypes.has(type);
+
         // Incrementar el contador correspondiente
         if (isGenericDiode) {
             typeCounters.GenericDiode += 1;
+        } else if (isGenericResistor) {
+            typeCounters.GenericResistor += 1;
         } else {
             typeCounters[type] += 1;
         }
 
         // Generar la nueva referencia
         const newReference = isGenericDiode
-            ? `D${typeCounters.GenericDiode}` // Usar un prefijo común para diodos
-            : `${typePropertiesMap[type].reference.toUpperCase()}${typeCounters[type]}`;
+            ? `D${typeCounters.GenericDiode}` // Prefijo para diodos genéricos
+            : isGenericResistor
+                ? `R${typeCounters.GenericResistor}` // Prefijo para resistores genéricos
+                : `${typePropertiesMap[type].reference.toUpperCase()}${typeCounters[type]}`;
 
         return {
             ...component,
@@ -197,6 +222,7 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         };
     });
 }
+
 
 
 export function getImageBackgroundDrag(type: ComponentType): HTMLDivElement {
