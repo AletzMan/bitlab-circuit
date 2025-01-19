@@ -13,6 +13,8 @@ export enum ComponentType {
     PhotoDiode = "photodiode",
     TVSDiode = "tvsdiode",
     Varactor = "varactor",
+    Rheostat = "rheostat",
+    Thermistor = "thermistor",
     Battery = 'battery',
     Board = 'board',
     Node = 'node',
