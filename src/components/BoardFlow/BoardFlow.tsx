@@ -63,7 +63,7 @@ const edgeTypes = {
     custom: Wire
 };
 
-const gridSize = 10; // Tamaño del grid 
+const GRID_SIZE = 10; // Tamaño del grid 
 export function BoardFlow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [activeTab, setActiveTab] = useState('components');
@@ -418,10 +418,10 @@ export function BoardFlow() {
     const handleOnKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
         e.preventDefault();
         const movement = {
-            ArrowUp: { dx: 0, dy: (-gridSize / 2) + 5 },
-            ArrowDown: { dx: 0, dy: (gridSize / 2) - 5 },
-            ArrowLeft: { dx: (-gridSize / 2) + 5, dy: 0 },
-            ArrowRight: { dx: (gridSize / 2) - 5, dy: 0 },
+            ArrowUp: { dx: 0, dy: (-GRID_SIZE / 2) + 5 },
+            ArrowDown: { dx: 0, dy: (GRID_SIZE / 2) - 5 },
+            ArrowLeft: { dx: (-GRID_SIZE / 2) + 5, dy: 0 },
+            ArrowRight: { dx: (GRID_SIZE / 2) - 5, dy: 0 },
         }[e.key];
 
         if (movement) {
@@ -572,12 +572,12 @@ export function BoardFlow() {
                         selectionOnDrag
                         onSelectionChange={handleOnSelectionChange}
                         onSelectionEnd={handleSelectionEnd}
-                        snapGrid={[gridSize, gridSize]} snapToGrid
+                        snapGrid={[GRID_SIZE, GRID_SIZE]} snapToGrid
                         panOnDrag={[1, 2]}
                         selectNodesOnDrag
                         selectionMode={SelectionMode.Partial} onKeyDown={handleOnKeyDown}>
-                        <Background color={'var(--grid-small-color)'} gap={gridSize} variant={currentTypeGrid} id='1' size={1.5} />
-                        <Background color={'var(--grid-large-color)'} gap={gridSize * 10} variant={currentTypeGrid} id='2' />
+                        <Background color={'var(--grid-small-color)'} gap={GRID_SIZE} variant={currentTypeGrid} id='1' size={1.5} />
+                        <Background color={'var(--grid-large-color)'} gap={GRID_SIZE * 10} variant={currentTypeGrid} id='2' />
                     </ReactFlow>
                 </div>
                 <Card className={styles.containerTabs} styles={{ body: { padding: "0" } }}>
