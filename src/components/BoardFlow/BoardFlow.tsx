@@ -308,7 +308,7 @@ export function BoardFlow() {
         const typeComponent = overlappingNodeRef?.current?.data?.type as ComponentType;
 
         if (
-            ARRAY_COMPONENTS.includes(typeComponent)) {
+            ARRAY_COMPONENTS.includes(typeComponent) && selectedNode?.data.type !== ComponentType.Board) {
 
             const newPosition = getNewPositionByOverlapping(dragNode.position, overlappingNodeRef?.current?.position as XYPosition);
             setNodes((prevNodes) =>
