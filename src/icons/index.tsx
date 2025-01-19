@@ -96,6 +96,19 @@ export function LEDIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function SchottkyIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="matrix(1, 0, 0, -1, 0, 0)">
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v71.039h-25.191v-19.145h-12.594v31.738h50.383v-88.168h144.59v-12.594h-144.59v-75.57h25.188v18.641h12.598v-31.238h-50.383v83.129l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z">
+                </path>
+            </g>
+        </svg>
+    );
+}
+
 export function NodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="0 0 100 100">
