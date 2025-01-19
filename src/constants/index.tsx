@@ -1,4 +1,4 @@
-import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, ResistorIcon, SchottkyIcon, ZenerIcon } from "../icons";
+import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, ResistorIcon, SchottkyIcon, TunnelIcon, ZenerIcon } from "../icons";
 import { ComponentType, GroupComponent } from "../types";
 
 export const ANALOG_COMPONENTS: GroupComponent[] = [
@@ -38,6 +38,11 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
         label: "Schottky"
     },
     {
+        icon: <TunnelIcon />,
+        type: ComponentType.Tunnel,
+        label: "Tunnel"
+    },
+    {
         icon: <InductorIcon />,
         type: ComponentType.Inductor,
         label: "Inductor"
@@ -66,6 +71,7 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Led,
     ComponentType.Zener,
     ComponentType.Schottky,
+    ComponentType.Tunnel,
     ComponentType.Inductor,
     ComponentType.Node,
 ];
