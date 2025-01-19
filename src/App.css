@@ -23,6 +23,7 @@ body {
     --border-color: #DEDEDE;
     --grid-large-color: #d6d6d6;
     --grid-small-color: #e0e0e0;
+    --lock-color: #206ab3;
     --fill-minimap-node: #aca9a9;
     --fill-minimap-node-mask: #e9e5e5;
     --background-minimap: #f9f8f8;
@@ -57,6 +58,7 @@ body {
     --board-background-color: #141414;
     --grid-large-color: #3a3a3a;
     --grid-small-color: #292929;
+    --lock-color: #4ec9e2;
     --color-wire-one: #FFFFFF;
     --color-wire-two: #FF6F61;
     --color-wire-three: #FFA500;
