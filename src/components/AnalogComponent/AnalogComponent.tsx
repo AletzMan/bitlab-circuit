@@ -1,6 +1,6 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
 import { AnalogNode, ComponentState, ComponentType } from "@/types";
-import { CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, LockIcon, ResistorIcon, SchottkyIcon, UnlockIcon, ZenerIcon } from "@/icons";
+import { CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, LockIcon, ResistorIcon, SchottkyIcon, TunnelIcon, UnlockIcon, ZenerIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
@@ -79,6 +79,7 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
                 {type === ComponentType.Led && <LEDIcon />}
                 {type === ComponentType.Zener && <ZenerIcon />}
                 {type === ComponentType.Schottky && <SchottkyIcon />}
+                {type === ComponentType.Tunnel && <TunnelIcon />}
                 {type === ComponentType.Inductor && <InductorIcon />}
             </div>
             {isValueVisible && <span className={`${styles.value} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
