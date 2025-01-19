@@ -8,6 +8,7 @@ export enum ComponentType {
     Diode = 'diode',
     Led = "led",
     Zener = "zener",
+    Schottky = "schottky",
     Battery = 'battery',
     Board = 'board',
     Node = 'node',
