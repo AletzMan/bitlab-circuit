@@ -6,21 +6,15 @@ import { SVGProps } from "react";
 export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 512 512"  >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier">
-                <path d="m525.95 426.2-50.379-75.57-50.383 75.57-50.379-75.57-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 50.379 75.57 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
-            </g></svg>
+            <path d="m525.95 426.2-50.379-75.57-50.383 75.57-50.379-75.57-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 50.379 75.57 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
+        </svg>
     );
 }
 
 export function RheostatIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path d="m525.95 426.2-50.379-75.57-50.383 75.57-17.129-25.188 91.695-91.695 7.0508 7.0547 31.742-54.918-54.914 31.742 7.0508 7.0547-89.676 89.676-26.199-39.297-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 17.129 25.191-128.47 128.97 8.5664 8.5664 126.96-126.46 26.195 39.297 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
-            </g>
+            <path d="m525.95 426.2-50.379-75.57-50.383 75.57-17.129-25.188 91.695-91.695 7.0508 7.0547 31.742-54.918-54.914 31.742 7.0508 7.0547-89.676 89.676-26.199-39.297-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 17.129 25.191-128.47 128.97 8.5664 8.5664 126.96-126.46 26.195 39.297 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
         </svg>
     );
 }
@@ -28,12 +22,9 @@ export function RheostatIcon(props: SVGProps<SVGSVGElement>) {
 export function ThermistorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path d="m525.95 426.2-50.379-75.57-50.383 75.57-50.379-75.57-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 50.379 75.57 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
-                <line x1="250" y1="200" x2="400" y2="450" stroke="#000000" strokeWidth="8" />
-            </g>
+            <path d="m525.95 426.2-50.379-75.57-50.383 75.57-50.379-75.57-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 50.379 75.57 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
+            <line x1="315" y1="530" x2="500" y2="250" stroke="currentColor" strokeWidth="12" />
+            <line x1="230" y1="530" x2="320" y2="530" stroke="currentColor" strokeWidth="10" />
         </svg>
 
     );
@@ -42,17 +33,8 @@ export function ThermistorIcon(props: SVGProps<SVGSVGElement>) {
 export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier"> <defs>
-                <clipPath id="capacitor">
-                    <path d="m270 148.09h258v226.91h-258z"></path>
-                </clipPath>
-            </defs>
-                <path d="m408.86 443.29v198.77c0 11.809-19.68 11.809-19.68 0v-198.77h-108.24c-13.777 0-13.777-19.68 0-19.68h238.13c11.809 0 11.809 19.68 0 19.68z"></path>
-                <g clipPath="url(#capacitor)">
-                    <path d="m389.18 157.93c0-13.777 19.68-13.777 19.68 0v196.8h110.21c11.809 0 11.809 19.68 0 19.68h-238.13c-13.777 0-13.777-19.68 0-19.68h108.24z"></path>
-                </g>
-            </g>
+            <path d="m408.86 443.29v198.77c0 11.809-19.68 11.809-19.68 0v-198.77h-108.24c-13.777 0-13.777-19.68 0-19.68h238.13c11.809 0 11.809 19.68 0 19.68z"></path>
+            <path d="m389.18 157.93c0-13.777 19.68-13.777 19.68 0v196.8h110.21c11.809 0 11.809 19.68 0 19.68h-238.13c-13.777 0-13.777-19.68 0-19.68h108.24z"></path>
         </svg>
     );
 }
@@ -60,23 +42,10 @@ export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
 export function CapacitorElectrolyticIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier"> <defs>
-                <clipPath id="capeb">
-                    <path d="m262 416h275v235.9h-275z"></path>
-                </clipPath>
-                <clipPath id="capea">
-                    <path d="m267 148.09h264v231.91h-264z"></path>
-                </clipPath>
-            </defs>
-                <g clipPath="url(#capeb)">
-                    <path d="m409.07 641.83c0 14.105-20.152 14.105-20.152 0v-205.55c-42.32 2.0156-80.609 16.121-112.85 38.289-12.09 2.0156-18.137-12.09-10.078-18.137 38.289-26.199 84.641-40.305 133-40.305 50.383 0 96.73 14.105 135.02 40.305 6.0469 6.0469 0 22.168-12.09 16.121-32.242-22.168-70.535-34.258-112.85-36.273z"></path>
-                </g> <g clipPath="url(#capea)">
-                    <path d="m388.91 158.17c0-14.105 20.152-14.105 20.152 0v201.52h112.85c12.09 0 12.09 20.152 0 20.152h-243.84c-14.105 0-14.105-20.152 0-20.152h110.84z"></path>
-                </g>
-                <path d="m491.69 275.05c0-12.09 20.152-12.09 20.152 0v16.121h16.121c12.09 0 12.09 20.152 0 20.152h-16.121v18.137c0 10.078-20.152 10.078-20.152 0v-18.137h-16.121c-12.09 0-12.09-20.152 0-20.152h16.121z"></path>
-            </g>
+            <path d="m409.07 641.83c0 14.105-20.152 14.105-20.152 0v-205.55c-42.32 2.0156-80.609 16.121-112.85 38.289-12.09 2.0156-18.137-12.09-10.078-18.137 38.289-26.199 84.641-40.305 133-40.305 50.383 0 96.73 14.105 135.02 40.305 6.0469 6.0469 0 22.168-12.09 16.121-32.242-22.168-70.535-34.258-112.85-36.273z"></path>
+            <path d="m388.91 158.17c0-14.105 20.152-14.105 20.152 0v201.52h112.85c12.09 0 12.09 20.152 0 20.152h-243.84c-14.105 0-14.105-20.152 0-20.152h110.84z"></path>
+            <path d="m491.69 275.05c0-12.09 20.152-12.09 20.152 0v16.121h16.121c12.09 0 12.09 20.152 0 20.152h-16.121v18.137c0 10.078-20.152 10.078-20.152 0v-18.137h-16.121c-12.09 0-12.09-20.152 0-20.152h16.121z"></path>
+
         </svg>
     );
 }
@@ -84,11 +53,7 @@ export function CapacitorElectrolyticIcon(props: SVGProps<SVGSVGElement>) {
 export function InductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 512 512" >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path d="m513.36 356.17c-16.121 0-30.23 8.5664-37.785 21.16-7.5586-12.594-21.664-21.16-37.785-21.16s-30.23 8.5664-37.785 21.16c-7.5586-12.594-21.664-21.16-37.785-21.16s-30.23 8.5664-37.785 21.16c-7.5586-12.594-21.664-21.16-37.785-21.16-22.168 0-40.809 16.625-43.832 37.785h-69.527v12.594h82.121v-6.5469c0-17.129 14.105-31.738 31.738-31.738 17.633 0 31.738 14.105 31.738 31.738v6.5508h12.594l0.003907-6.5508c0-17.129 14.105-31.738 31.738-31.738s31.738 14.105 31.738 31.738v6.5508h12.594l0.003907-6.5508c0-17.129 14.105-31.738 31.738-31.738 17.633 0 31.738 14.105 31.738 31.738v6.5508h12.594l0.007812-6.5508c0-17.129 14.105-31.738 31.738-31.738 17.633 0 31.738 14.105 31.738 31.738v6.5508l79.602-0.003906v-12.594h-69.523c-3.0234-21.664-21.664-37.785-43.832-37.785z"></path>
-            </g>
+            <path d="m513.36 356.17c-16.121 0-30.23 8.5664-37.785 21.16-7.5586-12.594-21.664-21.16-37.785-21.16s-30.23 8.5664-37.785 21.16c-7.5586-12.594-21.664-21.16-37.785-21.16s-30.23 8.5664-37.785 21.16c-7.5586-12.594-21.664-21.16-37.785-21.16-22.168 0-40.809 16.625-43.832 37.785h-69.527v12.594h82.121v-6.5469c0-17.129 14.105-31.738 31.738-31.738 17.633 0 31.738 14.105 31.738 31.738v6.5508h12.594l0.003907-6.5508c0-17.129 14.105-31.738 31.738-31.738s31.738 14.105 31.738 31.738v6.5508h12.594l0.003907-6.5508c0-17.129 14.105-31.738 31.738-31.738 17.633 0 31.738 14.105 31.738 31.738v6.5508h12.594l0.007812-6.5508c0-17.129 14.105-31.738 31.738-31.738 17.633 0 31.738 14.105 31.738 31.738v6.5508l79.602-0.003906v-12.594h-69.523c-3.0234-21.664-21.664-37.785-43.832-37.785z"></path>
         </svg>
     );
 }
@@ -96,8 +61,7 @@ export function InductorIcon(props: SVGProps<SVGSVGElement>) {
 export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier">
-                <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59v-82.121h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z"></path> </g>
+            <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59v-82.121h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z"></path>
         </svg>
     );
 }
@@ -105,21 +69,17 @@ export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
 export function ZenerIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v83.633h43.832v-12.594h-31.234v-75.574h144.59v-12.594h-144.59v-88.168h-44.336v12.598h31.738v70.531l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z"></path>
-            </g></svg>
+            <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v83.633h43.832v-12.594h-31.234v-75.574h144.59v-12.594h-144.59v-88.168h-44.336v12.598h31.738v70.531l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z"></path>
+        </svg>
     );
 }
 
 export function LEDIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier"> <g>
-                <path d="m482.12 311.83h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59z"></path>
-                <path d="m381.36 308.81 26.195-37.281 8.0625 5.543 22.168-59.449-48.871 40.809 8.0625 5.5391-25.695 37.281z"></path>
-                <path d="m418.14 334 25.691-36.777 8.5664 5.5391 21.664-59.953-48.871 41.312 8.5664 5.543-26.199 37.281z"></path> </g> </g>
+            <path d="m482.12 311.83h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59z"></path>
+            <path d="m381.36 308.81 26.195-37.281 8.0625 5.543 22.168-59.449-48.871 40.809 8.0625 5.5391-25.695 37.281z"></path>
+            <path d="m418.14 334 25.691-36.777 8.5664 5.5391 21.664-59.953-48.871 41.312 8.5664 5.543-26.199 37.281z"></path>
         </svg>
     );
 }
@@ -127,12 +87,8 @@ export function LEDIcon(props: SVGProps<SVGSVGElement>) {
 export function SchottkyIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="matrix(1, 0, 0, -1, 0, 0)">
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v71.039h-25.191v-19.145h-12.594v31.738h50.383v-88.168h144.59v-12.594h-144.59v-75.57h25.188v18.641h12.598v-31.238h-50.383v83.129l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z">
-                </path>
-            </g>
+            <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v71.039h-25.191v-19.145h-12.594v31.738h50.383v-88.168h144.59v-12.594h-144.59v-75.57h25.188v18.641h12.598v-31.238h-50.383v83.129l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z">
+            </path>
         </svg>
     );
 }
@@ -140,37 +96,33 @@ export function SchottkyIcon(props: SVGProps<SVGSVGElement>) {
 export function TunnelIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path d="m482.12 305.79h-44.336v12.598h31.738v70.531l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v71.039h-31.738v12.594h44.336v-88.168h144.59v-12.594h-144.59z"></path>
-            </g>
+            <path d="m482.12 305.79h-44.336v12.598h31.738v70.531l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v71.039h-31.738v12.594h44.336v-88.168h144.59v-12.594h-144.59z"></path>
         </svg>
     );
 }
 
 export function PhotoDiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  ><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="m482.12 311.83h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59z"></path> <path d="m469.02 239.29-26.195 37.281-8.0625-5.543-22.168 59.449 48.871-40.809-8.0625-6.0469 25.695-36.777z"></path>
-            <path d="m406.55 250.87-8.5625-5.543-21.664 59.953 48.867-41.312-8.5625-5.5391 26.199-37.285-10.582-7.0508z"></path> </g> </g></svg>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
+            <path d="m482.12 311.83h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59z"></path>
+            <path d="m469.02 239.29-26.195 37.281-8.0625-5.543-22.168 59.449 48.871-40.809-8.0625-6.0469 25.695-36.777z"></path>
+            <path d="m406.55 250.87-8.5625-5.543-21.664 59.953 48.867-41.312-8.5625-5.5391 26.199-37.285-10.582-7.0508z"></path>
+        </svg>
     );
 }
 
 export function TVSDiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="m242.81 487.66 9.0703 5.0391 142.07-81.617v71.039h-31.742v12.594h44.336v-83.633l141.57 81.617 9.5742-5.0391v-81.113h69.02v-12.594h-69.02v-81.617l-9.5742-5.0391-141.57 81.617v-70.531h31.238v-12.598h-43.832v83.129l-142.07-81.617-9.0703 5.0391v81.617h-69.523v12.594h69.523z"></path>
-            </g></svg>
+            <path d="m242.81 487.66 9.0703 5.0391 142.07-81.617v71.039h-31.742v12.594h44.336v-83.633l141.57 81.617 9.5742-5.0391v-81.113h69.02v-12.594h-69.02v-81.617l-9.5742-5.0391-141.57 81.617v-70.531h31.238v-12.598h-43.832v83.129l-142.07-81.617-9.0703 5.0391v81.617h-69.523v12.594h69.523z"></path>
+        </svg>
     );
 }
 
 export function VaractorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path d="m519.91 311.83h-12.598v82.121h-25.188v-82.121h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h25.188v81.617h12.598v-81.617h113.36v-12.594h-113.36z"></path>
-            </g>
+            <path d="m519.91 311.83h-12.598v82.121h-25.188v-82.121h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h25.188v81.617h12.598v-81.617h113.36v-12.594h-113.36z"></path>
         </svg>
     );
 }
@@ -178,7 +130,6 @@ export function VaractorIcon(props: SVGProps<SVGSVGElement>) {
 export function NodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="0 0 100 100">
-
             <circle cx="50" cy="50" r="20" fill="currentColor" />
         </svg>
     );
