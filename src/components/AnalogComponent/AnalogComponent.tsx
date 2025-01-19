@@ -3,7 +3,7 @@ import { AnalogNode, ComponentState, ComponentType } from "@/types";
 import { CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, LockIcon, ResistorIcon, UnlockIcon, ZenerIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 
 export function AnalogComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles }, selected, id, parentId }: NodeProps<AnalogNode>) {
@@ -48,10 +48,18 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
         });
     };
 
-    let positionTerminals: Position[] = [Position.Right, Position.Left];
-    if (rotation === 90) positionTerminals = [Position.Bottom, Position.Top];
-    if (rotation === 180) positionTerminals = [Position.Left, Position.Right];
-    if (rotation === 270) positionTerminals = [Position.Top, Position.Bottom];
+    const positionTerminals = useMemo(() => {
+        switch (rotation) {
+            case 90:
+                return [Position.Bottom, Position.Top];
+            case 180:
+                return [Position.Left, Position.Right];
+            case 270:
+                return [Position.Top, Position.Bottom];
+            default:
+                return [Position.Right, Position.Left];
+        }
+    }, [rotation]);
 
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
