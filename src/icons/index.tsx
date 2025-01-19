@@ -13,6 +13,32 @@ export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function RheostatIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path d="m525.95 426.2-50.379-75.57-50.383 75.57-17.129-25.188 91.695-91.695 7.0508 7.0547 31.742-54.918-54.914 31.742 7.0508 7.0547-89.676 89.676-26.199-39.297-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 17.129 25.191-128.47 128.97 8.5664 8.5664 126.96-126.46 26.195 39.297 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
+            </g>
+        </svg>
+    );
+}
+
+export function ThermistorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path d="m525.95 426.2-50.379-75.57-50.383 75.57-50.379-75.57-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 50.379 75.57 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
+                <line x1="250" y1="200" x2="400" y2="450" stroke="#000000" strokeWidth="8" />
+            </g>
+        </svg>
+
+    );
+}
+
 export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
