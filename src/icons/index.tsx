@@ -109,6 +109,18 @@ export function SchottkyIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function TunnelIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path d="m482.12 305.79h-44.336v12.598h31.738v70.531l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v71.039h-31.738v12.594h44.336v-88.168h144.59v-12.594h-144.59z"></path>
+            </g>
+        </svg>
+    );
+}
+
 export function NodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="0 0 100 100">
