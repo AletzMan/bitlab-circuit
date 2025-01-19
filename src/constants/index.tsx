@@ -1,4 +1,4 @@
-import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, ResistorIcon, SchottkyIcon, TunnelIcon, ZenerIcon } from "../icons";
+import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, SchottkyIcon, TVSDiodeIcon, TunnelIcon, VaractorIcon, ZenerIcon } from "../icons";
 import { ComponentType, GroupComponent } from "../types";
 
 export const ANALOG_COMPONENTS: GroupComponent[] = [
@@ -15,7 +15,7 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
     {
         icon: <CapacitorElectrolyticIcon />,
         type: ComponentType.CapacitorElectrlytic,
-        label: "CapacitorE"
+        label: "Capacitor Electrlytic"
     },
     {
         icon: <DiodeIcon />,
@@ -41,6 +41,21 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
         icon: <TunnelIcon />,
         type: ComponentType.Tunnel,
         label: "Tunnel"
+    },
+    {
+        icon: <PhotoDiodeIcon />,
+        type: ComponentType.PhotoDiode,
+        label: "Photo Diode"
+    },
+    {
+        icon: <TVSDiodeIcon />,
+        type: ComponentType.TVSDiode,
+        label: "TVS Diode"
+    },
+    {
+        icon: <VaractorIcon />,
+        type: ComponentType.Varactor,
+        label: "Varactor"
     },
     {
         icon: <InductorIcon />,
@@ -72,6 +87,9 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Zener,
     ComponentType.Schottky,
     ComponentType.Tunnel,
+    ComponentType.PhotoDiode,
+    ComponentType.TVSDiode,
+    ComponentType.Varactor,
     ComponentType.Inductor,
     ComponentType.Node,
 ];
