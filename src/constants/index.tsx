@@ -1,4 +1,4 @@
-import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, SchottkyIcon, TVSDiodeIcon, TunnelIcon, VaractorIcon, ZenerIcon } from "../icons";
+import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon } from "../icons";
 import { ComponentType, GroupComponent } from "../types";
 
 export const ANALOG_COMPONENTS: GroupComponent[] = [
@@ -6,6 +6,16 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
         icon: <ResistorIcon />,
         type: ComponentType.Resistor,
         label: "Resistor"
+    },
+    {
+        icon: <RheostatIcon />,
+        type: ComponentType.Rheostat,
+        label: "Rheostat"
+    },
+    {
+        icon: <ThermistorIcon />,
+        type: ComponentType.Thermistor,
+        label: "Thermistor"
     },
     {
         icon: <CapacitorIcon />,
@@ -90,6 +100,8 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.PhotoDiode,
     ComponentType.TVSDiode,
     ComponentType.Varactor,
+    ComponentType.Rheostat,
+    ComponentType.Thermistor,
     ComponentType.Inductor,
     ComponentType.Node,
 ];
