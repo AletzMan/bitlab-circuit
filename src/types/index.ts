@@ -1,5 +1,7 @@
 import { Edge, Node } from "@xyflow/react";
 import { ColorPickerProps } from "antd";
+
+
 export enum ComponentType {
     Resistor = 'resistor',
     Capacitor = 'capacitor',
@@ -15,7 +17,13 @@ export enum ComponentType {
     Varactor = "varactor",
     Rheostat = "rheostat",
     Thermistor = "thermistor",
-    Battery = 'battery',
+    Board = 'board',
+    Node = 'node',
+}
+
+
+
+export enum StructType {
     Board = 'board',
     Node = 'node',
 }

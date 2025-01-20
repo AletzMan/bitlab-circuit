@@ -1,7 +1,7 @@
-/* eslint-disable no-debugger */
+
 
 import { AnalogNode, ComponentType, GroupComponent, Presets, UnitsType } from "../types";
-import { ANALOG_COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
+import { COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
 import { XYPosition } from "@xyflow/react";
 import { createRoot } from "react-dom/client";
 
@@ -26,10 +26,6 @@ export function getUnit(type: ComponentType) {
         }
         case ComponentType.Capacitor: {
             unit = "μF";
-            break;
-        }
-        case ComponentType.Battery: {
-            unit = "V";
             break;
         }
     }
@@ -99,7 +95,6 @@ const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
     [ComponentType.PhotoDiode]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.TVSDiode]: { value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.Varactor]: { value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Battery]: { value: 12, unit: UnitsType.Voltage, prefix: "V", reference: "B", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'analogComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [] },
     [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [false, false, false, false], color: 'var(--foreground-color)' },
 };
@@ -167,7 +162,6 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         [ComponentType.PhotoDiode]: 0,
         [ComponentType.TVSDiode]: 0,
         [ComponentType.Varactor]: 0,
-        [ComponentType.Battery]: 0,
         [ComponentType.Board]: 0,
         [ComponentType.Node]: 0,
         CapacitorGroup: 0, // Contador para todos los diodos excepto LED
@@ -218,7 +212,7 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
 export function getImageBackgroundDrag(type: ComponentType): HTMLDivElement {
     let currentComponent: GroupComponent | undefined = undefined;
 
-    currentComponent = ANALOG_COMPONENTS.find(component => component.type === type);
+    currentComponent = COMPONENTS[type];
 
     if (!currentComponent) currentComponent = STRUCTURE_COMPONENTS.find(component => component.type === type);
 

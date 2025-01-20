@@ -75,6 +75,90 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
 
 ];
 
+export const COMPONENTS: Record<ComponentType, GroupComponent> = {
+    [ComponentType.Resistor]: {
+        icon: <ResistorIcon />,
+        type: ComponentType.Resistor,
+        label: "Resistor"
+    },
+    [ComponentType.Rheostat]: {
+        icon: <RheostatIcon />,
+        type: ComponentType.Rheostat,
+        label: "Rheostat"
+    },
+    [ComponentType.Thermistor]: {
+        icon: <ThermistorIcon />,
+        type: ComponentType.Thermistor,
+        label: "Thermistor"
+    },
+    [ComponentType.Capacitor]: {
+        icon: <CapacitorIcon />,
+        type: ComponentType.Capacitor,
+        label: "Capacitor"
+    },
+    [ComponentType.PolarisedCapacitor]: {
+        icon: <PolarisedCapacitorIcon />,
+        type: ComponentType.PolarisedCapacitor,
+        label: "Polarised Capacitor"
+    },
+    [ComponentType.Diode]: {
+        icon: <DiodeIcon />,
+        type: ComponentType.Diode,
+        label: "Diode"
+    },
+    [ComponentType.Led]: {
+        icon: <LEDIcon />,
+        type: ComponentType.Led,
+        label: "LED"
+    },
+    [ComponentType.Zener]: {
+        icon: <ZenerIcon />,
+        type: ComponentType.Zener,
+        label: "Zener"
+    },
+    [ComponentType.Schottky]: {
+        icon: <SchottkyIcon />,
+        type: ComponentType.Schottky,
+        label: "Schottky"
+    },
+    [ComponentType.Tunnel]: {
+        icon: <TunnelIcon />,
+        type: ComponentType.Tunnel,
+        label: "Tunnel"
+    },
+    [ComponentType.PhotoDiode]: {
+        icon: <PhotoDiodeIcon />,
+        type: ComponentType.PhotoDiode,
+        label: "Photo Diode"
+    },
+    [ComponentType.TVSDiode]: {
+        icon: <TVSDiodeIcon />,
+        type: ComponentType.TVSDiode,
+        label: "TVS Diode"
+    },
+    [ComponentType.Varactor]: {
+        icon: <VaractorIcon />,
+        type: ComponentType.Varactor,
+        label: "Varactor"
+    },
+    [ComponentType.Inductor]: {
+        icon: <InductorIcon />,
+        type: ComponentType.Inductor,
+        label: "Inductor"
+    },
+    [ComponentType.Board]: {
+        icon: <InductorIcon />,
+        type: ComponentType.Inductor,
+        label: "Inductor"
+    },
+    [ComponentType.Node]: {
+        icon: <InductorIcon />,
+        type: ComponentType.Inductor,
+        label: "Inductor"
+    },
+};
+
+
 export const STRUCTURE_COMPONENTS: GroupComponent[] = [
     {
         icon: <NodeIcon />,
@@ -103,7 +187,6 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Rheostat,
     ComponentType.Thermistor,
     ComponentType.Inductor,
-    ComponentType.Node,
 ];
 
 

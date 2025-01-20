@@ -11,12 +11,12 @@ import {
 } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, KeyboardEvent, useEffect } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
-import { ComponentEdge, AnalogNode, ComponentState, ComponentType, UnitsType } from "@/types";
+import { ComponentEdge, AnalogNode, ComponentState, ComponentType, UnitsType, StructType } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
 import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
-import { ARRAY_COMPONENTS, ANALOG_COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
+import { ANALOG_COMPONENTS, ARRAY_COMPONENTS, COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
 import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { getComponentProperties, getImageBackgroundDrag, getNewPositionByOverlapping, isPointInBox } from "@/helpers";
@@ -136,7 +136,7 @@ export function BoardFlow() {
         });
 
         const boards = nodes?.filter(
-            (node) => node.type === ComponentType.Board
+            (node) => node.type === StructType.Board
         );
         const board = boards.find((board) => {
             return isPointInBox(
@@ -166,7 +166,7 @@ export function BoardFlow() {
 
         const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color } = getComponentProperties(type, nodes);
 
-        if (ARRAY_COMPONENTS.includes(type)) {
+        if (type as ComponentType && ARRAY_COMPONENTS.includes(type as ComponentType)) {
 
             node = {
                 id: uuid(),
@@ -413,6 +413,7 @@ export function BoardFlow() {
 
     const handleClickMenu: MenuProps['onClick'] = (info) => {
         console.log(info);
+        console.log(Array.from(Object.values(COMPONENTS)));
     };
 
     const handleOnKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
