@@ -71,7 +71,7 @@ export type ComponentData = {
     isReferenceVisible: boolean
     connectedHandles: boolean[]
     color?: string
-    size?: 'small' | 'medium' | 'large'
+    size: 'small' | 'medium' | 'large'
 }
 
 export type GroupComponent = {

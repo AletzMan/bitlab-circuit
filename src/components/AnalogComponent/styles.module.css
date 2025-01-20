@@ -31,23 +31,56 @@
 .value {
     position: absolute;
     font-size: 0.75em;
-    bottom: -4px;
-    left: 0;
 }
 
-.id {
+.value_small {
+    bottom: 2px;
+    right: -4px;
+
+    &.value_90,
+    &.value_270 {
+        left: 45px;
+    }
+}
+
+.value_medium {
+    bottom: -8px;
+    left: 2px;
+
+    &.value_90,
+    &.value_270 {
+        left: 45px;
+    }
+}
+
+.reference {
     position: absolute;
     font-size: 0.8em;
-    top: -8px;
-    right: 0;
     font-style: italic;
     color: var(--reference-color);
 }
 
-.value_90,
-.value_270 {
-    left: 45px;
+.reference_small {
+    top: 2px;
+    left: -4px;
+
+    &.reference_90,
+    &.reference_270 {
+        left: 45px;
+    }
 }
+
+.reference_medium {
+    top: -10px;
+    right: 0;
+
+    &.reference_90,
+    &.reference_270 {
+        left: -8px;
+    }
+}
+
+
 
 .lock {
     position: absolute;
