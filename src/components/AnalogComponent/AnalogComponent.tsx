@@ -74,7 +74,7 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
                 {type === ComponentType.Resistor && <ResistorIcon />}
                 {type === ComponentType.Capacitor && <CapacitorIcon />}
-                {type === ComponentType.CapacitorElectrlytic && <CapacitorElectrolyticIcon />}
+                {type === ComponentType.CapacitorElectrolytic && <CapacitorElectrolyticIcon />}
                 {type === ComponentType.Diode && <DiodeIcon />}
                 {type === ComponentType.Led && <LEDIcon />}
                 {type === ComponentType.Zener && <ZenerIcon />}
