@@ -147,14 +147,14 @@ export const COMPONENTS: Record<ComponentType, GroupComponent> = {
         label: "Inductor"
     },
     [ComponentType.Board]: {
-        icon: <InductorIcon />,
-        type: ComponentType.Inductor,
-        label: "Inductor"
+        icon: <BoardIcon />,
+        type: ComponentType.Board,
+        label: "Board"
     },
     [ComponentType.Node]: {
-        icon: <InductorIcon />,
-        type: ComponentType.Inductor,
-        label: "Inductor"
+        icon: <NodeIcon />,
+        type: ComponentType.Node,
+        label: "Node"
     },
 };
 
@@ -187,6 +187,8 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Rheostat,
     ComponentType.Thermistor,
     ComponentType.Inductor,
+    ComponentType.Node,
+    ComponentType.Board,
 ];
 
 
