@@ -39,7 +39,7 @@ export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
-export function CapacitorElectrolyticIcon(props: SVGProps<SVGSVGElement>) {
+export function PolarisedCapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
             <path d="m409.07 641.83c0 14.105-20.152 14.105-20.152 0v-205.55c-42.32 2.0156-80.609 16.121-112.85 38.289-12.09 2.0156-18.137-12.09-10.078-18.137 38.289-26.199 84.641-40.305 133-40.305 50.383 0 96.73 14.105 135.02 40.305 6.0469 6.0469 0 22.168-12.09 16.121-32.242-22.168-70.535-34.258-112.85-36.273z"></path>
