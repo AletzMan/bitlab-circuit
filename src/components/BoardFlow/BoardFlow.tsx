@@ -16,7 +16,7 @@ import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
 import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
-import { ANALOG_COMPONENTS, ARRAY_COMPONENTS, COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
+import { ELECTRICAL_COMPONENTS, ARRAY_COMPONENTS, COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
 import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { getComponentProperties, getImageBackgroundDrag, getNewPositionByOverlapping, isPointInBox } from "@/helpers";
@@ -597,7 +597,7 @@ export function BoardFlow() {
                                             <label className={styles.label}>Analog</label>
                                             <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
                                             <div className={styles.components}>
-                                                {ANALOG_COMPONENTS.map(component => (
+                                                {ELECTRICAL_COMPONENTS.map(component => (
                                                     <Tooltip key={component.label} placement="top" title={component.label} color="cyan"  >
                                                         <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
                                                             {component.icon}

@@ -1,7 +1,7 @@
 import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon } from "../icons";
 import { ComponentType, GroupComponent } from "../types";
 
-export const ANALOG_COMPONENTS: GroupComponent[] = [
+export const ELECTRICAL_COMPONENTS: GroupComponent[] = [
     {
         icon: <ResistorIcon />,
         type: ComponentType.Resistor,
