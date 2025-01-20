@@ -70,7 +70,8 @@ export type ComponentData = {
     isValueVisible: boolean
     isReferenceVisible: boolean
     connectedHandles: boolean[]
-    color?: string;
+    color?: string
+    size?: 'small' | 'medium' | 'large'
 }
 
 export type GroupComponent = {
