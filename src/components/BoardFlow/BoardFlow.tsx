@@ -32,19 +32,19 @@ const initialNodes: AnalogNode[] = [
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { type: ComponentType.Resistor, value: 1, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'KΩ', has_properties: true, reference: "R1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false] },
+        data: { type: ComponentType.Resistor, value: 1, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'KΩ', has_properties: true, reference: "R1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false], size: 'small' },
         position: { x: 100, y: 170 },
     },
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { type: ComponentType.Capacitor, value: 4.7, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, reference: "C1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false] },
+        data: { type: ComponentType.Capacitor, value: 4.7, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, reference: "C1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false], size: 'small' },
         position: { x: 240, y: 170 },
     },
     {
         id: uuid(),
         type: 'nodeComponent',
-        data: { type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1", isValueVisible: false, isReferenceVisible: false, connectedHandles: [false, false, false, false], color: "var(--foreground-color)" },
+        data: { type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1", isValueVisible: false, isReferenceVisible: false, connectedHandles: [false, false, false, false], color: "var(--foreground-color)", size: 'small' },
         position: { x: 90, y: 90 },
     },
 ];
@@ -164,7 +164,7 @@ export function BoardFlow() {
 
         let node: AnalogNode | undefined;
 
-        const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color, style } = getComponentProperties(type, nodes);
+        const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color, style, size } = getComponentProperties(type, nodes);
 
         if (type as ComponentType && ARRAY_COMPONENTS.includes(type)) {
 
@@ -172,7 +172,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: typeComponent,
                 position,
-                data: { type, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit, prefix, has_properties, reference, isReferenceVisible, isValueVisible, connectedHandles, color },
+                data: { type, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit, prefix, has_properties, reference, isReferenceVisible, isValueVisible, connectedHandles, color, size },
                 parentId: board?.id,
                 style
             };
