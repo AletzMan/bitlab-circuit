@@ -21,14 +21,6 @@ export enum ComponentType {
     Node = 'node',
 }
 
-
-
-export enum StructType {
-    Board = 'board',
-    Node = 'node',
-}
-
-
 export enum OhmType {
     Ohm = 'Ω',
     kiloOhm = 'KΩ',
