@@ -86,8 +86,8 @@ export type ComponentPropertiesDefault = {
 // Mapa para almacenar contadores por tipo
 const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
     [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Rheostat]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Thermistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
+    [ComponentType.Rheostat]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RH", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
+    [ComponentType.Thermistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RT", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.CapacitorElectrolytic]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
     [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
@@ -114,11 +114,6 @@ const typeGroupDiode = new Set<ComponentType>([
     ComponentType.Varactor,
 ]);
 
-const typeGroupResistor = new Set<ComponentType>([
-    ComponentType.Resistor,
-    ComponentType.Rheostat,
-    ComponentType.Thermistor,
-]);
 
 const typeGroupCapacitor = new Set<ComponentType>([
     ComponentType.Capacitor,
@@ -136,8 +131,6 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
     let matchingComponents: AnalogNode[] = [];
     if (typeGroupDiode.has(type)) {
         matchingComponents = components.filter(component => typeGroupDiode.has(component.data.type));
-    } else if (typeGroupResistor.has(type)) {
-        matchingComponents = components.filter(component => typeGroupResistor.has(component.data.type));
     } else if (typeGroupCapacitor.has(type)) {
         matchingComponents = components.filter(component => typeGroupCapacitor.has(component.data.type));
     } else {
@@ -159,7 +152,7 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
     return properties;
 }
 export function reorderComponentReferences(components: AnalogNode[]): AnalogNode[] {
-    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'ResistorGroup' | 'CapacitorGroup', number> = {
+    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup', number> = {
         [ComponentType.Resistor]: 0,
         [ComponentType.Rheostat]: 0,
         [ComponentType.Thermistor]: 0,
@@ -178,8 +171,7 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         [ComponentType.Board]: 0,
         [ComponentType.Node]: 0,
         CapacitorGroup: 0, // Contador para todos los diodos excepto LED
-        DiodeGroup: 0, // Contador para todos los diodos excepto LED
-        ResistorGroup: 0, // Contador para resistores y reóstatos
+        DiodeGroup: 0, // Contador para todos los diodos excepto LED 
     };
 
 
@@ -188,15 +180,12 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
     return components.map((component) => {
         const { type } = component.data;
         const isCapacitorGroup = typeGroupCapacitor.has(type);
-        const isResistorGroup = typeGroupResistor.has(type);
         const isDiodeGroup = typeGroupDiode.has(type) && type !== ComponentType.Led;
 
 
         // Incrementar el contador correspondiente
         if (isDiodeGroup) {
             typeCounters.DiodeGroup += 1;
-        } else if (isResistorGroup) {
-            typeCounters.ResistorGroup += 1;
         } else if (isCapacitorGroup) {
             typeCounters.CapacitorGroup += 1;
         } else {
@@ -207,8 +196,6 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
 
         if (isDiodeGroup) {
             newReference = `D${typeCounters.DiodeGroup}`;
-        } else if (isResistorGroup) {
-            newReference = `R${typeCounters.ResistorGroup}`;
         } else if (isCapacitorGroup) {
             newReference = `C${typeCounters.CapacitorGroup}`;
         } else {
