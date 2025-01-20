@@ -3,7 +3,7 @@ import { ColorPickerProps } from "antd";
 export enum ComponentType {
     Resistor = 'resistor',
     Capacitor = 'capacitor',
-    CapacitorElectrlytic = 'capacitorelectrolytic',
+    CapacitorElectrolytic = 'capacitorelectrolytic',
     Inductor = 'inductor',
     Diode = 'diode',
     Led = "led",
