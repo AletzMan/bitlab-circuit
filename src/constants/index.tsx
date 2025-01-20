@@ -1,4 +1,4 @@
-import { BoardIcon, CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon } from "../icons";
+import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon } from "../icons";
 import { ComponentType, GroupComponent } from "../types";
 
 export const ANALOG_COMPONENTS: GroupComponent[] = [
@@ -23,9 +23,9 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
         label: "Capacitor"
     },
     {
-        icon: <CapacitorElectrolyticIcon />,
-        type: ComponentType.CapacitorElectrolytic,
-        label: "Capacitor Electrlytic"
+        icon: <PolarisedCapacitorIcon />,
+        type: ComponentType.PolarisedCapacitor,
+        label: "Polarised Capacitor"
     },
     {
         icon: <DiodeIcon />,
@@ -91,7 +91,7 @@ export const STRUCTURE_COMPONENTS: GroupComponent[] = [
 export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Resistor,
     ComponentType.Capacitor,
-    ComponentType.CapacitorElectrolytic,
+    ComponentType.PolarisedCapacitor,
     ComponentType.Diode,
     ComponentType.Led,
     ComponentType.Zener,
