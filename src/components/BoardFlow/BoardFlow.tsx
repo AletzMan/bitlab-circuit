@@ -166,7 +166,7 @@ export function BoardFlow() {
 
         const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color, style } = getComponentProperties(type, nodes);
 
-        if (type as ComponentType && ARRAY_COMPONENTS.includes(type as ComponentType)) {
+        if (type as ComponentType && ARRAY_COMPONENTS.includes(type)) {
 
             node = {
                 id: uuid(),
@@ -230,9 +230,6 @@ export function BoardFlow() {
             removeEdge([edge]);
         }
     };
-
-
-
 
     const handleOnEdgesChanges: OnEdgesChange<ComponentEdge> = (changes) => {
         onEdgesChange(changes);
