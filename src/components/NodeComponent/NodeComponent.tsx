@@ -1,10 +1,11 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
-import { AnalogNode, ComponentState, ComponentType } from "@/types";
-import { LockIcon, NodeIcon, UnlockIcon } from "@/icons";
+import { AnalogNode, ComponentState } from "@/types";
+import { LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { CSSProperties, useEffect, useState } from "react";
 import { useTheme } from "@/store";
+import { COMPONENTS } from "@/constants";
 
 
 export function NodeComponent({ data: { type, state, isLock, reference, isReferenceVisible, connectedHandles, color }, selected, id, parentId, }: NodeProps<AnalogNode>) {
@@ -63,7 +64,7 @@ export function NodeComponent({ data: { type, state, isLock, reference, isRefere
             <div className={`${styles.terminal} ${styles.terminal_bottom} ${isConnected[2] && styles.terminal_bottom_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>
             <div className={`${styles.terminal} ${styles.terminal_left} ${isConnected[3] && styles.terminal_left_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>
             <div className={styles.icon} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}>
-                {type === ComponentType.Node && <NodeIcon />}
+                {COMPONENTS[type].icon}
             </div>
             {isReferenceVisible && <span className={`${styles.id} `} >{reference}</span>}
             <Terminal type="source" position={Position.Top} id="1" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[0]} />
