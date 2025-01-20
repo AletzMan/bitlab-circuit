@@ -1,9 +1,10 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
-import { AnalogNode, ComponentState, ComponentType } from "@/types";
-import { PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, LockIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, UnlockIcon, VaractorIcon, ZenerIcon } from "@/icons";
+import { AnalogNode, ComponentState } from "@/types";
+import { LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
+import { COMPONENTS } from "@/constants";
 
 
 export function AnalogComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles }, selected, id, parentId }: NodeProps<AnalogNode>) {
@@ -72,20 +73,7 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
 
             </div>
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
-                {type === ComponentType.Resistor && <ResistorIcon />}
-                {type === ComponentType.Capacitor && <CapacitorIcon />}
-                {type === ComponentType.PolarisedCapacitor && <PolarisedCapacitorIcon />}
-                {type === ComponentType.Diode && <DiodeIcon />}
-                {type === ComponentType.Led && <LEDIcon />}
-                {type === ComponentType.Zener && <ZenerIcon />}
-                {type === ComponentType.Schottky && <SchottkyIcon />}
-                {type === ComponentType.Tunnel && <TunnelIcon />}
-                {type === ComponentType.PhotoDiode && <PhotoDiodeIcon />}
-                {type === ComponentType.TVSDiode && <TVSDiodeIcon />}
-                {type === ComponentType.Varactor && <VaractorIcon />}
-                {type === ComponentType.Rheostat && <RheostatIcon />}
-                {type === ComponentType.Thermistor && <ThermistorIcon />}
-                {type === ComponentType.Inductor && <InductorIcon />}
+                {COMPONENTS[type].icon}
             </div>
             {isValueVisible && <span className={`${styles.value} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
             {isReferenceVisible && <span className={`${styles.id} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }}>{reference}</span>}
