@@ -1,6 +1,6 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
 import { AnalogNode, ComponentState, ComponentType } from "@/types";
-import { CapacitorElectrolyticIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, LockIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, UnlockIcon, VaractorIcon, ZenerIcon } from "@/icons";
+import { PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, LockIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, UnlockIcon, VaractorIcon, ZenerIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
@@ -74,7 +74,7 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
                 {type === ComponentType.Resistor && <ResistorIcon />}
                 {type === ComponentType.Capacitor && <CapacitorIcon />}
-                {type === ComponentType.CapacitorElectrolytic && <CapacitorElectrolyticIcon />}
+                {type === ComponentType.PolarisedCapacitor && <PolarisedCapacitorIcon />}
                 {type === ComponentType.Diode && <DiodeIcon />}
                 {type === ComponentType.Led && <LEDIcon />}
                 {type === ComponentType.Zener && <ZenerIcon />}
