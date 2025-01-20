@@ -24,7 +24,7 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
     },
     {
         icon: <CapacitorElectrolyticIcon />,
-        type: ComponentType.CapacitorElectrlytic,
+        type: ComponentType.CapacitorElectrolytic,
         label: "Capacitor Electrlytic"
     },
     {
@@ -91,7 +91,7 @@ export const STRUCTURE_COMPONENTS: GroupComponent[] = [
 export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Resistor,
     ComponentType.Capacitor,
-    ComponentType.CapacitorElectrlytic,
+    ComponentType.CapacitorElectrolytic,
     ComponentType.Diode,
     ComponentType.Led,
     ComponentType.Zener,
