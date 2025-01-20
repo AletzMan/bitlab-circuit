@@ -11,7 +11,7 @@ import {
 } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, KeyboardEvent, useEffect } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
-import { ComponentEdge, AnalogNode, ComponentState, ComponentType, UnitsType, StructType } from "@/types";
+import { ComponentEdge, AnalogNode, ComponentState, ComponentType, UnitsType } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
@@ -136,7 +136,7 @@ export function BoardFlow() {
         });
 
         const boards = nodes?.filter(
-            (node) => node.type === StructType.Board
+            (node) => node.type === ComponentType.Board
         );
         const board = boards.find((board) => {
             return isPointInBox(
@@ -164,7 +164,7 @@ export function BoardFlow() {
 
         let node: AnalogNode | undefined;
 
-        const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color } = getComponentProperties(type, nodes);
+        const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color, style } = getComponentProperties(type, nodes);
 
         if (type as ComponentType && ARRAY_COMPONENTS.includes(type as ComponentType)) {
 
@@ -173,16 +173,8 @@ export function BoardFlow() {
                 type: typeComponent,
                 position,
                 data: { type, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit, prefix, has_properties, reference, isReferenceVisible, isValueVisible, connectedHandles, color },
-                parentId: board?.id
-            };
-        } else if (type === ComponentType.Board) {
-            node = {
-                id: uuid(),
-                type,
-                position,
-                data: { type: ComponentType.Board, value: 0, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, state: ComponentState.Undefined, unit: UnitsType.Undefined, prefix: '', reference: "", isReferenceVisible, isValueVisible, connectedHandles },
                 parentId: board?.id,
-                style: { height: 200, width: 200 },
+                style
             };
         }
         if (node) {
