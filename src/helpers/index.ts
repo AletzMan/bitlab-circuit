@@ -3,6 +3,7 @@
 import { AnalogNode, ComponentType, GroupComponent, Presets, UnitsType } from "../types";
 import { COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
 import { XYPosition } from "@xyflow/react";
+import { CSSProperties } from "react";
 import { createRoot } from "react-dom/client";
 
 export const isPointInBox = (
@@ -71,32 +72,33 @@ export type ComponentPropertiesDefault = {
     prefix: string,
     unit: UnitsType,
     reference: string
-    type: 'analogComponent' | 'nodeComponent',
+    type: 'analogComponent' | 'nodeComponent' | 'board',
     has_properties: boolean
     isValueVisible: boolean,
     isReferenceVisible: boolean
     connectedHandles: boolean[],
     color?: string
+    style: CSSProperties | undefined
 }
 
 // Mapa para almacenar contadores por tipo
 const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
-    [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Rheostat]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RH", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Thermistor]: { value: 10, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RT", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.PolarisedCapacitor]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Diode]: { value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Led]: { value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Zener]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Schottky]: { value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Tunnel]: { value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.PhotoDiode]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.TVSDiode]: { value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Varactor]: { value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false] },
-    [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'analogComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [] },
-    [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [false, false, false, false], color: 'var(--foreground-color)' },
+    [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Rheostat]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RH", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Thermistor]: { value: 10, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RT", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.PolarisedCapacitor]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Diode]: { value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Led]: { value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Zener]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Schottky]: { value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Tunnel]: { value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.PhotoDiode]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.TVSDiode]: { value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Varactor]: { value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined },
+    [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'board', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [], style: { height: 200, width: 200 } },
+    [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [false, false, false, false], color: 'var(--foreground-color)', style: undefined },
 };
 
 const typeGroupDiode = new Set<ComponentType>([
@@ -142,7 +144,8 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         isReferenceVisible: typePropertiesMap[type].isReferenceVisible,
         isValueVisible: typePropertiesMap[type].isValueVisible,
         connectedHandles: typePropertiesMap[type].connectedHandles,
-        color: typePropertiesMap[type].color
+        color: typePropertiesMap[type].color,
+        style: typePropertiesMap[type].style
     };
     return properties;
 }
