@@ -69,14 +69,12 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
                     {!isLock && <UnlockIcon />}
                     {isLock && <LockIcon />}
                 </div>
-            }<div className={`${selected && styles.box_selected}`}>
-
-            </div>
+            }<div className={`${selected && styles.box_selected}`}></div>
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
                 {COMPONENTS[type].icon}
             </div>
             {isValueVisible && <span className={`${styles.value} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
-            {isReferenceVisible && <span className={`${styles.id} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }}>{reference}</span>}
+            {isReferenceVisible && <span className={`${styles.id} ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
             <Terminal type="source" position={positionTerminals[0]} id="1" isConnectable={!isConnected[0]} />
             <Terminal type="source" position={positionTerminals[1]} id="2" isConnectable={!isConnected[1]} />
         </div>

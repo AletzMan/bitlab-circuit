@@ -4,6 +4,9 @@ import { ColorPickerProps } from "antd";
 
 export enum ComponentType {
     Resistor = 'resistor',
+    Rheostat = "rheostat",
+    Thermistor = "thermistor",
+    Photoresistance = "photoresistance ",
     Capacitor = 'capacitor',
     PolarisedCapacitor = 'polarisedcapacitor',
     Inductor = 'inductor',
@@ -15,8 +18,6 @@ export enum ComponentType {
     PhotoDiode = "photodiode",
     TVSDiode = "tvsdiode",
     Varactor = "varactor",
-    Rheostat = "rheostat",
-    Thermistor = "thermistor",
     Board = 'board',
     Node = 'node',
 }

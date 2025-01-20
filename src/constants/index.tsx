@@ -1,4 +1,4 @@
-import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon } from "../icons";
+import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon } from "../icons";
 import { ComponentType, GroupComponent } from "../types";
 
 export const ANALOG_COMPONENTS: GroupComponent[] = [
@@ -16,6 +16,11 @@ export const ANALOG_COMPONENTS: GroupComponent[] = [
         icon: <ThermistorIcon />,
         type: ComponentType.Thermistor,
         label: "Thermistor"
+    },
+    {
+        icon: <LDRIcon />,
+        type: ComponentType.Photoresistance,
+        label: "Photo Resistance"
     },
     {
         icon: <CapacitorIcon />,
@@ -90,6 +95,11 @@ export const COMPONENTS: Record<ComponentType, GroupComponent> = {
         icon: <ThermistorIcon />,
         type: ComponentType.Thermistor,
         label: "Thermistor"
+    },
+    [ComponentType.Photoresistance]: {
+        icon: <LDRIcon />,
+        type: ComponentType.Photoresistance,
+        label: "Photoresistance "
     },
     [ComponentType.Capacitor]: {
         icon: <CapacitorIcon />,
@@ -174,6 +184,9 @@ export const STRUCTURE_COMPONENTS: GroupComponent[] = [
 
 export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Resistor,
+    ComponentType.Rheostat,
+    ComponentType.Thermistor,
+    ComponentType.Photoresistance,
     ComponentType.Capacitor,
     ComponentType.PolarisedCapacitor,
     ComponentType.Diode,
@@ -184,8 +197,6 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.PhotoDiode,
     ComponentType.TVSDiode,
     ComponentType.Varactor,
-    ComponentType.Rheostat,
-    ComponentType.Thermistor,
     ComponentType.Inductor,
     ComponentType.Node,
     ComponentType.Board,

@@ -31,15 +31,15 @@
 .value {
     position: absolute;
     font-size: 0.75em;
-    bottom: -2px;
+    bottom: -4px;
     left: 0;
 }
 
 .id {
     position: absolute;
     font-size: 0.8em;
-    top: -2px;
-    left: 0;
+    top: -8px;
+    right: 0;
     font-style: italic;
     color: var(--reference-color);
 }
