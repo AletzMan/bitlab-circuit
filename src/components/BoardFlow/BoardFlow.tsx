@@ -581,32 +581,37 @@ export function BoardFlow() {
                                         key: "1",
                                         label: "Components",
                                         showArrow: false,
-                                        children: <>
-                                            <label className={styles.label}>Structure</label>
-                                            <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
+                                        children:
                                             <div className={styles.components}>
-                                                {STRUCTURE_COMPONENTS.map(component => (
-                                                    <Tooltip key={component.label} placement="top" title={component.label} color="cyan" >
-                                                        <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
-                                                            {component.icon}
-                                                        </Button>
-                                                    </Tooltip>
+                                                <div className={styles.components_container}>
+                                                    <label className={styles.label}>Structure</label>
+                                                    <Divider style={{ margin: '0' }} variant="dashed" />
+                                                    <div className={styles.components_group}>
+                                                        {STRUCTURE_COMPONENTS.map(component => (
+                                                            <Tooltip key={component.label} placement="top" title={component.label} color="cyan" >
+                                                                <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
+                                                                    {component.icon}
+                                                                </Button>
+                                                            </Tooltip>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                {ELECTRICAL_COMPONENTS.map(components => (
+                                                    <div className={styles.components_container}>
+                                                        <label className={styles.label}>{components.title}</label>
+                                                        <Divider style={{ margin: '0' }} variant="dashed" />
+                                                        <div className={styles.components_group}>
+                                                            {components.components.map(component => (
+                                                                <Tooltip key={component.label} placement="top" title={component.label} color="cyan" >
+                                                                    <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)} >
+                                                                        {component.icon}
+                                                                    </Button>
+                                                                </Tooltip>
+                                                            ))}
+                                                        </div>
+                                                    </div>
                                                 ))}
                                             </div>
-                                            <Divider style={{ margin: "12px 0 24px 0" }} />
-                                            <label className={styles.label}>Analog</label>
-                                            <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
-                                            <div className={styles.components}>
-                                                {ELECTRICAL_COMPONENTS.map(component => (
-                                                    <Tooltip key={component.label} placement="top" title={component.label} color="cyan"  >
-                                                        <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
-                                                            {component.icon}
-                                                        </Button>
-                                                    </Tooltip>
-                                                ))}
-                                            </div>
-                                            <Divider style={{ margin: "12px 0 24px 0" }} />
-                                        </>
                                     },
                                     {
                                         key: "2",
