@@ -9,6 +9,7 @@ export enum ComponentType {
     Photoresistance = "photoresistance ",
     Capacitor = 'capacitor',
     PolarisedCapacitor = 'polarisedcapacitor',
+    VariableCapacitor = 'variablecapacitor',
     Inductor = 'inductor',
     Diode = 'diode',
     Led = "led",
@@ -72,6 +73,11 @@ export type ComponentData = {
     connectedHandles: boolean[]
     color?: string
     size: 'small' | 'medium' | 'large'
+}
+
+export type ComponentCategories = {
+    title: string,
+    components: GroupComponent[]
 }
 
 export type GroupComponent = {
