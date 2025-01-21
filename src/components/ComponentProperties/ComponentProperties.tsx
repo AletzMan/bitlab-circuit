@@ -53,6 +53,12 @@ export default function ComponentProperties({
         if (node && dataComponent) {
             const checkRoation = dataComponent.rotation === 0 ? 360 : dataComponent.rotation;
             let newRotation = checkRoation - 90;
+            if (dataComponent.flip.x === -1 && dataComponent.flip.y === -1) {
+                newRotation = checkRoation - 90;
+            } else if (dataComponent.flip.x === -1 || dataComponent.flip.y === -1) {
+                newRotation = checkRoation + 90;
+            }
+            newRotation = newRotation === 450 ? 90 : newRotation;
             newRotation = newRotation === 360 ? 0 : newRotation;
             setDataComponent({ ...dataComponent, rotation: newRotation });
             updateNodeData(node.id, { rotation: newRotation });
@@ -63,7 +69,13 @@ export default function ComponentProperties({
     const handleRotateRight = () => {
         if (node && dataComponent) {
             let newRotation = dataComponent.rotation + 90;
+            if (dataComponent.flip.x === -1 && dataComponent.flip.y === -1) {
+                newRotation = dataComponent.rotation + 90;
+            } else if (dataComponent.flip.x === -1 || dataComponent.flip.y === -1) {
+                newRotation = dataComponent.rotation - 90;
+            }
             newRotation = newRotation === 360 ? 0 : newRotation;
+            newRotation = newRotation === -90 ? 270 : newRotation;
             setDataComponent({ ...dataComponent, rotation: newRotation });
             updateNodeData(node.id, { rotation: newRotation });
             updateNodeInternals(node.id);
