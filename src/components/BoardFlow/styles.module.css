@@ -31,9 +31,25 @@
 }
 
 .components {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 0.5em;
+}
+
+.components_group {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 6px;
+}
+
+.components_container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 0 0;
+    border-radius: 4px;
+    border: 1px dashed var(--border-color-tab);
 }
 
 .components_title {
@@ -52,10 +68,8 @@
     top: 40px;
     z-index: 0;
     border-radius: 0;
-    min-width: 270px;
+    width: 278px;
     height: calc(100svh - 40px);
-
-
 }
 
 .tabs {
@@ -70,8 +84,10 @@
 }
 
 .label {
-    padding: 0 0 0 0.5em;
+    padding: 4px 0 4px 8px;
     font-family: var(--font-family);
+    background-color: #FFFFFF10;
+    color: #e5d204;
 }
 
 .minimap {
