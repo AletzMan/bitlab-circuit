@@ -42,20 +42,42 @@ export function LDRIcon(props: SVGProps<SVGSVGElement>) {
 
 export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
-            <path d="m408.86 443.29v198.77c0 11.809-19.68 11.809-19.68 0v-198.77h-108.24c-13.777 0-13.777-19.68 0-19.68h238.13c11.809 0 11.809 19.68 0 19.68z"></path>
-            <path d="m389.18 157.93c0-13.777 19.68-13.777 19.68 0v196.8h110.21c11.809 0 11.809 19.68 0 19.68h-238.13c-13.777 0-13.777-19.68 0-19.68h108.24z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)">
+            <path d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
+            <path d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
         </svg>
     );
 }
 
 export function PolarisedCapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" viewBox="144 144 512 512" transform="rotate(90)" fill="currentColor">
-            <path d="m409.07 641.83c0 14.105-20.152 14.105-20.152 0v-205.55c-42.32 2.0156-80.609 16.121-112.85 38.289-12.09 2.0156-18.137-12.09-10.078-18.137 38.289-26.199 84.641-40.305 133-40.305 50.383 0 96.73 14.105 135.02 40.305 6.0469 6.0469 0 22.168-12.09 16.121-32.242-22.168-70.535-34.258-112.85-36.273z"></path>
-            <path d="m388.91 158.17c0-14.105 20.152-14.105 20.152 0v201.52h112.85c12.09 0 12.09 20.152 0 20.152h-243.84c-14.105 0-14.105-20.152 0-20.152h110.84z"></path>
-            <path d="m491.69 275.05c0-12.09 20.152-12.09 20.152 0v16.121h16.121c12.09 0 12.09 20.152 0 20.152h-16.121v18.137c0 10.078-20.152 10.078-20.152 0v-18.137h-16.121c-12.09 0-12.09-20.152 0-20.152h16.121z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)">
+            <path d="m299.24 377.4h201.52v-12.594h-94.215v-217.57h-12.594v217.57h-94.715z"></path>
+            <path d="m406.55 646.71v-211.02c31.234 1.0078 62.473 9.0703 91.691 24.184l6.0469-11.082c-66-34.258-141.57-34.258-207.57 0l6.0469 11.082c29.223-15.113 60.457-23.176 91.691-24.184l0.003906 211.02z"></path>
+            <path d="m469.52 299.24v19.145h-19.145v12.594h19.145v18.641h12.598v-18.641h18.641v-12.594h-18.641v-19.145z"></path>
+        </svg>
 
+    );
+}
+
+export function VariableCapacitorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(270)">
+            <defs>
+                <marker
+                    id='head'
+                    orient="auto"
+                    markerWidth='5'
+                    markerHeight='3'
+                    refX='0.1'
+                    refY='1.5'
+                >
+                    <path d='M 0 0 V 3 L 5 1.5 Z' fill="currentColor" />
+                </marker>
+            </defs>
+            <path d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
+            <path d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
+            <line x1="270" y1="270" x2="500" y2="500" stroke="currentColor" strokeWidth="12" strokeLinecap="square" marker-end='url(#head)' />
         </svg>
     );
 }
