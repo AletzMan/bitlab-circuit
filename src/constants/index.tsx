@@ -1,83 +1,107 @@
-import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon } from "../icons";
-import { ComponentType, GroupComponent } from "../types";
+import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon, VariableCapacitorIcon } from "../icons";
+import { ComponentCategories, ComponentType, GroupComponent } from "../types";
 
-export const ELECTRICAL_COMPONENTS: GroupComponent[] = [
+export const ELECTRICAL_COMPONENTS: ComponentCategories[] = [
     {
-        icon: <ResistorIcon />,
-        type: ComponentType.Resistor,
-        label: "Resistor"
+        title: "Resisitors",
+        components: [
+            {
+                icon: <ResistorIcon />,
+                type: ComponentType.Resistor,
+                label: "Resistor"
+            },
+            {
+                icon: <RheostatIcon />,
+                type: ComponentType.Rheostat,
+                label: "Rheostat"
+            },
+            {
+                icon: <ThermistorIcon />,
+                type: ComponentType.Thermistor,
+                label: "Thermistor"
+            },
+            {
+                icon: <LDRIcon />,
+                type: ComponentType.Photoresistance,
+                label: "Photo Resistance"
+            },
+        ]
     },
     {
-        icon: <RheostatIcon />,
-        type: ComponentType.Rheostat,
-        label: "Rheostat"
+        title: "Capacitors",
+        components: [
+            {
+                icon: <CapacitorIcon />,
+                type: ComponentType.Capacitor,
+                label: "Capacitor"
+            },
+            {
+                icon: <PolarisedCapacitorIcon />,
+                type: ComponentType.PolarisedCapacitor,
+                label: "Polarised Capacitor"
+            },
+            {
+                icon: <VariableCapacitorIcon />,
+                type: ComponentType.VariableCapacitor,
+                label: "Variable Capacitor"
+            },
+        ]
     },
     {
-        icon: <ThermistorIcon />,
-        type: ComponentType.Thermistor,
-        label: "Thermistor"
+        title: "Diodes",
+        components: [
+            {
+                icon: <DiodeIcon />,
+                type: ComponentType.Diode,
+                label: "Diode"
+            },
+            {
+                icon: <LEDIcon />,
+                type: ComponentType.Led,
+                label: "LED"
+            },
+            {
+                icon: <ZenerIcon />,
+                type: ComponentType.Zener,
+                label: "Zener"
+            },
+            {
+                icon: <SchottkyIcon />,
+                type: ComponentType.Schottky,
+                label: "Schottky"
+            },
+            {
+                icon: <TunnelIcon />,
+                type: ComponentType.Tunnel,
+                label: "Tunnel"
+            },
+            {
+                icon: <PhotoDiodeIcon />,
+                type: ComponentType.PhotoDiode,
+                label: "Photo Diode"
+            },
+            {
+                icon: <TVSDiodeIcon />,
+                type: ComponentType.TVSDiode,
+                label: "TVS Diode"
+            },
+            {
+                icon: <VaractorIcon />,
+                type: ComponentType.Varactor,
+                label: "Varactor"
+            },
+        ]
     },
     {
-        icon: <LDRIcon />,
-        type: ComponentType.Photoresistance,
-        label: "Photo Resistance"
-    },
-    {
-        icon: <CapacitorIcon />,
-        type: ComponentType.Capacitor,
-        label: "Capacitor"
-    },
-    {
-        icon: <PolarisedCapacitorIcon />,
-        type: ComponentType.PolarisedCapacitor,
-        label: "Polarised Capacitor"
-    },
-    {
-        icon: <DiodeIcon />,
-        type: ComponentType.Diode,
-        label: "Diode"
-    },
-    {
-        icon: <LEDIcon />,
-        type: ComponentType.Led,
-        label: "LED"
-    },
-    {
-        icon: <ZenerIcon />,
-        type: ComponentType.Zener,
-        label: "Zener"
-    },
-    {
-        icon: <SchottkyIcon />,
-        type: ComponentType.Schottky,
-        label: "Schottky"
-    },
-    {
-        icon: <TunnelIcon />,
-        type: ComponentType.Tunnel,
-        label: "Tunnel"
-    },
-    {
-        icon: <PhotoDiodeIcon />,
-        type: ComponentType.PhotoDiode,
-        label: "Photo Diode"
-    },
-    {
-        icon: <TVSDiodeIcon />,
-        type: ComponentType.TVSDiode,
-        label: "TVS Diode"
-    },
-    {
-        icon: <VaractorIcon />,
-        type: ComponentType.Varactor,
-        label: "Varactor"
-    },
-    {
-        icon: <InductorIcon />,
-        type: ComponentType.Inductor,
-        label: "Inductor"
+        title: "Inductors",
+        components: [
+            {
+                icon: <InductorIcon />,
+                type: ComponentType.Inductor,
+                label: "Inductor"
+            }
+        ]
     }
-
 ];
 
 export const COMPONENTS: Record<ComponentType, GroupComponent> = {
@@ -110,6 +134,11 @@ export const COMPONENTS: Record<ComponentType, GroupComponent> = {
         icon: <PolarisedCapacitorIcon />,
         type: ComponentType.PolarisedCapacitor,
         label: "Polarised Capacitor"
+    },
+    [ComponentType.VariableCapacitor]: {
+        icon: <VariableCapacitorIcon />,
+        type: ComponentType.VariableCapacitor,
+        label: "Variable Capacitor"
     },
     [ComponentType.Diode]: {
         icon: <DiodeIcon />,
@@ -189,6 +218,7 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Photoresistance,
     ComponentType.Capacitor,
     ComponentType.PolarisedCapacitor,
+    ComponentType.VariableCapacitor,
     ComponentType.Diode,
     ComponentType.Led,
     ComponentType.Zener,
