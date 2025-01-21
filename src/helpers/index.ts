@@ -88,6 +88,7 @@ const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
     [ComponentType.Rheostat]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RH", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
     [ComponentType.Thermistor]: { value: 10, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RT", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
     [ComponentType.Photoresistance]: { value: 10, unit: UnitsType.Ohm, prefix: "KΩ", reference: "LDR", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "medium" },
+    [ComponentType.Potentiometer]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
     [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
     [ComponentType.PolarisedCapacitor]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
     [ComponentType.VariableCapacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "µF", reference: "VC", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
@@ -116,6 +117,11 @@ const typeGroupDiode = new Set<ComponentType>([
 ]);
 
 
+const typeGroupResistor = new Set<ComponentType>([
+    ComponentType.Resistor,
+    ComponentType.Potentiometer,
+]);
+
 const typeGroupCapacitor = new Set<ComponentType>([
     ComponentType.Capacitor,
     ComponentType.PolarisedCapacitor,
@@ -142,6 +148,8 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         matchingComponents = components.filter(component => typeGroupCapacitor.has(component.data.type));
     } else if (typeGroupVariableCapacitor.has(type)) {
         matchingComponents = components.filter(component => typeGroupVariableCapacitor.has(component.data.type));
+    } else if (typeGroupResistor.has(type)) {
+        matchingComponents = components.filter(component => typeGroupResistor.has(component.data.type));
     } else {
         matchingComponents = components.filter(component => component.data.type === type);
     }
@@ -163,11 +171,12 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
     return properties;
 }
 export function reorderComponentReferences(components: AnalogNode[]): AnalogNode[] {
-    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup', number> = {
+    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup', number> = {
         [ComponentType.Resistor]: 0,
         [ComponentType.Rheostat]: 0,
         [ComponentType.Thermistor]: 0,
         [ComponentType.Photoresistance]: 0,
+        [ComponentType.Potentiometer]: 0,
         [ComponentType.Capacitor]: 0,
         [ComponentType.PolarisedCapacitor]: 0,
         [ComponentType.VariableCapacitor]: 0,
@@ -183,9 +192,10 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         [ComponentType.Varactor]: 0,
         [ComponentType.Board]: 0,
         [ComponentType.Node]: 0,
-        CapacitorGroup: 0, // Contador para todos los diodos excepto LED
-        DiodeGroup: 0, // Contador para todos los diodos excepto LED 
-        VariableCapacitorGroup: 0, // Contador para todos los diodos excepto LED 
+        CapacitorGroup: 0,
+        DiodeGroup: 0,
+        VariableCapacitorGroup: 0,
+        ResistorGroup: 0
     };
 
 
@@ -193,6 +203,7 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
 
     return components.map((component) => {
         const { type } = component.data;
+        const isResistorGroup = typeGroupResistor.has(type);
         const isCapacitorGroup = typeGroupCapacitor.has(type);
         const isVariableCapacitorGroup = typeGroupVariableCapacitor.has(type);
         const isDiodeGroup = typeGroupDiode.has(type) && type !== ComponentType.Led;
@@ -205,6 +216,8 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
             typeCounters.CapacitorGroup += 1;
         } else if (isVariableCapacitorGroup) {
             typeCounters.VariableCapacitorGroup += 1;
+        } else if (isResistorGroup) {
+            typeCounters.ResistorGroup += 1;
         } else {
             typeCounters[type] += 1;
         }
@@ -217,6 +230,8 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
             newReference = `C${typeCounters.CapacitorGroup}`;
         } else if (isVariableCapacitorGroup) {
             newReference = `VC${typeCounters.VariableCapacitorGroup}`;
+        } else if (isResistorGroup) {
+            newReference = `R${typeCounters.ResistorGroup}`;
         } else {
             newReference = `${typePropertiesMap[type].reference.toUpperCase()}${typeCounters[type]}`;
         }

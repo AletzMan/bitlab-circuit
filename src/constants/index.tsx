@@ -1,4 +1,4 @@
-import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon, VariableCapacitorIcon, TrimmerCapacitorIcon } from "../icons";
+import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon, VariableCapacitorIcon, TrimmerCapacitorIcon, PotentiometerIcon } from "../icons";
 import { ComponentCategories, ComponentType, GroupComponent } from "../types";
 
 export const ELECTRICAL_COMPONENTS: ComponentCategories[] = [
@@ -25,6 +25,11 @@ export const ELECTRICAL_COMPONENTS: ComponentCategories[] = [
                 type: ComponentType.Photoresistance,
                 label: "Photo Resistance"
             },
+            {
+                icon: <PotentiometerIcon />,
+                type: ComponentType.Potentiometer,
+                label: "Potentiometer "
+            }
         ]
     },
     {
@@ -130,6 +135,11 @@ export const COMPONENTS: Record<ComponentType, GroupComponent> = {
         type: ComponentType.Photoresistance,
         label: "Photoresistance "
     },
+    [ComponentType.Potentiometer]: {
+        icon: <PotentiometerIcon />,
+        type: ComponentType.Potentiometer,
+        label: "Potentiometer "
+    },
     [ComponentType.Capacitor]: {
         icon: <CapacitorIcon />,
         type: ComponentType.Capacitor,
@@ -226,6 +236,7 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Rheostat,
     ComponentType.Thermistor,
     ComponentType.Photoresistance,
+    ComponentType.Potentiometer,
     ComponentType.Capacitor,
     ComponentType.PolarisedCapacitor,
     ComponentType.VariableCapacitor,

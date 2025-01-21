@@ -7,6 +7,7 @@ export enum ComponentType {
     Rheostat = "rheostat",
     Thermistor = "thermistor",
     Photoresistance = "photoresistance ",
+    Potentiometer = "potentiometer",
     Capacitor = 'capacitor',
     PolarisedCapacitor = 'polarisedcapacitor',
     VariableCapacitor = 'variablecapacitor',
