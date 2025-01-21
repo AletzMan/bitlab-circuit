@@ -10,6 +10,7 @@ export enum ComponentType {
     Capacitor = 'capacitor',
     PolarisedCapacitor = 'polarisedcapacitor',
     VariableCapacitor = 'variablecapacitor',
+    TrimmerCapacitor = 'trimmercapacitor',
     Inductor = 'inductor',
     Diode = 'diode',
     Led = "led",

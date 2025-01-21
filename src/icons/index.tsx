@@ -82,6 +82,28 @@ export function VariableCapacitorIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(270)">
+            <defs>
+                <marker
+                    id='head'
+                    orient="auto"
+                    markerWidth='5'
+                    markerHeight='3'
+                    refX='0.1'
+                    refY='1.5'
+                >
+                    <path d='M 0 0 V 3 L 5 1.5 Z' fill="currentColor" />
+                </marker>
+            </defs>
+            <path d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
+            <path d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
+            <line x1="270" y1="270" x2="500" y2="500" stroke="currentColor" strokeWidth="12" strokeLinecap="square" marker-end='url(#head)' />
+        </svg>
+    );
+}
+
 export function InductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 512 512" >

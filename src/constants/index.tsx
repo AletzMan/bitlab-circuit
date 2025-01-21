@@ -1,4 +1,4 @@
-import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon, VariableCapacitorIcon } from "../icons";
+import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon, VariableCapacitorIcon, TrimmerCapacitorIcon } from "../icons";
 import { ComponentCategories, ComponentType, GroupComponent } from "../types";
 
 export const ELECTRICAL_COMPONENTS: ComponentCategories[] = [
@@ -45,6 +45,11 @@ export const ELECTRICAL_COMPONENTS: ComponentCategories[] = [
                 type: ComponentType.VariableCapacitor,
                 label: "Variable Capacitor"
             },
+            {
+                icon: <TrimmerCapacitorIcon />,
+                type: ComponentType.TrimmerCapacitor,
+                label: "Trimmer Capacitor"
+            }
         ]
     },
     {
@@ -140,6 +145,11 @@ export const COMPONENTS: Record<ComponentType, GroupComponent> = {
         type: ComponentType.VariableCapacitor,
         label: "Variable Capacitor"
     },
+    [ComponentType.TrimmerCapacitor]: {
+        icon: <TrimmerCapacitorIcon />,
+        type: ComponentType.TrimmerCapacitor,
+        label: "Trimmer Capacitor"
+    },
     [ComponentType.Diode]: {
         icon: <DiodeIcon />,
         type: ComponentType.Diode,
@@ -219,6 +229,7 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.Capacitor,
     ComponentType.PolarisedCapacitor,
     ComponentType.VariableCapacitor,
+    ComponentType.TrimmerCapacitor,
     ComponentType.Diode,
     ComponentType.Led,
     ComponentType.Zener,
