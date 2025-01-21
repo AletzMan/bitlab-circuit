@@ -1,5 +1,5 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
-import { AnalogNode, ComponentState } from "@/types";
+import { AnalogNode, ComponentState, ComponentType } from "@/types";
 import { LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
@@ -49,18 +49,65 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
         });
     };
 
-    const positionTerminals = useMemo(() => {
+    const positionTerminals: Position[] = useMemo(() => {
         switch (rotation) {
-            case 90:
-                return [Position.Bottom, Position.Top];
-            case 180:
-                return [Position.Left, Position.Right];
-            case 270:
-                return [Position.Top, Position.Bottom];
+            case 0: {
+                let tempRotation: Position[] = [Position.Left, Position.Right, Position.Top];
+                if (flip.x === -1 && flip.y === 1) {
+                    tempRotation = [Position.Right, Position.Left, Position.Top];
+                }
+                if (flip.y === -1 && flip.x === 1) {
+                    tempRotation = [Position.Left, Position.Right, Position.Bottom];
+                }
+                if (flip.y === -1 && flip.x === -1) {
+                    tempRotation = [Position.Right, Position.Left, Position.Bottom];
+                }
+                return tempRotation;
+            }
+            case 90: {
+                let tempRotation: Position[] = [Position.Top, Position.Bottom, Position.Right];
+                if (flip.x === -1 && flip.y === 1) {
+                    tempRotation = [Position.Top, Position.Bottom, Position.Left];
+                }
+                if (flip.y === -1 && flip.x === 1) {
+                    tempRotation = [Position.Bottom, Position.Top, Position.Right];
+                }
+                if (flip.y === -1 && flip.x === -1) {
+                    tempRotation = [Position.Bottom, Position.Top, Position.Left];
+                }
+                return tempRotation;
+            }
+            case 180: {
+                let tempRotation: Position[] = [Position.Right, Position.Left, Position.Bottom];
+                if (flip.x === -1 && flip.y === 1) {
+                    tempRotation = [Position.Left, Position.Right, Position.Bottom];
+                }
+                if (flip.y === -1 && flip.x === 1) {
+                    tempRotation = [Position.Right, Position.Left, Position.Top];
+                }
+                if (flip.y === -1 && flip.x === -1) {
+                    tempRotation = [Position.Left, Position.Right, Position.Top];
+                }
+                return tempRotation;
+            }
+            case 270: {
+                let tempRotation: Position[] = [Position.Bottom, Position.Top, Position.Left];
+                if (flip.x === -1 && flip.y === 1) {
+                    tempRotation = [Position.Bottom, Position.Top, Position.Right];
+                }
+                if (flip.y === -1 && flip.x === 1) {
+                    tempRotation = [Position.Top, Position.Bottom, Position.Left];
+                }
+                if (flip.y === -1 && flip.x === -1) {
+                    tempRotation = [Position.Top, Position.Bottom, Position.Right];
+                }
+                return tempRotation;
+            }
+
             default:
-                return [Position.Right, Position.Left];
+                return [Position.Right, Position.Left, Position.Top];
         }
-    }, [rotation]);
+    }, [rotation, flip.x, flip.y]);
 
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
@@ -73,10 +120,11 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
                 {COMPONENTS[type].icon}
             </div>
-            {isValueVisible && <span className={`${styles.value}  ${size === 'small' && styles.value_small} ${size === 'medium' && styles.value_medium} ${size === 'large' && styles.value_large}  ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
-            {isReferenceVisible && <span className={`${styles.reference} ${size === 'small' && styles.reference_small} ${size === 'medium' && styles.reference_medium} ${size === 'large' && styles.reference_large} ${rotation === 90 && styles.reference_90}   ${rotation === 270 && styles.reference_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
             <Terminal type="source" position={positionTerminals[0]} id="1" isConnectable={!isConnected[0]} />
             <Terminal type="source" position={positionTerminals[1]} id="2" isConnectable={!isConnected[1]} />
+            {type === ComponentType.Potentiometer && <Terminal type="source" position={positionTerminals[2]} id="3" isConnectable={!isConnected[2]} />}
+            {isValueVisible && <span className={`${styles.value}  ${size === 'small' && styles.value_small} ${size === 'medium' && styles.value_medium} ${size === 'large' && styles.value_large}  ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
+            {isReferenceVisible && <span className={`${styles.reference} ${size === 'small' && styles.reference_small} ${size === 'medium' && styles.reference_medium} ${size === 'large' && styles.reference_large} ${rotation === 90 && styles.reference_90}   ${rotation === 270 && styles.reference_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
         </div>
     );
 }
