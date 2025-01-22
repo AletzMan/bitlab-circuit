@@ -102,6 +102,14 @@ const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
     [ComponentType.PhotoDiode]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
     [ComponentType.TVSDiode]: { value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
     [ComponentType.Varactor]: { value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorBJT_NPN]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorBJT_PNP]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorJFET_N]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorJFET_P]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_N_Enhanced]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_P_Enhanced]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_N_Depletion]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_P_Depletion]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
     [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'board', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [], style: { height: 200, width: 200 }, size: "small" },
     [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [false, false, false, false], color: 'var(--foreground-color)', style: undefined, size: "small" },
 };
@@ -133,6 +141,18 @@ const typeGroupVariableCapacitor = new Set<ComponentType>([
     ComponentType.TrimmerCapacitor,
 ]);
 
+export const typeGroupTransistor = new Set<ComponentType>(
+    [
+        ComponentType.TransistorBJT_NPN,
+        ComponentType.TransistorBJT_PNP,
+        ComponentType.TransistorJFET_N,
+        ComponentType.TransistorJFET_P,
+        ComponentType.TransistorMOSFET_N_Enhanced,
+        ComponentType.TransistorMOSFET_P_Enhanced,
+        ComponentType.TransistorMOSFET_N_Depletion,
+        ComponentType.TransistorMOSFET_P_Depletion,
+    ]
+);
 
 
 export function getComponentProperties(type: ComponentType, components: AnalogNode[]): ComponentPropertiesDefault {
@@ -171,7 +191,7 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
     return properties;
 }
 export function reorderComponentReferences(components: AnalogNode[]): AnalogNode[] {
-    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup', number> = {
+    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup' | 'TransistorGroup', number> = {
         [ComponentType.Resistor]: 0,
         [ComponentType.Rheostat]: 0,
         [ComponentType.Thermistor]: 0,
@@ -190,12 +210,21 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         [ComponentType.PhotoDiode]: 0,
         [ComponentType.TVSDiode]: 0,
         [ComponentType.Varactor]: 0,
+        [ComponentType.TransistorBJT_NPN]: 0,
+        [ComponentType.TransistorBJT_PNP]: 0,
+        [ComponentType.TransistorJFET_N]: 0,
+        [ComponentType.TransistorJFET_P]: 0,
+        [ComponentType.TransistorMOSFET_N_Enhanced]: 0,
+        [ComponentType.TransistorMOSFET_P_Enhanced]: 0,
+        [ComponentType.TransistorMOSFET_N_Depletion]: 0,
+        [ComponentType.TransistorMOSFET_P_Depletion]: 0,
         [ComponentType.Board]: 0,
         [ComponentType.Node]: 0,
         CapacitorGroup: 0,
         DiodeGroup: 0,
         VariableCapacitorGroup: 0,
-        ResistorGroup: 0
+        ResistorGroup: 0,
+        TransistorGroup: 0,
     };
 
 
@@ -207,6 +236,7 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         const isCapacitorGroup = typeGroupCapacitor.has(type);
         const isVariableCapacitorGroup = typeGroupVariableCapacitor.has(type);
         const isDiodeGroup = typeGroupDiode.has(type) && type !== ComponentType.Led;
+        const isTransistorGroup = typeGroupTransistor.has(type);
 
 
         // Incrementar el contador correspondiente
@@ -218,6 +248,8 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
             typeCounters.VariableCapacitorGroup += 1;
         } else if (isResistorGroup) {
             typeCounters.ResistorGroup += 1;
+        } else if (isTransistorGroup) {
+            typeCounters.TransistorGroup += 1;
         } else {
             typeCounters[type] += 1;
         }
@@ -232,6 +264,8 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
             newReference = `VC${typeCounters.VariableCapacitorGroup}`;
         } else if (isResistorGroup) {
             newReference = `R${typeCounters.ResistorGroup}`;
+        } else if (isTransistorGroup) {
+            newReference = `Q${typeCounters.TransistorGroup}`;
         } else {
             newReference = `${typePropertiesMap[type].reference.toUpperCase()}${typeCounters[type]}`;
         }

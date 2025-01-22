@@ -1,4 +1,4 @@
-import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon, VariableCapacitorIcon, TrimmerCapacitorIcon, PotentiometerIcon } from "../icons";
+import { BoardIcon, PolarisedCapacitorIcon, CapacitorIcon, DiodeIcon, InductorIcon, LEDIcon, NodeIcon, PhotoDiodeIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TunnelIcon, VaractorIcon, ZenerIcon, LDRIcon, VariableCapacitorIcon, TrimmerCapacitorIcon, PotentiometerIcon, BJTNPNIcon, BJTPNPIcon, JFETNIcon, JFETPIcon, NChainEnhMOSFETIcon, PChainEnhMOSFETIcon, NChainDepMOSFETIcon, PChainDepMOSFETIcon } from "../icons";
 import { ComponentCategories, ComponentType, GroupComponent } from "../types";
 
 export const ELECTRICAL_COMPONENTS: ComponentCategories[] = [
@@ -111,6 +111,51 @@ export const ELECTRICAL_COMPONENTS: ComponentCategories[] = [
                 label: "Inductor"
             }
         ]
+    },
+    {
+        title: "Transistors",
+        components: [
+            {
+                icon: <BJTNPNIcon />,
+                type: ComponentType.TransistorBJT_NPN,
+                label: "BJT NPN"
+            },
+            {
+                icon: <BJTPNPIcon />,
+                type: ComponentType.TransistorBJT_PNP,
+                label: "BJT PNP"
+            },
+            {
+                icon: <JFETNIcon />,
+                type: ComponentType.TransistorJFET_N,
+                label: "JFET N",
+            },
+            {
+                icon: <JFETPIcon />,
+                type: ComponentType.TransistorJFET_P,
+                label: "JFET P",
+            },
+            {
+                icon: <NChainEnhMOSFETIcon />,
+                type: ComponentType.TransistorMOSFET_N_Enhanced,
+                label: "MOSFET N-Enhanced"
+            },
+            {
+                icon: <PChainEnhMOSFETIcon />,
+                type: ComponentType.TransistorMOSFET_P_Enhanced,
+                label: "MOSFET P-Enhanced"
+            },
+            {
+                icon: <NChainDepMOSFETIcon />,
+                type: ComponentType.TransistorMOSFET_N_Depletion,
+                label: "MOSFET N-Depletion"
+            },
+            {
+                icon: <PChainDepMOSFETIcon />,
+                type: ComponentType.TransistorMOSFET_P_Depletion,
+                label: "MOSFET P-Depletion"
+            },
+        ]
     }
 ];
 
@@ -205,6 +250,46 @@ export const COMPONENTS: Record<ComponentType, GroupComponent> = {
         type: ComponentType.Inductor,
         label: "Inductor"
     },
+    [ComponentType.TransistorBJT_NPN]: {
+        icon: <BJTNPNIcon />,
+        type: ComponentType.TransistorBJT_NPN,
+        label: "BJT NPN"
+    },
+    [ComponentType.TransistorBJT_PNP]: {
+        icon: <BJTPNPIcon />,
+        type: ComponentType.TransistorBJT_PNP,
+        label: "BJT PNP"
+    },
+    [ComponentType.TransistorJFET_N]: {
+        icon: <JFETNIcon />,
+        type: ComponentType.TransistorJFET_N,
+        label: "JFET N-Chain"
+    },
+    [ComponentType.TransistorJFET_P]: {
+        icon: <JFETPIcon />,
+        type: ComponentType.TransistorJFET_P,
+        label: "JFET N-Chain"
+    },
+    [ComponentType.TransistorMOSFET_N_Enhanced]: {
+        icon: <NChainEnhMOSFETIcon />,
+        type: ComponentType.TransistorMOSFET_N_Enhanced,
+        label: "MOSFET N-Enhanced"
+    },
+    [ComponentType.TransistorMOSFET_P_Enhanced]: {
+        icon: <PChainEnhMOSFETIcon />,
+        type: ComponentType.TransistorMOSFET_P_Enhanced,
+        label: "MOSFET P-Enhanced"
+    },
+    [ComponentType.TransistorMOSFET_N_Depletion]: {
+        icon: <NChainDepMOSFETIcon />,
+        type: ComponentType.TransistorMOSFET_N_Depletion,
+        label: "MOSFET N-Depletion"
+    },
+    [ComponentType.TransistorMOSFET_P_Depletion]: {
+        icon: <PChainDepMOSFETIcon />,
+        type: ComponentType.TransistorMOSFET_P_Depletion,
+        label: "MOSFET P-Depletion"
+    },
     [ComponentType.Board]: {
         icon: <BoardIcon />,
         type: ComponentType.Board,
@@ -250,6 +335,14 @@ export const ARRAY_COMPONENTS: ComponentType[] = [
     ComponentType.TVSDiode,
     ComponentType.Varactor,
     ComponentType.Inductor,
+    ComponentType.TransistorBJT_NPN,
+    ComponentType.TransistorBJT_PNP,
+    ComponentType.TransistorJFET_N,
+    ComponentType.TransistorJFET_P,
+    ComponentType.TransistorMOSFET_N_Enhanced,
+    ComponentType.TransistorMOSFET_P_Enhanced,
+    ComponentType.TransistorMOSFET_N_Depletion,
+    ComponentType.TransistorMOSFET_P_Depletion,
     ComponentType.Node,
     ComponentType.Board,
 ];
