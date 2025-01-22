@@ -10,7 +10,7 @@ body {
 :root {
     --foreground-color: #000000;
     --reference-color: #690303;
-    --background-color: #292929;
+    --background-color: #f3f2f2;
     --background-color-tab: #ffffff;
     --background-color-tab-inactive: #e6e6e6;
     --foreground-color-tab-inactive: #909090;
@@ -18,6 +18,7 @@ body {
     --border-color-tab: #d5d5d5;
     --board-background-color: #fbfbfb;
     --label-color: #343434;
+    --title-color: #717171;
     --label-second-color: #343434;
     --primary-color: #2db8d4;
     --border-color: #DEDEDE;
@@ -47,6 +48,7 @@ body {
 [data-theme="dark"] {
     --foreground-color: #FFFFFF;
     --reference-color: #c39950;
+    --background-color: #292929;
     --fill-minimap-node: #e4e4e4;
     --label-color: #a4eeff;
     --label-second-color: #c2c2c2;
@@ -103,7 +105,6 @@ body {
     min-height: 0px;
     min-width: 0px;
 }
-
 
 .react-flow__node {
     padding: 0;
@@ -163,6 +164,10 @@ body {
     background-color: var(--background-color);
 }
 
+:where(.css-dev-only-do-not-override-7ny38l).ant-card-bordered {
+    border: 1px solid var(--border-color);
+}
+
 :where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab,
 :where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab,
 :where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab,
@@ -171,6 +176,9 @@ body {
     color: var(--foreground-color-tab-inactive);
 }
 
+:where(.css-dev-only-do-not-override-7ny38l).ant-collapse .ant-collapse-content {
+    background-color: var(--background-color);
+}
 
 
 :where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab-active,
@@ -231,6 +239,10 @@ body {
 
 .react-flow__minimap-mask {
     fill: var(--fill-minimap-node-mask);
+}
+
+:where(.css-dev-only-do-not-override-7ny38l).ant-card {
+    background-color: var(--background-color);
 }
 
 :where(.css-dev-only-do-not-override-poerbe).ant-collapse,
