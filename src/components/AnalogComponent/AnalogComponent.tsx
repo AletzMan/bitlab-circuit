@@ -1,13 +1,13 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
 import { AnalogNode, ComponentState, ComponentType } from "@/types";
-import { LockIcon, UnlockIcon } from "@/icons";
+import { LEDIcon, LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
 import { COMPONENTS } from "@/constants";
 
 
-export function AnalogComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function AnalogComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size, color }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -118,7 +118,10 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
                 </div>
             }<div className={`${selected && styles.box_selected}`}></div>
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
-                {COMPONENTS[type].icon}
+                {COMPONENTS[type].type === ComponentType.Led
+                    ? <LEDIcon color_led={color} />
+                    : COMPONENTS[type].icon
+                }
             </div>
             <Terminal type="source" position={positionTerminals[0]} id="1" isConnectable={!isConnected[0]} />
             <Terminal type="source" position={positionTerminals[1]} id="2" isConnectable={!isConnected[1]} />
