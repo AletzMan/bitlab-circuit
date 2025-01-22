@@ -50,72 +50,66 @@ export function TransistorComponent({ data: { type, value, rotation, flip, state
     };
 
     const positionTerminals: { position: Position[], adjustment: CSSProperties[] } = useMemo(() => {
+        let tempRotation: Position[] = [];
+        let adjustment: CSSProperties[] = [];
         switch (rotation) {
             case 0: {
-                let tempRotation: Position[] = [Position.Left, Position.Top, Position.Bottom];
-                let adjustment: CSSProperties[] = [{ top: 'calc(50% + 6px)' }, { left: 'calc(50% + 5px)' }, { left: 'calc(50% + 5px)' }];
+                tempRotation = [Position.Left, Position.Top, Position.Bottom];
+                adjustment = [{ top: 'calc(50% + 6px)' }, { left: 'calc(50% + 5px)' }, { left: 'calc(50% + 5px)' }];
                 if (flip.x === -1 && flip.y === 1) {
-                    tempRotation = [Position.Right, Position.Left, Position.Top];
-                    adjustment = [];
-                }
-                if (flip.y === -1 && flip.x === 1) {
-                    tempRotation = [Position.Left, Position.Right, Position.Bottom];
-                    adjustment = [];
-                }
-                if (flip.y === -1 && flip.x === -1) {
-                    tempRotation = [Position.Right, Position.Left, Position.Bottom];
-                    adjustment = [];
+                    tempRotation = [Position.Right, Position.Top, Position.Bottom];
+                    adjustment = [{ top: 'calc(50% + 6px)' }, { left: 'calc(50% - 5px)' }, { left: 'calc(50% - 5px)' }];
+                } else if (flip.y === -1 && flip.x === 1) {
+                    tempRotation = [Position.Left, Position.Bottom, Position.Top];
+                    adjustment = [{ top: 'calc(50% - 6px)' }, { left: 'calc(50% + 5px)' }, { left: 'calc(50% + 5px)' }];
+                } else if (flip.y === -1 && flip.x === -1) {
+                    tempRotation = [Position.Right, Position.Bottom, Position.Top];
+                    adjustment = [{ top: 'calc(50% - 6px)' }, { left: 'calc(50% - 5px)' }, { left: 'calc(50% - 5px)' }];
                 }
                 return { position: tempRotation, adjustment };
             }
             case 90: {
-                let tempRotation: Position[] = [Position.Top, Position.Right, Position.Left];
-                let adjustment: CSSProperties[] = [];
+                tempRotation = [Position.Top, Position.Right, Position.Left];
+                adjustment = [{ left: 'calc(50% - 6px)' }, { top: 'calc(50% + 5px)' }, { top: 'calc(50% + 5px)' }];
                 if (flip.x === -1 && flip.y === 1) {
-                    tempRotation = [Position.Top, Position.Bottom, Position.Left];
-                    adjustment = [];
-                }
-                if (flip.y === -1 && flip.x === 1) {
-                    tempRotation = [Position.Bottom, Position.Top, Position.Right];
-                    adjustment = [];
-                }
-                if (flip.y === -1 && flip.x === -1) {
-                    tempRotation = [Position.Bottom, Position.Top, Position.Left];
-                    adjustment = [];
+                    tempRotation = [Position.Top, Position.Left, Position.Right];
+                    adjustment = [{ left: 'calc(50% + 6px)' }, { top: 'calc(50% + 5px)' }, { top: 'calc(50% + 5px)' }];
+                } else if (flip.y === -1 && flip.x === 1) {
+                    tempRotation = [Position.Bottom, Position.Right, Position.Left];
+                    adjustment = [{ left: 'calc(50% - 6px)' }, { top: 'calc(50% - 5px)' }, { top: 'calc(50% - 5px)' }];
+                } else if (flip.y === -1 && flip.x === -1) {
+                    tempRotation = [Position.Bottom, Position.Left, Position.Right];
+                    adjustment = [{ left: 'calc(50% + 6px)' }, { top: 'calc(50% - 5px)' }, { top: 'calc(50% - 5px)' }];
                 }
                 return { position: tempRotation, adjustment };
             }
             case 180: {
-                let tempRotation: Position[] = [Position.Right, Position.Left, Position.Bottom];
-                let adjustment: CSSProperties[] = [];
+                tempRotation = [Position.Right, Position.Bottom, Position.Top];
+                adjustment = [{ top: 'calc(50% - 6px)' }, { left: 'calc(50% - 5px )' }, { left: 'calc(50% - 5px)' }];
                 if (flip.x === -1 && flip.y === 1) {
-                    tempRotation = [Position.Left, Position.Right, Position.Bottom];
-                    adjustment = [];
-                }
-                if (flip.y === -1 && flip.x === 1) {
-                    tempRotation = [Position.Right, Position.Left, Position.Top];
-                    adjustment = [];
-                }
-                if (flip.y === -1 && flip.x === -1) {
-                    tempRotation = [Position.Left, Position.Right, Position.Top];
-                    adjustment = [];
+                    tempRotation = [Position.Left, Position.Bottom, Position.Top];
+                    adjustment = [{ top: 'calc(50% - 6px)' }, { left: 'calc(50% + 5px )' }, { left: 'calc(50% + 5px)' }];
+                } else if (flip.y === -1 && flip.x === 1) {
+                    tempRotation = [Position.Right, Position.Top, Position.Bottom];
+                    adjustment = [{ top: 'calc(50% + 6px)' }, { left: 'calc(50% - 5px )' }, { left: 'calc(50% - 5px)' }];
+                } else if (flip.y === -1 && flip.x === -1) {
+                    tempRotation = [Position.Left, Position.Top, Position.Bottom];
+                    adjustment = [{ top: 'calc(50% + 6px)' }, { left: 'calc(50% + 5px )' }, { left: 'calc(50% + 5px)' }];
                 }
                 return { position: tempRotation, adjustment };
             }
             case 270: {
-                let tempRotation: Position[] = [Position.Bottom, Position.Top, Position.Left];
-                let adjustment: CSSProperties[] = [];
+                tempRotation = [Position.Bottom, Position.Left, Position.Right];
+                adjustment = [{ left: 'calc(50% + 6px)' }, { top: 'calc(50% - 5px )' }, { top: 'calc(50% - 5px)' }];
                 if (flip.x === -1 && flip.y === 1) {
-                    tempRotation = [Position.Bottom, Position.Top, Position.Right];
-                    adjustment = [];
-                }
-                if (flip.y === -1 && flip.x === 1) {
-                    tempRotation = [Position.Top, Position.Bottom, Position.Left];
-                    adjustment = [];
-                }
-                if (flip.y === -1 && flip.x === -1) {
-                    tempRotation = [Position.Top, Position.Bottom, Position.Right];
-                    adjustment = [];
+                    tempRotation = [Position.Bottom, Position.Right, Position.Left];
+                    adjustment = [{ left: 'calc(50% - 6px)' }, { top: 'calc(50% - 5px )' }, { top: 'calc(50% - 5px)' }];
+                } else if (flip.y === -1 && flip.x === 1) {
+                    tempRotation = [Position.Top, Position.Left, Position.Right];
+                    adjustment = [{ left: 'calc(50% + 6px)' }, { top: 'calc(50% + 5px )' }, { top: 'calc(50% + 5px)' }];
+                } else if (flip.y === -1 && flip.x === -1) {
+                    tempRotation = [Position.Top, Position.Right, Position.Left];
+                    adjustment = [{ left: 'calc(50% - 6px)' }, { top: 'calc(50% + 5px )' }, { top: 'calc(50% + 5px)' }];
                 }
                 return { position: tempRotation, adjustment };
             }
@@ -124,6 +118,8 @@ export function TransistorComponent({ data: { type, value, rotation, flip, state
                 return { position: [Position.Right, Position.Left, Position.Top], adjustment: [] };
         }
     }, [rotation, flip.x, flip.y]);
+
+    console.log(Boolean(flip.x));
 
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
@@ -139,6 +135,9 @@ export function TransistorComponent({ data: { type, value, rotation, flip, state
                     : COMPONENTS[type].icon
                 }
             </div>
+            {<p style={{ fontSize: '0.4em' }}>{`Rotation: ${rotation}`}</p>}
+            {<p style={{ fontSize: '0.4em' }}>{`Flip X: ${flip.x}`}</p>}
+            {<p style={{ fontSize: '0.4em' }}>{`Flip Y: ${flip.y}`}</p>}
             <Terminal type="source" position={positionTerminals.position[0]} id="1" isConnectable={!isConnected[0]} style={positionTerminals.adjustment[0]} />
             <Terminal type="source" position={positionTerminals.position[1]} id="2" isConnectable={!isConnected[1]} style={positionTerminals.adjustment[1]} />
             {<Terminal type="source" position={positionTerminals.position[2]} id="3" isConnectable={!isConnected[2]} style={positionTerminals.adjustment[2]} />}
