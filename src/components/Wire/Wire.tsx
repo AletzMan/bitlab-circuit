@@ -13,12 +13,12 @@ export function Wire({ sourceX, sourceY, targetX, targetY, sourcePosition, targe
         targetY,
         sourcePosition,
         targetPosition,
-        borderRadius: 2, offset: 18
+        borderRadius: 2, offset: 18,
     });
 
 
 
     return (
-        <BaseEdge path={d} className={styles.wire} style={{ "--wire-color": ((data?.color === "#000000" || data?.color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((data?.color.toLowerCase() === "#ffffff" || data?.color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : data?.color } as CSSProperties} type="smoothstep" />
+        <BaseEdge interactionWidth={5} path={d} className={styles.wire} style={{ "--wire-color": ((data?.color === "#000000" || data?.color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((data?.color.toLowerCase() === "#ffffff" || data?.color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : data?.color } as CSSProperties} type="smoothstep" />
     );
 };
