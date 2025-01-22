@@ -87,7 +87,7 @@ export function VariableCapacitorIcon(props: SVGProps<SVGSVGElement>) {
             </defs>
             <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
             <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
-            <line x1="270" y1="270" x2="500" y2="500" stroke="currentColor" strokeWidth={4 * STROKE_WIDTH} strokeLinecap="square" marker-end='url(#head)' />
+            <line x1="270" y1="270" x2="500" y2="500" stroke="currentColor" strokeWidth={4 * STROKE_WIDTH} strokeLinecap="square" markerEnd='url(#head)' />
         </svg>
     );
 }
@@ -109,7 +109,7 @@ export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
             </defs>
             <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
             <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
-            <line strokeWidth={4 * STROKE_WIDTH} stroke="currentColor" x1="270" y1="270" x2="500" y2="500" strokeLinecap="square" marker-end='url(#headVariable)' />
+            <line strokeWidth={4 * STROKE_WIDTH} stroke="currentColor" x1="270" y1="270" x2="500" y2="500" strokeLinecap="square" markerEnd='url(#headVariable)' />
         </svg>
     );
 }
