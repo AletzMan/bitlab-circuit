@@ -50,55 +50,48 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
     };
 
     const positionTerminals: Position[] = useMemo(() => {
+        let tempRotation: Position[] = [];
         switch (rotation) {
             case 0: {
-                let tempRotation: Position[] = [Position.Left, Position.Right, Position.Top];
+                tempRotation = [Position.Left, Position.Right, Position.Top];
                 if (flip.x === -1 && flip.y === 1) {
                     tempRotation = [Position.Right, Position.Left, Position.Top];
-                }
-                if (flip.y === -1 && flip.x === 1) {
+                } else if (flip.y === -1 && flip.x === 1) {
                     tempRotation = [Position.Left, Position.Right, Position.Bottom];
-                }
-                if (flip.y === -1 && flip.x === -1) {
+                } else if (flip.y === -1 && flip.x === -1) {
                     tempRotation = [Position.Right, Position.Left, Position.Bottom];
                 }
                 return tempRotation;
             }
             case 90: {
-                let tempRotation: Position[] = [Position.Top, Position.Bottom, Position.Right];
+                tempRotation = [Position.Top, Position.Bottom, Position.Right];
                 if (flip.x === -1 && flip.y === 1) {
                     tempRotation = [Position.Top, Position.Bottom, Position.Left];
-                }
-                if (flip.y === -1 && flip.x === 1) {
+                } else if (flip.y === -1 && flip.x === 1) {
                     tempRotation = [Position.Bottom, Position.Top, Position.Right];
-                }
-                if (flip.y === -1 && flip.x === -1) {
+                } else if (flip.y === -1 && flip.x === -1) {
                     tempRotation = [Position.Bottom, Position.Top, Position.Left];
                 }
                 return tempRotation;
             }
             case 180: {
-                let tempRotation: Position[] = [Position.Right, Position.Left, Position.Bottom];
+                tempRotation = [Position.Right, Position.Left, Position.Bottom];
                 if (flip.x === -1 && flip.y === 1) {
                     tempRotation = [Position.Left, Position.Right, Position.Bottom];
-                }
-                if (flip.y === -1 && flip.x === 1) {
+                } else if (flip.y === -1 && flip.x === 1) {
                     tempRotation = [Position.Right, Position.Left, Position.Top];
-                }
-                if (flip.y === -1 && flip.x === -1) {
+                } else if (flip.y === -1 && flip.x === -1) {
                     tempRotation = [Position.Left, Position.Right, Position.Top];
                 }
                 return tempRotation;
             }
             case 270: {
-                let tempRotation: Position[] = [Position.Bottom, Position.Top, Position.Left];
+                tempRotation = [Position.Bottom, Position.Top, Position.Left];
                 if (flip.x === -1 && flip.y === 1) {
                     tempRotation = [Position.Bottom, Position.Top, Position.Right];
-                }
-                if (flip.y === -1 && flip.x === 1) {
+                } else if (flip.y === -1 && flip.x === 1) {
                     tempRotation = [Position.Top, Position.Bottom, Position.Left];
-                }
-                if (flip.y === -1 && flip.x === -1) {
+                } else if (flip.y === -1 && flip.x === -1) {
                     tempRotation = [Position.Top, Position.Bottom, Position.Right];
                 }
                 return tempRotation;
