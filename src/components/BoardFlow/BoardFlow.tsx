@@ -27,6 +27,7 @@ import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
 import { useTheme } from "@/store";
 import { NodeComponent } from "../NodeComponent/NodeComponent";
+import { TransistorComponent } from "../TransistorComponent/TransistorComponent";
 
 const initialNodes: AnalogNode[] = [
     {
@@ -54,6 +55,7 @@ const initialEdges: ComponentEdge[] = [];
 const nodeTypes = {
     analogComponent: AnalogComponent,
     nodeComponent: NodeComponent,
+    transistorComponent: TransistorComponent,
     board: Board,
 
 };
