@@ -1,12 +1,12 @@
 import { SVGProps } from "react";
 
-
+const STROKE_WIDTH = 3.5;
 
 
 export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 512 512"  >
-            <path d="m525.95 426.2-50.379-75.57-50.383 75.57-50.379-75.57-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 50.379 75.57 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 526.95 426.2 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -72.328 H 137 v 12.594 H 174 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.616 H 663 v -12.552 H 627 h -79.098 z"></path>
         </svg>
     );
 }
@@ -14,7 +14,7 @@ export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
 export function RheostatIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path d="m525.95 426.2-50.379-75.57-50.383 75.57-17.129-25.188 91.695-91.695 7.0508 7.0547 31.742-54.918-54.914 31.742 7.0508 7.0547-89.676 89.676-26.199-39.297-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 17.129 25.191-128.47 128.97 8.5664 8.5664 126.96-126.46 26.195 39.297 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 524.95 426.2 l -50.379 -75.57 l -50.383 75.57 l -17.129 -25.188 l 91.695 -91.695 l 7.0508 7.0547 l 31.742 -54.918 l -54.914 31.742 l 7.0508 7.0547 l -89.676 89.676 l -26.199 -39.297 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -71.3276 H 150 v 12.594 H 173 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 17.129 25.191 l -128.47 128.97 l 8.5664 8.5664 l 126.96 -126.46 l 26.195 39.297 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.6146 H 649 v -12.5458 H 626 h -79.098 z"></path>
         </svg>
     );
 }
@@ -22,9 +22,9 @@ export function RheostatIcon(props: SVGProps<SVGSVGElement>) {
 export function ThermistorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path d="m525.95 426.2-50.379-75.57-50.383 75.57-50.379-75.57-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 50.379 75.57 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
-            <line x1="315" y1="530" x2="500" y2="250" stroke="currentColor" strokeWidth="12" />
-            <line x1="230" y1="530" x2="320" y2="530" stroke="currentColor" strokeWidth="10" />
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 526.95 426.2 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -72.328 H 137 v 12.594 H 174 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.616 H 663 v -12.552 H 627 h -79.098 z"></path>
+            <line x1="315" y1="530" x2="500" y2="250" stroke="currentColor" strokeWidth="16" />
+            <line x1="230" y1="530" x2="320" y2="530" stroke="currentColor" strokeWidth="16" />
         </svg>
 
     );
@@ -33,8 +33,9 @@ export function ThermistorIcon(props: SVGProps<SVGSVGElement>) {
 export function LDRIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path d="m400 230.21c-91.691 0-166.76 73.051-169.79 163.74h-56.93v12.594h56.93c3.5273 90.688 78.09 163.74 169.79 163.74 91.691 0 166.76-73.051 169.79-163.74h56.926v-12.594h-56.93c-3.0234-91.191-78.09-163.74-169.78-163.74zm0 327.48c-84.641 0-154.16-67.008-157.19-151.14h9.5742l21.664-32.746 50.383 75.57 50.383-75.57 50.383 75.57 50.383-75.57 50.383 75.57 28.719-42.824h2.5195c-3.0391 83.633-72.566 151.14-157.2 151.14zm147.61-163.74-21.664 32.242-50.383-75.57-50.383 75.57-50.383-75.57-50.383 75.57-50.383-75.57-28.719 42.824h-2.5195c3.5273-84.137 72.547-151.14 157.19-151.14s154.16 67.008 157.19 151.14h-9.5586z"></path> <path d="m286.64 255.41-31.738-55.422-7.0547 7.0547-32.242-31.738-9.0703 8.5625 32.246 32.246-7.0547 7.0508z"></path>
-            <path d="m175.3 215.61 31.738 32.242-7.0547 7.0547 55.422 31.738-32.246-54.914-7.0508 7.0547-32.246-32.246z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 400 230.21 c -91.691 0 -166.76 73.051 -169.79 163.74 h -57.21 H 151 v 12.594 H 173 h 56.93 c 3.5273 90.688 78.09 163.74 169.79 163.74 c 91.691 0 166.76 -73.051 169.79 -163.74 h 56.49 H 651 v -12.594 H 626 h -56.93 c -3.0234 -91.191 -78.09 -163.74 -169.78 -163.74 z m 0 327.48 c -84.641 0 -154.16 -67.008 -157.19 -151.14 h 9.5742 l 21.664 -32.746 l 50.383 75.57 l 50.383 -75.57 l 50.383 75.57 l 50.383 -75.57 l 50.383 75.57 l 28.719 -42.824 h 2.5195 c -3.0391 83.633 -72.566 151.14 -157.2 151.14 z m 147.61 -163.74 l -21.664 32.242 l -50.383 -75.57 l -50.383 75.57 l -50.383 -75.57 l -50.383 75.57 l -50.383 -75.57 l -28.719 42.824 h -2.5195 c 3.5273 -84.137 72.547 -151.14 157.19 -151.14 s 154.16 67.008 157.19 151.14 h -9.5586 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m286.64 255.41-31.738-55.422-7.0547 7.0547-32.242-31.738-9.0703 8.5625 32.246 32.246-7.0547 7.0508z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m175.3 215.61 31.738 32.242-7.0547 7.0547 55.422 31.738-32.246-54.914-7.0508 7.0547-32.246-32.246z"></path>
         </svg>
 
     );
@@ -43,8 +44,8 @@ export function LDRIcon(props: SVGProps<SVGSVGElement>) {
 export function PotentiometerIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path d="m393.95 173.29v107.81h-12.09l18.137 68.52 18.137-68.52h-11.59v-107.81z"></path>
-            <path d="m525.95 426.2-50.379-75.57-50.383 75.57-50.379-75.57-50.383 75.57-50.379-75.57-28.719 43.328h-72.043v12.594h79.098l21.664-32.746 50.379 75.57 50.383-75.57 50.379 75.57 50.383-75.57 50.379 75.57 28.719-42.824h72.043v-12.594h-79.098z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 394 155 V 173 v 107.81 h -12.09 l 18.137 68.52 l 18.137 -68.52 h -11.59 v -107.81 V 155 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 526.95 426.2 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -72.328 H 137 v 12.594 H 174 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.616 H 663 v -12.552 H 627 h -79.098 z"></path>
         </svg>
     );
 }
@@ -52,8 +53,8 @@ export function PotentiometerIcon(props: SVGProps<SVGSVGElement>) {
 export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)">
-            <path d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
-            <path d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
         </svg>
     );
 }
@@ -61,9 +62,9 @@ export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
 export function PolarisedCapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)">
-            <path d="m299.24 377.4h201.52v-12.594h-94.215v-217.57h-12.594v217.57h-94.715z"></path>
-            <path d="m406.55 646.71v-211.02c31.234 1.0078 62.473 9.0703 91.691 24.184l6.0469-11.082c-66-34.258-141.57-34.258-207.57 0l6.0469 11.082c29.223-15.113 60.457-23.176 91.691-24.184l0.003906 211.02z"></path>
-            <path d="m469.52 299.24v19.145h-19.145v12.594h19.145v18.641h12.598v-18.641h18.641v-12.594h-18.641v-19.145z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m299.24 377.4h201.52v-12.594h-94.215v-217.57h-12.594v217.57h-94.715z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m406.55 646.71v-211.02c31.234 1.0078 62.473 9.0703 91.691 24.184l6.0469-11.082c-66-34.258-141.57-34.258-207.57 0l6.0469 11.082c29.223-15.113 60.457-23.176 91.691-24.184l0.003906 211.02z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m469.52 299.24v19.145h-19.145v12.594h19.145v18.641h12.598v-18.641h18.641v-12.594h-18.641v-19.145z"></path>
         </svg>
 
     );
@@ -84,9 +85,9 @@ export function VariableCapacitorIcon(props: SVGProps<SVGSVGElement>) {
                     <path d='M 0 0 V 3 L 5 1.5 Z' fill="currentColor" />
                 </marker>
             </defs>
-            <path d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
-            <path d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
-            <line x1="270" y1="270" x2="500" y2="500" stroke="currentColor" strokeWidth="12" strokeLinecap="square" marker-end='url(#head)' />
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
+            <line x1="270" y1="270" x2="500" y2="500" stroke="currentColor" strokeWidth={4 * STROKE_WIDTH} strokeLinecap="square" marker-end='url(#head)' />
         </svg>
     );
 }
@@ -106,9 +107,9 @@ export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
                     <path d='M 0 0 V 5 L 1 5 L 1 0 Z' fill="currentColor" />
                 </marker>
             </defs>
-            <path d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
-            <path d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
-            <line x1="270" y1="270" x2="500" y2="500" stroke="currentColor" strokeWidth="12" strokeLinecap="square" marker-end='url(#headVariable)' />
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
+            <line strokeWidth={4 * STROKE_WIDTH} stroke="currentColor" x1="270" y1="270" x2="500" y2="500" strokeLinecap="square" marker-end='url(#headVariable)' />
         </svg>
     );
 }
@@ -116,7 +117,7 @@ export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 export function InductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 512 512" >
-            <path d="m513.36 356.17c-16.121 0-30.23 8.5664-37.785 21.16-7.5586-12.594-21.664-21.16-37.785-21.16s-30.23 8.5664-37.785 21.16c-7.5586-12.594-21.664-21.16-37.785-21.16s-30.23 8.5664-37.785 21.16c-7.5586-12.594-21.664-21.16-37.785-21.16-22.168 0-40.809 16.625-43.832 37.785h-69.527v12.594h82.121v-6.5469c0-17.129 14.105-31.738 31.738-31.738 17.633 0 31.738 14.105 31.738 31.738v6.5508h12.594l0.003907-6.5508c0-17.129 14.105-31.738 31.738-31.738s31.738 14.105 31.738 31.738v6.5508h12.594l0.003907-6.5508c0-17.129 14.105-31.738 31.738-31.738 17.633 0 31.738 14.105 31.738 31.738v6.5508h12.594l0.007812-6.5508c0-17.129 14.105-31.738 31.738-31.738 17.633 0 31.738 14.105 31.738 31.738v6.5508l79.602-0.003906v-12.594h-69.523c-3.0234-21.664-21.664-37.785-43.832-37.785z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 513.36 356.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 154 v 12.045 H 174 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 647 v -12 H 627 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
         </svg>
     );
 }
@@ -124,7 +125,7 @@ export function InductorIcon(props: SVGProps<SVGSVGElement>) {
 export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59v-82.121h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 77.082 h 12.598 v -81.617 h 144.8856 H 645 v -12.5471 H 627 h -144.59 v -82.121 h -12.598 v 77.082 l -142.07 -81.617 l -9.4464 4.7029 v 81.6638 h -145 H 155 v 12.594 H 173 h 145.1 z"></path>
         </svg>
     );
 }
@@ -132,7 +133,7 @@ export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
 export function ZenerIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v83.633h43.832v-12.594h-31.234v-75.574h144.59v-12.594h-144.59v-88.168h-44.336v12.598h31.738v70.531l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 83.633 h 43.832 v -12.594 h -31.234 v -75.574 h 144.59 H 645 v -12.594 H 627 h -144.59 v -88.168 h -44.336 v 12.598 h 31.738 v 70.531 l -142.07 -81.617 l -9.0664 5.0391 v 81.617 h -145.1 H 155 v 12.594 H 173 h 145.1 z"></path>
         </svg>
     );
 }
@@ -140,9 +141,9 @@ export function ZenerIcon(props: SVGProps<SVGSVGElement>) {
 export function LEDIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path d="m482.12 311.83h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59z"></path>
-            <path d="m381.36 308.81 26.195-37.281 8.0625 5.543 22.168-59.449-48.871 40.809 8.0625 5.5391-25.695 37.281z"></path>
-            <path d="m418.14 334 25.691-36.777 8.5664 5.5391 21.664-59.953-48.871 41.312 8.5664 5.543-26.199 37.281z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 77.082 h 12.598 v -81.617 h 144.8856 H 645 v -12.5471 H 627 h -144.59 v -82.121 h -12.598 v 77.082 l -142.07 -81.617 l -9.4464 4.7029 v 81.6638 h -145 H 155 v 12.594 H 173 h 145.1 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m381.36 308.81 26.195-37.281 8.0625 5.543 22.168-59.449-48.871 40.809 8.0625 5.5391-25.695 37.281z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m418.14 334 25.691-36.777 8.5664 5.5391 21.664-59.953-48.871 41.312 8.5664 5.543-26.199 37.281z"></path>
         </svg>
     );
 }
@@ -150,7 +151,7 @@ export function LEDIcon(props: SVGProps<SVGSVGElement>) {
 export function SchottkyIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="matrix(1, 0, 0, -1, 0, 0)">
-            <path d="m318.38 487.66 9.0664 5.0391 142.07-81.617v71.039h-25.191v-19.145h-12.594v31.738h50.383v-88.168h144.59v-12.594h-144.59v-75.57h25.188v18.641h12.598v-31.238h-50.383v83.129l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1z">
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 71.039 h -25.191 v -19.145 h -12.594 v 31.738 h 50.383 v -88.168 h 144.59 H 645 v -12.594 H 627 h -144.59 v -75.57 h 25.188 v 18.641 h 12.598 v -31.238 h -50.383 v 83.129 l -142.07 -81.617 l -9.0664 5.0391 v 81.617 h -145.1 H 155 v 12.594 H 173 h 145.1 z">
             </path>
         </svg>
     );
@@ -159,7 +160,7 @@ export function SchottkyIcon(props: SVGProps<SVGSVGElement>) {
 export function TunnelIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path d="m482.12 305.79h-44.336v12.598h31.738v70.531l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v71.039h-31.738v12.594h44.336v-88.168h144.59v-12.594h-144.59z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 482.12 305.79 h -44.336 v 12.598 h 31.738 v 70.531 l -142.07 -81.617 l -9.0664 5.0391 v 81.617 h -145.1 H 155 v 12.594 H 173 h 145.1 v 81.113 l 9.0664 5.0391 l 142.07 -81.617 v 71.039 h -31.738 v 12.594 h 44.336 v -88.168 h 144.59 H 645 v -12.594 H 626 h -144.59 z"></path>
         </svg>
     );
 }
@@ -167,9 +168,9 @@ export function TunnelIcon(props: SVGProps<SVGSVGElement>) {
 export function PhotoDiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path d="m482.12 311.83h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h144.59v-12.594h-144.59z"></path>
-            <path d="m469.02 239.29-26.195 37.281-8.0625-5.543-22.168 59.449 48.871-40.809-8.0625-6.0469 25.695-36.777z"></path>
-            <path d="m406.55 250.87-8.5625-5.543-21.664 59.953 48.867-41.312-8.5625-5.5391 26.199-37.285-10.582-7.0508z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 77.082 h 12.598 v -81.617 h 144.8856 H 645 v -12.5471 H 627 h -144.59 v -82.121 h -12.598 v 77.082 l -142.07 -81.617 l -9.4464 4.7029 v 81.6638 h -145 H 155 v 12.594 H 173 h 145.1 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m469.02 239.29-26.195 37.281-8.0625-5.543-22.168 59.449 48.871-40.809-8.0625-6.0469 25.695-36.777z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m406.55 250.87-8.5625-5.543-21.664 59.953 48.867-41.312-8.5625-5.5391 26.199-37.285-10.582-7.0508z"></path>
         </svg>
     );
 }
@@ -177,7 +178,7 @@ export function PhotoDiodeIcon(props: SVGProps<SVGSVGElement>) {
 export function TVSDiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path d="m242.81 487.66 9.0703 5.0391 142.07-81.617v71.039h-31.742v12.594h44.336v-83.633l141.57 81.617 9.5742-5.0391v-81.113h69.02v-12.594h-69.02v-81.617l-9.5742-5.0391-141.57 81.617v-70.531h31.238v-12.598h-43.832v83.129l-142.07-81.617-9.0703 5.0391v81.617h-69.523v12.594h69.523z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 242.81 487.66 l 9.0703 5.0391 l 142.07 -81.617 v 71.039 h -31.742 v 12.594 h 44.336 v -83.633 l 141.57 81.617 l 9.5742 -5.0391 v -81.113 h 69.02 H 645 v -12.594 H 627 h -69.02 v -81.617 l -9.5742 -5.0391 l -141.57 81.617 v -70.531 h 31.238 v -12.598 h -43.832 v 83.129 l -142.07 -81.617 l -9.0703 5.0391 v 81.617 h -69.523 H 155 v 12.594 H 173 h 69.523 z"></path>
         </svg>
     );
 }
@@ -185,14 +186,14 @@ export function TVSDiodeIcon(props: SVGProps<SVGSVGElement>) {
 export function VaractorIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path d="m519.91 311.83h-12.598v82.121h-25.188v-82.121h-12.598v77.082l-142.07-81.617-9.0664 5.0391v81.617h-145.1v12.594h145.1v81.113l9.0664 5.0391 142.07-81.617v77.082h12.598v-81.617h25.188v81.617h12.598v-81.617h113.36v-12.594h-113.36z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 519.91 311.83 h -12.598 v 82.121 h -25.188 v -82.121 h -12.598 v 77.082 l -142.07 -81.617 l -9.0664 5.0391 v 81.617 h -145.1 H 155 v 12.594 H 173 h 145.1 v 81.113 l 9.0664 5.0391 l 142.07 -81.617 v 77.082 h 12.598 v -81.617 h 25.188 v 81.617 h 12.598 v -81.617 h 113.36 H 651 v -12.594 H 633 h -113.36 z"></path>
         </svg>
     );
 }
 
 export function NodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" viewBox="0 0 100 100">
+        <svg {...props} height="38px" width="38px" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="20" fill="currentColor" />
         </svg>
     );
