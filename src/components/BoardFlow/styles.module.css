@@ -50,6 +50,7 @@
     padding: 0 0 0 0 0;
     border-radius: 4px;
     border: 1px dashed var(--border-color-tab);
+    background-color: var(--board-background-color);
 }
 
 .components_title {
@@ -60,6 +61,11 @@
     width: 3em;
     padding: 0.25em;
     height: 3em;
+    color: var(--title-color);
+
+    &:hover {
+        color: var(--foreground-color);
+    }
 }
 
 .containerTabs {
@@ -87,7 +93,8 @@
     padding: 4px 0 4px 8px;
     font-family: var(--font-family);
     background-color: #FFFFFF10;
-    color: #e5d204;
+    font-weight: 500;
+    color: var(--foreground-color);
 }
 
 .minimap {
