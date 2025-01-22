@@ -597,7 +597,7 @@ export function BoardFlow() {
                                                     </div>
                                                 </div>
                                                 {ELECTRICAL_COMPONENTS.map(components => (
-                                                    <div className={styles.components_container}>
+                                                    <div key={components.title} className={styles.components_container}>
                                                         <label className={styles.label}>{components.title}</label>
                                                         <Divider style={{ margin: '0' }} variant="dashed" />
                                                         <div className={styles.components_group}>

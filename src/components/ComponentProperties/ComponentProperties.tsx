@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
-import { Input, Select, Button, Flex, Divider, Card, Tooltip, Checkbox, CheckboxChangeEvent } from "antd";
-import { ComponentData, AnalogNode, UNITS } from "@/types";
+import { Input, Select, Button, Flex, Divider, Card, Tooltip, Checkbox, CheckboxChangeEvent, ColorPicker } from "antd";
+import { ComponentData, AnalogNode, UNITS, ComponentType } from "@/types";
+import { genPresets } from "@/helpers";
+import { LedColors } from "@/constants";
+import { AggregationColor, getHex, toHexFormat } from "antd/es/color-picker/color";
 //import useHistoryManager from "@/hooks/useHistoryManager";
 const { Option } = Select;
 
@@ -25,6 +29,7 @@ export default function ComponentProperties({
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
     const updateNodeInternals = useUpdateNodeInternals();
     const { updateNodeData, updateNode, getNodes } = useReactFlow();
+    const presets = genPresets(LedColors);
 
 
     useEffect(() => {
@@ -125,6 +130,14 @@ export default function ComponentProperties({
         });
     };
 
+    const handleChangeColorWire = (value: AggregationColor, _css: string) => {
+        if (node && dataComponent) {
+            console.log(value.toHexString());
+            updateNodeData(node?.id, { color: value.toHexString() });
+            setDataComponent({ ...dataComponent, color: value.toHexString() });
+        }
+    };
+
     return (
 
         <Card className={styles.details} size="small" type="inner" >
@@ -170,6 +183,21 @@ export default function ComponentProperties({
                                     <Checkbox onChange={handleChangeHiddenValue} checked={!dataComponent?.isValueVisible} />
                                 </label>
                             </div>
+                            {dataComponent?.type === ComponentType.Led &&
+                                <>
+                                    <Divider style={{ margin: "12px 0 4px 0" }} variant="dashed" />
+                                    <Flex vertical>
+                                        <label className={styles.value_label}>Color</label>
+                                        <Flex vertical align="flex-start" justify="center">
+                                            <ColorPicker
+                                                presets={presets}
+                                                value={dataComponent?.color} styles={{ popupOverlayInner: { maxWidth: "85px" } }}
+                                                onChange={handleChangeColorWire} format="hex" disabledFormat
+                                            />
+                                        </Flex>
+                                    </Flex>
+                                </>
+                            }
                         </>
                     )}
                     <Divider style={{ margin: "12px 0 24px 0" }} />
@@ -184,7 +212,6 @@ export default function ComponentProperties({
                                 onClick={() => handleClickSelectedNode(node)}> {node.data?.type} </Button>
                         </Tooltip>
                     ))
-
                     }
                     <Divider style={{ margin: "16px 0" }} />
                 </Flex>

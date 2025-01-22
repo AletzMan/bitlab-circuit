@@ -281,3 +281,13 @@ export const CustomColorsWire = {
         '#6C3483', // Púrpura oscuro 
     ],
 };
+
+export const LedColors = {
+    colors: [
+        '#FFFFFF00',
+        '#FF0000',
+        '#1aff00',
+        '#e5bc05',
+        '#0d42ff',
+    ]
+};
