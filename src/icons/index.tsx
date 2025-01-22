@@ -138,10 +138,15 @@ export function ZenerIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
-export function LEDIcon(props: SVGProps<SVGSVGElement>) {
+interface PropsLED extends SVGProps<SVGSVGElement> {
+    color_led?: string
+}
+
+export function LEDIcon(props: PropsLED) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
             <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 77.082 h 12.598 v -81.617 h 144.8856 H 645 v -12.5471 H 627 h -144.59 v -82.121 h -12.598 v 77.082 l -142.07 -81.617 l -9.4464 4.7029 v 81.6638 h -145 H 155 v 12.594 H 173 h 145.1 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" fill={props.color_led} d="m 338 466 l 118 -65 v 0 l -118 -68 l -6 5 v 77.723 v 45.277 z"></path>
             <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m381.36 308.81 26.195-37.281 8.0625 5.543 22.168-59.449-48.871 40.809 8.0625 5.5391-25.695 37.281z"></path>
             <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m418.14 334 25.691-36.777 8.5664 5.5391 21.664-59.953-48.871 41.312 8.5664 5.543-26.199 37.281z"></path>
         </svg>
