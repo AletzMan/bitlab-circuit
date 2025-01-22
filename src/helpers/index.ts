@@ -72,7 +72,7 @@ export type ComponentPropertiesDefault = {
     prefix: string,
     unit: UnitsType,
     reference: string
-    type: 'analogComponent' | 'nodeComponent' | 'board',
+    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'board',
     has_properties: boolean
     isValueVisible: boolean,
     isReferenceVisible: boolean
@@ -102,14 +102,14 @@ const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
     [ComponentType.PhotoDiode]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
     [ComponentType.TVSDiode]: { value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
     [ComponentType.Varactor]: { value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorBJT_NPN]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorBJT_PNP]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorJFET_N]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorJFET_P]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorMOSFET_N_Enhanced]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorMOSFET_P_Enhanced]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorMOSFET_N_Depletion]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorMOSFET_P_Depletion]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorBJT_NPN]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorBJT_PNP]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorJFET_N]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorJFET_P]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_N_Enhanced]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_P_Enhanced]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_N_Depletion]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_P_Depletion]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
     [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'board', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [], style: { height: 200, width: 200 }, size: "small" },
     [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [false, false, false, false], color: 'var(--foreground-color)', style: undefined, size: "small" },
 };
@@ -170,6 +170,8 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         matchingComponents = components.filter(component => typeGroupVariableCapacitor.has(component.data.type));
     } else if (typeGroupResistor.has(type)) {
         matchingComponents = components.filter(component => typeGroupResistor.has(component.data.type));
+    } else if (typeGroupTransistor.has(type)) {
+        matchingComponents = components.filter(component => typeGroupTransistor.has(component.data.type));
     } else {
         matchingComponents = components.filter(component => component.data.type === type);
     }
