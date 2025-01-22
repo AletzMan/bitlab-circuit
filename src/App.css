@@ -99,6 +99,11 @@ body {
     border: 2px solid #ff0077;
 }
 */
+.react-flow__handle {
+    min-height: 0px;
+    min-width: 0px;
+}
+
 
 .react-flow__node {
     padding: 0;
@@ -120,12 +125,14 @@ body {
     border-color: #2dd451;
 }
 
+
 .react-flow__handle.connectionindicator {
     cursor: crosshair;
 }
 
 .react-flow__edge.selectable:hover .react-flow__edge-path {
-    filter: drop-shadow(0 0 2px var(--wire-color));
+    /* filter: drop-shadow(0 0 2px var(--wire-color));*/
+    stroke: red;
 }
 
 .react-flow__edge.selectable.selected .react-flow__edge-path {
