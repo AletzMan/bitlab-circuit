@@ -611,8 +611,11 @@ export function LightIcon(props: SVGProps<SVGSVGElement>) {
 
 export function ArrowPushIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} width="1.75em" height="1.75em" viewBox="0 0 24 24">
-            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M12 8v8m0 0l3-3m-3 3l-3-3"></path>
+        <svg {...props} width="1em" height="1em" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" strokeWidth={1.5}>
+                <circle cx={12} cy={12} r={10}></circle>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v8m0 0l3-3m-3 3l-3-3"></path>
+            </g>
         </svg>
     );
 }
