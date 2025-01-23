@@ -81,9 +81,9 @@ export enum ComponentCollapsed {
 
 export type ComponentData = {
     name: string
-    value: number
+    value: number | string
     type: ComponentType
-    category: string
+    category: Categories
     rotation: number
     flip: {
         x: number,
@@ -125,7 +125,7 @@ export enum Categories {
 
 export type ComponentProperties = {
     name: string
-    value: number,
+    value: number | string,
     category: Categories,
     componentType: ComponentType,
     icon: JSX.Element,

@@ -11,7 +11,7 @@ import {
 } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, KeyboardEvent, useEffect } from "react";
 import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
-import { ComponentEdge, AnalogNode, ComponentCollapsed, ComponentType, UnitsType } from "@/types";
+import { ComponentEdge, AnalogNode, ComponentCollapsed, ComponentType, UnitsType, Categories } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
@@ -34,19 +34,19 @@ const initialNodes: AnalogNode[] = [
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { name: 'Resistor', category: 'Resistors', type: ComponentType.Resistor, value: 1, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'KΩ', has_properties: true, reference: "R1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false], size: 'small' },
+        data: { name: 'Resistor', category: Categories.Resistors, type: ComponentType.Resistor, value: 1, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'KΩ', has_properties: true, reference: "R1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false], size: 'small' },
         position: { x: 100, y: 170 },
     },
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { name: 'Capacitor', category: 'Capacitors', type: ComponentType.Capacitor, value: 4.7, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, reference: "C1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false], size: 'small' },
+        data: { name: 'Capacitor', category: Categories.Capacitors, type: ComponentType.Capacitor, value: 4.7, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, reference: "C1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false], size: 'small' },
         position: { x: 240, y: 170 },
     },
     {
         id: uuid(),
         type: 'nodeComponent',
-        data: { name: 'Node', category: 'Structures', type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1", isValueVisible: false, isReferenceVisible: false, connectedHandles: [false, false, false, false], color: "var(--foreground-color)", size: 'small' },
+        data: { name: 'Node', category: Categories.Structure, type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, reference: "N1", isValueVisible: false, isReferenceVisible: false, connectedHandles: [false, false, false, false], color: "var(--foreground-color)", size: 'small' },
         position: { x: 90, y: 90 },
     },
 ];
