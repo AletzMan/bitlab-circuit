@@ -1,5 +1,3 @@
-
-
 import { ComponentsMap, typeGroupCapacitor, typeGroupDiode, typeGroupResistor, typeGroupTransistor, typeGroupVariableCapacitor } from "@/constants/components";
 import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
 import { XYPosition } from "@xyflow/react";
