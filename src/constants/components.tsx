@@ -532,3 +532,21 @@ export const typeGroupTransistor = new Set<ComponentType>(
     ]
 );
 
+export type TypeGroupKey =
+    | "ResistorGroup"
+    | "CapacitorGroup"
+    | "VariableCapacitorGroup"
+    | "DiodeGroup"
+    | "TransistorGroup";
+
+// Define un mapa que relacione los grupos con sus tipos correspondientes
+export const typeGroups: Record<TypeGroupKey, { types: Set<ComponentType>, designator: string }> = {
+    ResistorGroup: { types: typeGroupResistor, designator: 'R' },
+    CapacitorGroup: { types: typeGroupCapacitor, designator: 'C' },
+    VariableCapacitorGroup: { types: typeGroupVariableCapacitor, designator: 'VC' },
+    DiodeGroup: {
+        types: new Set([...typeGroupDiode].filter((type) => type !== ComponentType.Led)),
+        designator: 'D',
+    },
+    TransistorGroup: { types: typeGroupTransistor, designator: 'Q' },
+};

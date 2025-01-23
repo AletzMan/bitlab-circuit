@@ -1,4 +1,4 @@
-import { ComponentsMap, typeGroupCapacitor, typeGroupDiode, typeGroupResistor, typeGroupTransistor, typeGroupVariableCapacitor } from "@/constants/components";
+import { ComponentsMap, TypeGroupKey, typeGroupCapacitor, typeGroupDiode, typeGroupResistor, typeGroupTransistor, typeGroupVariableCapacitor, typeGroups } from "@/constants/components";
 import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
 import { XYPosition } from "@xyflow/react";
 import { createRoot } from "react-dom/client";
@@ -123,44 +123,28 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
     };
 
     return components.map((component) => {
-        const { type } = component.data;
-        const isResistorGroup = typeGroupResistor.has(type);
-        const isCapacitorGroup = typeGroupCapacitor.has(type);
-        const isVariableCapacitorGroup = typeGroupVariableCapacitor.has(type);
-        const isDiodeGroup = typeGroupDiode.has(type) && type !== ComponentType.Led;
-        const isTransistorGroup = typeGroupTransistor.has(type);
 
+        // Itera sobre el mapa para encontrar el grupo al que pertenece el tipo
+        let groupKey: TypeGroupKey | undefined;
+        for (const key in typeGroups) {
+            if (typeGroups[key as TypeGroupKey].types.has(component.data.type)) {
+                groupKey = key as TypeGroupKey;
+                break;
+            }
+        }
 
         // Incrementar el contador correspondiente
-        if (isDiodeGroup) {
-            typeCounters.DiodeGroup += 1;
-        } else if (isCapacitorGroup) {
-            typeCounters.CapacitorGroup += 1;
-        } else if (isVariableCapacitorGroup) {
-            typeCounters.VariableCapacitorGroup += 1;
-        } else if (isResistorGroup) {
-            typeCounters.ResistorGroup += 1;
-        } else if (isTransistorGroup) {
-            typeCounters.TransistorGroup += 1;
+        if (groupKey) {
+            typeCounters[groupKey] += 1; // Aquí ya no dará error porque groupKey tiene el tipo correcto
         } else {
-            typeCounters[type] += 1;
+            // Si no pertenece a ningún grupo predefinido, usa el tipo directamente
+            typeCounters[component.data.type] += 1; // Este tipo debe coincidir con las claves de typeCounters
         }
 
-        let newReference = "";
-
-        if (isDiodeGroup) {
-            newReference = `D${typeCounters.DiodeGroup}`;
-        } else if (isCapacitorGroup) {
-            newReference = `C${typeCounters.CapacitorGroup}`;
-        } else if (isVariableCapacitorGroup) {
-            newReference = `VC${typeCounters.VariableCapacitorGroup}`;
-        } else if (isResistorGroup) {
-            newReference = `R${typeCounters.ResistorGroup}`;
-        } else if (isTransistorGroup) {
-            newReference = `Q${typeCounters.TransistorGroup}`;
-        } else {
-            newReference = `${ComponentsMap[type].reference.toUpperCase()}${typeCounters[type]}`;
-        }
+        // Generar la nueva referencia
+        const newReference = groupKey
+            ? `${typeGroups[groupKey].designator}${typeCounters[groupKey]}` // Usa la primera letra del grupo
+            : `${ComponentsMap[component.data.type].reference.toUpperCase()}${typeCounters[component.data.type]}`;
 
 
         return {
