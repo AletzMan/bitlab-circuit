@@ -7,8 +7,7 @@ import { Input, Select, Button, Flex, Divider, Card, Tooltip, Checkbox, Checkbox
 import { ComponentData, AnalogNode, UNITS, ComponentType } from "@/types";
 import { genPresets } from "@/helpers";
 import { LedColors } from "@/constants";
-import { AggregationColor, getHex, toHexFormat } from "antd/es/color-picker/color";
-//import useHistoryManager from "@/hooks/useHistoryManager";
+import { AggregationColor } from "antd/es/color-picker/color";
 const { Option } = Select;
 
 
@@ -25,7 +24,6 @@ export default function ComponentProperties({
     isSingleNode: boolean,
     duplicateComponents: () => void
 }) {
-    const nodeType = node?.data?.type || node?.type;
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
     const updateNodeInternals = useUpdateNodeInternals();
     const { updateNodeData, updateNode, getNodes } = useReactFlow();
