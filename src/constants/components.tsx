@@ -487,3 +487,48 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         size: "small"
     },
 };
+
+
+
+
+
+export const typeGroupDiode = new Set<ComponentType>([
+    ComponentType.Diode,
+    ComponentType.Zener,
+    ComponentType.Schottky,
+    ComponentType.Tunnel,
+    ComponentType.PhotoDiode,
+    ComponentType.TVSDiode,
+    ComponentType.Varactor,
+]);
+
+
+export const typeGroupResistor = new Set<ComponentType>([
+    ComponentType.Resistor,
+    ComponentType.Potentiometer,
+]);
+
+export const typeGroupCapacitor = new Set<ComponentType>([
+    ComponentType.Capacitor,
+    ComponentType.PolarisedCapacitor,
+]);
+
+
+export const typeGroupVariableCapacitor = new Set<ComponentType>([
+    ComponentType.VariableCapacitor,
+    ComponentType.TrimmerCapacitor,
+]);
+
+export const typeGroupTransistor = new Set<ComponentType>(
+    [
+        ComponentType.TransistorBJT_NPN,
+        ComponentType.TransistorBJT_PNP,
+        ComponentType.TransistorJFET_N,
+        ComponentType.TransistorJFET_P,
+        ComponentType.TransistorMOSFET_N_Enhanced,
+        ComponentType.TransistorMOSFET_P_Enhanced,
+        ComponentType.TransistorMOSFET_N_Depletion,
+        ComponentType.TransistorMOSFET_P_Depletion,
+    ]
+);
+
