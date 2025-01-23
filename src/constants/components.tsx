@@ -1,4 +1,4 @@
-import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, InductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PolarisedCapacitorIcon, PotentiometerIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, ZenerIcon } from "@/icons";
+import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, InductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, ZenerIcon } from "@/icons";
 import { ComponentProperties, ComponentType, UnitsType } from "@/types";
 
 
@@ -469,6 +469,74 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         style: undefined,
         size: "small"
     },
+    [ComponentType.PhotoTransistorNPN]: {
+        name: 'Photo Transistor NPN',
+        value: 100,
+        category: 'Transistors',
+        componentType: ComponentType.PhotoTransistorNPN,
+        icon: <PhotoTransistorNPNIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        reference: "Q",
+        type: 'transistorComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: false,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "large"
+    },
+    [ComponentType.PhotoTransistorPNP]: {
+        name: 'Photo Transistor PNP',
+        value: 100,
+        category: 'Transistors',
+        componentType: ComponentType.PhotoTransistorPNP,
+        icon: <PhotoTransistorPNPIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        reference: "Q",
+        type: 'transistorComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: false,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "large"
+    },
+    [ComponentType.PhotoTransistorNPN3Pins]: {
+        name: 'Photo Transistor NPN 3 Pins',
+        value: 100,
+        category: 'Transistors',
+        componentType: ComponentType.PhotoTransistorNPN3Pins,
+        icon: <PhotoTransistorNPN3PinsIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        reference: "Q",
+        type: 'transistorComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: false,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "large"
+    },
+    [ComponentType.PhotoTransistorPNP3Pins]: {
+        name: 'Photo Transistor PNP 3 Pins',
+        value: 100,
+        category: 'Transistors',
+        componentType: ComponentType.PhotoTransistorPNP3Pins,
+        icon: <PhotoTransistorPNP3PinsIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        reference: "Q",
+        type: 'transistorComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: false,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "large"
+    },
     [ComponentType.Inductor]: {
         name: 'Inductor',
         value: 100,
@@ -486,6 +554,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         style: undefined,
         size: "small"
     },
+
 };
 
 
@@ -529,6 +598,21 @@ export const typeGroupTransistor = new Set<ComponentType>(
         ComponentType.TransistorMOSFET_P_Enhanced,
         ComponentType.TransistorMOSFET_N_Depletion,
         ComponentType.TransistorMOSFET_P_Depletion,
+        ComponentType.PhotoTransistorNPN,
+        ComponentType.PhotoTransistorPNP,
+        ComponentType.PhotoTransistorNPN3Pins,
+        ComponentType.PhotoTransistorPNP3Pins,
+    ]
+);
+
+export const typeGroupTransistorSmall = new Set<ComponentType>(
+    [
+        ComponentType.TransistorBJT_NPN,
+        ComponentType.TransistorBJT_PNP,
+        ComponentType.PhotoTransistorNPN,
+        ComponentType.PhotoTransistorPNP,
+        ComponentType.PhotoTransistorNPN3Pins,
+        ComponentType.PhotoTransistorPNP3Pins,
     ]
 );
 

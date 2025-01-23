@@ -30,6 +30,10 @@ export enum ComponentType {
     TransistorMOSFET_P_Enhanced = "transistormosfet_p_enhanced",
     TransistorMOSFET_N_Depletion = "transistormosfet_n_depletion",
     TransistorMOSFET_P_Depletion = "transistormosfet_p_depletion",
+    PhotoTransistorNPN = "phototransistornpn",
+    PhotoTransistorPNP = "phototransistorpnp",
+    PhotoTransistorNPN3Pins = "phototransistornpn3pins",
+    PhotoTransistorPNP3Pins = "phototransistorpnp3pins",
     Board = 'board',
     Node = 'node',
 }

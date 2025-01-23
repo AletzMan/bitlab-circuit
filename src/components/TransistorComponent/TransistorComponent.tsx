@@ -1,14 +1,13 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
 import { AnalogNode, ComponentState, ComponentType } from "@/types";
-import { LEDIcon, LockIcon, UnlockIcon } from "@/icons";
+import { LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { CSSProperties, useEffect, useMemo, useState } from "react";
-import { groupBy } from "@/helpers";
-import { ComponentsMap } from "@/constants/components";
+import { ComponentsMap, typeGroupTransistorSmall } from "@/constants/components";
 
 
-export function TransistorComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size, color }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function TransistorComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -49,13 +48,14 @@ export function TransistorComponent({ data: { type, value, rotation, flip, state
             }
         });
     };
-    console.log(groupBy(Object.values(ComponentsMap), 'category'));
+
+
 
     const positionTerminals: { position: Position[], adjustment: CSSProperties[] } = useMemo(() => {
         let tempRotation: Position[] = [];
         let adjustment: CSSProperties[] = [];
-        const positionTop = type === ComponentType.TransistorBJT_NPN || type === ComponentType.TransistorBJT_PNP ? 0 : 6;
-        const positionBottom = type === ComponentType.TransistorBJT_NPN || type === ComponentType.TransistorBJT_PNP ? 13 : 5;
+        const positionTop = typeGroupTransistorSmall.has(type) ? 0 : 6;
+        const positionBottom = typeGroupTransistorSmall.has(type) ? 13 : 5;
         switch (rotation) {
             case 0: {
                 tempRotation = [Position.Left, Position.Top, Position.Bottom];
@@ -134,17 +134,11 @@ export function TransistorComponent({ data: { type, value, rotation, flip, state
                 </div>
             }<div className={`${selected && styles.box_selected}`}></div>
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
-                {ComponentsMap[type].componentType === ComponentType.Led
-                    ? <LEDIcon color_led={color} />
-                    : ComponentsMap[type].icon
-                }
+                {ComponentsMap[type].icon}
             </div>
-            {<p style={{ fontSize: '0.4em' }}>{`Rotation: ${rotation}`}</p>}
-            {<p style={{ fontSize: '0.4em' }}>{`Flip X: ${flip.x}`}</p>}
-            {<p style={{ fontSize: '0.4em' }}>{`Flip Y: ${flip.y}`}</p>}
-            <Terminal type="source" position={positionTerminals.position[0]} id="1" isConnectable={!isConnected[0]} style={positionTerminals.adjustment[0]} />
+            {(type !== ComponentType.PhotoTransistorNPN && type !== ComponentType.PhotoTransistorPNP) && <Terminal type="source" position={positionTerminals.position[0]} id="1" isConnectable={!isConnected[0]} style={positionTerminals.adjustment[0]} />}
             <Terminal type="source" position={positionTerminals.position[1]} id="2" isConnectable={!isConnected[1]} style={positionTerminals.adjustment[1]} />
-            {<Terminal type="source" position={positionTerminals.position[2]} id="3" isConnectable={!isConnected[2]} style={positionTerminals.adjustment[2]} />}
+            <Terminal type="source" position={positionTerminals.position[2]} id="3" isConnectable={!isConnected[2]} style={positionTerminals.adjustment[2]} />
             {isValueVisible && <span className={`${styles.value}  ${size === 'small' && styles.value_small} ${size === 'medium' && styles.value_medium} ${size === 'large' && styles.value_large}  ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
             {isReferenceVisible && <span className={`${styles.reference} ${size === 'small' && styles.reference_small} ${size === 'medium' && styles.reference_medium} ${size === 'large' && styles.reference_large} ${rotation === 90 && styles.reference_90}   ${rotation === 270 && styles.reference_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
         </div>
