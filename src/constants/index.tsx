@@ -1,35 +1,3 @@
-import { ComponentType } from "../types";
-
-export const ARRAY_COMPONENTS: ComponentType[] = [
-    ComponentType.Resistor,
-    ComponentType.Rheostat,
-    ComponentType.Thermistor,
-    ComponentType.Photoresistance,
-    ComponentType.Potentiometer,
-    ComponentType.Capacitor,
-    ComponentType.PolarisedCapacitor,
-    ComponentType.VariableCapacitor,
-    ComponentType.TrimmerCapacitor,
-    ComponentType.Diode,
-    ComponentType.Led,
-    ComponentType.Zener,
-    ComponentType.Schottky,
-    ComponentType.Tunnel,
-    ComponentType.PhotoDiode,
-    ComponentType.TVSDiode,
-    ComponentType.Varactor,
-    ComponentType.Inductor,
-    ComponentType.TransistorBJT_NPN,
-    ComponentType.TransistorBJT_PNP,
-    ComponentType.TransistorJFET_N,
-    ComponentType.TransistorJFET_P,
-    ComponentType.TransistorMOSFET_N_Enhanced,
-    ComponentType.TransistorMOSFET_P_Enhanced,
-    ComponentType.TransistorMOSFET_N_Depletion,
-    ComponentType.TransistorMOSFET_P_Depletion,
-    ComponentType.Node,
-    ComponentType.Board,
-];
 
 
 export const CustomColorsWire = {

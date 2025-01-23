@@ -16,7 +16,6 @@ import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
 import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
-import { ARRAY_COMPONENTS } from "@/constants";
 import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
 import { getComponentProperties, getImageBackgroundDrag, getNewPositionByOverlapping, groupByToArray, isPointInBox } from "@/helpers";
@@ -257,7 +256,7 @@ export function BoardFlow() {
                             ...node.data,
                             state:
                                 overlappingNode &&
-                                    ARRAY_COMPONENTS.includes(overlappingNode?.data?.type as ComponentType)
+                                    Object.keys(ComponentsMap).includes(overlappingNode?.data?.type as ComponentType)
                                     ? ComponentState.NotAdd
                                     : undefined,
                         },
@@ -300,7 +299,7 @@ export function BoardFlow() {
         const typeComponent = overlappingNodeRef?.current?.data?.type as ComponentType;
 
         if (
-            ARRAY_COMPONENTS.includes(typeComponent) && selectedNode?.data.type !== ComponentType.Board) {
+            Object.keys(ComponentsMap).includes(typeComponent) && selectedNode?.data.type !== ComponentType.Board) {
 
             const newPosition = getNewPositionByOverlapping(dragNode.position, overlappingNodeRef?.current?.position as XYPosition);
             setNodes((prevNodes) =>
