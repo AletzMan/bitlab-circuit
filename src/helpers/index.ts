@@ -1,4 +1,5 @@
-import { ComponentsMap, TypeGroupKey, typeGroupCapacitor, typeGroupDiode, typeGroupResistor, typeGroupTransistor, typeGroupVariableCapacitor, typeGroups } from "@/constants/components";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ComponentsMap, TypeGroupKey, typeGroups } from "@/constants/components";
 import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
 import { XYPosition } from "@xyflow/react";
 import { createRoot } from "react-dom/client";
@@ -65,22 +66,18 @@ export function genPresets(customColors: { [key: string]: string[] }) {
 
 
 export function getComponentProperties(type: ComponentType, components: AnalogNode[]): ComponentProperties {
-
-    const reference = ComponentsMap[type].reference;
+    const reference = ComponentsMap[type]?.reference;
     if (!reference) {
         throw new Error(`Unknown component type: ${type}`);
     }
+
+    // Buscar el grupo correspondiente al tipo
+    const groupEntry = Object.entries(typeGroups).find(([_, group]) => group.types.has(type));
+
     let matchingComponents: AnalogNode[] = [];
-    if (typeGroupDiode.has(type)) {
-        matchingComponents = components.filter(component => typeGroupDiode.has(component.data.type));
-    } else if (typeGroupCapacitor.has(type)) {
-        matchingComponents = components.filter(component => typeGroupCapacitor.has(component.data.type));
-    } else if (typeGroupVariableCapacitor.has(type)) {
-        matchingComponents = components.filter(component => typeGroupVariableCapacitor.has(component.data.type));
-    } else if (typeGroupResistor.has(type)) {
-        matchingComponents = components.filter(component => typeGroupResistor.has(component.data.type));
-    } else if (typeGroupTransistor.has(type)) {
-        matchingComponents = components.filter(component => typeGroupTransistor.has(component.data.type));
+    if (groupEntry) {
+        const [, group] = groupEntry;
+        matchingComponents = components.filter(component => group.types.has(component.data.type));
     } else {
         matchingComponents = components.filter(component => component.data.type === type);
     }
@@ -103,8 +100,10 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         style: ComponentsMap[type].style,
         name: ComponentsMap[type].name
     };
+
     return properties;
 }
+
 
 const initialValues = Object.keys(ComponentsMap).reduce((acc, key) => {
     acc[key as ComponentType] = 0; // Asigna el valor inicial (por ejemplo, 0)
