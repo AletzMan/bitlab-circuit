@@ -1,5 +1,5 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
-import { AnalogNode, ComponentState, ComponentType } from "@/types";
+import { AnalogNode, ComponentCollapsed, ComponentType } from "@/types";
 import { LEDIcon, LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
 
 
-export function AnalogComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size, color }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function AnalogComponent({ data: { type, value, rotation, flip, collapsed, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size, color }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -16,8 +16,8 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
     }, [connectedHandles]);
 
 
-    const isAdditionValid = state === ComponentState.Add;
-    const isAdditionInvalid = state === ComponentState.NotAdd;
+    const isAdditionValid = collapsed === ComponentCollapsed.Add;
+    const isAdditionInvalid = collapsed === ComponentCollapsed.NotAdd;
 
     const onConnect = (connections: Connection[]) => {
         setConnectionsTerminals(connections, true);

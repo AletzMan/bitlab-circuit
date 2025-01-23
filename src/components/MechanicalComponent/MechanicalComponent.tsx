@@ -1,5 +1,5 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
-import { AnalogNode, ComponentState, ComponentType } from "@/types";
+import { AnalogNode, ComponentCollapsed, ComponentType } from "@/types";
 import { LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
 
 
-export function MechanicalComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function MechanicalComponent({ data: { type, rotation, flip, collapsed, isLock, reference, isReferenceVisible, connectedHandles, size }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -16,8 +16,8 @@ export function MechanicalComponent({ data: { type, value, rotation, flip, state
     }, [connectedHandles]);
 
 
-    const isAdditionValid = state === ComponentState.Add;
-    const isAdditionInvalid = state === ComponentState.NotAdd;
+    const isAdditionValid = collapsed === ComponentCollapsed.Add;
+    const isAdditionInvalid = collapsed === ComponentCollapsed.NotAdd;
 
     const onConnect = (connections: Connection[]) => {
         setConnectionsTerminals(connections, true);
@@ -116,7 +116,6 @@ export function MechanicalComponent({ data: { type, value, rotation, flip, state
             <Terminal type="source" position={positionTerminals[0]} id="1" isConnectable={!isConnected[0]} />
             <Terminal type="source" position={positionTerminals[1]} id="2" isConnectable={!isConnected[1]} />
             {type === ComponentType.Potentiometer && <Terminal type="source" position={positionTerminals[2]} id="3" isConnectable={!isConnected[2]} />}
-            {isValueVisible && <span className={`${styles.value}  ${size === 'small' && styles.value_small} ${size === 'medium' && styles.value_medium} ${size === 'large' && styles.value_large}  ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
             {isReferenceVisible && <span className={`${styles.reference} ${size === 'small' && styles.reference_small} ${size === 'medium' && styles.reference_medium} ${size === 'large' && styles.reference_large} ${rotation === 90 && styles.reference_90}   ${rotation === 270 && styles.reference_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
         </div>
     );

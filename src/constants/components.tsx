@@ -658,7 +658,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     },
     [ComponentType.SwitchSPSTOpen]: {
         name: 'SPST Switch Normally Open',
-        value: 100,
+        value: 0,
         category: 'Switches & Relays',
         componentType: ComponentType.SwitchSPSTOpen,
         icon: <SwitchSPSTOpenIcon />,
@@ -675,7 +675,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     },
     [ComponentType.SwitchSPSTClose]: {
         name: 'SPST Switch Normally Close',
-        value: 100,
+        value: 0,
         category: 'Switches & Relays',
         componentType: ComponentType.SwitchSPSTClose,
         icon: <SwitchSPSTCloseIcon />,
@@ -692,7 +692,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     },
     [ComponentType.PusuhButtonOpen]: {
         name: 'Push Button Normally Open',
-        value: 100,
+        value: 0,
         category: 'Switches & Relays',
         componentType: ComponentType.PusuhButtonOpen,
         icon: <PushButtonOpenIcon />,
@@ -709,7 +709,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     },
     [ComponentType.PusuhButtonClose]: {
         name: 'Push Button Normally Close',
-        value: 100,
+        value: 0,
         category: 'Switches & Relays',
         componentType: ComponentType.PusuhButtonClose,
         icon: <PushButtonCloseIcon />,

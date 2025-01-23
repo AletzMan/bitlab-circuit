@@ -72,7 +72,7 @@ export const UNITS = {
     undefined: [],
 };
 
-export enum ComponentState {
+export enum ComponentCollapsed {
     Add = 'add',
     NotAdd = 'NnotAdd',
     Undefined = 'undefined'
@@ -88,7 +88,7 @@ export type ComponentData = {
         x: number,
         y: number
     }
-    state?: ComponentState
+    collapsed?: ComponentCollapsed
     isLock: boolean
     unit: UnitsType
     prefix: string
