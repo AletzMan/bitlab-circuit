@@ -143,7 +143,7 @@ export default function ComponentProperties({
         <Card className={styles.details} size="small" type="inner" >
             {isSingleNode &&
                 <>
-                    <label className="details_name"  >{nodeType}</label>
+                    <label className="details_name"  >{dataComponent?.name}</label>
                     <Divider style={{ margin: "6px 0" }} />
                     <div className={styles.value}>
                         <Flex vertical>
@@ -223,12 +223,12 @@ export default function ComponentProperties({
                     <Flex gap={10} wrap  >
                         <Tooltip placement="top" title="Flip Horizontal (Ctrl+Alt+Left)" color="cyan" >
                             <Button className={styles.button} variant="outlined" color="default" onClick={handleFlipHorizontal}>
-                                <FlipHIcon />
+                                <FlipHIcon className={styles.button_icon} style={{ transform: `scaleX(${dataComponent?.flip.x})` }} />
                             </Button>
                         </Tooltip>
-                        <Tooltip placement="top" title="Flip Vertical (Ctrl+Alt+Down)" color="cyan"  >
+                        <Tooltip placement="top" title="Flip Vertical (Ctrl+Alt+Down)" color="cyan"   >
                             <Button className={styles.button} variant="outlined" color="default" onClick={handleFlipVertical}>
-                                <FlipVIcon />
+                                <FlipVIcon className={styles.button_icon} style={{ transform: `scaleY(${dataComponent?.flip.y})` }} />
                             </Button>
                         </Tooltip>
                         <Tooltip placement="top" title="Rotate Left (Ctrl+Alt+L)" color="cyan"  >

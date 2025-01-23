@@ -68,6 +68,7 @@ export function genPresets(customColors: { [key: string]: string[] }) {
 
 
 export type ComponentPropertiesDefault = {
+    name: string
     value: number,
     prefix: string,
     unit: UnitsType,
@@ -79,39 +80,39 @@ export type ComponentPropertiesDefault = {
     connectedHandles: boolean[],
     color?: string,
     size: 'small' | 'medium' | 'large',
-    style: CSSProperties | undefined
+    style: CSSProperties | undefined,
 }
 
 // Mapa para almacenar contadores por tipo
 const typePropertiesMap: Record<ComponentType, ComponentPropertiesDefault> = {
-    [ComponentType.Resistor]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Rheostat]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RH", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Thermistor]: { value: 10, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RT", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Photoresistance]: { value: 10, unit: UnitsType.Ohm, prefix: "KΩ", reference: "LDR", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "medium" },
-    [ComponentType.Potentiometer]: { value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Capacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.PolarisedCapacitor]: { value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.VariableCapacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "µF", reference: "VC", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.TrimmerCapacitor]: { value: 100, unit: UnitsType.Capacitance, prefix: "µF", reference: "VC", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Inductor]: { value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Diode]: { value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Led]: { value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small", color: '#FF0000' },
-    [ComponentType.Zener]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Schottky]: { value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Tunnel]: { value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.PhotoDiode]: { value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.TVSDiode]: { value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.Varactor]: { value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorBJT_NPN]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorBJT_PNP]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorJFET_N]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorJFET_P]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorMOSFET_N_Enhanced]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorMOSFET_P_Enhanced]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorMOSFET_N_Depletion]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.TransistorMOSFET_P_Depletion]: { value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
-    [ComponentType.Board]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'board', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [], style: { height: 200, width: 200 }, size: "small" },
-    [ComponentType.Node]: { value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [false, false, false, false], color: 'var(--foreground-color)', style: undefined, size: "small" },
+    [ComponentType.Resistor]: { name: 'Resistor', value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Rheostat]: { name: 'Rheostat', value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RH", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Thermistor]: { name: 'Thermistor', value: 10, unit: UnitsType.Ohm, prefix: "KΩ", reference: "RT", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Photoresistance]: { name: 'Photo Resistance', value: 10, unit: UnitsType.Ohm, prefix: "KΩ", reference: "LDR", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "medium" },
+    [ComponentType.Potentiometer]: { name: 'Potentiometer', value: 1, unit: UnitsType.Ohm, prefix: "KΩ", reference: "R", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Capacitor]: { name: 'Capacitor', value: 100, unit: UnitsType.Capacitance, prefix: "nF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.PolarisedCapacitor]: { name: 'Polarised Capacitor', value: 4.7, unit: UnitsType.Capacitance, prefix: "µF", reference: "C", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.VariableCapacitor]: { name: 'Variable Capacitor', value: 100, unit: UnitsType.Capacitance, prefix: "µF", reference: "VC", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.TrimmerCapacitor]: { name: 'Trimmer Capacitor', value: 100, unit: UnitsType.Capacitance, prefix: "µF", reference: "VC", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Inductor]: { name: 'Inductor', value: 100, unit: UnitsType.Inductance, prefix: "mH", reference: "L", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Diode]: { name: 'Diode', value: 0.7, unit: UnitsType.Voltage, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Led]: { name: 'LED', value: 30, unit: UnitsType.Current, prefix: "µA", reference: "LED", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small", color: '#FF0000' },
+    [ComponentType.Zener]: { name: 'Zener', value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Schottky]: { name: 'Schottky', value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Tunnel]: { name: 'Tunnel', value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.PhotoDiode]: { name: 'Photo Diode', value: 6, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.TVSDiode]: { name: 'TVS Diode', value: 15, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.Varactor]: { name: 'Varactor', value: 30, unit: UnitsType.Current, prefix: "V", reference: "D", type: 'analogComponent', has_properties: true, isReferenceVisible: true, isValueVisible: true, connectedHandles: [false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorBJT_NPN]: { name: 'Transistor BJT NPN', value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorBJT_PNP]: { name: 'Transistor BJT PNP', value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorJFET_N]: { name: 'Transistor JFET N-Chan', value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorJFET_P]: { name: 'Transistor JFET P-Chan', value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_N_Enhanced]: { name: 'Transistor MOSFET N-Chan Enhanced', value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_P_Enhanced]: { name: 'Transistor MOSFET P-Chan Enhanced', value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_N_Depletion]: { name: 'Transistor MOSFET N-Chan Depletion', value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.TransistorMOSFET_P_Depletion]: { name: 'Transistor MOSFET P-Chan Depletion', value: 1, unit: UnitsType.Undefined, prefix: "", reference: "Q", type: 'transistorComponent', has_properties: true, isReferenceVisible: true, isValueVisible: false, connectedHandles: [false, false, false], style: undefined, size: "small" },
+    [ComponentType.Board]: { name: 'Board', value: 0, unit: UnitsType.Undefined, prefix: "", reference: "BR", type: 'board', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [], style: { height: 200, width: 200 }, size: "small" },
+    [ComponentType.Node]: { name: 'Node', value: 0, unit: UnitsType.Undefined, prefix: "", reference: "N", type: 'nodeComponent', has_properties: false, isReferenceVisible: false, isValueVisible: false, connectedHandles: [false, false, false, false], color: 'var(--foreground-color)', style: undefined, size: "small" },
 };
 
 const typeGroupDiode = new Set<ComponentType>([
@@ -188,7 +189,8 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         connectedHandles: typePropertiesMap[type].connectedHandles,
         color: typePropertiesMap[type].color,
         size: typePropertiesMap[type].size,
-        style: typePropertiesMap[type].style
+        style: typePropertiesMap[type].style,
+        name: typePropertiesMap[type].name
     };
     return properties;
 }

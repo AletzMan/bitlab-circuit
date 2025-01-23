@@ -65,6 +65,7 @@ export enum ComponentState {
 }
 
 export type ComponentData = {
+    name: string
     value: number
     type: ComponentType
     rotation: number
