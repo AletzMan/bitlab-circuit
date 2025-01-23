@@ -1,6 +1,6 @@
 
 
-import { ComponentsMap } from "@/constants/components";
+import { ComponentsMap, typeGroupCapacitor, typeGroupDiode, typeGroupResistor, typeGroupTransistor, typeGroupVariableCapacitor } from "@/constants/components";
 import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
 import { XYPosition } from "@xyflow/react";
 import { createRoot } from "react-dom/client";
@@ -66,49 +66,6 @@ export function genPresets(customColors: { [key: string]: string[] }) {
 }
 
 
-
-
-const typeGroupDiode = new Set<ComponentType>([
-    ComponentType.Diode,
-    ComponentType.Zener,
-    ComponentType.Schottky,
-    ComponentType.Tunnel,
-    ComponentType.PhotoDiode,
-    ComponentType.TVSDiode,
-    ComponentType.Varactor,
-]);
-
-
-const typeGroupResistor = new Set<ComponentType>([
-    ComponentType.Resistor,
-    ComponentType.Potentiometer,
-]);
-
-const typeGroupCapacitor = new Set<ComponentType>([
-    ComponentType.Capacitor,
-    ComponentType.PolarisedCapacitor,
-]);
-
-
-const typeGroupVariableCapacitor = new Set<ComponentType>([
-    ComponentType.VariableCapacitor,
-    ComponentType.TrimmerCapacitor,
-]);
-
-export const typeGroupTransistor = new Set<ComponentType>(
-    [
-        ComponentType.TransistorBJT_NPN,
-        ComponentType.TransistorBJT_PNP,
-        ComponentType.TransistorJFET_N,
-        ComponentType.TransistorJFET_P,
-        ComponentType.TransistorMOSFET_N_Enhanced,
-        ComponentType.TransistorMOSFET_P_Enhanced,
-        ComponentType.TransistorMOSFET_N_Depletion,
-        ComponentType.TransistorMOSFET_P_Depletion,
-    ]
-);
-
-
 export function getComponentProperties(type: ComponentType, components: AnalogNode[]): ComponentProperties {
 
     const reference = ComponentsMap[type].reference;
@@ -150,45 +107,22 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
     };
     return properties;
 }
+
+const initialValues = Object.keys(ComponentsMap).reduce((acc, key) => {
+    acc[key as ComponentType] = 0; // Asigna el valor inicial (por ejemplo, 0)
+    return acc;
+}, {} as Record<ComponentType, number>);
+
 export function reorderComponentReferences(components: AnalogNode[]): AnalogNode[] {
+
     const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup' | 'TransistorGroup', number> = {
-        [ComponentType.Resistor]: 0,
-        [ComponentType.Rheostat]: 0,
-        [ComponentType.Thermistor]: 0,
-        [ComponentType.Photoresistance]: 0,
-        [ComponentType.Potentiometer]: 0,
-        [ComponentType.Capacitor]: 0,
-        [ComponentType.PolarisedCapacitor]: 0,
-        [ComponentType.VariableCapacitor]: 0,
-        [ComponentType.TrimmerCapacitor]: 0,
-        [ComponentType.Inductor]: 0,
-        [ComponentType.Diode]: 0,
-        [ComponentType.Led]: 0,
-        [ComponentType.Zener]: 0,
-        [ComponentType.Schottky]: 0,
-        [ComponentType.Tunnel]: 0,
-        [ComponentType.PhotoDiode]: 0,
-        [ComponentType.TVSDiode]: 0,
-        [ComponentType.Varactor]: 0,
-        [ComponentType.TransistorBJT_NPN]: 0,
-        [ComponentType.TransistorBJT_PNP]: 0,
-        [ComponentType.TransistorJFET_N]: 0,
-        [ComponentType.TransistorJFET_P]: 0,
-        [ComponentType.TransistorMOSFET_N_Enhanced]: 0,
-        [ComponentType.TransistorMOSFET_P_Enhanced]: 0,
-        [ComponentType.TransistorMOSFET_N_Depletion]: 0,
-        [ComponentType.TransistorMOSFET_P_Depletion]: 0,
-        [ComponentType.Board]: 0,
-        [ComponentType.Node]: 0,
         CapacitorGroup: 0,
         DiodeGroup: 0,
         VariableCapacitorGroup: 0,
         ResistorGroup: 0,
         TransistorGroup: 0,
+        ...initialValues
     };
-
-
-
 
     return components.map((component) => {
         const { type } = component.data;
