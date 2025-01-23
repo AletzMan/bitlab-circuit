@@ -2,28 +2,26 @@
 import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, NodeIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
+import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
 import { Input, Select, Button, Flex, Divider, Card, Tooltip, Checkbox, CheckboxChangeEvent, ColorPicker } from "antd";
 import { ComponentData, AnalogNode, UNITS, ComponentType, Categories } from "@/types";
 import { genPresets } from "@/helpers";
 import { LedColors } from "@/constants";
 import { AggregationColor } from "antd/es/color-picker/color";
+import { useSelectedItems } from "@/store";
+import useHistoryManager from "@/hooks/useHistoryManager";
 const { Option } = Select;
 
 
 export default function ComponentProperties({
-    node,
-    selectedNodes,
-    removeNode,
-    isSingleNode,
     duplicateComponents,
 }: {
-    node: AnalogNode | undefined,
-    selectedNodes: AnalogNode[] | undefined,
-    removeNode: (node: AnalogNode[] | undefined, shouldAddToHistory?: boolean) => void,
-    isSingleNode: boolean,
     duplicateComponents: () => void
 }) {
+    const { removeNode } = useHistoryManager();
+    const node = useSelectedItems((state) => state.selectedNode);
+    const selectedNodes = useSelectedItems((state) => state.selectedNodes);
+    const isSingleNodeSelection = useSelectedItems((state) => state.isSingleNodeSelection);
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
     const updateNodeInternals = useUpdateNodeInternals();
     const { updateNodeData, updateNode, getNodes } = useReactFlow();
@@ -32,7 +30,7 @@ export default function ComponentProperties({
 
     useEffect(() => {
         setDataComponent(node?.data);
-    }, [node, node?.data]);
+    }, [node]);
 
     const handleFlipHorizontal = () => {
         if (node && dataComponent) {
@@ -93,7 +91,7 @@ export default function ComponentProperties({
     };
 
     const handleRemoveNode = () => {
-        if (isSingleNode) {
+        if (isSingleNodeSelection) {
             removeNode([node as AnalogNode], true);
         } else {
             removeNode(selectedNodes, true);
@@ -146,7 +144,7 @@ export default function ComponentProperties({
     return (
 
         <Card className={styles.details} size="small" type="inner" >
-            {isSingleNode &&
+            {isSingleNodeSelection &&
                 <>
                     <label className="details_name"  >{dataComponent?.name}</label>
                     <Divider style={{ margin: "6px 0" }} />
@@ -223,10 +221,10 @@ export default function ComponentProperties({
                     <Divider style={{ margin: "12px 0 24px 0" }} />
                 </>
             }
-            {!isSingleNode &&
+            {!isSingleNodeSelection &&
                 <Flex className={styles.groupNodes} wrap gap="4px" >
                     {selectedNodes?.map(node => (
-                        <Tooltip placement="top" color="cyan" title={node.data?.reference}>
+                        <Tooltip key={node.id} placement="top" color="cyan" title={node.data?.reference}>
                             <Button key={node.id} size="middle" variant="filled" color="cyan"
                                 style={{ textTransform: "capitalize", display: "flex", alignItems: 'center', justifyContent: 'center', flexDirection: "column", gap: '0', fontSize: '0.85em' }}
                                 onClick={() => handleClickSelectedNode(node)}> {node.data?.type} </Button>
@@ -236,7 +234,7 @@ export default function ComponentProperties({
                     <Divider style={{ margin: "16px 0" }} />
                 </Flex>
             }
-            {isSingleNode && node?.data.has_properties &&
+            {isSingleNodeSelection && node?.data.has_properties &&
                 <>
                     <label className="label">Transform</label>
                     <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />

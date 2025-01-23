@@ -24,11 +24,12 @@ import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input,
 import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
-import { useTheme } from "@/store";
 import { NodeComponent } from "../NodeComponent/NodeComponent";
 import { TransistorComponent } from "../TransistorComponent/TransistorComponent";
 import { ComponentsMap } from "@/constants/components";
 import { MechanicalComponent } from "../MechanicalComponent/MechanicalComponent";
+import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
+import { useTheme } from "@/store";
 
 const initialNodes: AnalogNode[] = [
     {
@@ -72,14 +73,8 @@ export function BoardFlow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [activeTab, setActiveTab] = useState('components');
     const [edges, setEdges, onEdgesChange] = useEdgesState<ComponentEdge>(initialEdges);
-    const [selectedNode, setSelectedNode] = useState<AnalogNode | undefined>();
-    const [selectedNodes, setSelectedNodes] = useState<AnalogNode[]>([]);
-    const [selectedEdges, setSelectedEdges] = useState<ComponentEdge[]>([]);
     const [currentTypeGrid, setCurrentTypeGrid] = useState<BackgroundVariant | undefined>(BackgroundVariant.Lines);
     const [viewPort, setViewPort] = useState<Viewport>({ x: 0, y: 0, zoom: 1 });
-    const [selectedEdge, setSelectedEdge] = useState<ComponentEdge | undefined>();
-    const [isSingleNodeSelection, setIsSingleNodeSelection] = useState(false);
-    const [isSingleEdgeSelection, setIsSingleEdgeSelection] = useState(false);
     const dragOutsideRef = useRef<ComponentType | null>(null);
     const edgeReconnectSuccessful = useRef(false);
     const overlappingNodeRef = useRef<AnalogNode | null>(null);
@@ -87,7 +82,7 @@ export function BoardFlow() {
     const { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo } = useHistoryManager();
     const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
     const { currentTheme, setCurrentTheme } = useTheme();
-
+    const { selectedNode, setSelectedNode, selectedNodes, setSelectedNodes, selectedEdge, setSelectedEdge, selectedEdges, setSelectedEdges, setIsSingleNodeSelection, setIsSingleEdgeSelection } = useSelectedItemsState();
 
 
     useEffect(() => {
@@ -624,22 +619,14 @@ export function BoardFlow() {
                             label: "Properties",
                             key: "properties",
                             children: <>
-                                {selectedNode && selectedNodes?.length > 0 &&
+                                {selectedNode && selectedNodes!.length > 0 &&
                                     <ComponentProperties
-                                        node={selectedNode}
-                                        removeNode={removeNode}
-                                        selectedNodes={selectedNodes}
-                                        isSingleNode={isSingleNodeSelection}
                                         duplicateComponents={duplicateComponents} />
                                 }
                                 {selectedEdge && selectedEdges?.length > 0 &&
                                     <EdgeDetails
-                                        edge={selectedEdge}
                                         setEdges={setEdges}
-                                        setSelectedEdge={setSelectedEdge}
-                                        removeEdges={removeEdge}
-                                        isSingleEdgeSelection={isSingleEdgeSelection}
-                                        selectedEdges={selectedEdges} />
+                                        removeEdges={removeEdge} />
                                 }
                             </>
                         }

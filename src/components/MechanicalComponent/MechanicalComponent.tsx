@@ -8,11 +8,11 @@ import { ComponentsMap } from "@/constants/components";
 
 
 export function MechanicalComponent({ data: { type, rotation, flip, collapsed, isLock, reference, isReferenceVisible, connectedHandles, size, state }, selected, id, parentId }: NodeProps<AnalogNode>) {
-    const { updateNode } = useReactFlow();
+    const { updateNode, updateNodeData } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
     useEffect(() => {
-        setIsConnected(connectedHandles);
+        //setIsConnected(connectedHandles);
     }, [connectedHandles]);
 
 
@@ -102,6 +102,11 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
         }
     }, [rotation, flip.x, flip.y]);
 
+    const handleChangeState = () => {
+        updateNodeData(id, { state: { ...state, on: !state?.on } });
+        //updateNode(id, (prevNode) => ({ data: { ...prevNode.data, state: { ...state, on: !state?.on } } }));
+    };
+
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
             {parentId && selected &&
@@ -110,9 +115,11 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
                     {isLock && <LockIcon />}
                 </div>
             }<div className={`${selected && styles.box_selected}`}></div>
-            <button className={styles.action}>
-                <ArrowPushIcon />
-            </button>
+            {selected &&
+                <button className={styles.action} onClick={handleChangeState}>
+                    <ArrowPushIcon />
+                </button>
+            }
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
                 {state ? state?.on ? ComponentsMap[type]?.state?.iconON : ComponentsMap[type].state?.iconOFF : ComponentsMap[type].icon}
             </div>

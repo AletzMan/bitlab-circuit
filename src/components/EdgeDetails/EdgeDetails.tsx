@@ -10,26 +10,22 @@ import { CustomColorsWire } from "@/constants";
 import { AggregationColor } from "antd/es/color-picker/color";
 import { useTheme } from "@/store";
 import { useReactFlow } from "@xyflow/react";
+import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
 
 interface IEdgeProps {
-    edge: ComponentEdge;
-    setSelectedEdge: Dispatch<SetStateAction<ComponentEdge | undefined>>,
+
     removeEdges: (edges: ComponentEdge[] | undefined) => void,
-    isSingleEdgeSelection: boolean,
-    selectedEdges: ComponentEdge[],
     setEdges: Dispatch<SetStateAction<ComponentEdge[]>>
 }
 
 export default function EdgeDetails({
-    edge,
-    setSelectedEdge,
+
     removeEdges,
-    isSingleEdgeSelection,
-    selectedEdges,
     setEdges,
 }: IEdgeProps) {
     const { currentTheme } = useTheme();
     const { getEdges, getNodes, setNodes } = useReactFlow();
+    const { selectedEdge: edge, isSingleEdgeSelection, setSelectedEdge, selectedEdges } = useSelectedItemsState();
     const [currentColor, setCurrentColor] = useState(edge?.data?.color);
     const debouncedColor = useDebounce(currentColor, 500);
     const presets = genPresets(CustomColorsWire);
@@ -41,15 +37,15 @@ export default function EdgeDetails({
     useEffect(() => {
         setEdges((prevEdges) =>
             prevEdges.map((edgePrev) =>
-                edgePrev.id === edge.id
+                edgePrev.id === edge?.id
                     ? { ...edgePrev, data: { ...edgePrev.data, color: debouncedColor as string, path: "" } }
                     : edgePrev
             )
         );
-    }, [debouncedColor, edge.id, setEdges]);
+    }, [debouncedColor, edge?.id, setEdges]);
 
     const handleDelete = () => {
-        if (isSingleEdgeSelection) {
+        if (isSingleEdgeSelection && edge) {
             removeEdges([edge]);
         } else {
             removeEdges(selectedEdges);
@@ -81,7 +77,7 @@ export default function EdgeDetails({
             const connectedEdges = getEdges().filter(
                 currentEdge =>
                     (currentEdge.source === nodeId || currentEdge.target === nodeId) &&
-                    currentEdge.id !== edge.id && // Ignorar el edge inicial
+                    currentEdge.id !== edge?.id && // Ignorar el edge inicial
                     !visitedEdges.has(currentEdge.id)
             );
 
@@ -119,8 +115,8 @@ export default function EdgeDetails({
         };
 
         // Obtener los nodos iniciales del edge seleccionado
-        const startNode = getNodes().find(node => node.id === edge.source);
-        const endNode = getNodes().find(node => node.id === edge.target);
+        const startNode = getNodes().find(node => node.id === edge?.source);
+        const endNode = getNodes().find(node => node.id === edge?.target);
 
         // Iniciar la propagación desde los nodos iniciales si son de tipo `nodeComponent`
         if (startNode?.type === "nodeComponent") {
@@ -135,7 +131,7 @@ export default function EdgeDetails({
         // También actualizar el edge seleccionado
         setEdges(prevEdges =>
             prevEdges.map(edgePrev =>
-                edgePrev.id === edge.id
+                edgePrev.id === edge?.id
                     ? {
                         ...edgePrev,
                         data: {
