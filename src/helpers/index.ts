@@ -87,6 +87,8 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         prefix: ComponentsMap[type].prefix,
         unit: ComponentsMap[type].unit,
         value: ComponentsMap[type].value,
+        state: ComponentsMap[type].state,
+        collapsed: ComponentsMap[type].collapsed,
         icon: ComponentsMap[type].icon,
         category: ComponentsMap[type].category,
         componentType: ComponentsMap[type].componentType,

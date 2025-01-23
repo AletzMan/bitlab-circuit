@@ -2,7 +2,7 @@
 import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
+import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, NodeIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
 import { Input, Select, Button, Flex, Divider, Card, Tooltip, Checkbox, CheckboxChangeEvent, ColorPicker } from "antd";
 import { ComponentData, AnalogNode, UNITS, ComponentType, Categories } from "@/types";
 import { genPresets } from "@/helpers";
@@ -114,6 +114,13 @@ export default function ComponentProperties({
             setDataComponent({ ...dataComponent, isValueVisible: !newValue });
         }
     };
+    const handleChangeState = (e: CheckboxChangeEvent) => {
+        const newValue = e.target.checked;
+        if (node && dataComponent) {
+            updateNodeData(node?.id, { state: { on: newValue } });
+            setDataComponent({ ...dataComponent, state: { ...dataComponent.state, on: newValue } });
+        }
+    };
 
     const handleClickSelectedNode = (nodeSelected: AnalogNode) => {
         const nodes = getNodes(); // Obtén la lista de nodos actual
@@ -196,6 +203,17 @@ export default function ComponentProperties({
                                                 value={dataComponent?.color} styles={{ popupOverlayInner: { maxWidth: "85px" } }}
                                                 onChange={handleChangeColorWire} format="hex" disabledFormat
                                             />
+                                        </Flex>
+                                    </Flex>
+                                </>
+                            }
+                            {dataComponent?.state &&
+                                <>
+                                    <Divider style={{ margin: "12px 0 4px 0" }} variant="dashed" />
+                                    <Flex vertical>
+                                        <label className={styles.value_label}>State</label>
+                                        <Flex vertical align="flex-start" justify="center">
+                                            <Checkbox onChange={handleChangeState} checked={dataComponent?.state.on}  >{dataComponent?.state.on ? 'Closed' : 'Open'}</Checkbox>
                                         </Flex>
                                     </Flex>
                                 </>

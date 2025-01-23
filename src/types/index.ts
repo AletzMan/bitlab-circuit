@@ -90,6 +90,11 @@ export type ComponentData = {
         y: number
     }
     collapsed?: ComponentCollapsed
+    state?: {
+        on: boolean,
+        iconON?: JSX.Element | undefined
+        iconOFF?: JSX.Element | undefined
+    }
     isLock: boolean
     unit: UnitsType
     prefix: string
@@ -128,8 +133,14 @@ export type ComponentProperties = {
     value: number | string,
     category: Categories,
     componentType: ComponentType,
+    state?: {
+        on: boolean,
+        iconON?: JSX.Element | undefined
+        iconOFF?: JSX.Element | undefined
+    }
     icon: JSX.Element,
     prefix: string,
+    collapsed?: ComponentCollapsed
     unit: UnitsType,
     reference: string
     type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'board',

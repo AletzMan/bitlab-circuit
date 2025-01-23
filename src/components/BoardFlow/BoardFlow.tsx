@@ -168,7 +168,7 @@ export function BoardFlow() {
 
         let node: AnalogNode | undefined;
 
-        const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color, style, size, name, category } = getComponentProperties(type, nodes);
+        const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color, style, size, name, category, collapsed, state } = getComponentProperties(type, nodes);
 
         if (type as ComponentType && Object.keys(ComponentsMap).includes(type)) {
 
@@ -176,7 +176,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: typeComponent,
                 position,
-                data: { name, type, category, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, unit, prefix, has_properties, reference, isReferenceVisible, isValueVisible, connectedHandles, color, size },
+                data: { name, type, category, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, collapsed, state, unit, prefix, has_properties, reference, isReferenceVisible, isValueVisible, connectedHandles, color, size },
                 parentId: board?.id,
                 style
             };

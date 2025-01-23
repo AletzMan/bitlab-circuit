@@ -1,13 +1,13 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
 import { AnalogNode, ComponentCollapsed, ComponentType } from "@/types";
-import { LockIcon, UnlockIcon } from "@/icons";
+import { ArrowPushIcon, LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
 
 
-export function MechanicalComponent({ data: { type, rotation, flip, collapsed, isLock, reference, isReferenceVisible, connectedHandles, size }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function MechanicalComponent({ data: { type, rotation, flip, collapsed, isLock, reference, isReferenceVisible, connectedHandles, size, state }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -110,8 +110,11 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
                     {isLock && <LockIcon />}
                 </div>
             }<div className={`${selected && styles.box_selected}`}></div>
+            <button className={styles.action}>
+                <ArrowPushIcon />
+            </button>
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
-                {ComponentsMap[type].icon}
+                {state ? state?.on ? ComponentsMap[type]?.state?.iconON : ComponentsMap[type].state?.iconOFF : ComponentsMap[type].icon}
             </div>
             <Terminal type="source" position={positionTerminals[0]} id="1" isConnectable={!isConnected[0]} />
             <Terminal type="source" position={positionTerminals[1]} id="2" isConnectable={!isConnected[1]} />
