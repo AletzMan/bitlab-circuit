@@ -246,6 +246,7 @@ export function BoardFlow() {
         overlappingNodeRef.current = overlappingNode as AnalogNode;
 
         // Actualizar nodos y su posición ajustada
+
         setNodes((prevNodes) =>
             prevNodes.map((node) => {
                 if (node.id === dragNode.id) {
@@ -257,7 +258,7 @@ export function BoardFlow() {
                             state:
                                 overlappingNode &&
                                     Object.keys(ComponentsMap).includes(overlappingNode?.data?.type as ComponentType)
-                                    ? ComponentState.NotAdd
+                                    ? overlappingNode.data.type !== ComponentType.Board ? ComponentState.NotAdd : undefined
                                     : undefined,
                         },
                     };
@@ -298,8 +299,7 @@ export function BoardFlow() {
         }
         const typeComponent = overlappingNodeRef?.current?.data?.type as ComponentType;
 
-        if (
-            Object.keys(ComponentsMap).includes(typeComponent) && selectedNode?.data.type !== ComponentType.Board) {
+        if (Object.keys(ComponentsMap).includes(typeComponent) && selectedNode?.data.type !== ComponentType.Board && typeComponent !== ComponentType.Board) {
 
             const newPosition = getNewPositionByOverlapping(dragNode.position, overlappingNodeRef?.current?.position as XYPosition);
             setNodes((prevNodes) =>
