@@ -18,89 +18,50 @@ body {
     --border-color-tab: #d5d5d5;
     --board-background-color: #fbfbfb;
     --label-color: #343434;
-    --title-color: #717171;
     --label-second-color: #343434;
+    --title-color: #717171;
     --primary-color: #2db8d4;
     --border-color: #DEDEDE;
     --grid-large-color: #d6d6d6;
     --grid-small-color: #e0e0e0;
-    --lock-color: #206ab3;
     --fill-minimap-node: #aca9a9;
     --fill-minimap-node-mask: #e9e5e5;
     --background-minimap: #f9f8f8;
-    --font-family: "Jost", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --color-wire-one: #000000;
-    --color-wire-two: #FF0000;
-    --color-wire-three: #FF7F00;
-    --color-wire-four: #FFFF00;
-    --color-wire-five: #00FF00;
-    --color-wire-six: #00FFFF;
-    --color-wire-seven: #0000FF;
-    --color-wire-eight: #7F00FF;
-    --color-wire-nine: #FF00FF;
-    --color-wire-ten: #FFFFFF;
+    --lock-color: #206ab3;
     --selection-border-color: #c3781cee;
     --selection-background-color: #c3781c17;
     --group-border-color: #632626;
     --group-background-color: #feffac20;
+    --font-family: "Jost", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 [data-theme="dark"] {
     --foreground-color: #FFFFFF;
     --reference-color: #c39950;
     --background-color: #292929;
-    --fill-minimap-node: #e4e4e4;
-    --label-color: #a4eeff;
-    --label-second-color: #c2c2c2;
     --background-color-tab: #151515;
     --background-color-tab-inactive: #414141;
+    --foreground-color-tab-inactive: #909090;
+    --foreground-color-tab-active: #909090;
     --border-color-tab: #424242;
-    --background-minimap: #5f5f5f;
-    --fill-minimap-node-mask: #1a1a1a;
     --board-background-color: #141414;
+    --label-color: #a4eeff;
+    --label-second-color: #c2c2c2;
+    --title-color: #717171;
+    --primary-color: #2db8d4;
+    --border-color: #585858;
     --grid-large-color: #3a3a3a;
     --grid-small-color: #292929;
+    --fill-minimap-node: #e4e4e4;
+    --fill-minimap-node-mask: #1a1a1a;
+    --background-minimap: #5f5f5f;
     --lock-color: #4ec9e2;
-    --color-wire-one: #FFFFFF;
-    --color-wire-two: #FF6F61;
-    --color-wire-three: #FFA500;
-    --color-wire-four: #FFD700;
-    --color-wire-five: #32CD32;
-    --color-wire-six: #4682B4;
-    --color-wire-nine: #1E90FF;
-    --color-wire-eight: #9370DB;
-    --color-wire-ten: #000000;
     --selection-border-color: #57ebffee;
     --selection-background-color: #57d8ff17;
     --group-border-color: #ada98a;
     --group-background-color: #63604020;
 }
 
-/*
-.react-flow-wrapper {
-    width: 100%;
-    height: 100%;
-}
-*/
-/*
-.react-flow__node {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 14px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.react-flow__node-input {
-    border: 2px solid #0077ff;
-}
-
-.react-flow__node-output {
-    border: 2px solid #ff0077;
-}
-*/
 .react-flow__handle {
     min-height: 0px;
     min-width: 0px;
@@ -160,47 +121,47 @@ body {
     border: 1px dashed var(--primary-color);
 }
 
-:where(.css-dev-only-do-not-override-poerbe).ant-card {
+.ant-card {
     background-color: var(--background-color);
 }
 
-:where(.css-dev-only-do-not-override-7ny38l).ant-card-bordered {
+.ant-card-bordered {
     border: 1px solid var(--border-color);
 }
 
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab,
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab,
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab,
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab {
+.ant-tabs-card>.ant-tabs-nav .ant-tabs-tab,
+.ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab,
+.ant-tabs-card>.ant-tabs-nav .ant-tabs-tab,
+.ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab {
     background-color: var(--background-color-tab-inactive);
     color: var(--foreground-color-tab-inactive);
 }
 
-:where(.css-dev-only-do-not-override-7ny38l).ant-collapse .ant-collapse-content {
+.ant-collapse .ant-collapse-content {
     background-color: var(--background-color);
 }
 
 
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab-active,
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab-active,
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>.ant-tabs-nav .ant-tabs-tab-active,
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab-active {
+.ant-tabs-card>.ant-tabs-nav .ant-tabs-tab-active,
+.ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab-active,
+.ant-tabs-card>.ant-tabs-nav .ant-tabs-tab-active,
+.ant-tabs-card>div>.ant-tabs-nav .ant-tabs-tab-active {
     background-color: var(--background-color-tab);
     border-color: var(--border-color-tab);
 }
 
 
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs .ant-tabs-tab:hover,
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs .ant-tabs-tab:hover {
+.ant-tabs .ant-tabs-tab:hover,
+.ant-tabs .ant-tabs-tab:hover {
     color: #18b6f5;
 }
 
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card.ant-tabs-top>.ant-tabs-nav .ant-tabs-tab-active,
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-card.ant-tabs-top>div>.ant-tabs-nav .ant-tabs-tab-active {
+.ant-tabs-card.ant-tabs-top>.ant-tabs-nav .ant-tabs-tab-active,
+.ant-tabs-card.ant-tabs-top>div>.ant-tabs-nav .ant-tabs-tab-active {
     border-bottom-color: var(--background-color-tab);
 }
 
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
     color: var(--primary-color);
 }
 
@@ -221,11 +182,11 @@ body {
 }
 
 
-:where(.css-dev-only-do-not-override-7ny38l).ant-switch.ant-switch-checked {
+.ant-switch.ant-switch-checked {
     background-color: var(--primary-color);
 }
 
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
     color: var(--primary-color);
 }
 
@@ -241,39 +202,36 @@ body {
     fill: var(--fill-minimap-node-mask);
 }
 
-:where(.css-dev-only-do-not-override-7ny38l).ant-card {
+.ant-card {
     background-color: var(--background-color);
 }
 
-:where(.css-dev-only-do-not-override-poerbe).ant-collapse,
-:where(.css-dev-only-do-not-override-7ny38l).ant-collapse {
+.ant-collapse,
+.ant-collapse {
     border-radius: 0;
 }
 
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-top>.ant-tabs-nav,
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-bottom>.ant-tabs-nav,
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-top>div>.ant-tabs-nav,
-:where(.css-dev-only-do-not-override-7ny38l).ant-tabs-bottom>div>.ant-tabs-nav,
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-top>.ant-tabs-nav,
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-bottom>.ant-tabs-nav,
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-top>div>.ant-tabs-nav,
-:where(.css-dev-only-do-not-override-poerbe).ant-tabs-bottom>div>.ant-tabs-nav {
+.ant-tabs-top>.ant-tabs-nav,
+.ant-tabs-bottom>.ant-tabs-nav,
+.ant-tabs-top>div>.ant-tabs-nav,
+.ant-tabs-bottom>div>.ant-tabs-nav,
+.ant-tabs-top>.ant-tabs-nav,
+.ant-tabs-bottom>.ant-tabs-nav,
+.ant-tabs-top>div>.ant-tabs-nav,
+.ant-tabs-bottom>div>.ant-tabs-nav {
     margin: 0;
 }
 
 
 .ant-color-picker-panel,
-:where(.css-dev-only-do-not-override-poerbe).ant-color-picker .ant-color-picker-inner .ant-color-picker-input-container,
-:where(.css-dev-only-do-not-override-poerbe).ant-color-picker .ant-color-picker-inner-content>.ant-divider,
-:where(.css-dev-only-do-not-override-poerbe).ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-header,
-:where(.css-dev-only-do-not-override-7ny38l).ant-color-picker .ant-color-picker-inner .ant-color-picker-input-container,
-:where(.css-dev-only-do-not-override-7ny38l).ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-header,
-:where(.css-dev-only-do-not-override-7ny38l).ant-color-picker .ant-color-picker-inner-content>.ant-divider {
+.ant-color-picker .ant-color-picker-inner .ant-color-picker-input-container,
+.ant-color-picker .ant-color-picker-inner-content>.ant-divider,
+.ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-header {
     display: none;
 }
 
-:where(.css-dev-only-do-not-override-poerbe).ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-content>.ant-collapse-content-box,
-:where(.css-dev-only-do-not-override-7ny38l).ant-color-picker .ant-color-picker-inner .ant-color-picker-presets-items {
+.ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-content>.ant-collapse-content-box,
+.ant-color-picker .ant-color-picker-inner .ant-color-picker-presets-items {
     display: flex;
     flex-flow: row wrap;
     max-width: 100px;
