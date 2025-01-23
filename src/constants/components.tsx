@@ -1,5 +1,5 @@
 import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseIcon, PushButtonOpenIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, ZenerIcon } from "@/icons";
-import { ComponentProperties, ComponentType, UnitsType } from "@/types";
+import { Categories, ComponentProperties, ComponentType, UnitsType } from "@/types";
 
 
 
@@ -8,7 +8,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Board]: {
         name: 'Board',
         value: 0,
-        category: 'Structure',
+        category: Categories.Structure,
         componentType: ComponentType.Board,
         icon: <BoardIcon />,
         unit: UnitsType.Undefined,
@@ -29,7 +29,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Node]: {
         name: 'Node',
         value: 0,
-        category: 'Structure',
+        category: Categories.Structure,
         componentType: ComponentType.Node,
         icon: <NodeIcon />,
         unit: UnitsType.Undefined,
@@ -47,7 +47,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Resistor]: {
         name: 'Resistor',
         value: 1,
-        category: 'Resistors',
+        category: Categories.Resistors,
         componentType: ComponentType.Resistor,
         icon: <ResistorIcon />,
         unit: UnitsType.Ohm,
@@ -64,7 +64,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Rheostat]: {
         name: 'Rheostat',
         value: 1,
-        category: 'Resistors',
+        category: Categories.Resistors,
         componentType: ComponentType.Rheostat,
         icon: <RheostatIcon />,
         unit: UnitsType.Ohm,
@@ -81,7 +81,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Thermistor]: {
         name: 'Thermistor',
         value: 10,
-        category: 'Resistors',
+        category: Categories.Resistors,
         componentType: ComponentType.Thermistor,
         icon: <ThermistorIcon />,
         unit: UnitsType.Ohm,
@@ -98,7 +98,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Photoresistance]: {
         name: 'Photo Resistance',
         value: 10,
-        category: 'Resistors',
+        category: Categories.Resistors,
         componentType: ComponentType.Photoresistance,
         icon: <LDRIcon />,
         unit: UnitsType.Ohm,
@@ -115,7 +115,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Potentiometer]: {
         name: 'Potentiometer',
         value: 1,
-        category: 'Resistors',
+        category: Categories.Resistors,
         componentType: ComponentType.Potentiometer,
         icon: <PotentiometerIcon />,
         unit: UnitsType.Ohm,
@@ -132,7 +132,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Capacitor]: {
         name: 'Capacitor',
         value: 100,
-        category: 'Capacitors',
+        category: Categories.Capacitors,
         componentType: ComponentType.Capacitor,
         icon: <CapacitorIcon />,
         unit: UnitsType.Capacitance,
@@ -149,7 +149,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PolarisedCapacitor]: {
         name: 'Polarised Capacitor',
         value: 4.7,
-        category: 'Capacitors',
+        category: Categories.Capacitors,
         componentType: ComponentType.PolarisedCapacitor,
         icon: <PolarisedCapacitorIcon />
         , unit: UnitsType.Capacitance,
@@ -166,7 +166,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.VariableCapacitor]: {
         name: 'Variable Capacitor',
         value: 100,
-        category: 'Capacitors',
+        category: Categories.Capacitors,
         componentType: ComponentType.VariableCapacitor,
         icon: <VariableCapacitorIcon />,
         unit: UnitsType.Capacitance,
@@ -183,7 +183,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TrimmerCapacitor]: {
         name: 'Trimmer Capacitor',
         value: 100,
-        category: 'Capacitors',
+        category: Categories.Capacitors,
         componentType: ComponentType.TrimmerCapacitor,
         icon: <TrimmerCapacitorIcon />,
         unit: UnitsType.Capacitance,
@@ -200,7 +200,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Diode]: {
         name: 'Diode',
         value: 0.7,
-        category: 'Diodes',
+        category: Categories.Diodes,
         componentType: ComponentType.Diode,
         icon: <DiodeIcon />,
         unit: UnitsType.Voltage,
@@ -217,7 +217,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Led]: {
         name: 'LED',
         value: 30,
-        category: 'Diodes',
+        category: Categories.Diodes,
         componentType: ComponentType.Led,
         icon: <LEDIcon />,
         unit: UnitsType.Current,
@@ -234,7 +234,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Zener]: {
         name: 'Zener',
         value: 6,
-        category: 'Diodes',
+        category: Categories.Diodes,
         componentType: ComponentType.Zener,
         icon: <ZenerIcon />,
         unit: UnitsType.Current,
@@ -251,7 +251,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Schottky]: {
         name: 'Schottky',
         value: 30,
-        category: 'Diodes',
+        category: Categories.Diodes,
         componentType: ComponentType.Schottky,
         icon: <SchottkyIcon />,
         unit: UnitsType.Current,
@@ -268,7 +268,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Tunnel]: {
         name: 'Tunnel',
         value: 15,
-        category: 'Diodes',
+        category: Categories.Diodes,
         componentType: ComponentType.Tunnel,
         icon: <TunnelIcon />,
         unit: UnitsType.Current,
@@ -285,7 +285,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PhotoDiode]: {
         name: 'Photo Diode',
         value: 6,
-        category: 'Diodes',
+        category: Categories.Diodes,
         componentType: ComponentType.PhotoDiode,
         icon: <PhotoDiodeIcon />,
         unit: UnitsType.Current,
@@ -302,7 +302,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TVSDiode]: {
         name: 'TVS Diode',
         value: 15,
-        category: 'Diodes',
+        category: Categories.Diodes,
         componentType: ComponentType.TVSDiode,
         icon: <TVSDiodeIcon />,
         unit: UnitsType.Current,
@@ -319,7 +319,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Varactor]: {
         name: 'Varactor',
         value: 30,
-        category: 'Diodes',
+        category: Categories.Diodes,
         componentType: ComponentType.Varactor,
         icon: <VaractorIcon />,
         unit: UnitsType.Current,
@@ -336,7 +336,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TransistorBJT_NPN]: {
         name: 'Transistor BJT NPN',
         value: 1,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.TransistorBJT_NPN,
         icon: <BJTNPNIcon />,
         unit: UnitsType.Undefined,
@@ -353,7 +353,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TransistorBJT_PNP]: {
         name: 'Transistor BJT PNP',
         value: 1,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.TransistorBJT_PNP,
         icon: <BJTPNPIcon />,
         unit: UnitsType.Undefined,
@@ -370,7 +370,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TransistorJFET_N]: {
         name: 'Transistor JFET N-Chan',
         value: 1,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.TransistorJFET_N,
         icon: <JFETNIcon />,
         unit: UnitsType.Undefined,
@@ -387,7 +387,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TransistorJFET_P]: {
         name: 'Transistor JFET P-Chan',
         value: 1,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.TransistorJFET_P,
         icon: <JFETPIcon />,
         unit: UnitsType.Undefined,
@@ -404,7 +404,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TransistorMOSFET_N_Enhanced]: {
         name: 'Transistor MOSFET N-Chan Enhanced',
         value: 1,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.TransistorMOSFET_N_Enhanced,
         icon: <NChainEnhMOSFETIcon />,
         unit: UnitsType.Undefined,
@@ -421,7 +421,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TransistorMOSFET_P_Enhanced]: {
         name: 'Transistor MOSFET P-Chan Enhanced',
         value: 1,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.TransistorMOSFET_P_Enhanced,
         icon: <PChainEnhMOSFETIcon />,
         unit: UnitsType.Undefined,
@@ -438,7 +438,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TransistorMOSFET_N_Depletion]: {
         name: 'Transistor MOSFET N-Chan Depletion',
         value: 1,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.TransistorMOSFET_N_Depletion,
         icon: <NChainDepMOSFETIcon />,
         unit: UnitsType.Undefined,
@@ -455,7 +455,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.TransistorMOSFET_P_Depletion]: {
         name: 'Transistor MOSFET P-Chan Depletion',
         value: 1,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.TransistorMOSFET_P_Depletion,
         icon: <PChainDepMOSFETIcon />,
         unit: UnitsType.Undefined,
@@ -472,7 +472,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PhotoTransistorNPN]: {
         name: 'Photo Transistor NPN',
         value: 100,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.PhotoTransistorNPN,
         icon: <PhotoTransistorNPNIcon />,
         unit: UnitsType.Undefined,
@@ -489,7 +489,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PhotoTransistorPNP]: {
         name: 'Photo Transistor PNP',
         value: 100,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.PhotoTransistorPNP,
         icon: <PhotoTransistorPNPIcon />,
         unit: UnitsType.Undefined,
@@ -506,7 +506,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PhotoTransistorNPN3Pins]: {
         name: 'Photo Transistor NPN 3 Pins',
         value: 100,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.PhotoTransistorNPN3Pins,
         icon: <PhotoTransistorNPN3PinsIcon />,
         unit: UnitsType.Undefined,
@@ -523,7 +523,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PhotoTransistorPNP3Pins]: {
         name: 'Photo Transistor PNP 3 Pins',
         value: 100,
-        category: 'Transistors',
+        category: Categories.Transistors,
         componentType: ComponentType.PhotoTransistorPNP3Pins,
         icon: <PhotoTransistorPNP3PinsIcon />,
         unit: UnitsType.Undefined,
@@ -540,7 +540,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.Inductor]: {
         name: 'Inductor',
         value: 100,
-        category: 'Inductors',
+        category: Categories.Inductors,
         componentType: ComponentType.Inductor,
         icon: <InductorIcon />,
         unit: UnitsType.Inductance,
@@ -557,7 +557,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.FerriteCoreInductor]: {
         name: 'Ferrite Core Inductor',
         value: 100,
-        category: 'Inductors',
+        category: Categories.Inductors,
         componentType: ComponentType.FerriteCoreInductor,
         icon: <FerriteCoreInductorIcon />,
         unit: UnitsType.Inductance,
@@ -574,7 +574,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.IronCoreInductor]: {
         name: 'Iron Core Inductor',
         value: 100,
-        category: 'Inductors',
+        category: Categories.Inductors,
         componentType: ComponentType.IronCoreInductor,
         icon: <IronCoreInductorIcon />,
         unit: UnitsType.Inductance,
@@ -591,7 +591,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PresetFerriteCoreInductor]: {
         name: 'Preset Ferrite Core Inductor',
         value: 100,
-        category: 'Inductors',
+        category: Categories.Inductors,
         componentType: ComponentType.PresetFerriteCoreInductor,
         icon: <PresetFerriteCoreInductorIcon />,
         unit: UnitsType.Inductance,
@@ -608,7 +608,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PresetIronCoreInductor]: {
         name: 'Preset Iron Core Inductor',
         value: 100,
-        category: 'Inductors',
+        category: Categories.Inductors,
         componentType: ComponentType.PresetIronCoreInductor,
         icon: <PresetIronCoreInductorIcon />,
         unit: UnitsType.Inductance,
@@ -625,7 +625,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.VariableFerriteCoreInductor]: {
         name: 'Variable Ferrite Core Inductor',
         value: 100,
-        category: 'Inductors',
+        category: Categories.Inductors,
         componentType: ComponentType.VariableFerriteCoreInductor,
         icon: <VariableFerriteCoreInductorIcon />,
         unit: UnitsType.Inductance,
@@ -642,7 +642,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.VariableIronCoreInductor]: {
         name: 'Variable Iron Core Inductor',
         value: 100,
-        category: 'Inductors',
+        category: Categories.Inductors,
         componentType: ComponentType.VariableIronCoreInductor,
         icon: <VariableIronCoreInductorIcon />,
         unit: UnitsType.Inductance,
@@ -659,7 +659,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.SwitchSPSTOpen]: {
         name: 'SPST Switch Normally Open',
         value: 0,
-        category: 'Switches & Relays',
+        category: Categories["Switches & Relays"],
         componentType: ComponentType.SwitchSPSTOpen,
         icon: <SwitchSPSTOpenIcon />,
         unit: UnitsType.Undefined,
@@ -676,7 +676,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.SwitchSPSTClose]: {
         name: 'SPST Switch Normally Close',
         value: 0,
-        category: 'Switches & Relays',
+        category: Categories["Switches & Relays"],
         componentType: ComponentType.SwitchSPSTClose,
         icon: <SwitchSPSTCloseIcon />,
         unit: UnitsType.Undefined,
@@ -693,7 +693,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PusuhButtonOpen]: {
         name: 'Push Button Normally Open',
         value: 0,
-        category: 'Switches & Relays',
+        category: Categories["Switches & Relays"],
         componentType: ComponentType.PusuhButtonOpen,
         icon: <PushButtonOpenIcon />,
         unit: UnitsType.Undefined,
@@ -710,7 +710,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
     [ComponentType.PusuhButtonClose]: {
         name: 'Push Button Normally Close',
         value: 0,
-        category: 'Switches & Relays',
+        category: Categories["Switches & Relays"],
         componentType: ComponentType.PusuhButtonClose,
         icon: <PushButtonCloseIcon />,
         unit: UnitsType.Undefined,

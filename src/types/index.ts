@@ -83,6 +83,7 @@ export type ComponentData = {
     name: string
     value: number
     type: ComponentType
+    category: string
     rotation: number
     flip: {
         x: number,
@@ -112,10 +113,20 @@ export type GroupComponent = {
     label: string
 }
 
+export enum Categories {
+    Structure = 'Structure',
+    Resistors = 'Resistors',
+    Capacitors = 'Capacitors',
+    Diodes = 'Diodes',
+    Transistors = 'Transistors',
+    Inductors = 'Inductors',
+    'Switches & Relays' = 'Switches & Relays',
+}
+
 export type ComponentProperties = {
     name: string
     value: number,
-    category: string,
+    category: Categories,
     componentType: ComponentType,
     icon: JSX.Element,
     prefix: string,

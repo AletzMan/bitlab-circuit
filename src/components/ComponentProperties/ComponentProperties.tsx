@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
 import { Input, Select, Button, Flex, Divider, Card, Tooltip, Checkbox, CheckboxChangeEvent, ColorPicker } from "antd";
-import { ComponentData, AnalogNode, UNITS, ComponentType } from "@/types";
+import { ComponentData, AnalogNode, UNITS, ComponentType, Categories } from "@/types";
 import { genPresets } from "@/helpers";
 import { LedColors } from "@/constants";
 import { AggregationColor } from "antd/es/color-picker/color";
@@ -155,32 +155,36 @@ export default function ComponentProperties({
                     </div>
                     {node?.data?.has_properties && (
                         <>
-                            <Divider style={{ margin: "4px 0" }} variant="dashed" />
-                            <div className={styles.value}>
-                                <Flex vertical>
-                                    <label className={styles.value_label}>Value</label>
-                                    <Input className={styles.value_number}
-                                        value={dataComponent?.value} size="middle"
-                                        onChange={(e) => {
-                                            const newValue = e.target.value ? parseFloat(e.target.value) : 0;
-                                            if (dataComponent) {
-                                                setDataComponent({ ...dataComponent, value: newValue });
-                                                updateNodeData(node.id, { value: newValue });
-                                            }
-                                        }}
-                                        addonAfter={dataComponent &&
-                                            <Select defaultValue={dataComponent.prefix} value={dataComponent.prefix} onChange={handleChangeUnit}>
-                                                {UNITS[dataComponent.unit].map(value => (
-                                                    <Option key={value} value={value}>{value}</Option>
-                                                ))}
-                                            </Select>}
-                                    />
-                                </Flex>
-                                <label className={`${styles.value_label} ${styles.value_hidden}`}>
-                                    Hidden
-                                    <Checkbox onChange={handleChangeHiddenValue} checked={!dataComponent?.isValueVisible} />
-                                </label>
-                            </div>
+                            {dataComponent?.category !== Categories["Switches & Relays"] &&
+                                <>
+                                    <Divider style={{ margin: "4px 0" }} variant="dashed" />
+                                    <div className={styles.value}>
+                                        <Flex vertical>
+                                            <label className={styles.value_label}>Value</label>
+                                            <Input className={styles.value_number}
+                                                value={dataComponent?.value} size="middle"
+                                                onChange={(e) => {
+                                                    const newValue = e.target.value ? parseFloat(e.target.value) : 0;
+                                                    if (dataComponent) {
+                                                        setDataComponent({ ...dataComponent, value: newValue });
+                                                        updateNodeData(node.id, { value: newValue });
+                                                    }
+                                                }}
+                                                addonAfter={dataComponent &&
+                                                    <Select defaultValue={dataComponent.prefix} value={dataComponent.prefix} onChange={handleChangeUnit}>
+                                                        {UNITS[dataComponent.unit].map(value => (
+                                                            <Option key={value} value={value}>{value}</Option>
+                                                        ))}
+                                                    </Select>}
+                                            />
+                                        </Flex>
+                                        <label className={`${styles.value_label} ${styles.value_hidden}`}>
+                                            Hidden
+                                            <Checkbox onChange={handleChangeHiddenValue} checked={!dataComponent?.isValueVisible} />
+                                        </label>
+                                    </div>
+                                </>
+                            }
                             {dataComponent?.type === ComponentType.Led &&
                                 <>
                                     <Divider style={{ margin: "12px 0 4px 0" }} variant="dashed" />
