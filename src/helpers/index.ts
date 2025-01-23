@@ -112,12 +112,14 @@ const initialValues = Object.keys(ComponentsMap).reduce((acc, key) => {
 
 export function reorderComponentReferences(components: AnalogNode[]): AnalogNode[] {
 
-    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup' | 'TransistorGroup', number> = {
+    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup' | 'TransistorGroup' | 'InductorGroup' | 'SwitchGroup', number> = {
         CapacitorGroup: 0,
         DiodeGroup: 0,
         VariableCapacitorGroup: 0,
         ResistorGroup: 0,
         TransistorGroup: 0,
+        InductorGroup: 0,
+        SwitchGroup: 0,
         ...initialValues
     };
 

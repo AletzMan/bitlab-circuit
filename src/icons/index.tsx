@@ -114,14 +114,6 @@ export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
-export function InductorIcon(props: SVGProps<SVGSVGElement>) {
-    return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 513.36 356.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 154 v 12.045 H 174 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 647 v -12 H 627 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
-        </svg>
-    );
-}
-
 export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
@@ -309,6 +301,125 @@ export function PhotoTransistorPNP3PinsIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+
+export function InductorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 512 512" >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 513.36 356.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 154 v 12.045 H 174 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 647 v -12 H 627 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+        </svg>
+    );
+}
+
+export function FerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 513.36 356.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 154 v 12.045 H 174 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 647 v -12 H 627 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+            <path d="m406.55 318.38h62.977v12.594h-62.977z"></path>
+            <path d="m482.12 318.38h62.977v12.594h-62.977z"></path>
+            <path d="m330.98 318.38h62.977v12.594h-62.977z"></path>
+            <path d="m255.41 318.38h62.977v12.594h-62.977z"></path>
+        </svg>
+    );
+}
+
+export function IronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 513.36 356.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 154 v 12.045 H 174 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 647 v -12 H 627 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+            <path d="m255.41 318.38h289.69v12.594h-289.69z"></path>
+        </svg>
+    );
+}
+
+export function PresetFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)matrix(-1, 0, 0, 1, 0, 0)"  >
+            <path d="m469.52 406.55h12.594v62.977h-12.594z"></path>
+            <path d="m469.52 482.12h12.594v62.977h-12.594z"></path>
+            <path d="m469.52 255.41h12.594v62.977h-12.594z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 272.54 586.91 l 156.18 -163.23 c 2.0156 4.0312 3.0234 9.0703 3.0234 13.602 c 0 17.129 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0078 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 81.617 V 649 h 12.594 V 627 v -69.523 c 21.16 -3.0234 37.785 -21.664 37.785 -43.832 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -8.5664 -2.5195 -16.625 -6.5508 -23.176 l 31.738 -33.25 v 12.594 h 12.594 v -25.695 l 62.977 -66 l 26.703 26.703 l 9.0703 -9.0703 l -62.469 -62.973 l -9.0703 9.0703 l 27.207 27.207 l -53.906 56.422 v -19.145 h -12.594 v 32.242 l -40.305 41.816 c -2.0156 -2.0156 -4.0312 -3.5273 -6.5508 -5.0391 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -22.168 -16.625 -40.809 -37.785 -43.832 l -0.0039 -69.02 V 142 h -12.594 V 173 v 82.121 h 6.5508 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 17.129 0 31.738 14.105 31.738 31.738 s -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 7.5586 0 15.113 3.0234 20.656 7.5586 l -157.7 163.23 z"></path>
+        </svg>
+    );
+}
+
+
+export function PresetIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)matrix(-1, 0, 0, 1, 0, 0)" >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 272.54 586.91 l 156.18 -163.23 c 2.0156 4.0312 3.0234 9.0703 3.0234 13.602 c 0 17.129 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0078 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 81.617 V 653 h 12.5454 V 627 v -69.523 c 21.16 -3.0234 37.785 -21.664 37.785 -43.832 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -8.5664 -2.5195 -16.625 -6.5508 -23.176 l 31.738 -33.25 v 163.74 h 12.594 l 0.0078 -177.34 l 62.977 -66 l 26.703 26.703 l 9.0703 -9.0703 l -62.477 -62.469 l -9.0703 9.0703 l 27.207 27.207 l -53.906 56.422 v -94.211 h -12.594 v 107.82 l -40.305 41.816 c -2.0156 -2.0156 -4.0312 -3.5273 -6.5508 -5.0391 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 s -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -22.168 -16.625 -40.809 -37.785 -43.832 l -0.0039 -69.527 V 144 h -13.0479 V 173 v 82.121 h 6.5508 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 17.129 0 31.738 14.105 31.738 31.738 s -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 7.5586 0 15.113 3.0234 20.656 7.5586 l -157.7 163.23 z"></path>
+        </svg>
+    );
+}
+
+export function VariableFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)matrix(-1, 0, 0, 1, 0, 0)"  >
+            <path d="m469.52 406.55h12.594v62.977h-12.594z"></path>
+            <path d="m469.52 482.12h12.594v62.977h-12.594z"></path>
+            <path d="m469.52 255.41h12.594v62.977h-12.594z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 272.54 586.91 l 156.18 -163.23 c 2.0156 4.0312 3.0234 9.0703 3.0234 13.602 c 0 17.129 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0078 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 81.617 V 649 h 12.594 V 627 v -69.523 c 21.16 -3.0234 37.785 -21.664 37.785 -43.832 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -8.5664 -2.5195 -16.625 -6.5508 -23.176 l 31.738 -33.25 v 12.594 h 12.594 v -25.695 l 63.3852 -66.548 l 13 13 l 4 -15 l 10 -36 l -18 7 Q 535 278 524 281 l 12 12 l -53.906 56.422 v -19.145 h -12.594 v 32.242 l -40.305 41.816 c -2.0156 -2.0156 -4.0312 -3.5273 -6.5508 -5.0391 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -22.168 -16.625 -40.809 -37.785 -43.832 l -0.0039 -69.02 V 142 h -12.594 V 173 v 82.121 h 6.5508 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 17.129 0 31.738 14.105 31.738 31.738 s -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 7.5586 0 15.113 3.0234 20.656 7.5586 l -157.7 163.23 z"></path>
+        </svg>
+    );
+}
+
+
+export function VariableIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)matrix(-1, 0, 0, 1, 0, 0)" >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 272.54 586.91 l 156.18 -163.23 c 2.0156 4.0312 3.0234 9.0703 3.0234 13.602 c 0 17.129 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0078 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 81.617 V 653 h 12.5454 V 627 v -69.523 c 21.16 -3.0234 37.785 -21.664 37.785 -43.832 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -8.5664 -2.5195 -16.625 -6.5508 -23.176 l 31.738 -33.25 v 163.74 h 12.594 l 0.0078 -177.34 l 62.977 -66 l 12.449 11.951 l 3 -14 l 9 -36 l -14 5 Q 531 279 523 282 l 12 12 l -53.906 56.422 v -94.211 h -12.594 v 107.82 l -40.305 41.816 c -2.0156 -2.0156 -4.0312 -3.5273 -6.5508 -5.0391 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 s -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -22.168 -16.625 -40.809 -37.785 -43.832 l -0.0039 -69.527 V 144 h -13.0479 V 173 v 82.121 h 6.5508 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 17.129 0 31.738 14.105 31.738 31.738 s -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 7.5586 0 15.113 3.0234 20.656 7.5586 l -157.7 163.23 z"></path>
+        </svg>
+    );
+}
+
+export function SwitchSPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,240  200,-130.57" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function SwitchSPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,240 240,-28" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function PushButtonOpenIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 120,170 272,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 256,169 0,-90" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function PushButtonCloseIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 120,213 272,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 256,213 0,-90" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        </svg>
+    );
+}
 
 export function BoardIcon(props: SVGProps<SVGSVGElement>) {
     return (

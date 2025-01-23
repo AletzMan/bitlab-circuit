@@ -14,6 +14,12 @@ export enum ComponentType {
     VariableCapacitor = 'variablecapacitor',
     TrimmerCapacitor = 'trimmercapacitor',
     Inductor = 'inductor',
+    FerriteCoreInductor = 'ferritecoreinductor',
+    IronCoreInductor = 'ironcoreinductor',
+    PresetFerriteCoreInductor = 'presetferritecoreinductor',
+    PresetIronCoreInductor = 'presetironcoreinductor',
+    VariableFerriteCoreInductor = 'Variableferritecoreinductor',
+    VariableIronCoreInductor = 'Variableironcoreinductor',
     Diode = 'diode',
     Led = "led",
     Zener = "zener",
@@ -34,6 +40,10 @@ export enum ComponentType {
     PhotoTransistorPNP = "phototransistorpnp",
     PhotoTransistorNPN3Pins = "phototransistornpn3pins",
     PhotoTransistorPNP3Pins = "phototransistorpnp3pins",
+    SwitchSPSTOpen = "switchspstopen",
+    SwitchSPSTClose = "switchspstclose",
+    PusuhButtonOpen = "pushbuttonopen",
+    PusuhButtonClose = "pushbuttonclose",
     Board = 'board',
     Node = 'node',
 }
@@ -111,7 +121,7 @@ export type ComponentProperties = {
     prefix: string,
     unit: UnitsType,
     reference: string
-    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'board',
+    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'board',
     has_properties: boolean
     isValueVisible: boolean,
     isReferenceVisible: boolean

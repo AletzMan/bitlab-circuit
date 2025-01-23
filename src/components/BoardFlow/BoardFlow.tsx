@@ -28,6 +28,7 @@ import { useTheme } from "@/store";
 import { NodeComponent } from "../NodeComponent/NodeComponent";
 import { TransistorComponent } from "../TransistorComponent/TransistorComponent";
 import { ComponentsMap } from "@/constants/components";
+import { MechanicalComponent } from "../MechanicalComponent/MechanicalComponent";
 
 const initialNodes: AnalogNode[] = [
     {
@@ -56,6 +57,7 @@ const nodeTypes = {
     analogComponent: AnalogComponent,
     nodeComponent: NodeComponent,
     transistorComponent: TransistorComponent,
+    mechanicalComponent: MechanicalComponent,
     board: Board,
 
 };

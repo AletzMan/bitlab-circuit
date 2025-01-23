@@ -1,4 +1,4 @@
-import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, InductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, ResistorIcon, RheostatIcon, SchottkyIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, ZenerIcon } from "@/icons";
+import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseIcon, PushButtonOpenIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, ZenerIcon } from "@/icons";
 import { ComponentProperties, ComponentType, UnitsType } from "@/types";
 
 
@@ -554,7 +554,176 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         style: undefined,
         size: "small"
     },
-
+    [ComponentType.FerriteCoreInductor]: {
+        name: 'Ferrite Core Inductor',
+        value: 100,
+        category: 'Inductors',
+        componentType: ComponentType.FerriteCoreInductor,
+        icon: <FerriteCoreInductorIcon />,
+        unit: UnitsType.Inductance,
+        prefix: "mH",
+        reference: "L",
+        type: 'analogComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.IronCoreInductor]: {
+        name: 'Iron Core Inductor',
+        value: 100,
+        category: 'Inductors',
+        componentType: ComponentType.IronCoreInductor,
+        icon: <IronCoreInductorIcon />,
+        unit: UnitsType.Inductance,
+        prefix: "mH",
+        reference: "L",
+        type: 'analogComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.PresetFerriteCoreInductor]: {
+        name: 'Preset Ferrite Core Inductor',
+        value: 100,
+        category: 'Inductors',
+        componentType: ComponentType.PresetFerriteCoreInductor,
+        icon: <PresetFerriteCoreInductorIcon />,
+        unit: UnitsType.Inductance,
+        prefix: "mH",
+        reference: "L",
+        type: 'analogComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.PresetIronCoreInductor]: {
+        name: 'Preset Iron Core Inductor',
+        value: 100,
+        category: 'Inductors',
+        componentType: ComponentType.PresetIronCoreInductor,
+        icon: <PresetIronCoreInductorIcon />,
+        unit: UnitsType.Inductance,
+        prefix: "mH",
+        reference: "L",
+        type: 'analogComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.VariableFerriteCoreInductor]: {
+        name: 'Variable Ferrite Core Inductor',
+        value: 100,
+        category: 'Inductors',
+        componentType: ComponentType.VariableFerriteCoreInductor,
+        icon: <VariableFerriteCoreInductorIcon />,
+        unit: UnitsType.Inductance,
+        prefix: "mH",
+        reference: "L",
+        type: 'analogComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.VariableIronCoreInductor]: {
+        name: 'Variable Iron Core Inductor',
+        value: 100,
+        category: 'Inductors',
+        componentType: ComponentType.VariableIronCoreInductor,
+        icon: <VariableIronCoreInductorIcon />,
+        unit: UnitsType.Inductance,
+        prefix: "mH",
+        reference: "L",
+        type: 'analogComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.SwitchSPSTOpen]: {
+        name: 'SPST Switch Normally Open',
+        value: 100,
+        category: 'Switches & Relays',
+        componentType: ComponentType.SwitchSPSTOpen,
+        icon: <SwitchSPSTOpenIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        reference: "SW",
+        type: 'mechanicalComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.SwitchSPSTClose]: {
+        name: 'SPST Switch Normally Close',
+        value: 100,
+        category: 'Switches & Relays',
+        componentType: ComponentType.SwitchSPSTClose,
+        icon: <SwitchSPSTCloseIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        reference: "SW",
+        type: 'mechanicalComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.PusuhButtonOpen]: {
+        name: 'Push Button Normally Open',
+        value: 100,
+        category: 'Switches & Relays',
+        componentType: ComponentType.PusuhButtonOpen,
+        icon: <PushButtonOpenIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        reference: "SW",
+        type: 'mechanicalComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.PusuhButtonClose]: {
+        name: 'Push Button Normally Close',
+        value: 100,
+        category: 'Switches & Relays',
+        componentType: ComponentType.PusuhButtonClose,
+        icon: <PushButtonCloseIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        reference: "SW",
+        type: 'mechanicalComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
 };
 
 
@@ -616,12 +785,34 @@ export const typeGroupTransistorSmall = new Set<ComponentType>(
     ]
 );
 
+export const typeGroupInductor = new Set<ComponentType>([
+    ComponentType.Inductor,
+    ComponentType.FerriteCoreInductor,
+    ComponentType.IronCoreInductor,
+    ComponentType.PresetFerriteCoreInductor,
+    ComponentType.PresetIronCoreInductor,
+    ComponentType.VariableFerriteCoreInductor,
+    ComponentType.VariableIronCoreInductor,
+]);
+
+
+export const typeGroupSwitch = new Set<ComponentType>([
+    ComponentType.SwitchSPSTOpen,
+    ComponentType.SwitchSPSTClose,
+    ComponentType.PusuhButtonOpen,
+    ComponentType.PusuhButtonClose,
+]);
+
+
+
 export type TypeGroupKey =
     | "ResistorGroup"
     | "CapacitorGroup"
     | "VariableCapacitorGroup"
     | "DiodeGroup"
-    | "TransistorGroup";
+    | "TransistorGroup"
+    | "SwitchGroup"
+    | "InductorGroup";
 
 // Define un mapa que relacione los grupos con sus tipos correspondientes
 export const typeGroups: Record<TypeGroupKey, { types: Set<ComponentType>, designator: string }> = {
@@ -633,4 +824,6 @@ export const typeGroups: Record<TypeGroupKey, { types: Set<ComponentType>, desig
         designator: 'D',
     },
     TransistorGroup: { types: typeGroupTransistor, designator: 'Q' },
+    InductorGroup: { types: typeGroupInductor, designator: 'L' },
+    SwitchGroup: { types: typeGroupSwitch, designator: 'SW' },
 };
