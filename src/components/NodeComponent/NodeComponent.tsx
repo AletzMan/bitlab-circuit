@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { CSSProperties, useEffect, useState } from "react";
 import { useTheme } from "@/store";
-import { COMPONENTS } from "@/constants";
+import { ComponentsMap } from "@/constants/components";
 
 
 export function NodeComponent({ data: { type, state, isLock, reference, isReferenceVisible, connectedHandles, color }, selected, id, parentId, }: NodeProps<AnalogNode>) {
@@ -65,12 +65,8 @@ export function NodeComponent({ data: { type, state, isLock, reference, isRefere
                 <path d="m 53.65 62.13 v 36 h -7.3 V 62.13 z" className={`${styles.path} ${styles.path_bottom} ${isConnected[2] && styles.path_bottom_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></path>
                 <path d="m 35.8 46.4 v 7.25 h -34 V 46.4 z" className={`${styles.path} ${styles.path_left} ${isConnected[3] && styles.path_left_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></path>
             </svg>
-            {/*<div className={`${styles.terminal} ${styles.terminal_top} ${isConnected[0] && styles.terminal_top_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>
-            <div className={`${styles.terminal} ${styles.terminal_right} ${isConnected[1] && styles.terminal_right_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>
-            <div className={`${styles.terminal} ${styles.terminal_bottom} ${isConnected[2] && styles.terminal_bottom_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>
-        <div className={`${styles.terminal} ${styles.terminal_left} ${isConnected[3] && styles.terminal_left_connected}`} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}></div>*/}
             <div className={styles.icon} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}>
-                {COMPONENTS[type].icon}
+                {ComponentsMap[type].icon}
             </div>
             {isReferenceVisible && <span className={`${styles.id} `} >{reference}</span>}
             <Terminal type="source" position={Position.Top} id="1" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[0]} />

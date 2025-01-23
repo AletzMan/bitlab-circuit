@@ -4,7 +4,7 @@ import { LEDIcon, LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
-import { COMPONENTS } from "@/constants";
+import { ComponentsMap } from "@/constants/components";
 
 
 export function AnalogComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size, color }, selected, id, parentId }: NodeProps<AnalogNode>) {
@@ -111,9 +111,9 @@ export function AnalogComponent({ data: { type, value, rotation, flip, state, is
                 </div>
             }<div className={`${selected && styles.box_selected}`}></div>
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
-                {COMPONENTS[type].type === ComponentType.Led
+                {ComponentsMap[type].componentType === ComponentType.Led
                     ? <LEDIcon color_led={color} />
-                    : COMPONENTS[type].icon
+                    : ComponentsMap[type].icon
                 }
             </div>
             <Terminal type="source" position={positionTerminals[0]} id="1" isConnectable={!isConnected[0]} />

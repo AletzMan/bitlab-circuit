@@ -4,7 +4,8 @@ import { LEDIcon, LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { CSSProperties, useEffect, useMemo, useState } from "react";
-import { COMPONENTS } from "@/constants";
+import { groupBy } from "@/helpers";
+import { ComponentsMap } from "@/constants/components";
 
 
 export function TransistorComponent({ data: { type, value, rotation, flip, state, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size, color }, selected, id, parentId }: NodeProps<AnalogNode>) {
@@ -48,6 +49,7 @@ export function TransistorComponent({ data: { type, value, rotation, flip, state
             }
         });
     };
+    console.log(groupBy(Object.values(ComponentsMap), 'category'));
 
     const positionTerminals: { position: Position[], adjustment: CSSProperties[] } = useMemo(() => {
         let tempRotation: Position[] = [];
@@ -121,7 +123,7 @@ export function TransistorComponent({ data: { type, value, rotation, flip, state
         }
     }, [rotation, flip.x, flip.y, type]);
 
-    console.log(Boolean(flip.x));
+
 
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
@@ -132,9 +134,9 @@ export function TransistorComponent({ data: { type, value, rotation, flip, state
                 </div>
             }<div className={`${selected && styles.box_selected}`}></div>
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
-                {COMPONENTS[type].type === ComponentType.Led
+                {ComponentsMap[type].componentType === ComponentType.Led
                     ? <LEDIcon color_led={color} />
-                    : COMPONENTS[type].icon
+                    : ComponentsMap[type].icon
                 }
             </div>
             {<p style={{ fontSize: '0.4em' }}>{`Rotation: ${rotation}`}</p>}

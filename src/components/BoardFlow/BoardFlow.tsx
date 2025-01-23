@@ -16,10 +16,10 @@ import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
 import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
-import { ELECTRICAL_COMPONENTS, ARRAY_COMPONENTS, COMPONENTS, STRUCTURE_COMPONENTS } from "@/constants";
+import { ARRAY_COMPONENTS } from "@/constants";
 import ComponentProperties from "../ComponentProperties/ComponentProperties";
 import { Board } from "../Board/Board";
-import { getComponentProperties, getImageBackgroundDrag, getNewPositionByOverlapping, isPointInBox } from "@/helpers";
+import { getComponentProperties, getImageBackgroundDrag, getNewPositionByOverlapping, groupByToArray, isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
 import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Select, Space, Switch, Tabs, Tooltip, theme } from "antd";
 import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
@@ -28,6 +28,7 @@ import useShortcuts from "@/hooks/useShortcuts";
 import { useTheme } from "@/store";
 import { NodeComponent } from "../NodeComponent/NodeComponent";
 import { TransistorComponent } from "../TransistorComponent/TransistorComponent";
+import { ComponentsMap } from "@/constants/components";
 
 const initialNodes: AnalogNode[] = [
     {
@@ -168,7 +169,7 @@ export function BoardFlow() {
 
         const { value, unit, prefix, reference, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color, style, size, name } = getComponentProperties(type, nodes);
 
-        if (type as ComponentType && ARRAY_COMPONENTS.includes(type)) {
+        if (type as ComponentType && Object.keys(ComponentsMap).includes(type)) {
 
             node = {
                 id: uuid(),
@@ -404,7 +405,6 @@ export function BoardFlow() {
 
     const handleClickMenu: MenuProps['onClick'] = (info) => {
         console.log(info);
-        console.log(Array.from(Object.values(COMPONENTS)));
     };
 
     const handleOnKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -585,34 +585,23 @@ export function BoardFlow() {
                                         showArrow: false,
                                         children:
                                             <div className={styles.components}>
-                                                <div className={styles.components_container}>
-                                                    <label className={styles.label}>Structure</label>
-                                                    <Divider style={{ margin: '0' }} variant="dashed" />
-                                                    <div className={styles.components_group}>
-                                                        {STRUCTURE_COMPONENTS.map(component => (
-                                                            <Tooltip key={component.label} placement="top" title={component.label} color="cyan" >
-                                                                <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)}   >
-                                                                    {component.icon}
-                                                                </Button>
-                                                            </Tooltip>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                                {ELECTRICAL_COMPONENTS.map(components => (
-                                                    <div key={components.title} className={styles.components_container}>
-                                                        <label className={styles.label}>{components.title}</label>
+                                                {groupByToArray(Object.values(ComponentsMap), 'category').map(category => (
+                                                    <div key={category.category} className={styles.components_container}>
+                                                        <label className={styles.label}>{category.category}</label>
                                                         <Divider style={{ margin: '0' }} variant="dashed" />
                                                         <div className={styles.components_group}>
-                                                            {components.components.map(component => (
-                                                                <Tooltip key={component.label} placement="top" title={component.label} color="cyan" >
-                                                                    <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.type)} >
+                                                            {category.items.map(component => (
+                                                                <Tooltip key={component.name} placement="top" title={component.name} color="cyan" >
+                                                                    <Button className={styles.components_button} color="default" variant="filled" draggable onDragStart={(e) => handleOnDragStart(e, component.componentType)} >
                                                                         {component.icon}
                                                                     </Button>
                                                                 </Tooltip>
                                                             ))}
                                                         </div>
                                                     </div>
-                                                ))}
+                                                ))
+
+                                                }
                                             </div>
                                     },
                                     {

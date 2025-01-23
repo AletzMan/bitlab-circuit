@@ -1,5 +1,6 @@
 import { Edge, Node } from "@xyflow/react";
 import { ColorPickerProps } from "antd";
+import { CSSProperties } from "react";
 
 
 export enum ComponentType {
@@ -97,16 +98,26 @@ export type GroupComponent = {
     label: string
 }
 
-/*
-export type UnionData = {
-    type: UnionType
-    state?: ComponentState
-    isLock: boolean
-    has_properties?: boolean
+export type ComponentProperties = {
+    name: string
+    value: number,
+    category: string,
+    componentType: ComponentType,
+    icon: JSX.Element,
+    prefix: string,
+    unit: UnitsType,
     reference: string
+    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'board',
+    has_properties: boolean
+    isValueVisible: boolean,
+    isReferenceVisible: boolean
+    connectedHandles: boolean[],
+    color?: string,
+    size: 'small' | 'medium' | 'large',
+    style: CSSProperties | undefined,
 }
-*/
-//export type UnionNode = Node<UnionData, string>;
+
+
 
 export type AnalogNode = Node<ComponentData, string>;
 
