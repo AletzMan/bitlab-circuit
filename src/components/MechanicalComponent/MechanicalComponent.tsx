@@ -111,7 +111,6 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
                 updateNodeData(id, { state: { ...state, on: state?.on } });
             }, 100);
         }
-        //updateNode(id, (prevNode) => ({ data: { ...prevNode.data, state: { ...state, on: !state?.on } } }));
     };
 
     return (

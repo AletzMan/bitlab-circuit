@@ -1,4 +1,4 @@
-import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseIcon, PushButtonOpenIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, ZenerIcon } from "@/icons";
+import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseNCIcon, PushButtonCloseNOIcon, PushButtonOpenNCIcon, PushButtonOpenNOIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, ZenerIcon } from "@/icons";
 import { Categories, ComponentProperties, ComponentType, UnitsType } from "@/types";
 
 
@@ -705,12 +705,12 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         value: 0,
         state: {
             on: false,
-            iconON: <PushButtonCloseIcon />,
-            iconOFF: <PushButtonOpenIcon />,
+            iconON: <PushButtonCloseNOIcon />,
+            iconOFF: <PushButtonOpenNOIcon />,
         },
         category: Categories["Switches & Relays"],
         componentType: ComponentType.PusuhButtonOpen,
-        icon: <PushButtonOpenIcon />,
+        icon: <PushButtonOpenNOIcon />,
         unit: UnitsType.Undefined,
         prefix: "",
         reference: "SW",
@@ -726,13 +726,13 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         name: 'Push Button Normally Close',
         state: {
             on: true,
-            iconON: <PushButtonCloseIcon />,
-            iconOFF: <PushButtonOpenIcon />,
+            iconON: <PushButtonCloseNCIcon />,
+            iconOFF: <PushButtonOpenNCIcon />,
         },
         value: 0,
         category: Categories["Switches & Relays"],
         componentType: ComponentType.PusuhButtonClose,
-        icon: <PushButtonCloseIcon />,
+        icon: <PushButtonCloseNCIcon />,
         unit: UnitsType.Undefined,
         prefix: "",
         reference: "SW",
