@@ -40,6 +40,7 @@ body {
     --foreground-color: #FFFFFF;
     --reference-color: #c39950;
     --action-color: #0eb121;
+    --action-background-color: #0eb12135;
     --background-color: #292929;
     --background-color-tab: #151515;
     --background-color-tab-inactive: #414141;

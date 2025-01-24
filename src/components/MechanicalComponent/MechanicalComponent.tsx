@@ -3,7 +3,7 @@ import { AnalogNode, ComponentCollapsed, ComponentType } from "@/types";
 import { ArrowPushIcon, LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, MouseEvent } from "react";
 import { ComponentsMap } from "@/constants/components";
 
 
@@ -102,8 +102,15 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
         }
     }, [rotation, flip.x, flip.y]);
 
-    const handleChangeState = () => {
+    const handleChangeState = (e: MouseEvent<HTMLButtonElement>) => {
+
+        console.log(e);
         updateNodeData(id, { state: { ...state, on: !state?.on } });
+        if (type === ComponentType.PusuhButtonClose || type === ComponentType.PusuhButtonOpen) {
+            setTimeout(() => {
+                updateNodeData(id, { state: { ...state, on: state?.on } });
+            }, 100);
+        }
         //updateNode(id, (prevNode) => ({ data: { ...prevNode.data, state: { ...state, on: !state?.on } } }));
     };
 
@@ -116,8 +123,8 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
                 </div>
             }<div className={`${selected && styles.box_selected}`}></div>
             {selected &&
-                <button className={styles.action} onClick={handleChangeState}>
-                    <ArrowPushIcon />
+                <button className={styles.action} onClick={handleChangeState} >
+                    <ArrowPushIcon className={`${styles.action_icon} ${state?.on && styles.action_icon_active}`} />
                 </button>
             }
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
