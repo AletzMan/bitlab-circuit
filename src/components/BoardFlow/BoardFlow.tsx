@@ -94,7 +94,6 @@ export function BoardFlow() {
             const edge = {
                 ...connection, id: uuid(),
                 data: {
-                    //color: getComputedStyle(document.documentElement).getPropertyValue('--foreground-color').trim()
                     color: nodes.find(node => node.id === connection.target)?.data.color || nodes.find(node => node.id === connection.source)?.data.color || 'var(--foreground-color)',
                 }
 

@@ -12,7 +12,7 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
     useEffect(() => {
-        //setIsConnected(connectedHandles);
+        setIsConnected(connectedHandles);
     }, [connectedHandles]);
 
 

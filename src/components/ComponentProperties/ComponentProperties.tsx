@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
@@ -24,12 +25,15 @@ export default function ComponentProperties({
     const isSingleNodeSelection = useSelectedItems((state) => state.isSingleNodeSelection);
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
     const updateNodeInternals = useUpdateNodeInternals();
-    const { updateNodeData, updateNode, getNodes } = useReactFlow();
+    const { updateNodeData, updateNode, getNodes, getNode } = useReactFlow();
     const presets = genPresets(LedColors);
 
 
     useEffect(() => {
-        setDataComponent(node?.data);
+        const dataNode = getNode(node!.id)?.data as ComponentData;
+        if (dataNode) {
+            setDataComponent(dataNode);
+        }
     }, [node]);
 
     const handleFlipHorizontal = () => {
