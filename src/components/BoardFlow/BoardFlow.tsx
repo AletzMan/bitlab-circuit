@@ -27,7 +27,7 @@ import useShortcuts from "@/hooks/useShortcuts";
 import { NodeComponent } from "../NodeComponent/NodeComponent";
 import { TransistorComponent } from "../TransistorComponent/TransistorComponent";
 import { ComponentsMap } from "@/constants/components";
-import { MechanicalComponent } from "../MechanicalComponent/MechanicalComponent";
+import { MechanicalComponent } from "../ElectronicComponents/MechanicalComponent/MechanicalComponent";
 import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
 import { useTheme } from "@/store";
 

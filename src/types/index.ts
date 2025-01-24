@@ -44,6 +44,7 @@ export enum ComponentType {
     SwitchSPSTClose = "switchspstclose",
     PusuhButtonOpen = "pushbuttonopen",
     PusuhButtonClose = "pushbuttonclose",
+    SwitchSPDT = "switchspdt",
     Board = 'board',
     Node = 'node',
 }

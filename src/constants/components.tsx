@@ -1,4 +1,4 @@
-import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseNCIcon, PushButtonCloseNOIcon, PushButtonOpenNCIcon, PushButtonOpenNOIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, ZenerIcon } from "@/icons";
+import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseNCIcon, PushButtonCloseNOIcon, PushButtonOpenNCIcon, PushButtonOpenNOIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchSPDTCloseIcon, SwitchSPDTOpenIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, ZenerIcon } from "@/icons";
 import { Categories, ComponentProperties, ComponentType, UnitsType } from "@/types";
 
 
@@ -744,6 +744,28 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         style: undefined,
         size: "small"
     },
+    [ComponentType.SwitchSPDT]: {
+        name: 'Switch SPDT',
+        state: {
+            on: false,
+            iconON: <SwitchSPDTCloseIcon />,
+            iconOFF: <SwitchSPDTOpenIcon />,
+        },
+        value: 0,
+        category: Categories["Switches & Relays"],
+        componentType: ComponentType.SwitchSPDT,
+        icon: <SwitchSPDTOpenIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        reference: "SW",
+        type: 'mechanicalComponent',
+        has_properties: true,
+        isReferenceVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
 };
 
 
@@ -821,6 +843,7 @@ export const typeGroupSwitch = new Set<ComponentType>([
     ComponentType.SwitchSPSTClose,
     ComponentType.PusuhButtonOpen,
     ComponentType.PusuhButtonClose,
+    ComponentType.SwitchSPDT,
 ]);
 
 
