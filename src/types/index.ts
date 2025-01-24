@@ -144,7 +144,7 @@ export type ComponentProperties = {
     collapsed?: ComponentCollapsed
     unit: UnitsType,
     reference: string
-    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'board',
+    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board',
     has_properties: boolean
     isValueVisible: boolean,
     isReferenceVisible: boolean

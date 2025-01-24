@@ -758,7 +758,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         unit: UnitsType.Undefined,
         prefix: "",
         reference: "SW",
-        type: 'mechanicalComponent',
+        type: 'switchSPDT',
         has_properties: true,
         isReferenceVisible: true,
         isValueVisible: true,
