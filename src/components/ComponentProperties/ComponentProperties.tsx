@@ -14,7 +14,7 @@ import useHistoryManager from "@/hooks/useHistoryManager";
 const { Option } = Select;
 
 
-export default function ComponentProperties({
+export function ComponentProperties({
     duplicateComponents,
 }: {
     duplicateComponents: () => void

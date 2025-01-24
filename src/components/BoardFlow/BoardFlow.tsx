@@ -10,24 +10,24 @@ import {
     XYPosition,
 } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, useState, KeyboardEvent, useEffect } from "react";
-import { AnalogComponent } from "@/components/AnalogComponent/AnalogComponent";
 import { ComponentEdge, AnalogNode, ComponentCollapsed, ComponentType, UnitsType, Categories } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
 import { ConnectionLine } from "@/components/ConnectionLine/ConnectionLine";
-import ComponentProperties from "../ComponentProperties/ComponentProperties";
-import { Board } from "../Board/Board";
+import { ComponentProperties } from "../ComponentProperties/ComponentProperties";
+import { AnalogComponent } from "@/components/ElectronicComponents/AnalogComponent/AnalogComponent";
+import { Board } from "@/components/ElectronicComponents/Board/Board";
+import { NodeComponent } from "@/components/ElectronicComponents/NodeComponent/NodeComponent";
+import { TransistorComponent } from "@/components/ElectronicComponents/TransistorComponent/TransistorComponent";
+import { MechanicalComponent } from "@/components/ElectronicComponents/MechanicalComponent/MechanicalComponent";
 import { getComponentProperties, getImageBackgroundDrag, getNewPositionByOverlapping, groupByToArray, isPointInBox } from "@/helpers";
 import EdgeDetails from "../EdgeDetails/EdgeDetails";
 import { Button, Card, Collapse, ConfigProvider, Divider, Dropdown, Flex, Input, MenuProps, Select, Space, Switch, Tabs, Tooltip, theme } from "antd";
 import { DarkIcon, DeletetIcon, ExportIcon, FitZoomIcon, LightIcon, MenuIcon, MinusIcon, OpenFileIcon, PlusIcon, RedoIcon, ResetZoomIcon, SaveIcon, UndoIcon } from "@/icons";
 import useHistoryManager from "@/hooks/useHistoryManager";
 import useShortcuts from "@/hooks/useShortcuts";
-import { NodeComponent } from "../NodeComponent/NodeComponent";
-import { TransistorComponent } from "../TransistorComponent/TransistorComponent";
 import { ComponentsMap } from "@/constants/components";
-import { MechanicalComponent } from "../ElectronicComponents/MechanicalComponent/MechanicalComponent";
 import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
 import { useTheme } from "@/store";
 
