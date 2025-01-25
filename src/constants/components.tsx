@@ -692,13 +692,13 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         unit: UnitsType.Undefined,
         prefix: "",
         reference: "SW",
-        type: 'mechanicalComponent',
+        type: 'switchDPST',
         has_properties: true,
         isReferenceVisible: true,
         isValueVisible: true,
-        connectedHandles: [false, false],
+        connectedHandles: [false, false, false, false],
         style: undefined,
-        size: "small"
+        size: "large"
     },
     [ComponentType.PusuhButtonOpen]: {
         name: 'Push Button Normally Open',

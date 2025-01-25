@@ -31,6 +31,7 @@ import { ComponentsMap } from "@/constants/components";
 import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
 import { useTheme } from "@/store";
 import { SwitchSPDT } from "../ElectronicComponents/SwitchSPDT/SwitchSPDT";
+import { SwitchDPST } from "../ElectronicComponents/SwitchDPST/SwitchDPST";
 
 const initialNodes: AnalogNode[] = [
     {
@@ -61,7 +62,8 @@ const nodeTypes = {
     transistorComponent: TransistorComponent,
     mechanicalComponent: MechanicalComponent,
     board: Board,
-    switchSPDT: SwitchSPDT
+    switchSPDT: SwitchSPDT,
+    switchDPST: SwitchDPST,
 
 };
 
