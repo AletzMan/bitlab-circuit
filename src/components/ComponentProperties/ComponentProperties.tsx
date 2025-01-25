@@ -37,8 +37,6 @@ export function ComponentProperties({
         }
     }, [nodeData]);
 
-    //console.log((getNode(node!.id)?.data as ComponentData)?.state?.on);
-    console.log((nodeData?.data as ComponentData).state?.on);
     const handleFlipHorizontal = () => {
         if (node && dataComponent) {
             const newFlipX = dataComponent.flip.x === 1 ? -1 : 1;

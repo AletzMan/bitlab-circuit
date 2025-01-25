@@ -29,7 +29,6 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
 
     useNodeConnections({ onConnect, onDisconnect });
 
-    //console.log((getNode(id)?.data as ComponentData).state?.on);
     const setConnectionsTerminals = (connections: Connection[], isOnConnect: boolean) => {
         connections.map((connection) => {
             const newState = [...isConnected];

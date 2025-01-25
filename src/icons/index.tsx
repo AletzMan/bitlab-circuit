@@ -477,6 +477,61 @@ export function SwitchSPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 
+export function SwitchDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,240  200,-130.57" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function SwitchDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,240 240,-28" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+
+export function SwitchDPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,128 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,384 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,255  245,-90" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="128" cx="385" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="384" cx="385" r="30" />
+        </svg>
+    );
+}
+
+export function SwitchDPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,128 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,384 -90,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,255  240,90" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="128" cx="385" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="384" cx="385" r="30" />
+        </svg>
+    );
+}
+
+
+
 export function BoardIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="0 0 256 256" style={{ display: "flex" }}>
