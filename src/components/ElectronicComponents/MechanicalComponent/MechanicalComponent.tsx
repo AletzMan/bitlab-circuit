@@ -3,7 +3,7 @@ import { AnalogNode, ComponentCollapsed, ComponentType } from "@/types";
 import { ArrowPushIcon, LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
-import { useEffect, useMemo, useState, MouseEvent } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
 
 
@@ -29,6 +29,7 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
 
     useNodeConnections({ onConnect, onDisconnect });
 
+    //console.log((getNode(id)?.data as ComponentData).state?.on);
     const setConnectionsTerminals = (connections: Connection[], isOnConnect: boolean) => {
         connections.map((connection) => {
             const newState = [...isConnected];
@@ -102,13 +103,17 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
         }
     }, [rotation, flip.x, flip.y]);
 
-    const handleChangeState = (e: MouseEvent<HTMLButtonElement>) => {
+    const handleChangeState = () => {
+        // Primera actualización
+        const newOnState = state?.on;
 
-        console.log(e);
-        updateNodeData(id, { state: { ...state, on: !state?.on } });
+        // Actualizar el nodo con el nuevo estado
+        updateNodeData(id, { state: { ...state, on: !newOnState } });
+
+        // Actualizar nuevamente después de 1 segundo
         if (type === ComponentType.PusuhButtonClose || type === ComponentType.PusuhButtonOpen) {
             setTimeout(() => {
-                updateNodeData(id, { state: { ...state, on: state?.on } });
+                updateNodeData(id, { state: { ...state, on: newOnState } });
             }, 100);
         }
     };

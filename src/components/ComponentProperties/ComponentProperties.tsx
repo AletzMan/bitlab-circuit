@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
+import { useNodesData, useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
@@ -23,19 +23,22 @@ export function ComponentProperties({
     const node = useSelectedItems((state) => state.selectedNode);
     const selectedNodes = useSelectedItems((state) => state.selectedNodes);
     const isSingleNodeSelection = useSelectedItems((state) => state.isSingleNodeSelection);
-    const [dataComponent, setDataComponent] = useState<ComponentData | undefined>();
     const updateNodeInternals = useUpdateNodeInternals();
-    const { updateNodeData, updateNode, getNodes, getNode } = useReactFlow();
+    const { updateNodeData, updateNode, getNodes, } = useReactFlow();
+    const nodeData = useNodesData(node?.id as string);
+    const [dataComponent, setDataComponent] = useState<ComponentData | undefined>(nodeData?.data as ComponentData);
     const presets = genPresets(LedColors);
 
 
     useEffect(() => {
-        const dataNode = getNode(node!.id)?.data as ComponentData;
+        const dataNode = nodeData?.data as ComponentData;
         if (dataNode) {
             setDataComponent(dataNode);
         }
-    }, [node]);
+    }, [nodeData]);
 
+    //console.log((getNode(node!.id)?.data as ComponentData)?.state?.on);
+    console.log((nodeData?.data as ComponentData).state?.on);
     const handleFlipHorizontal = () => {
         if (node && dataComponent) {
             const newFlipX = dataComponent.flip.x === 1 ? -1 : 1;
