@@ -373,76 +373,76 @@ export function VariableIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function SwitchSPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,240  200,-130.57" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
         </svg>
     );
 }
 
 export function SwitchSPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,240 240,-28" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,300 280,-42" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
         </svg>
     );
 }
 
 export function PushButtonOpenNOIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 120,170 272,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 256,169 0,-90" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 140,200 320,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,200 0,-100" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
         </svg>
     );
 }
 
 export function PushButtonCloseNOIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 120,213 272,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 256,213 0,-90" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 140,258 320,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,258 0,-100" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
         </svg>
     );
 }
 
 export function PushButtonOpenNCIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 120,350 272,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 256,190 0,150" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 140,342 320,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,342 0,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
         </svg>
     );
 }
 
 export function PushButtonCloseNCIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,256 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 120,298 272,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 256,140 0,150" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" x={0} y={0} />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 140,400 320,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,400 0,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
         </svg>
     );
 }
@@ -450,28 +450,28 @@ export function PushButtonCloseNCIcon(props: SVGProps<SVGSVGElement>) {
 
 export function SwitchSPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,170 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,342 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,255  255,-50" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="170" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="342" cx="385" r="30" />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  295,-62" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="400" cx="450" r="30" />
         </svg>
     );
 }
 
 export function SwitchSPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,170 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,342 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,255  255,50" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="170" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="342" cx="385" r="30" />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m  0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,300 295,62" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="400" cx="450" r="30" />
         </svg>
     );
 }
@@ -479,36 +479,36 @@ export function SwitchSPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
 
 export function SwitchDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,170 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,170 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,170 200,-110" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="170" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="170" cx="127" r="30" x={0} y={0} />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,340 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,340-90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,340  200,-110" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="340" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="340" cx="127" r="30" x={0} y={0} />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 256,130  0,180" strokeDasharray="25 35" strokeDashoffset='0' />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,200  260,-130" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="150" r="30" x={0} y={0} />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,140  0,190" strokeDasharray="25 35" strokeDashoffset='0' />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,400 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,400  260,-130" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="400" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="400" cx="150" r="30" x={0} y={0} />
         </svg>
     );
 }
 
 export function SwitchDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,170 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,170 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,170 220,-40" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="170" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="170" cx="127" r="30" x={0} y={0} />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,340 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,340 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,340  220,-40" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="340" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="340" cx="127" r="30" x={0} y={0} />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 256,165  0,180" strokeDasharray="25 35" strokeDashoffset='0' />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,200 280,-42" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="150" r="30" x={0} y={0} />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,185 0,190" strokeDasharray="25 35" strokeDashoffset='0' />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,400 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,400 280,-42" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="400" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="400" cx="150" r="30" x={0} y={0} />
         </svg>
     );
 }
@@ -516,28 +516,28 @@ export function SwitchDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
 
 export function SwitchDPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,128 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,384 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,255  245,-90" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="128" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="384" cx="385" r="30" />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  295,-62" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="400" cx="450" r="30" />
         </svg>
     );
 }
 
 export function SwitchDPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 512 512"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 10,256 90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,128 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 500,384 -90,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 160,255  240,90" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="256" cx="127" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="128" cx="385" r="30" />
-            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="384" cx="385" r="30" />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  295,-62" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="400" cx="450" r="30" />
         </svg>
     );
 }

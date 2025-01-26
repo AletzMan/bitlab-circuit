@@ -32,6 +32,7 @@ import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
 import { useTheme } from "@/store";
 import { SwitchSPDT } from "../ElectronicComponents/SwitchSPDT/SwitchSPDT";
 import { SwitchDPST } from "../ElectronicComponents/SwitchDPST/SwitchDPST";
+import { SwitchDPDT } from "../ElectronicComponents/SwitchDPDT/SwitchDPDT";
 
 const initialNodes: AnalogNode[] = [
     {
@@ -64,6 +65,7 @@ const nodeTypes = {
     board: Board,
     switchSPDT: SwitchSPDT,
     switchDPST: SwitchDPST,
+    switchDPDT: SwitchDPDT,
 
 };
 

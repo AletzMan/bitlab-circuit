@@ -720,7 +720,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         isValueVisible: true,
         connectedHandles: [false, false],
         style: undefined,
-        size: "small"
+        size: "medium"
     },
     [ComponentType.PusuhButtonClose]: {
         name: 'Push Button Normally Close',
@@ -780,7 +780,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         unit: UnitsType.Undefined,
         prefix: "",
         reference: "SW",
-        type: 'switchSPDT',
+        type: 'switchDPDT',
         has_properties: true,
         isReferenceVisible: true,
         isValueVisible: true,
