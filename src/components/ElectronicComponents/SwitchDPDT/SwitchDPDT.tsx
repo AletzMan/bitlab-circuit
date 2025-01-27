@@ -54,11 +54,11 @@ export function SwitchDPDT({ data: { type, rotation, flip, collapsed, isLock, re
         let adjustment: CSSProperties[] = [];
         switch (rotation) {
             case 0: {
-                tempRotation = [Position.Left, Position.Right, Position.Right];
-                adjustment = [{ top: `calc(50% )` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }];
+                tempRotation = [Position.Left, Position.Right, Position.Right, Position.Left, Position.Right, Position.Right];
+                adjustment = [{ top: `calc(50% - 20px)` }, { top: `calc(50% - 30px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 20px)` }, { top: `calc(50% + 30px)` }, { top: `calc(50% + 10px)` }];
                 if (flip.x === -1 && flip.y === 1) {
-                    tempRotation = [Position.Right, Position.Left, Position.Left];
-                    adjustment = [{ top: `calc(50%)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }];
+                    tempRotation = [Position.Left, Position.Right, Position.Right, Position.Left, Position.Right, Position.Right];
+                    adjustment = [{ top: `calc(50% - 20px)` }, { top: `calc(50% - 30px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 20px)` }, { top: `calc(50% + 30px)` }, { top: `calc(50% + 10px)` }];
                 } else if (flip.y === -1 && flip.x === 1) {
                     tempRotation = [Position.Left, Position.Right, Position.Right];
                     adjustment = [{ top: `calc(50% )` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 10px)` }];
@@ -131,24 +131,27 @@ export function SwitchDPDT({ data: { type, rotation, flip, collapsed, isLock, re
     };
 
     return (
-        <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
+        <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid} ${rotation === 90 && styles.box_90} ${rotation === 270 && styles.box_270}`}>
             {parentId && selected &&
                 <div className={`${styles.lock} ${rotation === 90 && styles.lock_90}   ${rotation === 270 && styles.lock_270}`} onClick={() => updateNode(id, (prevNode) => ({ extent: prevNode.extent === 'parent' ? undefined : 'parent', data: { ...prevNode.data, isLock: !isLock } }))}>
                     {!isLock && <UnlockIcon />}
                     {isLock && <LockIcon />}
                 </div>
-            }<div className={`${selected && styles.box_selected}`}></div>
+            }<div className={`${selected && styles.box_selected}`} ></div>
             {selected &&
                 <button className={styles.action} onClick={handleChangeState} >
                     <ArrowPushIcon className={`${styles.action_icon} ${state?.on && styles.action_icon_active}`} />
                 </button>
             }
-            <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
+            <div className={styles.icon} style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }}>
                 {state ? state?.on ? ComponentsMap[type]?.state?.iconON : ComponentsMap[type].state?.iconOFF : ComponentsMap[type].icon}
             </div>
             <Terminal type="source" position={positionTerminals.position[0]} id="1" isConnectable={!isConnected[0]} style={positionTerminals.adjustment[0]} />
             <Terminal type="source" position={positionTerminals.position[1]} id="2" isConnectable={!isConnected[1]} style={positionTerminals.adjustment[1]} />
             <Terminal type="source" position={positionTerminals.position[2]} id="3" isConnectable={!isConnected[2]} style={positionTerminals.adjustment[2]} />
+            <Terminal type="source" position={positionTerminals.position[3]} id="4" isConnectable={!isConnected[3]} style={positionTerminals.adjustment[3]} />
+            <Terminal type="source" position={positionTerminals.position[4]} id="5" isConnectable={!isConnected[4]} style={positionTerminals.adjustment[4]} />
+            <Terminal type="source" position={positionTerminals.position[5]} id="6" isConnectable={!isConnected[5]} style={positionTerminals.adjustment[5]} />
             {isReferenceVisible && <span className={`${styles.reference} ${size === 'small' && styles.reference_small} ${size === 'medium' && styles.reference_medium} ${size === 'large' && styles.reference_large} ${rotation === 90 && styles.reference_90}   ${rotation === 270 && styles.reference_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
         </div>
     );

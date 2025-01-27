@@ -9,6 +9,12 @@
     color: var(--foreground-color);
 }
 
+.box_90,
+.box_270 {
+    width: 80px;
+    height: 60px;
+}
+
 .box_valid {
     background-color: #03a13035;
 }
