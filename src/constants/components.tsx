@@ -784,7 +784,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         has_properties: true,
         isReferenceVisible: true,
         isValueVisible: true,
-        connectedHandles: [false, false],
+        connectedHandles: [false, false, false, false, false, false],
         style: undefined,
         size: "small"
     },
