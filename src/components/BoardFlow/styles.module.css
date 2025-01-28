@@ -82,10 +82,18 @@
 }
 
 .components_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 3em;
-    padding: 0.25em;
+    padding: 0;
     height: 3em;
     color: var(--title-color);
+
+    &>svg {
+        width: 2.5em;
+        height: 2.5em;
+    }
 
     &:hover {
         color: var(--foreground-color);
