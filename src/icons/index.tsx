@@ -1,30 +1,30 @@
 import { SVGProps } from "react";
 
-const STROKE_WIDTH = 3.5;
+const STROKE_WIDTH = 3;
 
 
 export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 526.95 426.2 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -72.328 H 137 v 12.594 H 174 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.616 H 663 v -12.552 H 627 h -79.098 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 600 600"  >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 566.95 470.2 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -72.328 H 162 v 12.594 H 214 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.616 H 727 v -12.552 H 667 h -79.098 z"></path>
         </svg>
     );
 }
 
 export function RheostatIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 524.95 426.2 l -50.379 -75.57 l -50.383 75.57 l -17.129 -25.188 l 91.695 -91.695 l 7.0508 7.0547 l 31.742 -54.918 l -54.914 31.742 l 7.0508 7.0547 l -89.676 89.676 l -26.199 -39.297 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -71.3276 H 150 v 12.594 H 173 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 17.129 25.191 l -128.47 128.97 l 8.5664 8.5664 l 126.96 -126.46 l 26.195 39.297 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.6146 H 649 v -12.5458 H 626 h -79.098 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 600 600"  >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 569.95 470.2 l -50.379 -75.57 l -50.383 75.57 l -17.129 -25.188 l 91.695 -91.695 l 7.0508 7.0547 l 31.742 -54.918 l -54.914 31.742 l 7.0508 7.0547 l -89.676 89.676 l -26.199 -39.297 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -71.3276 H 154 v 12.594 H 218 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 17.129 25.191 l -128.47 128.97 l 8.5664 8.5664 l 126.96 -126.46 l 26.195 39.297 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.6146 H 731 v -12.5458 H 671 h -79.098 z"></path>
         </svg>
     );
 }
 
 export function ThermistorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 526.95 426.2 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -72.328 H 137 v 12.594 H 174 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.616 H 663 v -12.552 H 627 h -79.098 z"></path>
-            <line x1="315" y1="530" x2="500" y2="250" stroke="currentColor" strokeWidth="16" />
-            <line x1="230" y1="530" x2="320" y2="530" stroke="currentColor" strokeWidth="16" />
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 600 600"  >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 566.95 470.2 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -72.328 H 162 v 12.594 H 214 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.616 H 727 v -12.552 H 667 h -79.098 z"></path>
+            <line x1="355" y1="570" x2="540" y2="290" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="270" y1="567" x2="360" y2="567" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
         </svg>
 
     );
@@ -32,10 +32,10 @@ export function ThermistorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function LDRIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 400 230.21 c -91.691 0 -166.76 73.051 -169.79 163.74 h -57.21 H 151 v 12.594 H 173 h 56.93 c 3.5273 90.688 78.09 163.74 169.79 163.74 c 91.691 0 166.76 -73.051 169.79 -163.74 h 56.49 H 651 v -12.594 H 626 h -56.93 c -3.0234 -91.191 -78.09 -163.74 -169.78 -163.74 z m 0 327.48 c -84.641 0 -154.16 -67.008 -157.19 -151.14 h 9.5742 l 21.664 -32.746 l 50.383 75.57 l 50.383 -75.57 l 50.383 75.57 l 50.383 -75.57 l 50.383 75.57 l 28.719 -42.824 h 2.5195 c -3.0391 83.633 -72.566 151.14 -157.2 151.14 z m 147.61 -163.74 l -21.664 32.242 l -50.383 -75.57 l -50.383 75.57 l -50.383 -75.57 l -50.383 75.57 l -50.383 -75.57 l -28.719 42.824 h -2.5195 c 3.5273 -84.137 72.547 -151.14 157.19 -151.14 s 154.16 67.008 157.19 151.14 h -9.5586 z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m286.64 255.41-31.738-55.422-7.0547 7.0547-32.242-31.738-9.0703 8.5625 32.246 32.246-7.0547 7.0508z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m175.3 215.61 31.738 32.242-7.0547 7.0547 55.422 31.738-32.246-54.914-7.0508 7.0547-32.246-32.246z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 600 600" >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 444 274.21 c -91.691 0 -166.76 73.051 -169.79 163.74 h -57.21 H 164 v 12.594 H 217 h 56.93 c 3.5273 90.688 78.09 163.74 169.79 163.74 c 91.691 0 166.76 -73.051 169.79 -163.74 h 56.49 H 724 v -12.594 H 670 h -56.93 c -3.0234 -91.191 -78.09 -163.74 -169.78 -163.74 z m 0 327.48 c -84.641 0 -154.16 -67.008 -157.19 -151.14 h 9.5742 l 21.664 -32.746 l 50.383 75.57 l 50.383 -75.57 l 50.383 75.57 l 50.383 -75.57 l 50.383 75.57 l 28.719 -42.824 h 2.5195 c -3.0391 83.633 -72.566 151.14 -157.2 151.14 z m 147.61 -163.74 l -21.664 32.242 l -50.383 -75.57 l -50.383 75.57 l -50.383 -75.57 l -50.383 75.57 l -50.383 -75.57 l -28.719 42.824 h -2.5195 c 3.5273 -84.137 72.547 -151.14 157.19 -151.14 s 154.16 67.008 157.19 151.14 h -9.5586 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 330.64 299.41 l -31.738 -55.422 l -7.0547 7.0547 l -32.242 -31.738 l -9.0703 8.5625 l 32.246 32.246 l -7.0547 7.0508 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 219.3 259.61 l 31.738 32.242 l -7.0547 7.0547 l 55.422 31.738 l -32.246 -54.914 l -7.0508 7.0547 l -32.246 -32.246 z"></path>
         </svg>
 
     );
@@ -43,28 +43,32 @@ export function LDRIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PotentiometerIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 394 155 V 173 v 107.81 h -12.09 l 18.137 68.52 l 18.137 -68.52 h -11.59 v -107.81 V 155 z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 526.95 426.2 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -72.328 H 137 v 12.594 H 174 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.616 H 663 v -12.552 H 627 h -79.098 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 600 600"  >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 438 142 V 217 v 107.81 h -12.09 l 18.137 68.52 l 18.137 -68.52 h -11.59 v -107.81 V 142 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 566.95 470.2 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -50.383 75.57 l -50.379 -75.57 l -28.719 43.328 h -72.328 H 162 v 12.594 H 214 h 79.098 l 21.664 -32.746 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 50.383 -75.57 l 50.379 75.57 l 28.719 -42.824 h 71.616 H 727 v -12.552 H 667 h -79.098 z"></path>
         </svg>
     );
 }
 
 export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)">
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <line x1="0" y1="300" x2="265" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="330" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="335" y1="180" x2="335" y2="420" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" />
+            <line x1="265" y1="180" x2="265" y2="420" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" />
         </svg>
     );
 }
 
 export function PolarisedCapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)">
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m299.24 377.4h201.52v-12.594h-94.215v-217.57h-12.594v217.57h-94.715z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m406.55 646.71v-211.02c31.234 1.0078 62.473 9.0703 91.691 24.184l6.0469-11.082c-66-34.258-141.57-34.258-207.57 0l6.0469 11.082c29.223-15.113 60.457-23.176 91.691-24.184l0.003906 211.02z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m469.52 299.24v19.145h-19.145v12.594h19.145v18.641h12.598v-18.641h18.641v-12.594h-18.641v-19.145z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <line x1="0" y1="300" x2="275" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="335" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="335" y1="180" x2="335" y2="420" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} fill="none" d="M230,180 C275,225 295,350 230,420" strokeLinejoin="round" strokeLinecap="round" />
+            <path d="m 389.52 349.24 v 19.145 h -19.145 v 12.594 h 19.145 v 18.641 h 12.598 v -18.641 h 18.641 v -12.594 h -18.641 v -19.145 z" strokeLinejoin="round" strokeLinecap="round" ></path>
         </svg>
 
     );
@@ -72,7 +76,7 @@ export function PolarisedCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function VariableCapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(270)">
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
             <defs>
                 <marker
                     id='head'
@@ -85,17 +89,19 @@ export function VariableCapacitorIcon(props: SVGProps<SVGSVGElement>) {
                     <path d='M 0 0 V 3 L 5 1.5 Z' fill="currentColor" />
                 </marker>
             </defs>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
-            <line x1="270" y1="270" x2="500" y2="500" stroke="currentColor" strokeWidth={4 * STROKE_WIDTH} strokeLinecap="square" markerEnd='url(#head)' />
+            <line x1="0" y1="300" x2="265" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="330" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="335" y1="180" x2="335" y2="420" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" />
+            <line x1="265" y1="180" x2="265" y2="420" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" />
+            <line x1="150" y1="430" x2="410" y2="180" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinecap="square" markerEnd='url(#head)' />
         </svg>
     );
 }
 
 export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(270)">
-            <defs>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            < defs >
                 <marker
                     id='headVariable'
                     orient="auto"
@@ -106,26 +112,32 @@ export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
                 >
                     <path d='M 0 0 V 5 L 1 5 L 1 0 Z' fill="currentColor" />
                 </marker>
-            </defs>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m500.76 364.81h-94.215v-211.52h-12.594v211.52h-94.715v12.594h201.52z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m393.95 646.71h12.594v-211.52h94.215v-12.594h-201.52v12.594h94.715z"></path>
-            <line strokeWidth={4 * STROKE_WIDTH} stroke="currentColor" x1="270" y1="270" x2="500" y2="500" strokeLinecap="square" markerEnd='url(#headVariable)' />
-        </svg>
+            </ defs>
+            <line x1="0" y1="300" x2="265" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="330" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="335" y1="180" x2="335" y2="420" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" />
+            <line x1="265" y1="180" x2="265" y2="420" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" />
+            <line strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" x1="150" y1="430" x2="410" y2="180" strokeLinecap="round" markerEnd='url(#headVariable)' />
+        </svg >
     );
 }
 
 export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 77.082 h 12.598 v -81.617 h 144.8856 H 645 v -12.5471 H 627 h -144.59 v -82.121 h -12.598 v 77.082 l -142.07 -81.617 l -9.4464 4.7029 v 81.6638 h -145 H 155 v 12.594 H 173 h 145.1 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <line x1="0" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="400" y1="200" x2="400" y2="400" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" />
+            <polygon points="210,400 390,300 210,200" fill="currentColor" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
         </svg>
     );
 }
 
 export function ZenerIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 83.633 h 43.832 v -12.594 h -31.234 v -75.574 h 144.59 H 645 v -12.594 H 627 h -144.59 v -88.168 h -44.336 v 12.598 h 31.738 v 70.531 l -142.07 -81.617 l -9.0664 5.0391 v 81.617 h -145.1 H 155 v 12.594 H 173 h 145.1 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <line x1="0" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <polygon points="210,400 390,300 210,200" fill="currentColor" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M360,200 L400,200 L400,400 L440,400" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
@@ -136,54 +148,68 @@ interface PropsLED extends SVGProps<SVGSVGElement> {
 
 export function LEDIcon(props: PropsLED) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 77.082 h 12.598 v -81.617 h 144.8856 H 645 v -12.5471 H 627 h -144.59 v -82.121 h -12.598 v 77.082 l -142.07 -81.617 l -9.4464 4.7029 v 81.6638 h -145 H 155 v 12.594 H 173 h 145.1 z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" fill={props.color_led} d="m 338 466 l 118 -65 v 0 l -118 -68 l -6 5 v 77.723 v 45.277 z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m381.36 308.81 26.195-37.281 8.0625 5.543 22.168-59.449-48.871 40.809 8.0625 5.5391-25.695 37.281z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m418.14 334 25.691-36.777 8.5664 5.5391 21.664-59.953-48.871 41.312 8.5664 5.543-26.199 37.281z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <line x1="0" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <polygon points="210,400 390,300 210,200" fill="currentColor" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <polygon points="210,400 390,300 210,200" fill={props.color_led} strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,200 L400,400" strokeLinejoin="miter" strokeLinecap="square" />
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 291.36 168.81 l 26.195 -37.281 l 8.0625 5.543 l 22.168 -59.449 l -48.871 40.809 l 8.0625 5.5391 l -25.695 37.281 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 328.14 194 l 25.691 -36.777 l 8.5664 5.5391 l 21.664 -59.953 l -48.871 41.312 l 8.5664 5.543 l -26.199 37.281 z"></path>
         </svg>
     );
 }
 
 export function SchottkyIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="matrix(1, 0, 0, -1, 0, 0)">
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 71.039 h -25.191 v -19.145 h -12.594 v 31.738 h 50.383 v -88.168 h 144.59 H 645 v -12.594 H 627 h -144.59 v -75.57 h 25.188 v 18.641 h 12.598 v -31.238 h -50.383 v 83.129 l -142.07 -81.617 l -9.0664 5.0391 v 81.617 h -145.1 H 155 v 12.594 H 173 h 145.1 z">
-            </path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <line x1="0" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <line x1="400" y1="200" x2="400" y2="400" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" />
+            <polygon points="210,400 390,300 210,200" fill="currentColor" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M350,225 L350,200 L400,200 L400,400 L450,400 L450,375" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
 
 export function TunnelIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 482.12 305.79 h -44.336 v 12.598 h 31.738 v 70.531 l -142.07 -81.617 l -9.0664 5.0391 v 81.617 h -145.1 H 155 v 12.594 H 173 h 145.1 v 81.113 l 9.0664 5.0391 l 142.07 -81.617 v 71.039 h -31.738 v 12.594 h 44.336 v -88.168 h 144.59 H 645 v -12.594 H 626 h -144.59 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <line x1="0" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <polygon points="210,400 390,300 210,200" fill="currentColor" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M360,200 L400,200 L400,400 L360,400" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
 
 export function PhotoDiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 318.38 487.66 l 9.0664 5.0391 l 142.07 -81.617 v 77.082 h 12.598 v -81.617 h 144.8856 H 645 v -12.5471 H 627 h -144.59 v -82.121 h -12.598 v 77.082 l -142.07 -81.617 l -9.4464 4.7029 v 81.6638 h -145 H 155 v 12.594 H 173 h 145.1 z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m469.02 239.29-26.195 37.281-8.0625-5.543-22.168 59.449 48.871-40.809-8.0625-6.0469 25.695-36.777z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m406.55 250.87-8.5625-5.543-21.664 59.953 48.867-41.312-8.5625-5.5391 26.199-37.285-10.582-7.0508z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <line x1="0" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <polygon points="210,400 390,300 210,200" fill="currentColor" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,200 L400,400" strokeLinejoin="miter" strokeLinecap="square" />
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 394.02 139.29 l -26.195 37.281 l -8.0625 -5.543 l -22.168 59.449 l 48.871 -40.809 l -8.0625 -6.0469 l 25.695 -36.777 z"></path>
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 331.55 150.87 l -8.5625 -5.543 l -21.664 59.953 l 48.867 -41.312 l -8.5625 -5.5391 l 26.199 -37.285 l -10.582 -7.0508 z"></path>
         </svg>
     );
 }
 
 export function TVSDiodeIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 242.81 487.66 l 9.0703 5.0391 l 142.07 -81.617 v 71.039 h -31.742 v 12.594 h 44.336 v -83.633 l 141.57 81.617 l 9.5742 -5.0391 v -81.113 h 69.02 H 645 v -12.594 H 627 h -69.02 v -81.617 l -9.5742 -5.0391 l -141.57 81.617 v -70.531 h 31.238 v -12.598 h -43.832 v 83.129 l -142.07 -81.617 l -9.0703 5.0391 v 81.617 h -69.523 H 155 v 12.594 H 173 h 69.523 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <line x1="0" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <polygon points="110,400 290,300 110,200" fill="currentColor" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <polygon points="490,400 310,300 490,200" fill="currentColor" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M340,200 L300,200 L300,400 L260,400" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
 
 export function VaractorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 519.91 311.83 h -12.598 v 82.121 h -25.188 v -82.121 h -12.598 v 77.082 l -142.07 -81.617 l -9.0664 5.0391 v 81.617 h -145.1 H 155 v 12.594 H 173 h 145.1 v 81.113 l 9.0664 5.0391 l 142.07 -81.617 v 77.082 h 12.598 v -81.617 h 25.188 v 81.617 h 12.598 v -81.617 h 113.36 H 651 v -12.594 H 633 h -113.36 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <line x1="0" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <polygon points="210,400 390,300 210,200" fill="currentColor" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,200 L400,400" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M450,200 L450,400" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
@@ -198,84 +224,128 @@ export function NodeIcon(props: SVGProps<SVGSVGElement>) {
 
 export function BJTNPNIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 397 557.69 c 41.312 0 79.098 -16.121 107.31 -42.32 l -0.0039 111.34 V 653 h 12.594 V 627 l 0.0039 -124.44 c 23.68 -27.711 37.785 -62.977 37.785 -102.27 s -14.105 -74.562 -37.785 -102.27 v -124.44 V 146 h -12.594 V 174 v 111.34 c -28.215 -26.199 -65.496 -42.32 -107.31 -42.32 c -84.641 0 -154.16 67.008 -157.19 151.14 l -69.527 -0.0039 H 143 v 12.594 H 170 h 69.527 c 3.0195 84.137 72.547 151.65 157.19 151.65 z m 110.84 -250.9 c 21.16 25.191 34.258 57.938 34.258 93.203 c 0 37.281 -14.105 71.039 -37.281 96.73 l -53.402 -35.266 l -4.0312 11.59 l -82.121 -27.207 v -91.691 z m -110.84 -51.387 c 39.297 0 75.066 15.617 101.27 41.312 l -133 44.336 l -0.0039 -41.816 h -12.594 v 94.715 h -100.76 c 3.5273 -77.082 67.508 -138.55 145.1 -138.55 z m -43.832 151.14 v 94.215 h 12.594 v -41.816 l 78.09 26.199 l -4.0312 11.586 l 61.465 3.5273 c -26.199 27.711 -63.48 44.84 -104.29 44.84 c -77.586 0 -141.57 -61.465 -144.59 -138.55 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,300 L250,300" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M250,190 L250,410" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M252,250 L400,170 L400,0" strokeLinejoin="miter" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <line stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} x1="252" y1="350" x2="340" y2="400" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,450 L400,600" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
 
 export function BJTPNPIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 397 557.69 c 41.312 0 79.098 -16.121 107.31 -42.32 l -0.0039 111.34 V 669 h 12.6939 V 627 l 0.0039 -124.44 c 23.68 -27.711 37.785 -62.977 37.785 -102.27 s -14.105 -74.562 -37.785 -102.27 v -124.44 V 131 h -12.594 V 174 v 111.34 c -28.215 -26.199 -65.496 -42.32 -107.31 -42.32 c -84.641 0 -154.16 67.008 -157.19 151.14 l -69.527 -0.0039 H 144 v 12.5539 H 170 h 69.527 c 3.0195 84.137 72.547 151.65 157.19 151.65 z m 110.84 -250.9 c 21.16 25.191 34.258 57.938 34.258 93.203 s -13.098 68.016 -34.258 93.203 l -142.07 -47.359 v -96.727 l 64.488 -4.0312 l -4.0312 -11.586 z m -110.84 -51.387 c 39.297 0 75.066 15.617 101.27 41.312 l -76.074 25.191 l -4.0312 -11.586 l -52.898 34.762 l -0.0039 -45.848 h -12.594 v 94.715 h -100.76 c 3.5273 -77.082 67.508 -138.55 145.1 -138.55 z m -43.832 151.14 v 94.215 h 12.594 v -41.816 l 133 44.336 c -26.199 25.695 -61.969 41.312 -101.27 41.312 c -77.586 0 -141.57 -61.465 -144.59 -138.55 l 100.26 -0.0039 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,300 L250,300" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M250,190 L250,410" strokeLinejoin="miter" strokeLinecap="square" />
+            <line stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} x1="400" y1="170" x2="315" y2="220" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,170 L400,0" strokeLinejoin="miter" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M252,350 L400,430 L400,600" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
 
 export function JFETNIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 404 557.69 c 10.578 0 21.16 -1.0078 31.738 -3.0234 v 72.3334 V 651 h 13.262 V 627 v -75.57 c 65.496 -19.145 113.36 -79.602 113.36 -151.14 c 0 -71.539 -47.863 -132 -113.36 -151.14 v -75.15 V 147 h -12.594 V 174 v 72.547 c -10.078 -2.0156 -20.656 -3.0234 -31.738 -3.0234 c -86.656 0 -157.69 70.535 -157.69 157.69 c 0 15.113 2.0156 30.23 6.5508 44.336 h -75.574 H 152 v 12.4504 H 178 h 80.105 c 22.672 57.941 79.602 100.26 146.61 100.26 z m 31.738 -16.121 c -10.078 2.0156 -20.656 3.5273 -31.738 3.5273 c -59.953 0 -111.34 -36.273 -133.51 -88.168 h 27.207 v 12.09 l 61.969 -16.625 l -0.0039 48.367 h 12.594 v -44.336 h 62.977 v 85.145 z m 12.594 -185.4 v -94.215 c 58.441 18.641 100.76 73.555 100.76 138.04 c 0 64.488 -42.32 119.4 -100.092 138.006 v -93.707 h -75.57 v -88.164 z m -44.332 -100.76 c 10.578 0 21.16 1.0078 31.738 3.5273 v 84.641 l -62.977 -0.0039 v -44.332 h -12.594 v 149.63 l -61.969 -16.625 v 12.09 h -31.738 c -4.5352 -14.105 -7.0547 -28.719 -7.0547 -44.336 c 0 -80.105 64.488 -144.59 144.59 -144.59 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M350,0 L350,230 L275,230 L275,175 L275,425 L275,370 L350,370 L350,600" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M205,370 L205,370 " strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M220,370 L0,370" strokeLinecap="square" />
         </svg>
     );
 }
 
 export function JFETPIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 405 557.69 c 10.578 0 21.16 -1.0078 31.738 -3.0234 v 72.3334 V 648 h 12.594 V 627 v -75.57 c 65.496 -19.145 113.36 -79.602 113.36 -151.14 c 0 -71.539 -47.863 -132 -113.36 -151.14 v -75.8596 V 152 h -13.332 V 173 v 72.547 c -10.078 -2.0156 -20.656 -3.0234 -31.738 -3.0234 c -86.656 0 -157.69 70.535 -157.69 157.69 c 0 15.113 2.0156 30.23 6.5508 44.336 h -75.8608 H 150 v 12.4504 H 178 h 80.105 c 22.672 57.941 79.602 100.26 146.61 100.26 z m 31.738 -16.121 c -10.078 2.0156 -20.656 3.5273 -31.738 3.5273 c -60.961 0 -113.36 -38.289 -134.52 -91.691 l 57.938 15.617 v -12.09 h 32.242 v 43.828 h 12.594 v -44.336 h 62.977 v 85.145 z m 12.594 -185.4 v -94.215 c 58.441 18.641 100.76 73.555 100.76 138.04 c 0 64.488 -42.32 119.4 -100.76 138.04 v -93.707 h -75.57 v -88.164 z m -44.332 -100.76 c 10.578 0 21.16 1.0078 31.738 3.5273 v 84.641 l -62.977 -0.0039 v -44.332 h -12.594 v 145.1 h -32.242 v -12.09 l -59.953 16.121 c -5.543 -15.113 -8.0625 -31.234 -8.0625 -48.367 c -0.5039 -80.105 63.984 -144.59 144.09 -144.59 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M350,0 L350,230 L275,230 L275,175 L275,425 L275,370 L350,370 L350,600" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M275,370 L215,370" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M140,370 L0,370" strokeLinecap="square" />
         </svg>
     );
 }
 
 export function NChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 405 557.69 c 10.578 0 21.16 -1.0078 31.738 -3.0234 v 72.3334 V 652 h 12.594 V 627 v -75.57 c 65.496 -19.145 113.36 -79.602 113.36 -151.14 c 0 -71.539 -47.863 -132 -113.36 -151.14 v -75.8596 V 148 h -12.594 V 173 v 72.547 c -10.078 -2.0156 -20.656 -3.0234 -31.738 -3.0234 c -86.656 0 -157.69 70.535 -157.69 157.69 c 0 15.113 2.0156 30.23 6.5508 44.336 h -75.8608 H 153 v 12.594 H 178 h 80.105 c 22.672 57.941 79.602 100.26 146.61 100.26 z m 0 -302.29 c 10.578 0 21.16 1.0078 31.738 3.5273 v 59.449 h -62.977 v -19.145 h -12.594 v 50.383 h 12.594 v -19.145 h 75.57 v -68.523 c 58.441 18.641 100.76 73.555 100.76 138.04 c 0 64.488 -42.32 119.4 -100.76 138.04 v -144.59 h -37.281 v -31.738 l -32.242 32.242 h -6.0469 v -19.145 h -12.594 v 50.383 h 12.594 v -19.145 l 6.0469 -0.0039 l 31.738 31.738 v -31.738 h 24.688 v 62.977 h -62.473 v -18.641 h -12.594 v 50.383 h 12.594 v -19.145 h 62.977 v 59.449 c -10.078 2.0156 -20.656 3.5273 -31.738 3.5273 c -59.953 0 -111.34 -36.273 -133.51 -88.168 h 70.535 l -0.0039 -112.86 h -12.598 v 100.76 h -62.473 c -4.5352 -14.105 -7.0547 -28.719 -7.0547 -44.336 c 0.5078 -80.102 64.996 -144.59 145.1 -144.59 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,370 L230,370 L230,230" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,200 L270,250 L270,220 L350,220 L350,0" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,280 L270,330 L270,300 L350,300 L350,366" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,410 L270,380 L350,380 L350,600" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M330,300 L320,300 " strokeLinecap="square" markerEnd='url(#headTwo)' />
         </svg>
     );
 }
 
 export function PChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 405 557.69 c 10.578 0 21.16 -1.0078 31.738 -3.0234 v 72.3334 V 652 h 12.594 V 627 v -75.57 c 65.496 -19.145 113.36 -79.602 113.36 -151.14 c 0 -71.539 -47.863 -132 -113.36 -151.14 v -75.8596 V 148 h -12.594 V 173 v 72.547 c -10.078 -2.0156 -20.656 -3.0234 -31.738 -3.0234 c -86.656 0 -157.69 70.535 -157.69 157.69 c 0 15.113 2.0156 30.23 6.5508 44.336 h -75.8608 H 153 v 12.594 H 178 h 80.105 c 22.672 57.941 79.602 100.26 146.61 100.26 z m 0 -302.29 c 10.578 0 21.16 1.0078 31.738 3.5273 v 59.449 h -62.977 v -19.145 h -12.594 v 50.383 h 12.594 v -19.145 h 75.57 v -68.523 c 58.441 18.641 100.76 73.555 100.76 138.04 c 0 64.488 -42.32 119.4 -100.76 138.04 v -144.59 h -19.145 l -31.738 -31.738 v 31.738 h -24.688 v -18.641 h -12.594 v 50.383 h 12.594 v -19.145 h 24.688 v 31.738 l 31.738 -31.738 h 6.0469 v 62.977 l -62.473 -0.0039 v -18.641 h -12.594 v 50.383 h 12.594 v -19.145 h 62.977 v 59.449 c -10.078 2.0156 -20.656 3.5273 -31.738 3.5273 c -59.953 0 -111.34 -36.273 -133.51 -88.168 h 70.535 l -0.0039 -112.86 h -12.598 v 100.76 h -62.473 c -4.5352 -14.105 -7.0547 -28.719 -7.0547 -44.336 c 0.5078 -80.102 64.996 -144.59 145.1 -144.59 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,370 L230,370 L230,230" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,200 L270,250 L270,220 L350,220 L350,0" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,280 L270,330 L270,300 L350,300 L350,366" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,410 L270,380 L350,380 L350,600" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M290,300 L300,300 " strokeLinecap="square" markerEnd='url(#headTwo)' />
         </svg>
     );
 }
 
 export function NChainDepMOSFETIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 449.33 248.86 v -75.86 V 148 h -12.594 V 173 v 72.547 c -10.078 -2.0156 -20.656 -3.0234 -31.738 -3.0234 c -86.656 0 -157.69 70.535 -157.69 157.69 c 0 15.113 2.0156 30.23 6.5508 44.336 h -75.8588 H 153 v 12.594 H 178 h 80.105 c 22.672 58.945 80.105 100.76 146.61 100.76 c 10.578 0 21.16 -1.0078 31.738 -3.0234 v 71.1198 V 651 h 12.547 V 626 v -75.57 c 65.496 -19.145 113.36 -79.602 113.36 -151.14 c 0.0039 -71.539 -48.363 -132 -113.36 -151.14 z m -12.594 292.71 c -10.078 2.0156 -20.656 3.5273 -31.738 3.5273 c -59.953 0 -111.34 -36.273 -133.51 -88.168 h 70.535 l -0.0039 -113.36 h -12.598 v 100.76 h -62.473 c -4.5352 -14.105 -7.0547 -28.719 -7.0547 -44.336 c 0 -80.105 64.992 -145.1 145.1 -145.1 c 10.578 0 21.16 1.0078 31.738 3.5273 v 59.449 l -62.973 0.0039 v -18.641 h -12.594 v 201.52 h 12.594 v -19.145 h 62.977 z m 0 -72.047 h -62.977 v -62.977 h 6.0469 l 31.738 31.738 v -31.738 h 24.688 v 62.977 z m 12.594 68.52 v -144.59 h -37.281 v -31.738 l -32.242 32.242 h -6.0469 v -62.977 h 75.57 v -69.023 c 58.441 18.641 100.76 73.555 100.76 138.04 c 0 64.488 -42.82 119.41 -100.76 138.05 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,370 L230,370 L230,230" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,220 L350,220 L350,0" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,300 L350,300 L350,366" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,190 L270,410 L270,380 L350,380 L350,600" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M330,300 L320,300 " strokeLinecap="square" markerEnd='url(#headTwo)' />
         </svg>
     );
 }
 
 export function PChainDepMOSFETIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 449.33 248.86 v -75.86 V 148 h -12.594 V 173 v 72.547 c -10.078 -2.0156 -20.656 -3.0234 -31.738 -3.0234 c -86.656 0 -157.69 70.535 -157.69 157.69 c 0 15.113 2.0156 30.23 6.5508 44.336 h -75.574 H 153 v 12.594 H 178 h 80.105 c 22.672 58.945 80.105 100.76 146.61 100.76 c 10.578 0 21.16 -1.0078 31.738 -3.0234 v 71.543 V 653 h 12.594 V 626 v -75.57 c 65.496 -19.145 113.36 -79.602 113.36 -151.14 c 0.0039 -71.539 -48.363 -132 -113.36 -151.14 z m -12.594 292.71 c -10.078 2.0156 -20.656 3.5273 -31.738 3.5273 c -59.953 0 -111.34 -36.273 -133.51 -88.168 h 70.535 l -0.0039 -113.36 h -12.598 v 100.76 h -62.473 c -4.5352 -14.105 -7.0547 -28.719 -7.0547 -44.336 c 0 -80.105 64.992 -145.1 145.1 -145.1 c 10.578 0 21.16 1.0078 31.738 3.5273 v 59.449 l -62.973 0.0039 v -18.641 h -12.594 v 201.52 h 12.594 v -19.145 h 62.977 z m 0 -72.047 h -62.977 v -62.977 h 24.688 v 31.738 l 31.738 -31.738 h 6.0469 v 62.977 z m 12.594 68.52 v -144.59 h -19.145 l -31.738 -31.738 v 31.738 h -24.688 v -62.473 h 75.57 v -69.023 c 58.441 18.641 100.76 73.555 100.76 138.04 c 0 64.488 -42.82 119.41 -100.76 138.05 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,370 L230,370 L230,230" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,220 L350,220 L350,0" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,300 L350,300 L350,366" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,190 L270,410 L270,380 L350,380 L350,600" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M290,300  L300,300 " strokeLinecap="square" markerEnd='url(#headTwo)' />
         </svg>
     );
 }
 
 export function PhotoTransistorNPNIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path d="m 397 557.69 c 41.312 0 79.098 -16.121 107.31 -42.32 l -0.0039 111.34 V 653 h 12.594 V 627 l 0.0039 -124.44 c 23.68 -27.711 37.785 -62.977 37.785 -102.27 s -14.105 -74.562 -37.785 -102.27 v -124.44 V 146 h -12.594 V 174 v 111.34 c -28.215 -26.199 -65.496 -42.32 -107.31 -42.32 c -84.641 0 -154.16 67.008 -157.19 151.14 l -69.527 -0.0039 H 143 H 170 h 70 V 406 c 3.0195 84.137 72.547 151.65 157.19 151.65 z m 110.84 -250.9 c 21.16 25.191 34.258 57.938 34.258 93.203 c 0 37.281 -14.105 71.039 -37.281 96.73 l -53.402 -35.266 l -4.0312 11.59 l -82.121 -27.207 v -91.691 z m -110.84 -51.387 c 39.297 0 75.066 15.617 101.27 41.312 l -133 44.336 l -0.0039 -41.816 h -12.594 v 94.715 h -100.76 c 3.5273 -77.082 67.508 -138.55 145.1 -138.55 z m -44 138.597 V 406 v 94.215 h 12.594 v -41.816 l 78.09 26.199 l -4.0312 11.586 l 61.465 3.5273 c -26.199 27.711 -63.48 44.84 -104.29 44.84 c -77.586 0 -141.57 -61.465 -144.8278 -137.5513 V 394 z"></path>
-            <path d="m237.77 229.71 55.418 31.738-32.246-54.914-7.0508 7.0547-32.246-32.246-8.5625 9.0703 31.738 32.242z"></path>
-            <path d="m206.54 260.95 54.914 32.246-31.738-55.418-7.0547 7.0508-32.242-31.738-9.0703 8.5625 32.246 32.246z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M50,90 L100,130" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M90,40 L140,85" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M250,190 L250,410" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M252,250 L400,170 L400,0" strokeLinejoin="miter" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <line stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} x1="252" y1="350" x2="340" y2="400" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,450 L400,600" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
 
 export function PhotoTransistorPNPIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path d="m 397 557.69 c 41.312 0 79.098 -16.121 107.31 -42.32 l -0.0039 111.34 V 669 h 12.6939 V 627 l 0.0039 -124.44 c 23.68 -27.711 37.785 -62.977 37.785 -102.27 s -14.105 -74.562 -37.785 -102.27 v -124.44 V 131 h -12.594 V 174 v 111.34 c -28.215 -26.199 -65.496 -42.32 -107.31 -42.32 c -84.641 0 -154.16 67.008 -157.0999 151.98 V 396 l -0 -0 H 144 H 240 V 404 c 3.0195 84.137 72.547 151.65 157 154 z m 110.84 -250.9 c 21.16 25.191 34.258 57.938 34.258 93.203 s -13.098 68.016 -34.258 93.203 l -142.07 -47.359 v -96.727 l 64.488 -4.0312 l -4.0312 -11.586 z m -110.84 -51.387 c 39.297 0 75.066 15.617 101.27 41.312 l -76.074 25.191 l -4.0312 -11.586 l -52.898 34.762 l -0.0039 -45.848 h -12.594 v 94.766 h -99.6689 c 3.5273 -77.082 67.508 -138.55 145.1 -138.55 z m -43.832 151.14 v 94.215 h 12.594 v -41.816 l 133 44.336 c -26.199 25.695 -61.969 41.312 -101.27 41.312 c -77.586 0 -141.57 -61.465 -144.59 -138.55 V 394 l 100.098 0 z"></path>
-            <path d="m237.77 229.71 55.418 31.738-32.246-54.914-7.0508 7.0547-32.246-32.246-8.5625 9.0703 31.738 32.242z"></path>
-            <path d="m206.54 260.95 54.914 32.246-31.738-55.418-7.0547 7.0508-32.242-31.738-9.0703 8.5625 32.246 32.246z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M50,90 L100,130" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M90,40 L140,85" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M250,190 L250,410" strokeLinejoin="miter" strokeLinecap="square" />
+            <line stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} x1="400" y1="170" x2="315" y2="220" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,170 L400,0" strokeLinejoin="miter" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M252,350 L400,430 L400,600" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
@@ -283,20 +353,30 @@ export function PhotoTransistorPNPIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PhotoTransistorNPN3PinsIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 397 557.69 c 41.312 0 79.098 -16.121 107.31 -42.32 l -0.0039 111.34 V 653 h 12.594 V 627 l 0.0039 -124.44 c 23.68 -27.711 37.785 -62.977 37.785 -102.27 s -14.105 -74.562 -37.785 -102.27 v -124.44 V 146 h -12.594 V 174 v 111.34 c -28.215 -26.199 -65.496 -42.32 -107.31 -42.32 c -84.641 0 -154.16 67.008 -157.19 151.14 l -69.527 -0.0039 H 143 v 12.594 H 170 h 69.527 c 3.0195 84.137 72.547 151.65 157.19 151.65 z m 110.84 -250.9 c 21.16 25.191 34.258 57.938 34.258 93.203 c 0 37.281 -14.105 71.039 -37.281 96.73 l -53.402 -35.266 l -4.0312 11.59 l -82.121 -27.207 v -91.691 z m -110.84 -51.387 c 39.297 0 75.066 15.617 101.27 41.312 l -133 44.336 l -0.0039 -41.816 h -12.594 v 94.715 h -100.76 c 3.5273 -77.082 67.508 -138.55 145.1 -138.55 z m -43.832 151.14 v 94.215 h 12.594 v -41.816 l 78.09 26.199 l -4.0312 11.586 l 61.465 3.5273 c -26.199 27.711 -63.48 44.84 -104.29 44.84 c -77.586 0 -141.57 -61.465 -144.59 -138.55 z"></path>
-            <path d="m237.77 229.71 55.418 31.738-32.246-54.914-7.0508 7.0547-32.246-32.246-8.5625 9.0703 31.738 32.242z"></path>
-            <path d="m206.54 260.95 54.914 32.246-31.738-55.418-7.0547 7.0508-32.242-31.738-9.0703 8.5625 32.246 32.246z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M50,90 L100,130" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M90,40 L140,85" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,300 L250,300" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M250,190 L250,410" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M252,250 L400,170 L400,0" strokeLinejoin="miter" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <line stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} x1="252" y1="350" x2="340" y2="400" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,450 L400,600" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
 
 export function PhotoTransistorPNP3PinsIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 397 557.69 c 41.312 0 79.098 -16.121 107.31 -42.32 l -0.0039 111.34 V 669 h 12.6939 V 627 l 0.0039 -124.44 c 23.68 -27.711 37.785 -62.977 37.785 -102.27 s -14.105 -74.562 -37.785 -102.27 v -124.44 V 131 h -12.594 V 174 v 111.34 c -28.215 -26.199 -65.496 -42.32 -107.31 -42.32 c -84.641 0 -154.16 67.008 -157.19 151.14 l -69.527 -0.0039 H 144 v 12.5539 H 170 h 69.527 c 3.0195 84.137 72.547 151.65 157.19 151.65 z m 110.84 -250.9 c 21.16 25.191 34.258 57.938 34.258 93.203 s -13.098 68.016 -34.258 93.203 l -142.07 -47.359 v -96.727 l 64.488 -4.0312 l -4.0312 -11.586 z m -110.84 -51.387 c 39.297 0 75.066 15.617 101.27 41.312 l -76.074 25.191 l -4.0312 -11.586 l -52.898 34.762 l -0.0039 -45.848 h -12.594 v 94.715 h -100.76 c 3.5273 -77.082 67.508 -138.55 145.1 -138.55 z m -43.832 151.14 v 94.215 h 12.594 v -41.816 l 133 44.336 c -26.199 25.695 -61.969 41.312 -101.27 41.312 c -77.586 0 -141.57 -61.465 -144.59 -138.55 l 100.26 -0.0039 z"></path>
-            <path d="m237.77 229.71 55.418 31.738-32.246-54.914-7.0508 7.0547-32.246-32.246-8.5625 9.0703 31.738 32.242z"></path>
-            <path d="m206.54 260.95 54.914 32.246-31.738-55.418-7.0547 7.0508-32.242-31.738-9.0703 8.5625 32.246 32.246z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M50,90 L100,130" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M90,40 L140,85" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,300 L250,300" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M250,190 L250,410" strokeLinejoin="miter" strokeLinecap="square" />
+            <line stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} x1="400" y1="170" x2="315" y2="220" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,170 L400,0" strokeLinejoin="miter" strokeLinecap="square" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M252,350 L400,430 L400,600" strokeLinejoin="miter" strokeLinecap="square" />
         </svg>
     );
 }
@@ -304,40 +384,42 @@ export function PhotoTransistorPNP3PinsIcon(props: SVGProps<SVGSVGElement>) {
 
 export function InductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 513.36 356.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 154 v 12.045 H 174 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 647 v -12 H 627 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" version="1.1" viewBox="0 0 600 600" >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 413.36 256.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 20 v 12.045 H 74 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 584 v -12 H 527 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
         </svg>
     );
 }
 
 export function FerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512"  >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 513.36 356.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 154 v 12.045 H 174 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 647 v -12 H 627 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
-            <path d="m406.55 318.38h62.977v12.594h-62.977z"></path>
-            <path d="m482.12 318.38h62.977v12.594h-62.977z"></path>
-            <path d="m330.98 318.38h62.977v12.594h-62.977z"></path>
-            <path d="m255.41 318.38h62.977v12.594h-62.977z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 413.36 256.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 20 v 12.045 H 74 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 584 v -12 H 527 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M150,220 L210,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M230,220 L290,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M310,220 L370,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M390,220 L450,220"></path>
         </svg>
     );
 }
 
 export function IronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 513.36 356.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 154 v 12.045 H 174 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 647 v -12 H 627 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
-            <path d="m255.41 318.38h289.69v12.594h-289.69z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 413.36 256.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 20 v 12.045 H 74 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 584 v -12 H 527 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M150,220 L450,220"></path>
         </svg>
     );
 }
 
 export function PresetFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)matrix(-1, 0, 0, 1, 0, 0)"  >
-            <path d="m469.52 406.55h12.594v62.977h-12.594z"></path>
-            <path d="m469.52 482.12h12.594v62.977h-12.594z"></path>
-            <path d="m469.52 255.41h12.594v62.977h-12.594z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 272.54 586.91 l 156.18 -163.23 c 2.0156 4.0312 3.0234 9.0703 3.0234 13.602 c 0 17.129 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0078 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 81.617 V 649 h 12.594 V 627 v -69.523 c 21.16 -3.0234 37.785 -21.664 37.785 -43.832 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -8.5664 -2.5195 -16.625 -6.5508 -23.176 l 31.738 -33.25 v 12.594 h 12.594 v -25.695 l 62.977 -66 l 26.703 26.703 l 9.0703 -9.0703 l -62.469 -62.973 l -9.0703 9.0703 l 27.207 27.207 l -53.906 56.422 v -19.145 h -12.594 v 32.242 l -40.305 41.816 c -2.0156 -2.0156 -4.0312 -3.5273 -6.5508 -5.0391 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -22.168 -16.625 -40.809 -37.785 -43.832 l -0.0039 -69.02 V 142 h -12.594 V 173 v 82.121 h 6.5508 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 17.129 0 31.738 14.105 31.738 31.738 s -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 7.5586 0 15.113 3.0234 20.656 7.5586 l -157.7 163.23 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 413.36 256.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 20 v 12.045 H 74 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 584 v -12 H 527 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M150,220 L210,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M230,220 L290,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M310,220 L370,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M390,220 L450,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" fill="none" d="M170,450 L430,120 L390,90 L470, 150"></path>
         </svg>
     );
 }
@@ -345,19 +427,23 @@ export function PresetFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PresetIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)matrix(-1, 0, 0, 1, 0, 0)" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 272.54 586.91 l 156.18 -163.23 c 2.0156 4.0312 3.0234 9.0703 3.0234 13.602 c 0 17.129 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0078 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 81.617 V 653 h 12.5454 V 627 v -69.523 c 21.16 -3.0234 37.785 -21.664 37.785 -43.832 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -8.5664 -2.5195 -16.625 -6.5508 -23.176 l 31.738 -33.25 v 163.74 h 12.594 l 0.0078 -177.34 l 62.977 -66 l 26.703 26.703 l 9.0703 -9.0703 l -62.477 -62.469 l -9.0703 9.0703 l 27.207 27.207 l -53.906 56.422 v -94.211 h -12.594 v 107.82 l -40.305 41.816 c -2.0156 -2.0156 -4.0312 -3.5273 -6.5508 -5.0391 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 s -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -22.168 -16.625 -40.809 -37.785 -43.832 l -0.0039 -69.527 V 144 h -13.0479 V 173 v 82.121 h 6.5508 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 17.129 0 31.738 14.105 31.738 31.738 s -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 7.5586 0 15.113 3.0234 20.656 7.5586 l -157.7 163.23 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 413.36 256.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 20 v 12.045 H 74 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 584 v -12 H 527 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M150,220 L450,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" fill="none" d="M170,450 L430,120 L390,90 L470, 150"></path>
         </svg>
     );
 }
 
 export function VariableFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)matrix(-1, 0, 0, 1, 0, 0)"  >
-            <path d="m469.52 406.55h12.594v62.977h-12.594z"></path>
-            <path d="m469.52 482.12h12.594v62.977h-12.594z"></path>
-            <path d="m469.52 255.41h12.594v62.977h-12.594z"></path>
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 272.54 586.91 l 156.18 -163.23 c 2.0156 4.0312 3.0234 9.0703 3.0234 13.602 c 0 17.129 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0078 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 81.617 V 649 h 12.594 V 627 v -69.523 c 21.16 -3.0234 37.785 -21.664 37.785 -43.832 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -8.5664 -2.5195 -16.625 -6.5508 -23.176 l 31.738 -33.25 v 12.594 h 12.594 v -25.695 l 63.3852 -66.548 l 13 13 l 4 -15 l 10 -36 l -18 7 Q 535 278 524 281 l 12 12 l -53.906 56.422 v -19.145 h -12.594 v 32.242 l -40.305 41.816 c -2.0156 -2.0156 -4.0312 -3.5273 -6.5508 -5.0391 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -22.168 -16.625 -40.809 -37.785 -43.832 l -0.0039 -69.02 V 142 h -12.594 V 173 v 82.121 h 6.5508 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 17.129 0 31.738 14.105 31.738 31.738 s -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 7.5586 0 15.113 3.0234 20.656 7.5586 l -157.7 163.23 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 413.36 256.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 20 v 12.045 H 74 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 584 v -12 H 527 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M150,220 L210,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M230,220 L290,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M310,220 L370,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M390,220 L450,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" fill="none" d="M170,450 L430,120 " markerEnd="url(#head)"></path>
         </svg>
     );
 }
@@ -365,8 +451,10 @@ export function VariableFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) 
 
 export function VariableIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="144 144 512 512" transform="rotate(90)matrix(-1, 0, 0, 1, 0, 0)" >
-            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 272.54 586.91 l 156.18 -163.23 c 2.0156 4.0312 3.0234 9.0703 3.0234 13.602 c 0 17.129 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0078 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 81.617 V 653 h 12.5454 V 627 v -69.523 c 21.16 -3.0234 37.785 -21.664 37.785 -43.832 c 0 -16.121 -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -8.5664 -2.5195 -16.625 -6.5508 -23.176 l 31.738 -33.25 v 163.74 h 12.594 l 0.0078 -177.34 l 62.977 -66 l 12.449 11.951 l 3 -14 l 9 -36 l -14 5 Q 531 279 523 282 l 12 12 l -53.906 56.422 v -94.211 h -12.594 v 107.82 l -40.305 41.816 c -2.0156 -2.0156 -4.0312 -3.5273 -6.5508 -5.0391 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 s -8.5664 -30.23 -21.16 -37.785 c 12.594 -7.5586 21.16 -21.664 21.16 -37.785 c 0 -22.168 -16.625 -40.809 -37.785 -43.832 l -0.0039 -69.527 V 144 h -13.0479 V 173 v 82.121 h 6.5508 c 17.129 0 31.738 14.105 31.738 31.738 c 0 17.633 -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 17.129 0 31.738 14.105 31.738 31.738 s -14.105 31.738 -31.738 31.738 h -6.5508 v 12.594 l 6.5508 0.0039 c 7.5586 0 15.113 3.0234 20.656 7.5586 l -157.7 163.23 z"></path>
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="m 413.36 256.17 c -16.121 0 -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 s -30.23 8.5664 -37.785 21.16 c -7.5586 -12.594 -21.664 -21.16 -37.785 -21.16 c -22.168 0 -40.809 16.625 -43.832 37.785 h -68.818 H 20 v 12.045 H 74 h 82.121 v -6.5469 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 s 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0039 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 h 12.594 l 0.0078 -6.5508 c 0 -17.129 14.105 -31.738 31.738 -31.738 c 17.633 0 31.738 14.105 31.738 31.738 v 6.5508 l 79.1774 -0.5529 H 584 v -12 H 527 h -69.523 c -3.0234 -21.664 -21.664 -37.785 -43.832 -37.785 z"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" d="M150,220 L450,220"></path>
+            <path strokeWidth={STROKE_WIDTH * 5} stroke="currentColor" fill="none" d="M170,450 L430,120" markerEnd="url(#head)"></path>
         </svg>
     );
 }
@@ -374,9 +462,9 @@ export function VariableIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 export function SwitchSPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
         </svg>
