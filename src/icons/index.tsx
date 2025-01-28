@@ -426,8 +426,8 @@ export function PushButtonOpenNCIcon(props: SVGProps<SVGSVGElement>) {
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 140,342 320,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,342 0,-150" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 140,400 320,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,400 0,-150" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
         </svg>
@@ -439,8 +439,8 @@ export function PushButtonCloseNCIcon(props: SVGProps<SVGSVGElement>) {
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 140,400 320,0" />
-            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,400 0,-150" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 140,342 320,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 300,342 0,-150" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
         </svg>
