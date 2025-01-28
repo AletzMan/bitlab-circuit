@@ -51,7 +51,7 @@ export function TransistorComponent({ data: { type, value, rotation, flip, colla
 
 
 
-    const positionTerminals: { position: Position[], adjustment: CSSProperties[] } = useMemo(() => {
+    const terminalSettings: { position: Position[], adjustment: CSSProperties[] } = useMemo(() => {
         let tempRotation: Position[] = [];
         let adjustment: CSSProperties[] = [];
         const positionTop = typeGroupTransistorSmall.has(type) ? 0 : 6;
@@ -136,9 +136,9 @@ export function TransistorComponent({ data: { type, value, rotation, flip, colla
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
                 {ComponentsMap[type].icon}
             </div>
-            {(type !== ComponentType.PhotoTransistorNPN && type !== ComponentType.PhotoTransistorPNP) && <Terminal type="source" position={positionTerminals.position[0]} id="1" isConnectable={!isConnected[0]} style={positionTerminals.adjustment[0]} />}
-            <Terminal type="source" position={positionTerminals.position[1]} id="2" isConnectable={!isConnected[1]} style={positionTerminals.adjustment[1]} />
-            <Terminal type="source" position={positionTerminals.position[2]} id="3" isConnectable={!isConnected[2]} style={positionTerminals.adjustment[2]} />
+            {(type !== ComponentType.PhotoTransistorNPN && type !== ComponentType.PhotoTransistorPNP) && <Terminal type="source" position={terminalSettings.position[0]} id="1" isConnectable={!isConnected[0]} style={terminalSettings.adjustment[0]} />}
+            <Terminal type="source" position={terminalSettings.position[1]} id="2" isConnectable={!isConnected[1]} style={terminalSettings.adjustment[1]} />
+            <Terminal type="source" position={terminalSettings.position[2]} id="3" isConnectable={!isConnected[2]} style={terminalSettings.adjustment[2]} />
             {isValueVisible && <span className={`${styles.value}  ${size === 'small' && styles.value_small} ${size === 'medium' && styles.value_medium} ${size === 'large' && styles.value_large}  ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
             {isReferenceVisible && <span className={`${styles.reference} ${size === 'small' && styles.reference_small} ${size === 'medium' && styles.reference_medium} ${size === 'large' && styles.reference_large} ${rotation === 90 && styles.reference_90}   ${rotation === 270 && styles.reference_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
         </div>

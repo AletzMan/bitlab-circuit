@@ -49,7 +49,7 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
         });
     };
 
-    const positionTerminals: Position[] = useMemo(() => {
+    const terminalSettings: Position[] = useMemo(() => {
         let tempRotation: Position[] = [];
         switch (rotation) {
             case 0: {
@@ -133,9 +133,9 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
                 {state ? state?.on ? ComponentsMap[type]?.state?.iconON : ComponentsMap[type].state?.iconOFF : ComponentsMap[type].icon}
             </div>
-            <Terminal type="source" position={positionTerminals[0]} id="1" isConnectable={!isConnected[0]} />
-            <Terminal type="source" position={positionTerminals[1]} id="2" isConnectable={!isConnected[1]} />
-            {type === ComponentType.Potentiometer && <Terminal type="source" position={positionTerminals[2]} id="3" isConnectable={!isConnected[2]} />}
+            <Terminal type="source" position={terminalSettings[0]} id="1" isConnectable={!isConnected[0]} />
+            <Terminal type="source" position={terminalSettings[1]} id="2" isConnectable={!isConnected[1]} />
+            {type === ComponentType.Potentiometer && <Terminal type="source" position={terminalSettings[2]} id="3" isConnectable={!isConnected[2]} />}
             {isReferenceVisible && <span className={`${styles.reference} ${size === 'small' && styles.reference_small} ${size === 'medium' && styles.reference_medium} ${size === 'large' && styles.reference_large} ${rotation === 90 && styles.reference_90}   ${rotation === 270 && styles.reference_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
         </div>
     );

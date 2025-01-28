@@ -49,7 +49,7 @@ export function SwitchSPDT({ data: { type, rotation, flip, collapsed, isLock, re
         });
     };
 
-    const positionTerminals: { position: Position[], adjustment: CSSProperties[] } = useMemo(() => {
+    const terminalSettings: { position: Position[], adjustment: CSSProperties[] } = useMemo(() => {
         let tempRotation: Position[] = [];
         let adjustment: CSSProperties[] = [];
         switch (rotation) {
@@ -146,9 +146,9 @@ export function SwitchSPDT({ data: { type, rotation, flip, collapsed, isLock, re
             <div style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }} className={styles.icon}>
                 {state ? state?.on ? ComponentsMap[type]?.state?.iconON : ComponentsMap[type].state?.iconOFF : ComponentsMap[type].icon}
             </div>
-            <Terminal type="source" position={positionTerminals.position[0]} id="1" isConnectable={!isConnected[0]} style={positionTerminals.adjustment[0]} />
-            <Terminal type="source" position={positionTerminals.position[1]} id="2" isConnectable={!isConnected[1]} style={positionTerminals.adjustment[1]} />
-            <Terminal type="source" position={positionTerminals.position[2]} id="3" isConnectable={!isConnected[2]} style={positionTerminals.adjustment[2]} />
+            <Terminal type="source" position={terminalSettings.position[0]} id="1" isConnectable={!isConnected[0]} style={terminalSettings.adjustment[0]} />
+            <Terminal type="source" position={terminalSettings.position[1]} id="2" isConnectable={!isConnected[1]} style={terminalSettings.adjustment[1]} />
+            <Terminal type="source" position={terminalSettings.position[2]} id="3" isConnectable={!isConnected[2]} style={terminalSettings.adjustment[2]} />
             {isReferenceVisible && <span className={`${styles.reference} ${size === 'small' && styles.reference_small} ${size === 'medium' && styles.reference_medium} ${size === 'large' && styles.reference_large} ${rotation === 90 && styles.reference_90}   ${rotation === 270 && styles.reference_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
         </div>
     );
