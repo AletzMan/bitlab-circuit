@@ -178,3 +178,4 @@ export interface ITerminalSetting {
     position: Position[],
     adjustment: CSSProperties[]
 }
+
