@@ -1,4 +1,4 @@
-import { Edge, Node } from "@xyflow/react";
+import { Edge, Node, Position } from "@xyflow/react";
 import { ColorPickerProps } from "antd";
 import { CSSProperties } from "react";
 
@@ -173,3 +173,8 @@ export enum HistoryAction {
     RemoveEdge = "removeEdge",
 }
 export type Presets = Required<ColorPickerProps>['presets'][number];
+
+export interface ITerminalSetting {
+    position: Position[],
+    adjustment: CSSProperties[]
+}
