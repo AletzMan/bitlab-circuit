@@ -786,7 +786,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         isValueVisible: true,
         connectedHandles: [false, false, false, false, false, false],
         style: undefined,
-        size: "small"
+        size: "medium"
     },
 };
 
