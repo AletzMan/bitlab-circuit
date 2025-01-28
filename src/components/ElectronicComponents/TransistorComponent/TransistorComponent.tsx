@@ -54,8 +54,8 @@ export function TransistorComponent({ data: { type, value, rotation, flip, colla
     const terminalSettings: { position: Position[], adjustment: CSSProperties[] } = useMemo(() => {
         let position: Position[] = [];
         let adjustment: CSSProperties[] = [];
-        const positionTop = typeGroupTransistorSmall.has(type) ? 0 : 6;
-        const positionBottom = typeGroupTransistorSmall.has(type) ? 13 : 5;
+        const positionTop = typeGroupTransistorSmall.has(type) ? 0 : 7;
+        const positionBottom = typeGroupTransistorSmall.has(type) ? 10 : 5;
         switch (rotation) {
             case 0: {
                 position = [Position.Left, Position.Top, Position.Bottom];
