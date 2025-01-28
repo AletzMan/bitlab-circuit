@@ -61,12 +61,13 @@
 }
 
 .reference_small {
-    top: 2px;
-    left: -4px;
+    top: -6px;
+    left: -2px;
 
     &.reference_90,
     &.reference_270 {
-        left: 45px;
+        left: 60px;
+        top: 0;
     }
 }
 
