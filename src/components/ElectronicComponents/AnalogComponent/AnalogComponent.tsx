@@ -50,51 +50,51 @@ export function AnalogComponent({ data: { type, value, rotation, flip, collapsed
     };
 
     const terminalSettings: Position[] = useMemo(() => {
-        let tempRotation: Position[] = [];
+        let position: Position[] = [];
         switch (rotation) {
             case 0: {
-                tempRotation = [Position.Left, Position.Right, Position.Top];
+                position = [Position.Left, Position.Right, Position.Top];
                 if (flip.x === -1 && flip.y === 1) {
-                    tempRotation = [Position.Right, Position.Left, Position.Top];
+                    position = [Position.Right, Position.Left, Position.Top];
                 } else if (flip.y === -1 && flip.x === 1) {
-                    tempRotation = [Position.Left, Position.Right, Position.Bottom];
+                    position = [Position.Left, Position.Right, Position.Bottom];
                 } else if (flip.y === -1 && flip.x === -1) {
-                    tempRotation = [Position.Right, Position.Left, Position.Bottom];
+                    position = [Position.Right, Position.Left, Position.Bottom];
                 }
-                return tempRotation;
+                return position;
             }
             case 90: {
-                tempRotation = [Position.Top, Position.Bottom, Position.Right];
+                position = [Position.Top, Position.Bottom, Position.Right];
                 if (flip.x === -1 && flip.y === 1) {
-                    tempRotation = [Position.Top, Position.Bottom, Position.Left];
+                    position = [Position.Top, Position.Bottom, Position.Left];
                 } else if (flip.y === -1 && flip.x === 1) {
-                    tempRotation = [Position.Bottom, Position.Top, Position.Right];
+                    position = [Position.Bottom, Position.Top, Position.Right];
                 } else if (flip.y === -1 && flip.x === -1) {
-                    tempRotation = [Position.Bottom, Position.Top, Position.Left];
+                    position = [Position.Bottom, Position.Top, Position.Left];
                 }
-                return tempRotation;
+                return position;
             }
             case 180: {
-                tempRotation = [Position.Right, Position.Left, Position.Bottom];
+                position = [Position.Right, Position.Left, Position.Bottom];
                 if (flip.x === -1 && flip.y === 1) {
-                    tempRotation = [Position.Left, Position.Right, Position.Bottom];
+                    position = [Position.Left, Position.Right, Position.Bottom];
                 } else if (flip.y === -1 && flip.x === 1) {
-                    tempRotation = [Position.Right, Position.Left, Position.Top];
+                    position = [Position.Right, Position.Left, Position.Top];
                 } else if (flip.y === -1 && flip.x === -1) {
-                    tempRotation = [Position.Left, Position.Right, Position.Top];
+                    position = [Position.Left, Position.Right, Position.Top];
                 }
-                return tempRotation;
+                return position;
             }
             case 270: {
-                tempRotation = [Position.Bottom, Position.Top, Position.Left];
+                position = [Position.Bottom, Position.Top, Position.Left];
                 if (flip.x === -1 && flip.y === 1) {
-                    tempRotation = [Position.Bottom, Position.Top, Position.Right];
+                    position = [Position.Bottom, Position.Top, Position.Right];
                 } else if (flip.y === -1 && flip.x === 1) {
-                    tempRotation = [Position.Top, Position.Bottom, Position.Left];
+                    position = [Position.Top, Position.Bottom, Position.Left];
                 } else if (flip.y === -1 && flip.x === -1) {
-                    tempRotation = [Position.Top, Position.Bottom, Position.Right];
+                    position = [Position.Top, Position.Bottom, Position.Right];
                 }
-                return tempRotation;
+                return position;
             }
 
             default:
