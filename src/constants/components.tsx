@@ -698,7 +698,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         isValueVisible: true,
         connectedHandles: [false, false, false, false],
         style: undefined,
-        size: "large"
+        size: "small"
     },
     [ComponentType.PusuhButtonOpen]: {
         name: 'Push Button Normally Open',
