@@ -571,6 +571,32 @@ export function BoardFlow() {
                         selectionMode={SelectionMode.Partial} onKeyDown={handleOnKeyDown}>
                         <Background color={'var(--grid-small-color)'} gap={GRID_SIZE} variant={currentTypeGrid} id='1' size={1.5} />
                         <Background color={'var(--grid-large-color)'} gap={GRID_SIZE * 10} variant={currentTypeGrid} id='2' />
+                        <svg>
+                            <defs>
+                                <marker
+                                    id='head'
+                                    orient="auto"
+                                    markerWidth='5'
+                                    markerHeight='3'
+                                    refX='0.1'
+                                    refY='1.5'
+                                >
+                                    <path d='M 0 0 V 3 L 5 1.5 Z' fill="var(--foreground-color)" />
+                                </marker>
+                            </defs>
+                            <defs>
+                                <marker
+                                    id='headTwo'
+                                    orient="auto"
+                                    markerWidth='3.5'
+                                    markerHeight='5'
+                                    refX='0'
+                                    refY='2.5'
+                                >
+                                    <path d='M 0 0 V 5 L 3.5 2.5 Z' fill="var(--foreground-color)" />
+                                </marker>
+                            </defs>
+                        </svg>
                     </ReactFlow>
                 </div>
                 <Card className={styles.containerTabs} styles={{ body: { padding: "0" } }}>
@@ -638,7 +664,9 @@ export function BoardFlow() {
                     ]} activeKey={activeTab} onChange={handleOnChangeTab} />
 
                 </Card>
+
             </div>
+
         </ConfigProvider>
     );
 }
