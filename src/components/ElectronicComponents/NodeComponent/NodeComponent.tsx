@@ -31,24 +31,21 @@ export function NodeComponent({ data: { type, collapsed, isLock, reference, isRe
     useNodeConnections({ onConnect, onDisconnect });
 
     const setConnectionsTerminals = (connections: Connection[], isOnConnect: boolean) => {
+        const newState = [...connectedHandles];
         connections.map((connection) => {
-            const newState = [...connectedHandles];
             if (connection.target === id) {
                 const handleNumber = Number(connection.targetHandle) - 1;
                 newState[handleNumber] = isOnConnect;
-                setIsConnected(newState);
-                updateNode(id, (prevNode) => ({ data: { ...prevNode.data, connectedHandles: newState } }));
-                return connection.target === id;
             }
             if (connection.source === id) {
                 const handleNumber = Number(connection.sourceHandle) - 1;
                 newState[handleNumber] = isOnConnect;
-                setIsConnected(newState);
-                updateNode(id, (prevNode) => ({ data: { ...prevNode.data, connectedHandles: newState } }));
-                return connection.source === id;
             }
         });
+        setIsConnected(newState);
+        updateNode(id, (prevNode) => ({ data: { ...prevNode.data, connectedHandles: newState } }));
     };
+
 
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`} >
