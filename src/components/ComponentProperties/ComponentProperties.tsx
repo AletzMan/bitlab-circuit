@@ -1,6 +1,6 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useNodesData, useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
+import { Edge, useNodesData, useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
@@ -19,12 +19,12 @@ export function ComponentProperties({
 }: {
     duplicateComponents: () => void
 }) {
-    const { removeNode } = useHistoryManager();
+    const { removeNode, removeEdge } = useHistoryManager();
     const node = useSelectedItems((state) => state.selectedNode);
     const selectedNodes = useSelectedItems((state) => state.selectedNodes);
     const isSingleNodeSelection = useSelectedItems((state) => state.isSingleNodeSelection);
     const updateNodeInternals = useUpdateNodeInternals();
-    const { updateNodeData, updateNode, getNodes, } = useReactFlow();
+    const { updateNodeData, updateNode, getNodes, getEdges } = useReactFlow();
     const nodeData = useNodesData(node?.id as string);
     const [dataComponent, setDataComponent] = useState<ComponentData | undefined>(nodeData?.data as ComponentData);
     const presets = genPresets(LedColors);
@@ -97,8 +97,19 @@ export function ComponentProperties({
 
     const handleRemoveNode = () => {
         if (isSingleNodeSelection) {
+            const nodeEdges = getEdges().filter(edge => edge.source === node?.id || edge.target === node?.id);
+            removeEdge(nodeEdges);
             removeNode([node as AnalogNode], true);
         } else {
+            const selectedNodeIds = new Set(selectedNodes?.map(node => node.id));
+            const nodeEdges: Edge[] = [];
+            getEdges().forEach(element => {
+                if (selectedNodeIds.has(element.source) || selectedNodeIds.has(element.target)) {
+                    nodeEdges.push(element);
+                }
+            });
+
+            removeEdge(nodeEdges, true);
             removeNode(selectedNodes, true);
         }
     };
