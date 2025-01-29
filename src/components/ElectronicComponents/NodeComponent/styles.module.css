@@ -83,26 +83,31 @@
     top: -3px;
     width: 26px;
     height: 26px;
+
+    &:hover {
+        .path {
+            stroke: var(--foreground-color);
+        }
+    }
 }
 
 .path {
-    fill: var(--foreground-color);
+    stroke: var(--foreground-color);
+    stroke-width: 5.9;
 
     &.path_top,
     &.path_right,
     &.path_bottom,
     &.path_left {
-        fill: transparent;
+        stroke: transparent;
 
-        &:hover {
-            fill: var(--foreground-color);
-        }
+
     }
 
     &.path_top_connected,
     &.path_right_connected,
     &.path_bottom_connected,
     &.path_left_connected {
-        fill: var(--wire-color);
+        stroke: var(--wire-color);
     }
 }
