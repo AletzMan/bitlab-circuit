@@ -271,7 +271,6 @@ export function BoardFlow() {
 
     };
 
-
     const handleNodeDragStop: OnNodeDrag<AnalogNode> = (e, dragNode) => {
         e.preventDefault();
         if (
