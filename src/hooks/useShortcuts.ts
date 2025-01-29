@@ -3,6 +3,7 @@ import { AnalogNode } from "@/types";
 import { Edge, useReactFlow } from "@xyflow/react";
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import { useSelectedItemsState } from "./useSelectedItemsState";
 
 export default function useShortcuts({
     removeNode,
@@ -16,6 +17,7 @@ export default function useShortcuts({
     redo: () => void;
 }) {
     const { setNodes, getNodes, getEdges } = useReactFlow();
+    const { selectedNodes } = useSelectedItemsState();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -31,11 +33,19 @@ export default function useShortcuts({
                     break;
                 }
                 case key === "delete": {
-                    const selectedNodes = getNodes().filter((node) => node.selected) as AnalogNode[];
                     removeNode(selectedNodes);
-                    if (selectedNodes.length === 0) {
+                    if (selectedNodes?.length === 0) {
                         const selectedEdges = getEdges().filter((edge) => edge.selected);
                         removeEdge(selectedEdges);
+                    } else {
+                        const selectedNodeIds = new Set(selectedNodes?.map(node => node.id));
+                        const nodeEdges: Edge[] = [];
+                        getEdges().forEach(element => {
+                            if (selectedNodeIds.has(element.source) || selectedNodeIds.has(element.target)) {
+                                nodeEdges.push(element);
+                            }
+                        });
+                        removeEdge(nodeEdges);
                     }
                     break;
                 }
@@ -54,27 +64,28 @@ export default function useShortcuts({
 
 
     const duplicateComponents = () => {
-        const selectedNodes = getNodes().filter((node) => node.selected);
-        if (selectedNodes.length === 0) return;
+        if (selectedNodes?.length === 0) return;
 
-        setNodes((prevNodes) => {
-            const duplicatedNodes = selectedNodes.map((node) => ({
-                ...node,
-                id: uuid(),
-                position: {
-                    x: node.position.x + 60,
-                    y: node.position.y + 60,
-                },
-                selected: true,
-            }));
+        if (selectedNodes) {
+            setNodes((prevNodes) => {
+                const duplicatedNodes = selectedNodes?.map((node) => ({
+                    ...node,
+                    id: uuid(),
+                    position: {
+                        x: node.position.x + 60,
+                        y: node.position.y + 60,
+                    },
+                    selected: true,
+                }));
 
-            return [
-                ...prevNodes.map((node) =>
-                    node.selected ? { ...node, selected: false } : node
-                ),
-                ...duplicatedNodes,
-            ];
-        });
+                return [
+                    ...prevNodes.map((node) =>
+                        node.selected ? { ...node, selected: false } : node
+                    ),
+                    ...duplicatedNodes,
+                ];
+            });
+        }
     };
 
 
