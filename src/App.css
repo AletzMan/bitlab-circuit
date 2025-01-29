@@ -95,6 +95,22 @@ body {
     cursor: crosshair;
 }
 
+.react-flow__node.selectable {
+    cursor: grabbing;
+}
+
+.react-flow__node.draggable {
+    cursor: grab;
+}
+
+.react-flow__pane.selection {
+    cursor: default;
+}
+
+.react-flow__pane.dragging {
+    cursor: grabbing;
+}
+
 .react-flow__edge.selectable:hover .react-flow__edge-path {
     /* filter: drop-shadow(0 0 2px var(--wire-color));*/
     stroke: red;
