@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import useHistoryManager from "./useHistoryManager";
 import { AnalogNode } from "@/types";
+import { getNextDesignatorNumber } from "@/helpers";
 
 export default function useShortcuts({
     undo,
@@ -76,6 +77,10 @@ export default function useShortcuts({
                         y: node.position.y + 60,
                     },
                     selected: true,
+                    data: {
+                        ...node.data,
+                        reference: getNextDesignatorNumber(node.data.type, node.data.reference, getNodes() as AnalogNode[]),
+                    }
                 }));
 
                 return [
