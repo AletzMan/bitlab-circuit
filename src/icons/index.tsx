@@ -252,9 +252,9 @@ export function JFETNIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
             <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M350,0 L350,230 L275,230 L275,175 L275,425 L275,370 L350,370 L350,600" strokeLinejoin="miter" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M205,370 L205,370 " strokeLinecap="square" markerEnd='url(#head)' />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M220,370 L0,370" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,0 L400,200 L275,200 L275,160 L275,440 L275,400 L400,400 L400,600" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M205,400 L205,400 " strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M220,400 L0,400" strokeLinecap="square" />
         </svg>
     );
 }
@@ -263,9 +263,9 @@ export function JFETPIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
             <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M350,0 L350,230 L275,230 L275,175 L275,425 L275,370 L350,370 L350,600" strokeLinejoin="miter" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M275,370 L215,370" strokeLinecap="square" markerEnd='url(#head)' />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M140,370 L0,370" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M400,0 L400,200 L275,200 L275,160 L275,440 L275,400 L400,400 L400,600" strokeLinejoin="miter" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M275,400 L240,400" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M220,400 L0,400" strokeLinecap="square" />
         </svg>
     );
 }
@@ -273,11 +273,11 @@ export function JFETPIcon(props: SVGProps<SVGSVGElement>) {
 export function NChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,370 L230,370 L230,230" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,400 L230,400 L230,200" strokeLinecap="square" />
             <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,200 L270,250 L270,220 L350,220 L350,0" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,280 L270,330 L270,300 L350,300 L350,366" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,410 L270,380 L350,380 L350,600" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,170 L270,240 L270,200 L400,200 L400,0" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,270 L270,340 L270,300 L400,300 L400,386" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,370 L270,440 L270,400 L400,400 L400,600" strokeLinecap="square" />
             <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M330,300 L320,300 " strokeLinecap="square" markerEnd='url(#headTwo)' />
         </svg>
     );
@@ -286,11 +286,11 @@ export function NChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 export function PChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,370 L230,370 L230,230" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,400 L230,400 L230,200" strokeLinecap="square" />
             <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,200 L270,250 L270,220 L350,220 L350,0" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,280 L270,330 L270,300 L350,300 L350,366" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,410 L270,380 L350,380 L350,600" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,170 L270,240 L270,200 L400,200 L400,0" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,270 L270,340 L270,300 L400,300 L400,386" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,370 L270,440 L270,400 L400,400 L400,600" strokeLinecap="square" />
             <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M290,300 L300,300 " strokeLinecap="square" markerEnd='url(#headTwo)' />
         </svg>
     );
@@ -299,12 +299,12 @@ export function PChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 export function NChainDepMOSFETIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"  >
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,370 L230,370 L230,230" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,400 L230,400 L230,200" strokeLinecap="square" />
             <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,220 L350,220 L350,0" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,300 L350,300 L350,366" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,190 L270,410 L270,380 L350,380 L350,600" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M330,300 L320,300 " strokeLinecap="square" markerEnd='url(#headTwo)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,220 L400,220 L400,0" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,300 L400,300 L400,366" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,170 L270,440 L270,380 L400,380 L400,600" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M340,300 L320,300 " strokeLinecap="square" markerEnd='url(#headTwo)' />
         </svg>
     );
 }
@@ -312,11 +312,11 @@ export function NChainDepMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 export function PChainDepMOSFETIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,370 L230,370 L230,230" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M0,400 L230,400 L230,200" strokeLinecap="square" />
             <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} r={170} cx={300} cy={300} />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,220 L350,220 L350,0" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,300 L350,300 L350,366" strokeLinecap="square" />
-            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,190 L270,410 L270,380 L350,380 L350,600" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,220 L400,220 L400,0" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M280,300 L400,300 L400,366" strokeLinecap="square" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M270,360 L270,170 L270,440 L270,380 L400,380 L400,600" strokeLinecap="square" />
             <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="M290,300  L300,300 " strokeLinecap="square" markerEnd='url(#headTwo)' />
         </svg>
     );
