@@ -265,3 +265,10 @@ export function groupByToArray<T, K extends keyof T>(
     }));
 }
 
+
+export function getNextDesignatorNumber(type: ComponentType, designator: string, nodes: AnalogNode[]): string {
+    const quantityNodes = nodes.filter(node => node.data.type === type).length;
+    const letterDesignator = designator.replace(/\d+/g, "");
+
+    return `${letterDesignator}${quantityNodes + 1}`;
+}
