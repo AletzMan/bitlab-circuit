@@ -1,23 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { AnalogNode } from "@/types";
+
 import { Edge, useReactFlow } from "@xyflow/react";
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { useSelectedItemsState } from "./useSelectedItemsState";
+import useHistoryManager from "./useHistoryManager";
+import { AnalogNode } from "@/types";
 
 export default function useShortcuts({
-    removeNode,
-    removeEdge,
     undo,
     redo,
 }: {
-    removeNode: (node: AnalogNode[] | undefined) => void;
-    removeEdge: (node: Edge[] | undefined) => void;
     undo: () => void;
     redo: () => void;
 }) {
     const { setNodes, getNodes, getEdges } = useReactFlow();
-    const { selectedNodes } = useSelectedItemsState();
+    const { removeNode, removeEdge } = useHistoryManager();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -33,10 +30,11 @@ export default function useShortcuts({
                     break;
                 }
                 case key === "delete": {
-                    removeNode(selectedNodes);
+                    const selectedNodes = getNodes().filter(node => node.selected) as AnalogNode[];
                     if (selectedNodes?.length === 0) {
                         const selectedEdges = getEdges().filter((edge) => edge.selected);
                         removeEdge(selectedEdges);
+                        removeNode(selectedNodes);
                     } else {
                         const selectedNodeIds = new Set(selectedNodes?.map(node => node.id));
                         const nodeEdges: Edge[] = [];
@@ -46,6 +44,7 @@ export default function useShortcuts({
                             }
                         });
                         removeEdge(nodeEdges);
+                        removeNode(selectedNodes);
                     }
                     break;
                 }
@@ -64,6 +63,7 @@ export default function useShortcuts({
 
 
     const duplicateComponents = () => {
+        const selectedNodes = getNodes().filter(node => node.selected) as AnalogNode[];
         if (selectedNodes?.length === 0) return;
 
         if (selectedNodes) {

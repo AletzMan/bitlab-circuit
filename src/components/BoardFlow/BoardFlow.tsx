@@ -85,8 +85,8 @@ export function BoardFlow() {
     const edgeReconnectSuccessful = useRef(false);
     const overlappingNodeRef = useRef<AnalogNode | null>(null);
     const { screenToFlowPosition, getIntersectingNodes, fitView, updateNode } = useReactFlow();
-    const { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo } = useHistoryManager();
-    const { duplicateComponents } = useShortcuts({ removeEdge, removeNode, undo, redo });
+    const { addNode, addEdge, removeEdge, undo, redo, canUndo, canRedo } = useHistoryManager();
+    const { duplicateComponents } = useShortcuts({ undo, redo });
     const { currentTheme, setCurrentTheme } = useTheme();
     const { selectedNode, setSelectedNode, selectedNodes, setSelectedNodes, selectedEdge, setSelectedEdge, selectedEdges, setSelectedEdges, setIsSingleNodeSelection, setIsSingleEdgeSelection } = useSelectedItemsState();
 
@@ -206,9 +206,7 @@ export function BoardFlow() {
         setActiveTab("properties");
     };
 
-    const handleOnEdgeMouseLeave = () => {
 
-    };
 
     const handleReconnectStart = () => {
         edgeReconnectSuccessful.current = false;
@@ -238,7 +236,6 @@ export function BoardFlow() {
     const handleOnEdgesChanges: OnEdgesChange<ComponentEdge> = (changes) => {
         onEdgesChange(changes);
     };
-
 
     const handleOnNodeDrag: OnNodeDrag<AnalogNode> = (e, dragNode) => {
         e.preventDefault();
@@ -547,7 +544,6 @@ export function BoardFlow() {
                         onDrop={handleOnDrop}
                         onNodeDragStart={handleNodeClick}
                         onEdgeClick={handleOnEdgeClick}
-                        onEdgeMouseLeave={handleOnEdgeMouseLeave}
                         onNodeClick={handleNodeClick}
                         onPaneClick={handlePaneClick}
                         onReconnectStart={handleReconnectStart}
