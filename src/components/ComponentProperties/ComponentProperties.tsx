@@ -114,11 +114,11 @@ export function ComponentProperties({
         }
     };
 
-    const handleChangeHiddenReference = (e: CheckboxChangeEvent) => {
+    const handleChangeHiddenDesignator = (e: CheckboxChangeEvent) => {
         const newValue = e.target.checked;
         if (node && dataComponent) {
-            updateNodeData(node?.id, { isReferenceVisible: !newValue });
-            setDataComponent({ ...dataComponent, isReferenceVisible: !newValue });
+            updateNodeData(node?.id, { isDesignatorVisible: !newValue });
+            setDataComponent({ ...dataComponent, isDesignatorVisible: !newValue });
         }
     };
     const handleChangeHiddenValue = (e: CheckboxChangeEvent) => {
@@ -166,12 +166,12 @@ export function ComponentProperties({
                     <Divider style={{ margin: "6px 0" }} />
                     <div className={styles.value}>
                         <Flex vertical>
-                            <label className={styles.value_label}>Reference</label>
+                            <label className={styles.value_label}>Designator</label>
                             <label className={styles.label_designator}>{node?.data?.designator}</label>
                         </Flex>
                         <label className={`${styles.value_label} ${styles.value_hidden}`}>
                             Hidden
-                            <Checkbox onChange={handleChangeHiddenReference} checked={!dataComponent?.isReferenceVisible} />
+                            <Checkbox onChange={handleChangeHiddenDesignator} checked={!dataComponent?.isDesignatorVisible} />
                         </label>
                     </div>
                     {node?.data?.has_properties && (

@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
 
 
-export function MechanicalComponent({ data: { type, rotation, flip, collapsed, isLock, designator, isReferenceVisible, connectedHandles, size, state }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function MechanicalComponent({ data: { type, rotation, flip, collapsed, isLock, designator, isDesignatorVisible, connectedHandles, size, state }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode, updateNodeData } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -136,7 +136,7 @@ export function MechanicalComponent({ data: { type, rotation, flip, collapsed, i
             <Terminal type="source" position={terminalSettings[0]} id="1" isConnectable={!isConnected[0]} />
             <Terminal type="source" position={terminalSettings[1]} id="2" isConnectable={!isConnected[1]} />
             {type === ComponentType.Potentiometer && <Terminal type="source" position={terminalSettings[2]} id="3" isConnectable={!isConnected[2]} />}
-            {isReferenceVisible && <span className={`${styles.designator} ${size === 'small' && styles.designator_small} ${size === 'medium' && styles.designator_medium} ${size === 'large' && styles.designator_large} ${rotation === 90 && styles.designator_90}   ${rotation === 270 && styles.designator_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{designator}</span>}
+            {isDesignatorVisible && <span className={`${styles.designator} ${size === 'small' && styles.designator_small} ${size === 'medium' && styles.designator_medium} ${size === 'large' && styles.designator_large} ${rotation === 90 && styles.designator_90}   ${rotation === 270 && styles.designator_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{designator}</span>}
         </div>
     );
 }

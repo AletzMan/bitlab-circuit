@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState, MouseEvent, CSSProperties } from "react";
 import { ComponentsMap } from "@/constants/components";
 
 
-export function SwitchDPDT({ data: { type, rotation, flip, collapsed, isLock, designator, isReferenceVisible, connectedHandles, size, state }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function SwitchDPDT({ data: { type, rotation, flip, collapsed, isLock, designator, isDesignatorVisible, connectedHandles, size, state }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode, updateNodeData } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -152,7 +152,7 @@ export function SwitchDPDT({ data: { type, rotation, flip, collapsed, isLock, de
             <Terminal type="source" position={terminalSettings.position[3]} id="4" isConnectable={!isConnected[3]} style={terminalSettings.adjustment[3]} />
             <Terminal type="source" position={terminalSettings.position[4]} id="5" isConnectable={!isConnected[4]} style={terminalSettings.adjustment[4]} />
             <Terminal type="source" position={terminalSettings.position[5]} id="6" isConnectable={!isConnected[5]} style={terminalSettings.adjustment[5]} />
-            {isReferenceVisible && <span className={`${styles.designator} ${size === 'small' && styles.designator_small} ${size === 'medium' && styles.designator_medium} ${size === 'large' && styles.designator_large} ${rotation === 90 && styles.designator_90}   ${rotation === 270 && styles.designator_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{designator}</span>}
+            {isDesignatorVisible && <span className={`${styles.designator} ${size === 'small' && styles.designator_small} ${size === 'medium' && styles.designator_medium} ${size === 'large' && styles.designator_large} ${rotation === 90 && styles.designator_90}   ${rotation === 270 && styles.designator_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{designator}</span>}
         </div>
     );
 }

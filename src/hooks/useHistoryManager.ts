@@ -3,7 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { AnalogNode, HistoryAction } from "@/types";
 import { Edge, useReactFlow } from "@xyflow/react";
-import { reorderComponentReferences } from "@/helpers";
+import { reorderComponentDesignators } from "@/helpers";
 
 type HistoryItem = {
     action: HistoryAction;
@@ -60,7 +60,7 @@ export default function useHistoryManager() {
                 const filteredNodes = getNodes().filter(
                     node => !nodes.some(n => n.id === node.id)
                 );
-                const newOrder = reorderComponentReferences(filteredNodes as AnalogNode[]);
+                const newOrder = reorderComponentDesignators(filteredNodes as AnalogNode[]);
                 setNodes(newOrder);
             }
             if (shouldAddToHistory) {

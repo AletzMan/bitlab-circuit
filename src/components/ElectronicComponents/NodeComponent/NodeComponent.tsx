@@ -8,7 +8,7 @@ import { useTheme } from "@/store";
 import { ComponentsMap } from "@/constants/components";
 
 
-export function NodeComponent({ data: { type, collapsed, isLock, designator, isReferenceVisible, connectedHandles, color }, selected, id, parentId, }: NodeProps<AnalogNode>) {
+export function NodeComponent({ data: { type, collapsed, isLock, designator, isDesignatorVisible, connectedHandles, color }, selected, id, parentId, }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([]);
     const { currentTheme } = useTheme();
@@ -65,7 +65,7 @@ export function NodeComponent({ data: { type, collapsed, isLock, designator, isR
             <div className={styles.icon} style={{ "--wire-color": ((color === "#000000" || color === "rgb(0,0,0)") && currentTheme === 'dark') ? '#FFFFFF' : ((color?.toLowerCase() === "#ffffff" || color === "rgb(255,255,255)") && currentTheme === 'light') ? "#000000" : color } as CSSProperties}>
                 {ComponentsMap[type].icon}
             </div>
-            {isReferenceVisible && <span className={`${styles.id} `} >{designator}</span>}
+            {isDesignatorVisible && <span className={`${styles.id} `} >{designator}</span>}
             <Terminal type="source" position={Position.Top} id="1" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[0]} />
             <Terminal type="source" position={Position.Right} id="2" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[1]} />
             <Terminal type="source" position={Position.Bottom} id="3" style={{ backgroundColor: "transparent", borderColor: "transparent" }} isConnectable={!isConnected[2]} />

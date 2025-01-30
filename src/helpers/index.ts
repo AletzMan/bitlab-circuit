@@ -94,7 +94,7 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         componentType: ComponentsMap[type].componentType,
         type: ComponentsMap[type].type,
         has_properties: ComponentsMap[type].has_properties,
-        isReferenceVisible: ComponentsMap[type].isReferenceVisible,
+        isDesignatorVisible: ComponentsMap[type].isDesignatorVisible,
         isValueVisible: ComponentsMap[type].isValueVisible,
         connectedHandles: ComponentsMap[type].connectedHandles,
         color: ComponentsMap[type].color,
@@ -112,7 +112,7 @@ const initialValues = Object.keys(ComponentsMap).reduce((acc, key) => {
     return acc;
 }, {} as Record<ComponentType, number>);
 
-export function reorderComponentReferences(components: AnalogNode[]): AnalogNode[] {
+export function reorderComponentDesignators(components: AnalogNode[]): AnalogNode[] {
 
     const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup' | 'TransistorGroup' | 'InductorGroup' | 'SwitchGroup' | 'RelayGroup', number> = {
         CapacitorGroup: 0,
@@ -146,7 +146,7 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         }
 
         // Generar la nueva referencia
-        const newReference = groupKey
+        const newDesignator = groupKey
             ? `${typeGroups[groupKey].designator}${typeCounters[groupKey]}` // Usa la primera letra del grupo
             : `${ComponentsMap[component.data.type].designator.toUpperCase()}${typeCounters[component.data.type]}`;
 
@@ -155,7 +155,7 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
             ...component,
             data: {
                 ...component.data,
-                designator: newReference,
+                designator: newDesignator,
             },
         };
     });

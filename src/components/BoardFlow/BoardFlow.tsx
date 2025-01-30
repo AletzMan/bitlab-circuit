@@ -42,19 +42,19 @@ const initialNodes: AnalogNode[] = [
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { name: 'Resistor', category: Categories.Resistors, type: ComponentType.Resistor, value: 1, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'KΩ', has_properties: true, designator: "R1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false], size: 'small' },
+        data: { name: 'Resistor', category: Categories.Resistors, type: ComponentType.Resistor, value: 1, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Ohm, prefix: 'KΩ', has_properties: true, designator: "R1", isValueVisible: true, isDesignatorVisible: true, connectedHandles: [false, false], size: 'small' },
         position: { x: 100, y: 170 },
     },
     {
         id: uuid(),
         type: 'analogComponent',
-        data: { name: 'Capacitor', category: Categories.Capacitors, type: ComponentType.Capacitor, value: 4.7, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, designator: "C1", isValueVisible: true, isReferenceVisible: true, connectedHandles: [false, false], size: 'small' },
+        data: { name: 'Capacitor', category: Categories.Capacitors, type: ComponentType.Capacitor, value: 4.7, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Capacitance, prefix: 'µF', has_properties: true, designator: "C1", isValueVisible: true, isDesignatorVisible: true, connectedHandles: [false, false], size: 'small' },
         position: { x: 240, y: 170 },
     },
     {
         id: uuid(),
         type: 'nodeComponent',
-        data: { name: 'Node', category: Categories.Structure, type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, designator: "N1", isValueVisible: false, isReferenceVisible: false, connectedHandles: [false, false, false, false], color: "var(--foreground-color)", size: 'small' },
+        data: { name: 'Node', category: Categories.Structure, type: ComponentType.Node, value: 0, rotation: 0, flip: { x: 1, y: 1 }, collapsed: ComponentCollapsed.Undefined, isLock: false, unit: UnitsType.Undefined, prefix: '', has_properties: false, designator: "N1", isValueVisible: false, isDesignatorVisible: false, connectedHandles: [false, false, false, false], color: "var(--foreground-color)", size: 'small' },
         position: { x: 90, y: 90 },
     },
 ];
@@ -176,7 +176,7 @@ export function BoardFlow() {
 
         let node: AnalogNode | undefined;
 
-        const { value, unit, prefix, designator, type: typeComponent, has_properties, isReferenceVisible, isValueVisible, connectedHandles, color, style, size, name, category, collapsed, state } = getComponentProperties(type, nodes);
+        const { value, unit, prefix, designator, type: typeComponent, has_properties, isDesignatorVisible, isValueVisible, connectedHandles, color, style, size, name, category, collapsed, state } = getComponentProperties(type, nodes);
 
         if (type as ComponentType && Object.keys(ComponentsMap).includes(type)) {
 
@@ -184,7 +184,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: typeComponent,
                 position,
-                data: { name, type, category, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, collapsed, state, unit, prefix, has_properties, designator, isReferenceVisible, isValueVisible, connectedHandles, color, size },
+                data: { name, type, category, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, collapsed, state, unit, prefix, has_properties, designator, isDesignatorVisible, isValueVisible, connectedHandles, color, size },
                 parentId: board?.id,
                 style
             };

@@ -107,7 +107,7 @@ export type ComponentData = {
     has_properties?: boolean
     designator: string
     isValueVisible: boolean
-    isReferenceVisible: boolean
+    isDesignatorVisible: boolean
     connectedHandles: boolean[]
     color?: string
     size: 'small' | 'medium' | 'large'
@@ -152,7 +152,7 @@ export type ComponentProperties = {
     type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board' | 'switchDPST' | 'switchDPDT' | 'relaySPST' | 'relayDPST' | 'relaySPDT' | 'relayDPDT',
     has_properties: boolean
     isValueVisible: boolean,
-    isReferenceVisible: boolean
+    isDesignatorVisible: boolean
     connectedHandles: boolean[],
     color?: string,
     size: 'small' | 'medium' | 'large',
