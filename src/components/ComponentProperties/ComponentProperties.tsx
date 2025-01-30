@@ -243,7 +243,7 @@ export function ComponentProperties({
                         <Tooltip key={node.id} placement="top" color="cyan" title={node.data?.reference}>
                             <Button key={node.id} size="middle" variant="filled" color="cyan"
                                 style={{ textTransform: "capitalize", display: "flex", alignItems: 'center', justifyContent: 'center', flexDirection: "column", gap: '0', fontSize: '0.85em' }}
-                                onClick={() => handleClickSelectedNode(node)}> {node.data?.type} </Button>
+                                onClick={() => handleClickSelectedNode(node)}> {`${node.data?.name}-${node.data.reference}`} </Button>
                         </Tooltip>
                     ))
                     }
