@@ -46,6 +46,10 @@ export enum ComponentType {
     PusuhButtonClose = "pushbuttonclose",
     SwitchSPDT = "switchspdt",
     SwitchDPDT = "switchdpdt",
+    RelaySPST = 'relayspst',
+    RelayDPST = 'relaydpst',
+    RelaySPDT = 'relayspdt',
+    RelayDPDT = 'relaydpdt',
     Board = 'board',
     Node = 'node',
 }
@@ -101,7 +105,7 @@ export type ComponentData = {
     unit: UnitsType
     prefix: string
     has_properties?: boolean
-    reference: string
+    designator: string
     isValueVisible: boolean
     isReferenceVisible: boolean
     connectedHandles: boolean[]
@@ -144,8 +148,8 @@ export type ComponentProperties = {
     prefix: string,
     collapsed?: ComponentCollapsed
     unit: UnitsType,
-    reference: string
-    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board' | 'switchDPST' | 'switchDPDT',
+    designator: string
+    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board' | 'switchDPST' | 'switchDPDT' | 'relaySPST' | 'relayDPST' | 'relaySPDT' | 'relayDPDT',
     has_properties: boolean
     isValueVisible: boolean,
     isReferenceVisible: boolean

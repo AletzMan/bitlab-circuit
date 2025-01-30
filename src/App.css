@@ -9,7 +9,7 @@ body {
 
 :root {
     --foreground-color: #000000;
-    --reference-color: #690303;
+    --designator-color: #690303;
     --action-color: #690303;
     --background-color: #f3f2f2;
     --background-color-tab: #ffffff;
@@ -38,7 +38,7 @@ body {
 
 [data-theme="dark"] {
     --foreground-color: #FFFFFF;
-    --reference-color: #c39950;
+    --designator-color: #c39950;
     --action-color: #0eb121;
     --action-background-color: #0eb12135;
     --background-color: #292929;

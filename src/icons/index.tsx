@@ -650,7 +650,101 @@ export function SwitchDPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function RelaySPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
+        </svg>
+    );
+}
 
+export function RelaySPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function RelayDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function RelayDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function RelaySPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function RelaySPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function RelayDPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
+        </svg>
+    );
+}
+
+export function RelayDPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 0,300 120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} d="m 600,300 -120,0" />
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 5} strokeLinejoin="round" strokeLinecap="round" d="m 180,300  260,-150" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="450" r="30" />
+            <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="300" cx="150" r="30" x={0} y={0} />
+        </svg>
+    );
+}
 
 export function BoardIcon(props: SVGProps<SVGSVGElement>) {
     return (

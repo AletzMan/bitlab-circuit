@@ -167,7 +167,7 @@ export function ComponentProperties({
                     <div className={styles.value}>
                         <Flex vertical>
                             <label className={styles.value_label}>Reference</label>
-                            <label className={styles.label_reference}>{node?.data?.reference}</label>
+                            <label className={styles.label_designator}>{node?.data?.designator}</label>
                         </Flex>
                         <label className={`${styles.value_label} ${styles.value_hidden}`}>
                             Hidden
@@ -240,10 +240,10 @@ export function ComponentProperties({
             {!isSingleNodeSelection &&
                 <Flex className={styles.groupNodes} wrap gap="4px" >
                     {selectedNodes?.map(node => (
-                        <Tooltip key={node.id} placement="top" color="cyan" title={node.data?.reference}>
+                        <Tooltip key={node.id} placement="top" color="cyan" title={node.data?.designator}>
                             <Button key={node.id} size="middle" variant="filled" color="cyan"
                                 style={{ textTransform: "capitalize", display: "flex", alignItems: 'center', justifyContent: 'center', flexDirection: "column", gap: '0', fontSize: '0.85em' }}
-                                onClick={() => handleClickSelectedNode(node)}> {`${node.data?.name}-${node.data.reference}`} </Button>
+                                onClick={() => handleClickSelectedNode(node)}> {`${node.data?.name}-${node.data.designator}`} </Button>
                         </Tooltip>
                     ))
                     }

@@ -7,7 +7,7 @@ import { CSSProperties, useEffect, useMemo, useState } from "react";
 import { ComponentsMap, typeGroupTransistorSmall } from "@/constants/components";
 
 
-export function TransistorComponent({ data: { type, value, rotation, flip, collapsed, isLock, prefix, reference, isReferenceVisible, isValueVisible, connectedHandles, size }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function TransistorComponent({ data: { type, value, rotation, flip, collapsed, isLock, prefix, designator, isReferenceVisible, isValueVisible, connectedHandles, size }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -139,7 +139,7 @@ export function TransistorComponent({ data: { type, value, rotation, flip, colla
             <Terminal type="source" position={terminalSettings.position[1]} id="2" isConnectable={!isConnected[1]} style={terminalSettings.adjustment[1]} />
             <Terminal type="source" position={terminalSettings.position[2]} id="3" isConnectable={!isConnected[2]} style={terminalSettings.adjustment[2]} />
             {isValueVisible && <span className={`${styles.value}  ${size === 'small' && styles.value_small} ${size === 'medium' && styles.value_medium} ${size === 'large' && styles.value_large}  ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
-            {isReferenceVisible && <span className={`${styles.reference} ${size === 'small' && styles.reference_small} ${size === 'medium' && styles.reference_medium} ${size === 'large' && styles.reference_large} ${rotation === 90 && styles.reference_90}   ${rotation === 270 && styles.reference_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{reference}</span>}
+            {isReferenceVisible && <span className={`${styles.designator} ${size === 'small' && styles.designator_small} ${size === 'medium' && styles.designator_medium} ${size === 'large' && styles.designator_large} ${rotation === 90 && styles.designator_90}   ${rotation === 270 && styles.designator_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{designator}</span>}
         </div>
     );
 }
