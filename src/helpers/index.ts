@@ -66,8 +66,8 @@ export function genPresets(customColors: { [key: string]: string[] }) {
 
 
 export function getComponentProperties(type: ComponentType, components: AnalogNode[]): ComponentProperties {
-    const reference = ComponentsMap[type]?.reference;
-    if (!reference) {
+    const designator = ComponentsMap[type]?.designator;
+    if (!designator) {
         throw new Error(`Unknown component type: ${type}`);
     }
 
@@ -83,7 +83,7 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
     }
 
     const properties: ComponentProperties = {
-        reference: `${reference}${matchingComponents.length + 1}`,
+        designator: `${designator}${matchingComponents.length + 1}`,
         prefix: ComponentsMap[type].prefix,
         unit: ComponentsMap[type].unit,
         value: ComponentsMap[type].value,
@@ -114,7 +114,7 @@ const initialValues = Object.keys(ComponentsMap).reduce((acc, key) => {
 
 export function reorderComponentReferences(components: AnalogNode[]): AnalogNode[] {
 
-    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup' | 'TransistorGroup' | 'InductorGroup' | 'SwitchGroup', number> = {
+    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup' | 'TransistorGroup' | 'InductorGroup' | 'SwitchGroup' | 'RelayGroup', number> = {
         CapacitorGroup: 0,
         DiodeGroup: 0,
         VariableCapacitorGroup: 0,
@@ -122,6 +122,7 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         TransistorGroup: 0,
         InductorGroup: 0,
         SwitchGroup: 0,
+        RelayGroup: 0,
         ...initialValues
     };
 
@@ -147,14 +148,14 @@ export function reorderComponentReferences(components: AnalogNode[]): AnalogNode
         // Generar la nueva referencia
         const newReference = groupKey
             ? `${typeGroups[groupKey].designator}${typeCounters[groupKey]}` // Usa la primera letra del grupo
-            : `${ComponentsMap[component.data.type].reference.toUpperCase()}${typeCounters[component.data.type]}`;
+            : `${ComponentsMap[component.data.type].designator.toUpperCase()}${typeCounters[component.data.type]}`;
 
 
         return {
             ...component,
             data: {
                 ...component.data,
-                reference: newReference,
+                designator: newReference,
             },
         };
     });
