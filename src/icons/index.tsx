@@ -658,7 +658,7 @@ export function RelaySPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 185,200  260,-150" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="450" r="30" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="150" r="30" x={0} y={0} />
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M0,500 L140,500 A 10 10 1 1 1 220,500 A 10 10 1 1 1 300,500 A 10 10 1 1 1 380,500  A 10 10 1 1 1 460,500 L600,500"></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,600 V500 L140,500 A 10 10 1 1 1 220,500 A 10 10 1 1 1 300,500 A 10 10 1 1 1 380,500  A 10 10 1 1 1 460,500 H500 V600"></path>
             <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,420 L450,420"></path>
             <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,415 L300,120" strokeDasharray="27 35" strokeDashoffset='0'></path>
         </svg>
@@ -673,7 +673,7 @@ export function RelaySPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,200 280,-42" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="450" r="30" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="200" cx="150" r="30" x={0} y={0} />
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M0,500 L140,500 A 10 10 1 1 1 220,500 A 10 10 1 1 1 300,500 A 10 10 1 1 1 380,500  A 10 10 1 1 1 460,500 L600,500"></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,600 V500 L140,500 A 10 10 1 1 1 220,500 A 10 10 1 1 1 300,500 A 10 10 1 1 1 380,500  A 10 10 1 1 1 460,500 H500 V600"></path>
             <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,420 L450,420"></path>
             <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,415 L300,200" strokeDasharray="27 35" strokeDashoffset='0'></path>
         </svg>
