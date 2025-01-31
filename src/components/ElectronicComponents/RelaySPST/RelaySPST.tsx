@@ -1,6 +1,6 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
-import { AnalogNode, ComponentCollapsed, ComponentType } from "@/types";
-import { ArrowPushIcon, LockIcon, UnlockIcon } from "@/icons";
+import { AnalogNode, ComponentCollapsed } from "@/types";
+import { LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { CSSProperties, useEffect, useMemo, useState } from "react";
@@ -8,7 +8,7 @@ import { ComponentsMap } from "@/constants/components";
 
 
 export function RelaySPST({ data: { type, rotation, flip, collapsed, isLock, designator, isDesignatorVisible, connectedHandles, size, state }, selected, id, parentId }: NodeProps<AnalogNode>) {
-    const { updateNode, updateNodeData } = useReactFlow();
+    const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
     useEffect(() => {
@@ -55,61 +55,61 @@ export function RelaySPST({ data: { type, rotation, flip, collapsed, isLock, des
         switch (rotation) {
             case 0: {
                 position = [Position.Left, Position.Left, Position.Right, Position.Right];
-                adjustment = [{ top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 10px)` }];
+                adjustment = [{ top: `calc(50% + 20px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 20px)` }];
                 if (flip.x === -1 && flip.y === 1) {
                     position = [Position.Right, Position.Right, Position.Left, Position.Left];
-                    adjustment = [{ top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 10px)` }];
+                    adjustment = [{ top: `calc(50% + 20px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 20px)` }];
                 } else if (flip.y === -1 && flip.x === 1) {
                     position = [Position.Left, Position.Left, Position.Right, Position.Right];
-                    adjustment = [{ top: `calc(50% - 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }];
+                    adjustment = [{ top: `calc(50% - 20px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 20px)` }];
                 } else if (flip.y === -1 && flip.x === -1) {
                     position = [Position.Right, Position.Right, Position.Left, Position.Left];
-                    adjustment = [{ top: `calc(50% - 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }];
+                    adjustment = [{ top: `calc(50% - 20px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 20px)` }];
                 }
                 return { position: position, adjustment };
             }
             case 90: {
                 position = [Position.Top, Position.Top, Position.Bottom, Position.Bottom];
-                adjustment = [{ left: `calc(50% - 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% - 10px)` }];
+                adjustment = [{ left: `calc(50% - 20px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% - 20px)` }];
                 if (flip.x === -1 && flip.y === 1) {
                     position = [Position.Top, Position.Top, Position.Bottom, Position.Bottom];
-                    adjustment = [{ left: `calc(50% + 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% + 10px)` }];
+                    adjustment = [{ left: `calc(50% + 20px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% + 20px)` }];
                 } else if (flip.y === -1 && flip.x === 1) {
                     position = [Position.Bottom, Position.Bottom, Position.Top, Position.Top];
-                    adjustment = [{ left: `calc(50% - 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% - 10px)` }];
+                    adjustment = [{ left: `calc(50% - 20px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% - 20px)` }];
                 } else if (flip.y === -1 && flip.x === -1) {
                     position = [Position.Bottom, Position.Bottom, Position.Top, Position.Top];
-                    adjustment = [{ left: `calc(50% + 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% + 10px)` }];
+                    adjustment = [{ left: `calc(50% + 20px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% + 20px)` }];
                 }
                 return { position: position, adjustment };
             }
             case 180: {
                 position = [Position.Right, Position.Right, Position.Left, Position.Left];
-                adjustment = [{ top: `calc(50% - 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }];
+                adjustment = [{ top: `calc(50% - 20px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 20px)` }];
                 if (flip.x === -1 && flip.y === 1) {
                     position = [Position.Left, Position.Left, Position.Right, Position.Right];
-                    adjustment = [{ top: `calc(50% - 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }];
+                    adjustment = [{ top: `calc(50% - 20px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% + 10px)` }, { top: `calc(50% - 20px)` }];
                 } else if (flip.y === -1 && flip.x === 1) {
                     position = [Position.Right, Position.Right, Position.Left, Position.Left];
-                    adjustment = [{ top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 10px)` }];
+                    adjustment = [{ top: `calc(50% + 20px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 20px)` }];
                 } else if (flip.y === -1 && flip.x === -1) {
                     position = [Position.Left, Position.Left, Position.Right, Position.Right];
-                    adjustment = [{ top: `calc(50% + 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 10px)` }];
+                    adjustment = [{ top: `calc(50% + 20px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% - 10px)` }, { top: `calc(50% + 20px)` }];
                 }
                 return { position: position, adjustment, };
             }
             case 270: {
                 position = [Position.Bottom, Position.Bottom, Position.Top, Position.Top];
-                adjustment = [{ left: `calc(50% + 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% + 10px)` }];
+                adjustment = [{ left: `calc(50% + 20px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% + 20px)` }];
                 if (flip.x === -1 && flip.y === 1) {
                     position = [Position.Bottom, Position.Bottom, Position.Top, Position.Top];
-                    adjustment = [{ left: `calc(50% - 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% - 10px)` }];
+                    adjustment = [{ left: `calc(50% - 210px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% - 20px)` }];
                 } else if (flip.y === -1 && flip.x === 1) {
                     position = [Position.Top, Position.Top, Position.Bottom, Position.Bottom];
-                    adjustment = [{ left: `calc(50% + 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% + 10px)` }];
+                    adjustment = [{ left: `calc(50% + 20px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% - 10px)` }, { left: `calc(50% + 20px)` }];
                 } else if (flip.y === -1 && flip.x === -1) {
                     position = [Position.Top, Position.Top, Position.Bottom, Position.Bottom];
-                    adjustment = [{ left: `calc(50% - 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50%  - 10px)` }];
+                    adjustment = [{ left: `calc(50% - 20px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50% + 10px)` }, { left: `calc(50%  - 20px)` }];
                 }
                 return { position: position, adjustment };
             }
@@ -119,18 +119,6 @@ export function RelaySPST({ data: { type, rotation, flip, collapsed, isLock, des
         }
     }, [rotation, flip.x, flip.y]);
 
-    const handleChangeState = () => {
-        // Primera actualización
-        const newOnState = state?.on;
-        // Actualizar el nodo con el nuevo estado
-        updateNodeData(id, { state: { ...state, on: !newOnState } });
-        // Actualizar nuevamente después de 1 segundo
-        if (type === ComponentType.PusuhButtonClose || type === ComponentType.PusuhButtonOpen) {
-            setTimeout(() => {
-                updateNodeData(id, { state: { ...state, on: newOnState } });
-            }, 100);
-        }
-    };
 
     return (
         <div className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${isAdditionInvalid && styles.box_invalid}`}  >
@@ -140,11 +128,7 @@ export function RelaySPST({ data: { type, rotation, flip, collapsed, isLock, des
                     {isLock && <LockIcon />}
                 </div>
             }<div className={`${selected && styles.box_selected}`}></div>
-            {selected &&
-                <button className={styles.action} onClick={handleChangeState} >
-                    <ArrowPushIcon className={`${styles.action_icon} ${state?.on && styles.action_icon_active}`} />
-                </button>
-            }
+
             <div className={styles.icon} style={{ transform: `rotate(${rotation}deg) scaleX(${rotation === 0 || rotation === 180 ? flip.x : flip.y})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})` }}>
                 {state ? state?.on ? ComponentsMap[type]?.state?.iconON : ComponentsMap[type].state?.iconOFF : ComponentsMap[type].icon}
             </div>

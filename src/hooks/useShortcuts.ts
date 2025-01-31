@@ -79,7 +79,7 @@ export default function useShortcuts({
                     selected: true,
                     data: {
                         ...node.data,
-                        designator: getNextDesignatorNumber(node.data.type, node.data.designator, getNodes() as AnalogNode[]),
+                        designator: getNextDesignatorNumber(node.data.designator, getNodes() as AnalogNode[]),
                     }
                 }));
 
