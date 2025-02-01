@@ -37,6 +37,7 @@ import { RelayDPST } from "../ElectronicComponents/RelayDPST/RelayDPST";
 import { RelaySPDT } from "../ElectronicComponents/RelaySPDT/RelaySPDT";
 import { RelayDPDT } from "../ElectronicComponents/RelayDPDT/RelayDPDT";
 import { RelaySPST } from "../ElectronicComponents/RelaySPST/RelaySPST";
+import { LogicGate } from "../ElectronicComponents/LogicGate/LogicGate";
 
 const initialNodes: AnalogNode[] = [
     {
@@ -73,8 +74,8 @@ const nodeTypes = {
     relaySPST: RelaySPST,
     relayDPST: RelayDPST,
     relaySPDT: RelaySPDT,
-    relayDPDT: RelayDPDT
-
+    relayDPDT: RelayDPDT,
+    logicGate: LogicGate
 };
 
 const edgeTypes = {
