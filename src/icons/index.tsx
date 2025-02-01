@@ -682,7 +682,7 @@ export function RelaySPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
 
 export function RelayDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 1000"   >
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 800"   >
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,200  260,-150" />
@@ -693,16 +693,16 @@ export function RelayDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,500  260,-150" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="500" cx="450" r="30" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="500" cx="150" r="30" x={0} y={0} />
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,1000 V900 L140,900 A 10 10 1 1 1 220,900 A 10 10 1 1 1 300,900 A 10 10 1 1 1 380,900  A 10 10 1 1 1 460,900 H500 V1000"></path>
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,820 L450,820"></path>
-            <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,815 L300,120" strokeDasharray="27 35" strokeDashoffset='0'></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,800 V700 L140,700 A 10 10 1 1 1 220,700 A 10 10 1 1 1 300,700 A 10 10 1 1 1 380,700  A 10 10 1 1 1 460,700 H500 V800"></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,620 L450,620"></path>
+            <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,615 L300,120" strokeDasharray="27 35" strokeDashoffset='0'></path>
         </svg>
     );
 }
 
 export function RelayDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 1000"   >
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 800"   >
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,200 280,-42" />
@@ -713,9 +713,9 @@ export function RelayDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,500 280,-42" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="500" cx="450" r="30" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="500" cx="150" r="30" x={0} y={0} />
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,1000 V900 L140,900 A 10 10 1 1 1 220,900 A 10 10 1 1 1 300,900 A 10 10 1 1 1 380,900  A 10 10 1 1 1 460,900 H500 V1000"></path>
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,820 L450,820"></path>
-            <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,815 L300,200" strokeDasharray="27 35" strokeDashoffset='0'></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,800 V700 L140,700 A 10 10 1 1 1 220,700 A 10 10 1 1 1 300,700 A 10 10 1 1 1 380,700  A 10 10 1 1 1 460,700 H500 V800"></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,620 L450,620"></path>
+            <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,615 L300,200" strokeDasharray="27 35" strokeDashoffset='0'></path>
         </svg>
     );
 }
