@@ -3,7 +3,7 @@
 import { Edge, useNodesData, useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { DeletetIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
+import { AlignBottomIcon, AlignHorizontalCenterIcon, AlignLeftIcon, AlignRightIcon, AlignTopIcon, AlignVerticalCenterIcon, DeletetIcon, DistributeHorizontalIcon, DistributeVerticalIcon, DuplicateIcon, FlipHIcon, FlipVIcon, RotateLeftIcon, RotateRightIcon } from "@/icons";
 import { Input, Select, Button, Flex, Divider, Card, Tooltip, Checkbox, CheckboxChangeEvent, ColorPicker } from "antd";
 import { ComponentData, AnalogNode, UNITS, ComponentType, Categories } from "@/types";
 import { genPresets } from "@/helpers";
@@ -157,6 +157,154 @@ export function ComponentProperties({
         }
     };
 
+    const handleAlign = (align: 'h-left' | 'h-center' | 'h-right' | 'v-top' | 'v-center' | 'v-bottom' | 'h-dist' | 'v-dist') => {
+        const nodes = getNodes().filter(node => node.selected);
+        switch (align) {
+            case 'h-left': {
+                const topNode = [...nodes].sort((a, b) => a.position.x - b.position.x)[0];
+                const posX = topNode.position.x;
+                const nodeHeight = topNode.measured?.width;
+                if (posX && nodeHeight) {
+                    const alignPosX = posX;
+                    nodes.forEach(currentNode => {
+                        updateNode(currentNode.id, (prevNode) => ({ ...prevNode, position: { ...prevNode.position, x: alignPosX } }));
+                    });
+                }
+            }
+                break;
+            case 'h-center': {
+                const sortNodes = [...nodes].sort((a, b) => (b?.measured?.width ?? 0) - (a?.measured?.width ?? 0));
+                const highestNode = sortNodes[0];
+                const posX = highestNode.position.x;
+                const nodeWider = (highestNode.measured?.width ?? 0);
+                if (posX && nodeWider) {
+                    const alignPosX = posX + (nodeWider / 2);
+                    nodes.forEach(currentNode => {
+                        if (currentNode.id !== highestNode.id) {
+                            updateNode(currentNode.id, (prevNode) => ({ ...prevNode, position: { ...prevNode.position, x: alignPosX - (((currentNode.measured?.width ?? 0)) / 2) } }));
+                        }
+                    });
+                }
+            }
+                break;
+            case 'h-right': {
+                const sortNodes = [...nodes].sort((a, b) => (b.position.x + (b.measured?.width ?? 0)) - (a.position.x + (a.measured?.width ?? 0)));
+                const bottomNode = sortNodes[0];
+                const posX = bottomNode.position.x;
+                const nodeWider = bottomNode.measured?.width;
+                if (posX && nodeWider) {
+                    const alignPosX = posX + nodeWider;
+                    nodes.forEach(currentNode => {
+                        if (currentNode.id !== bottomNode.id) {
+                            updateNode(currentNode.id, (prevNode) => ({
+                                ...prevNode,
+                                position: {
+                                    ...prevNode.position,
+                                    x: (alignPosX - (currentNode?.measured?.width ?? 0))
+                                }
+                            }));
+                        }
+                    });
+                }
+            }
+                break;
+            case 'v-top': {
+                const topNode = [...nodes].sort((a, b) => a.position.y - b.position.y)[0];
+                const posY = topNode.position.y;
+                const nodeHeight = topNode.measured?.height;
+                if (posY && nodeHeight) {
+                    const alignPosY = posY;
+                    nodes.forEach(currentNode => {
+                        updateNode(currentNode.id, (prevNode) => ({ ...prevNode, position: { ...prevNode.position, y: alignPosY } }));
+                    });
+                }
+            }
+                break;
+            case 'v-center': {
+                const sortNodes = [...nodes].sort((a, b) => (b?.measured?.height ?? 0) - (a?.measured?.height ?? 0));
+                const highestNode = sortNodes[0];
+                const posY = highestNode.position.y;
+                const nodeHeight = (highestNode.measured?.height ?? 0);
+                if (posY && nodeHeight) {
+                    const alignPosY = posY + (nodeHeight / 2);
+                    nodes.forEach(currentNode => {
+                        if (currentNode.id !== highestNode.id) {
+                            updateNode(currentNode.id, (prevNode) => ({ ...prevNode, position: { ...prevNode.position, y: alignPosY - (((currentNode.measured?.height ?? 0)) / 2) } }));
+                        }
+                    });
+                }
+            }
+                break;
+            case 'v-bottom': {
+                const sortNodes = [...nodes].sort((a, b) => (b.position.y + (b.measured?.height ?? 0)) - (a.position.y + (a.measured?.height ?? 0)));
+                const bottomNode = sortNodes[0];
+                const posY = bottomNode.position.y;
+                const nodeHeight = bottomNode.measured?.height;
+                if (posY && nodeHeight) {
+                    const alignPosY = posY + nodeHeight;
+                    nodes.forEach(currentNode => {
+                        if (currentNode.id !== bottomNode.id) {
+                            updateNode(currentNode.id, (prevNode) => ({
+                                ...prevNode,
+                                position: {
+                                    ...prevNode.position,
+                                    y: (alignPosY - (currentNode?.measured?.height ?? 0))
+                                }
+                            }));
+                        }
+                    });
+                }
+            }
+                break;
+            case 'h-dist': {
+                const sortedNodes = [...nodes].sort((a, b) => (a.position.x ?? 0) - (b.position.x ?? 0));
+
+                if (sortedNodes.length < 2) break;
+
+                const minX = sortedNodes[0].position.x ?? 0;
+                const maxX = sortedNodes[sortedNodes.length - 1].position.x ?? 0;
+                const totalNodes = sortedNodes.length;
+
+                const spacing = (maxX - minX) / (totalNodes - 1);
+
+                sortedNodes.forEach((node, index) => {
+                    const newX = minX + index * spacing;
+                    updateNode(node.id, (prevNode) => ({
+                        ...prevNode,
+                        position: { ...prevNode.position, x: newX }
+                    }));
+                });
+
+            }
+                break;
+            case 'v-dist': {
+                const sortedNodes = [...nodes].sort((a, b) => (a.position.y ?? 0) - (b.position.y ?? 0));
+
+                if (sortedNodes.length < 2) break;
+
+                const minY = sortedNodes[0].position.y ?? 0;
+                const maxY = sortedNodes[sortedNodes.length - 1].position.y ?? 0;
+                const totalNodes = sortedNodes.length;
+
+                const spacing = (maxY - minY) / (totalNodes - 1);
+
+                sortedNodes.forEach((node, index) => {
+                    const newY = minY + index * spacing;
+                    updateNode(node.id, (prevNode) => ({
+                        ...prevNode,
+                        position: { ...prevNode.position, y: newY }
+                    }));
+                });
+
+                console.log("Distribución vertical completa:", sortedNodes);
+            }
+                break;
+
+            default:
+                break;
+        }
+    };
+
     return (
 
         <Card className={styles.details} size="small" type="inner" >
@@ -238,17 +386,53 @@ export function ComponentProperties({
                 </>
             }
             {!isSingleNodeSelection &&
-                <Flex className={styles.groupNodes} wrap gap="4px" >
-                    {selectedNodes?.map(node => (
-                        <Tooltip key={node.id} placement="top" color="cyan" title={node.data?.designator}>
-                            <Button key={node.id} size="middle" variant="filled" color="cyan"
-                                style={{ textTransform: "capitalize", display: "flex", alignItems: 'center', justifyContent: 'center', flexDirection: "column", gap: '0', fontSize: '0.85em' }}
-                                onClick={() => handleClickSelectedNode(node)}> {`${node.data?.name}-${node.data.designator}`} </Button>
+                <>
+                    <Flex className={styles.groupNodes} wrap gap="4px" >
+                        {selectedNodes?.map(node => (
+                            <Tooltip key={node.id} placement="top" color="cyan" title={node.data?.designator}>
+                                <Button key={node.id} size="middle" variant="filled" color="cyan"
+                                    style={{ textTransform: "capitalize", display: "flex", alignItems: 'center', justifyContent: 'center', flexDirection: "column", gap: '0', fontSize: '0.85em' }}
+                                    onClick={() => handleClickSelectedNode(node)}> {`${node.data?.name}-${node.data.designator}`} </Button>
+                            </Tooltip>
+                        ))
+                        }
+                        <Divider style={{ margin: "16px 0" }} />
+                    </Flex>
+                    <label className={styles.label}>Align</label>
+                    <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
+                    <Flex className={styles.groupNodes} wrap gap="4px" >
+                        <Tooltip placement="top" title="Horizontal Align Left (Ctrl+Alt+Left)" color="cyan" >
+                            <Button className={styles.button} variant="outlined" color="default" onClick={() => handleAlign("h-left")}><AlignLeftIcon /></Button>
                         </Tooltip>
-                    ))
-                    }
+                        <Tooltip placement="top" title="Horizontal Align Center (Ctrl+Alt+Right)" color="cyan" >
+                            <Button className={styles.button} variant="outlined" color="default" onClick={() => handleAlign("h-center")}><AlignHorizontalCenterIcon /></Button>
+                        </Tooltip>
+                        <Tooltip placement="top" title="Horizontal Align Right (Ctrl+Alt+Right)" color="cyan" >
+                            <Button className={styles.button} variant="outlined" color="default" onClick={() => handleAlign("h-right")}><AlignRightIcon /></Button>
+                        </Tooltip>
+                        <Tooltip placement="top" title="Vertical Align Top (Ctrl+Alt+Up)" color="cyan" >
+                            <Button className={styles.button} variant="outlined" color="default" onClick={() => handleAlign("v-top")}><AlignTopIcon /></Button>
+                        </Tooltip>
+                        <Tooltip placement="top" title="Vertical Align Center (Ctrl+Alt+Up)" color="cyan" >
+                            <Button className={styles.button} variant="outlined" color="default" onClick={() => handleAlign("v-center")}><AlignVerticalCenterIcon /></Button>
+                        </Tooltip>
+                        <Tooltip placement="top" title="Vertical Align Bottom (Ctrl+Alt+Bottom)" color="cyan" >
+                            <Button className={styles.button} variant="outlined" color="default" onClick={() => handleAlign("v-bottom")}><AlignBottomIcon /></Button>
+                        </Tooltip>
+                    </Flex>
                     <Divider style={{ margin: "16px 0" }} />
-                </Flex>
+                    <label className={styles.label}>Distribute spacing</label>
+                    <Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
+                    <Flex className={styles.groupNodes} wrap gap="4px" >
+                        <Tooltip placement="top" title="Distribute Horizontal (Ctrl+Alt+0)" color="cyan" >
+                            <Button className={styles.button} variant="outlined" color="default" onClick={() => handleAlign("h-dist")}><DistributeHorizontalIcon /></Button>
+                        </Tooltip>
+                        <Tooltip placement="top" title="Distribute Vertical (Ctrl+Alt+1)" color="cyan" >
+                            <Button className={styles.button} variant="outlined" color="default" onClick={() => handleAlign("v-dist")}><DistributeVerticalIcon /></Button>
+                        </Tooltip>
+                    </Flex>
+                    <Divider style={{ margin: "16px 0" }} />
+                </>
             }
             {isSingleNodeSelection && node?.data.has_properties &&
                 <>

@@ -133,6 +133,7 @@ body {
 
 .ant-tooltip {
     font-family: var(--font-family);
+    font-size: 0.8em;
 }
 
 .react-flow__nodesselection-rect,
