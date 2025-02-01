@@ -682,7 +682,7 @@ export function RelaySPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
 
 export function RelayDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 900"   >
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 1000"   >
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,200  260,-150" />
@@ -693,16 +693,16 @@ export function RelayDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,500  260,-150" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="500" cx="450" r="30" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="500" cx="150" r="30" x={0} y={0} />
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,900 V800 L140,800 A 10 10 1 1 1 220,800 A 10 10 1 1 1 300,800 A 10 10 1 1 1 380,800  A 10 10 1 1 1 460,800 H500 V900"></path>
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,720 L450,720"></path>
-            <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,715 L300,120" strokeDasharray="27 35" strokeDashoffset='0'></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,1000 V900 L140,900 A 10 10 1 1 1 220,900 A 10 10 1 1 1 300,900 A 10 10 1 1 1 380,900  A 10 10 1 1 1 460,900 H500 V1000"></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,820 L450,820"></path>
+            <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,815 L300,120" strokeDasharray="27 35" strokeDashoffset='0'></path>
         </svg>
     );
 }
 
 export function RelayDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
     return (
-        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 900"   >
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 1000"   >
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,200 280,-42" />
@@ -713,9 +713,9 @@ export function RelayDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
             <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} strokeLinejoin="round" strokeLinecap="round" d="m 180,500 280,-42" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="500" cx="450" r="30" />
             <circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cy="500" cx="150" r="30" x={0} y={0} />
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,900 V800 L140,800 A 10 10 1 1 1 220,800 A 10 10 1 1 1 300,800 A 10 10 1 1 1 380,800  A 10 10 1 1 1 460,800 H500 V900"></path>
-            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,720 L450,720"></path>
-            <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,715 L300,200" strokeDasharray="27 35" strokeDashoffset='0'></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" fill="none" d="M100,1000 V900 L140,900 A 10 10 1 1 1 220,900 A 10 10 1 1 1 300,900 A 10 10 1 1 1 380,900  A 10 10 1 1 1 460,900 H500 V1000"></path>
+            <path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,820 L450,820"></path>
+            <path strokeWidth={STROKE_WIDTH * 2} stroke="currentColor" d="M300,815 L300,200" strokeDasharray="27 35" strokeDashoffset='0'></path>
         </svg>
     );
 }
@@ -1001,6 +1001,58 @@ export function ArrowPushIcon(props: SVGProps<SVGSVGElement>) {
                 <circle cx={12} cy={12} r={10}></circle>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v8m0 0l3-3m-3 3l-3-3"></path>
             </g>
+        </svg>
+    );
+}
+
+export function AlignTopIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="24px" height="24px" viewBox="0 0 32 32">
+            <path fill="currentColor" d="M4 3a1 1 0 0 0 0 2h24a1 1 0 1 0 0-2zm1 7.5A3.5 3.5 0 0 1 8.5 7h3a3.5 3.5 0 0 1 3.5 3.5v15a3.5 3.5 0 0 1-3.5 3.5h-3A3.5 3.5 0 0 1 5 25.5zm12 0A3.5 3.5 0 0 1 20.5 7h3a3.5 3.5 0 0 1 3.5 3.5v9a3.5 3.5 0 0 1-3.5 3.5h-3a3.5 3.5 0 0 1-3.5-3.5z"></path>
+        </svg>
+    );
+}
+
+export function AlignRightIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="24px" height="24px" viewBox="0 0 32 32" transform="rotate(90)">
+            <path fill="currentColor" d="M4 3a1 1 0 0 0 0 2h24a1 1 0 1 0 0-2zm1 7.5A3.5 3.5 0 0 1 8.5 7h3a3.5 3.5 0 0 1 3.5 3.5v15a3.5 3.5 0 0 1-3.5 3.5h-3A3.5 3.5 0 0 1 5 25.5zm12 0A3.5 3.5 0 0 1 20.5 7h3a3.5 3.5 0 0 1 3.5 3.5v9a3.5 3.5 0 0 1-3.5 3.5h-3a3.5 3.5 0 0 1-3.5-3.5z"></path>
+        </svg>
+    );
+}
+
+
+export function AlignBottomIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="24px" height="24px" viewBox="0 0 32 32" transform="rotate(180)">
+            <path fill="currentColor" d="M4 3a1 1 0 0 0 0 2h24a1 1 0 1 0 0-2zm1 7.5A3.5 3.5 0 0 1 8.5 7h3a3.5 3.5 0 0 1 3.5 3.5v15a3.5 3.5 0 0 1-3.5 3.5h-3A3.5 3.5 0 0 1 5 25.5zm12 0A3.5 3.5 0 0 1 20.5 7h3a3.5 3.5 0 0 1 3.5 3.5v9a3.5 3.5 0 0 1-3.5 3.5h-3a3.5 3.5 0 0 1-3.5-3.5z"></path>
+        </svg>
+    );
+}
+
+
+export function AlignLeftIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="24px" height="24px" viewBox="0 0 32 32" transform="rotate(270)">
+            <path fill="currentColor" d="M4 3a1 1 0 0 0 0 2h24a1 1 0 1 0 0-2zm1 7.5A3.5 3.5 0 0 1 8.5 7h3a3.5 3.5 0 0 1 3.5 3.5v15a3.5 3.5 0 0 1-3.5 3.5h-3A3.5 3.5 0 0 1 5 25.5zm12 0A3.5 3.5 0 0 1 20.5 7h3a3.5 3.5 0 0 1 3.5 3.5v9a3.5 3.5 0 0 1-3.5 3.5h-3a3.5 3.5 0 0 1-3.5-3.5z"></path>
+        </svg>
+    );
+}
+
+
+export function AlignHorizontalCenterIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="24px" height="24px" viewBox="0 0 28 28" transform="rotate(180)">
+            <path fill="currentColor" d="M14.25 26a.75.75 0 0 1-.75-.75V23H10a2.75 2.75 0 0 1-2.75-2.75v-2.5A2.75 2.75 0 0 1 10 15h3.5v-2H7.25a2.75 2.75 0 0 1-2.75-2.75v-2.5A2.75 2.75 0 0 1 7.25 5h6.25V2.75a.75.75 0 0 1 1.5 0V5h5.75a2.75 2.75 0 0 1 2.75 2.75v2.5A2.75 2.75 0 0 1 20.75 13H15v2h3a2.75 2.75 0 0 1 2.75 2.75v2.5A2.75 2.75 0 0 1 18 23h-3v2.25a.75.75 0 0 1-.75.75" />
+        </svg>
+    );
+}
+
+
+export function AlignVerticalCenterIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} width="24px" height="24px" viewBox="0 0 28 28" transform="rotate(270)">
+            <path fill="currentColor" d="M14.25 26a.75.75 0 0 1-.75-.75V23H10a2.75 2.75 0 0 1-2.75-2.75v-2.5A2.75 2.75 0 0 1 10 15h3.5v-2H7.25a2.75 2.75 0 0 1-2.75-2.75v-2.5A2.75 2.75 0 0 1 7.25 5h6.25V2.75a.75.75 0 0 1 1.5 0V5h5.75a2.75 2.75 0 0 1 2.75 2.75v2.5A2.75 2.75 0 0 1 20.75 13H15v2h3a2.75 2.75 0 0 1 2.75 2.75v2.5A2.75 2.75 0 0 1 18 23h-3v2.25a.75.75 0 0 1-.75.75" />
         </svg>
     );
 }
