@@ -963,7 +963,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         size: "small"
     },
     [ComponentType.XORGate]: {
-        name: "",
+        name: "XOR Gate",
         value: "",
         category: Categories["Logic Gates"],
         componentType: ComponentType.XORGate,
