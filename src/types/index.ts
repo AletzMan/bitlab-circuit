@@ -50,6 +50,13 @@ export enum ComponentType {
     RelayDPST = 'relaydpst',
     RelaySPDT = 'relayspdt',
     RelayDPDT = 'relaydpdt',
+    ANDGate = 'andgate',
+    ORGate = 'orgate',
+    NANDGate = 'nandgate',
+    NORGate = 'norgate',
+    XORGate = 'xorgate',
+    XNORGate = 'xnorgate',
+    NOTGate = 'notgate',
     Board = 'board',
     Node = 'node',
 }
@@ -132,6 +139,7 @@ export enum Categories {
     Transistors = 'Transistors',
     Inductors = 'Inductors',
     'Switches & Relays' = 'Switches & Relays',
+    "Logic Gates" = 'Logic Gates'
 }
 
 export type ComponentProperties = {
@@ -149,7 +157,7 @@ export type ComponentProperties = {
     collapsed?: ComponentCollapsed
     unit: UnitsType,
     designator: string
-    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board' | 'switchDPST' | 'switchDPDT' | 'relaySPST' | 'relayDPST' | 'relaySPDT' | 'relayDPDT',
+    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board' | 'switchDPST' | 'switchDPDT' | 'relaySPST' | 'relayDPST' | 'relaySPDT' | 'relayDPDT' | 'logicGate',
     has_properties: boolean
     isValueVisible: boolean,
     isDesignatorVisible: boolean

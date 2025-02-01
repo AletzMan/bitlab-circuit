@@ -806,6 +806,72 @@ export function RelayDPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function ANDIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,200 H100 V100 H300 A 10 10 1 1 1 300,500 H100 V400 H0 100 V200" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M500,300 H600" />
+        </svg>
+    );
+}
+
+export function ORIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path fill="none" stroke="currentColor" strokeLinejoin="round" strokeLinecap="round" strokeWidth={STROKE_WIDTH * 4} d="M100,100 C100,100 250,300 100,500 C100,500 350,550 500,300 C500,250 300,50 100,100" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,200 H150" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,400 H150" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M500,300 H600" />
+        </svg>
+    );
+}
+
+export function NANDIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600" >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,200 H100 V100 H300 A 10 10 1 1 1 300,500 H100 V400 H0 100 V200" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cx={532} cy={300} r={25}></circle>
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M550,300 H600" />
+        </svg>
+    );
+}
+
+export function NORIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path fill="none" stroke="currentColor" strokeLinejoin="round" strokeLinecap="round" strokeWidth={STROKE_WIDTH * 4} d="M100,100 C100,100 250,300 100,500 C100,500 350,550 500,300 C500,250 300,50 100,100" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,200 H150" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,400 H150" />
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} cx={532} cy={300} r={25}></circle>
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M550,300 H600" />
+        </svg>
+    );
+}
+
+export function XORIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
+        </svg>
+    );
+}
+
+export function XNORIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
+        </svg>
+    );
+}
+
+export function NOTIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600"   >
+            <path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
+        </svg>
+    );
+}
+
 export function BoardIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="0 0 256 256" style={{ display: "flex" }}>

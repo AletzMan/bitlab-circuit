@@ -1,4 +1,4 @@
-import { BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NodeIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseNCIcon, PushButtonCloseNOIcon, PushButtonOpenNCIcon, PushButtonOpenNOIcon, RelayDPDTCloseIcon, RelayDPDTOpenIcon, RelayDPSTCloseIcon, RelayDPSTOpenIcon, RelaySPDTCloseIcon, RelaySPDTOpenIcon, RelaySPSTCloseIcon, RelaySPSTOpenIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchDPDTCloseIcon, SwitchDPDTOpenIcon, SwitchDPSTCloseIcon, SwitchDPSTOpenIcon, SwitchSPDTCloseIcon, SwitchSPDTOpenIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, ZenerIcon } from "@/icons";
+import { ANDIcon, BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NANDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NORIcon, NOTIcon, NodeIcon, ORIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseNCIcon, PushButtonCloseNOIcon, PushButtonOpenNCIcon, PushButtonOpenNOIcon, RelayDPDTCloseIcon, RelayDPDTOpenIcon, RelayDPSTCloseIcon, RelayDPSTOpenIcon, RelaySPDTCloseIcon, RelaySPDTOpenIcon, RelaySPSTCloseIcon, RelaySPSTOpenIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchDPDTCloseIcon, SwitchDPDTOpenIcon, SwitchDPSTCloseIcon, SwitchDPSTOpenIcon, SwitchSPDTCloseIcon, SwitchSPDTOpenIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, XNORIcon, XORIcon, ZenerIcon } from "@/icons";
 import { Categories, ComponentProperties, ComponentType, UnitsType } from "@/types";
 
 
@@ -20,9 +20,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         isValueVisible: false,
         connectedHandles: [],
         style: {
-            height:
-                200, width: 200
-
+            height: 200, width: 200
         },
         size: "small"
     },
@@ -151,8 +149,8 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         value: 4.7,
         category: Categories.Capacitors,
         componentType: ComponentType.PolarisedCapacitor,
-        icon: <PolarisedCapacitorIcon />
-        , unit: UnitsType.Capacitance,
+        icon: <PolarisedCapacitorIcon />,
+        unit: UnitsType.Capacitance,
         prefix: "µF",
         designator: "C",
         type: 'analogComponent',
@@ -876,6 +874,159 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         style: undefined,
         size: "small"
     },
+    [ComponentType.ANDGate]: {
+        name: 'AND Gate',
+        state: {
+            on: false,
+            iconON: <ANDIcon />,
+            iconOFF: <ANDIcon />,
+        },
+        value: 0,
+        category: Categories["Logic Gates"],
+        componentType: ComponentType.ANDGate,
+        icon: <ANDIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        designator: "U",
+        type: 'logicGate',
+        has_properties: true,
+        isDesignatorVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.ORGate]: {
+        name: 'OR Gate',
+        state: {
+            on: false,
+            iconON: <ORIcon />,
+            iconOFF: <ORIcon />,
+        },
+        value: 0,
+        category: Categories["Logic Gates"],
+        componentType: ComponentType.ORGate,
+        icon: <ORIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        designator: "U",
+        type: 'logicGate',
+        has_properties: true,
+        isDesignatorVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.NANDGate]: {
+        name: 'NAND Gate',
+        state: {
+            on: false,
+            iconON: <NANDIcon />,
+            iconOFF: <NANDIcon />,
+        },
+        value: 0,
+        category: Categories["Logic Gates"],
+        componentType: ComponentType.NANDGate,
+        icon: <NANDIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        designator: "U",
+        type: 'logicGate',
+        has_properties: true,
+        isDesignatorVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.NORGate]: {
+        name: 'NOR Gate',
+        state: {
+            on: false,
+            iconON: <NORIcon />,
+            iconOFF: <NORIcon />,
+        },
+        value: 0,
+        category: Categories["Logic Gates"],
+        componentType: ComponentType.NORGate,
+        icon: <NORIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        designator: "U",
+        type: 'logicGate',
+        has_properties: true,
+        isDesignatorVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.XORGate]: {
+        name: "",
+        value: "",
+        category: Categories["Logic Gates"],
+        componentType: ComponentType.XORGate,
+        state: undefined,
+        icon: <XORIcon />,
+        prefix: "",
+        collapsed: undefined,
+        unit: UnitsType.Undefined,
+        designator: "",
+        type: "board",
+        has_properties: false,
+        isValueVisible: false,
+        isDesignatorVisible: false,
+        connectedHandles: [],
+        color: undefined,
+        size: "small",
+        style: undefined
+    },
+    [ComponentType.XNORGate]: {
+        name: 'XNOR Gate',
+        state: {
+            on: false,
+            iconON: <XNORIcon />,
+            iconOFF: <XNORIcon />,
+        },
+        value: 0,
+        category: Categories["Logic Gates"],
+        componentType: ComponentType.XNORGate,
+        icon: <XNORIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        designator: "U",
+        type: 'logicGate',
+        has_properties: true,
+        isDesignatorVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.NOTGate]: {
+        name: 'NOT Gate',
+        state: {
+            on: false,
+            iconON: <NOTIcon />,
+            iconOFF: <NOTIcon />,
+        },
+        value: 0,
+        category: Categories["Logic Gates"],
+        componentType: ComponentType.NOTGate,
+        icon: <NOTIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        designator: "U",
+        type: 'logicGate',
+        has_properties: true,
+        isDesignatorVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false, false],
+        style: undefined,
+        size: "small"
+    },
+
 };
 
 
