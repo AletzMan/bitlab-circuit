@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# BitLabCircuit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BitLabCircuit es una aplicación para el diseño y simulación de circuitos electrónicos. Permite a los usuarios agregar, conectar y manipular componentes electrónicos para construir y probar circuitos de manera interactiva.
 
-Currently, two official plugins are available:
+<img src="https://raw.githubusercontent.com/AletzMan/ImagesStorage/refs/heads/main/bitlab-circuit/ScreenshotPreview.webp"/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Características
 
-## Expanding the ESLint configuration
+- Interfaz intuitiva para la creación de circuitos.
+- Biblioteca de componentes electrónicos.
+- Conexión y simulación de circuitos.
+- Personalización de elementos.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🛠️ Componentes Disponibles
 
-- Configure the top-level `parserOptions` property like this:
+- **Structure**  
+- **Resistors**  
+- **Capacitors**  
+- **Diodes**  
+- **Transistors**  
+- **Inductors**  
+- **Switches & Relays**  
+- **Logic Gates**  
+- **Power & Supply**  
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🗺️ Roadmap
+
+### ✅ Versión Inicial
+- [x] Creación de interfaz gráfica.
+- [x] Implementación de componentes básicos.
+- [x] Conexión de elementos.
+- [x] Edición y modificación de componentes.
+
+### 🔜 Próximas Mejoras
+- [ ] Soporte para más tipos de componentes.
+- [ ] Implementación de análisis de circuitos.
+- [ ] Implementación de análisis de Basic Shapes.
+- [ ] Implementación de análisis de Text Fields.
+- [ ] Exportación de circuitos en formatos estándar.
+- [ ] Integración con microcontroladores virtuales.
+- [ ] Simulación inicial.
+
+## 📦 Instalación
+```bash
+# Clonar el repositorio
+git clone https://github.com/AletzMan/bitlab-circuit.git
+cd bitlab-circuit
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en modo desarrollo
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🤝 Contribuciones
+Las contribuciones son bienvenidas. Si deseas mejorar la aplicación, envía un pull request o abre un issue.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 📜 Licencia
+Este proyecto está bajo la licencia MIT. Para más detalles, consulta el archivo `LICENSE`.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+¡Esperamos que disfrutes construyendo circuitos con BitLabCircuit! ⚡
