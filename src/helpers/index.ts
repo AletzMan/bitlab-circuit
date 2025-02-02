@@ -99,6 +99,7 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         has_properties: ComponentsMap[type].has_properties,
         isDesignatorVisible: ComponentsMap[type].isDesignatorVisible,
         isValueVisible: ComponentsMap[type].isValueVisible,
+        isValueOptionalVisible: ComponentsMap[type].isValueOptionalVisible,
         connectedHandles: ComponentsMap[type].connectedHandles,
         color: ComponentsMap[type].color,
         size: ComponentsMap[type].size,

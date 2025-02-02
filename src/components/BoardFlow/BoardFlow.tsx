@@ -181,7 +181,7 @@ export function BoardFlow() {
 
         let node: AnalogNode | undefined;
 
-        const { value, unit, prefix, designator, type: typeComponent, has_properties, isDesignatorVisible, isValueVisible, connectedHandles, color, style, size, name, category, collapsed, state, value_optional, unit_optional, prefix_optional } = getComponentProperties(type, nodes);
+        const { value, unit, prefix, designator, type: typeComponent, has_properties, isDesignatorVisible, isValueVisible, connectedHandles, color, style, size, name, category, collapsed, state, value_optional, unit_optional, prefix_optional, isValueOptionalVisible } = getComponentProperties(type, nodes);
 
         if (type as ComponentType && Object.keys(ComponentsMap).includes(type)) {
 
@@ -189,7 +189,7 @@ export function BoardFlow() {
                 id: uuid(),
                 type: typeComponent,
                 position,
-                data: { name, type, category, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, collapsed, state, unit, prefix, has_properties, designator, isDesignatorVisible, isValueVisible, connectedHandles, color, size, value_optional, unit_optional, prefix_optional },
+                data: { name, type, category, value, isLock: false, rotation: 0, flip: { x: 1, y: 1 }, collapsed, state, unit, prefix, has_properties, designator, isDesignatorVisible, isValueVisible, connectedHandles, color, size, value_optional, unit_optional, prefix_optional, isValueOptionalVisible },
                 parentId: board?.id,
                 style
             };

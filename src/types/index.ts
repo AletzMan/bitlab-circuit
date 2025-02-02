@@ -120,6 +120,7 @@ export type ComponentData = {
     has_properties?: boolean
     designator: string
     isValueVisible: boolean
+    isValueOptionalVisible?: boolean
     isDesignatorVisible: boolean
     connectedHandles: boolean[]
     color?: string
@@ -170,6 +171,7 @@ export type ComponentProperties = {
     type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board' | 'switchDPST' | 'switchDPDT' | 'relaySPST' | 'relayDPST' | 'relaySPDT' | 'relayDPDT' | 'logicGate' | 'powerSupply' | 'battery',
     has_properties: boolean
     isValueVisible: boolean,
+    isValueOptionalVisible?: boolean
     isDesignatorVisible: boolean
     connectedHandles: boolean[],
     color?: string,
