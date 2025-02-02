@@ -114,7 +114,9 @@ export type ComponentData = {
     }
     isLock: boolean
     unit: UnitsType
+    unit_optional?: UnitsType
     prefix: string
+    prefix_optional?: string
     has_properties?: boolean
     designator: string
     isValueVisible: boolean
@@ -162,6 +164,8 @@ export type ComponentProperties = {
     prefix: string,
     collapsed?: ComponentCollapsed
     unit: UnitsType,
+    unit_optional?: UnitsType
+    prefix_optional?: string
     designator: string
     type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board' | 'switchDPST' | 'switchDPDT' | 'relaySPST' | 'relayDPST' | 'relaySPDT' | 'relayDPDT' | 'logicGate' | 'powerSupply' | 'battery',
     has_properties: boolean

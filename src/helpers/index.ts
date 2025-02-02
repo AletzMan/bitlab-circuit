@@ -86,6 +86,8 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         designator: `${designator}${matchingComponents.length + 1}`,
         prefix: ComponentsMap[type].prefix,
         unit: ComponentsMap[type].unit,
+        prefix_optional: ComponentsMap[type].prefix_optional,
+        unit_optional: ComponentsMap[type].unit_optional,
         value: ComponentsMap[type].value,
         value_optional: ComponentsMap[type].value_optional,
         state: ComponentsMap[type].state,
