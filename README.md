@@ -36,7 +36,7 @@ BitLabCircuit es una aplicación para el diseño y simulación de circuitos elec
 - [ ] **Inicio de Sesión y Sincronización:** Implementar autenticación para permitir a los usuarios guardar sus diagramas en una base de datos en la nube y acceder a ellos desde cualquier dispositivo.
 
 
-### 🔜 Futiras Mejoras 
+### 🔜 Futuras Mejoras 
 - [ ] Soporte para más tipos de componentes.
 - [ ] Implementación de Basic Shapes.
 - [ ] Implementación de Text Fields.
