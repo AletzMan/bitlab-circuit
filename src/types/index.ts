@@ -4,6 +4,8 @@ import { CSSProperties } from "react";
 
 
 export enum ComponentType {
+    Battery = 'battery',
+    PowerSupply = 'powersupply',
     Resistor = 'resistor',
     Rheostat = "rheostat",
     Thermistor = "thermistor",
@@ -96,6 +98,7 @@ export enum ComponentCollapsed {
 export type ComponentData = {
     name: string
     value: number | string
+    value_optional?: number | string
     type: ComponentType
     category: Categories
     rotation: number
@@ -140,12 +143,14 @@ export enum Categories {
     Transistors = 'Transistors',
     Inductors = 'Inductors',
     'Switches & Relays' = 'Switches & Relays',
-    "Logic Gates" = 'Logic Gates'
+    "Logic Gates" = 'Logic Gates',
+    "Power & Supply" = 'Power & Supply',
 }
 
 export type ComponentProperties = {
     name: string
     value: number | string,
+    value_optional?: number | string,
     category: Categories,
     componentType: ComponentType,
     state?: {
@@ -158,7 +163,7 @@ export type ComponentProperties = {
     collapsed?: ComponentCollapsed
     unit: UnitsType,
     designator: string
-    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board' | 'switchDPST' | 'switchDPDT' | 'relaySPST' | 'relayDPST' | 'relaySPDT' | 'relayDPDT' | 'logicGate',
+    type: 'analogComponent' | 'nodeComponent' | 'transistorComponent' | 'mechanicalComponent' | 'switchSPDT' | 'board' | 'switchDPST' | 'switchDPDT' | 'relaySPST' | 'relayDPST' | 'relaySPDT' | 'relayDPDT' | 'logicGate' | 'powerSupply' | 'battery',
     has_properties: boolean
     isValueVisible: boolean,
     isDesignatorVisible: boolean

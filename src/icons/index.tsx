@@ -905,6 +905,23 @@ export function BoardIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function BatteryIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" viewBox="0 0 600 600" >
+            <path stroke="currentColor" fill="none" strokeWidth={STROKE_WIDTH * 4} d="M0,300 H200 V250 V350 V300  M266,175 V425 M332,250 V350  M400,175 V425 V300 H600  M470,115 V188 V150 H435 H505"></path>
+            <path stroke="currentColor" fill="none" strokeWidth={STROKE_WIDTH * 4} d="M0,300 H200 V250 V350 V300  M266,175 V425 M332,250 V350  M400,175 V425 V300 H600  M470,115 V188 V150 H435 H505"></path>
+        </svg>
+    );
+}
+
+export function PowerSupplyIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" viewBox="0 0 600 600" >
+            <path stroke="currentColor" fill="none" strokeLinejoin="round" strokeLinecap="round" strokeWidth={STROKE_WIDTH * 4} d="M0,200 H100 M0,400 H100 M100,100 V500 H500 V100 H100 M500,200 H600 M500,400 H600 M100,500 L500,100 M350,380 H370 M390,380 H410 M430,380 H450 M350,350 H450 M150,250 C150,250 175,200 200,250 C200,250 225,300 250,250"></path>
+        </svg>
+    );
+}
+
 export function LockIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} width="1.25em" height="1.25em" viewBox="0 0 24 24">

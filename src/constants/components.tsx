@@ -1,4 +1,4 @@
-import { ANDIcon, BJTNPNIcon, BJTPNPIcon, BUFFERIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NANDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NORIcon, NOTIcon, NodeIcon, ORIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseNCIcon, PushButtonCloseNOIcon, PushButtonOpenNCIcon, PushButtonOpenNOIcon, RelayDPDTCloseIcon, RelayDPDTOpenIcon, RelayDPSTCloseIcon, RelayDPSTOpenIcon, RelaySPDTCloseIcon, RelaySPDTOpenIcon, RelaySPSTCloseIcon, RelaySPSTOpenIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchDPDTCloseIcon, SwitchDPDTOpenIcon, SwitchDPSTCloseIcon, SwitchDPSTOpenIcon, SwitchSPDTCloseIcon, SwitchSPDTOpenIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, XNORIcon, XORIcon, ZenerIcon } from "@/icons";
+import { ANDIcon, BJTNPNIcon, BJTPNPIcon, BUFFERIcon, BatteryIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NANDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NORIcon, NOTIcon, NodeIcon, ORIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PowerSupplyIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseNCIcon, PushButtonCloseNOIcon, PushButtonOpenNCIcon, PushButtonOpenNOIcon, RelayDPDTCloseIcon, RelayDPDTOpenIcon, RelayDPSTCloseIcon, RelayDPSTOpenIcon, RelaySPDTCloseIcon, RelaySPDTOpenIcon, RelaySPSTCloseIcon, RelaySPSTOpenIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchDPDTCloseIcon, SwitchDPDTOpenIcon, SwitchDPSTCloseIcon, SwitchDPSTOpenIcon, SwitchSPDTCloseIcon, SwitchSPDTOpenIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, XNORIcon, XORIcon, ZenerIcon } from "@/icons";
 import { Categories, ComponentProperties, ComponentType, UnitsType } from "@/types";
 
 
@@ -39,6 +39,41 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         isValueVisible: false,
         connectedHandles: [false, false, false, false],
         color: 'var(--foreground-color)',
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.Battery]: {
+        name: 'Battery',
+        value: 12,
+        category: Categories["Power & Supply"],
+        componentType: ComponentType.Battery,
+        icon: <BatteryIcon />,
+        unit: UnitsType.Voltage,
+        prefix: "V",
+        designator: "BAT",
+        type: 'battery',
+        has_properties: true,
+        isDesignatorVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.PowerSupply]: {
+        name: 'Power Supply',
+        value: 12,
+        value_optional: 120,
+        category: Categories["Power & Supply"],
+        componentType: ComponentType.PowerSupply,
+        icon: <PowerSupplyIcon />,
+        unit: UnitsType.Voltage,
+        prefix: "V",
+        designator: "PS",
+        type: 'powerSupply',
+        has_properties: true,
+        isDesignatorVisible: true,
+        isValueVisible: true,
+        connectedHandles: [false, false, false, false],
         style: undefined,
         size: "small"
     },
