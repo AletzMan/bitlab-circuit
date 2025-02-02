@@ -87,6 +87,7 @@ export function getComponentProperties(type: ComponentType, components: AnalogNo
         prefix: ComponentsMap[type].prefix,
         unit: ComponentsMap[type].unit,
         value: ComponentsMap[type].value,
+        value_optional: ComponentsMap[type].value_optional,
         state: ComponentsMap[type].state,
         collapsed: ComponentsMap[type].collapsed,
         icon: ComponentsMap[type].icon,
@@ -114,7 +115,7 @@ const initialValues = Object.keys(ComponentsMap).reduce((acc, key) => {
 
 export function reorderComponentDesignators(components: AnalogNode[]): AnalogNode[] {
 
-    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup' | 'TransistorGroup' | 'InductorGroup' | 'SwitchGroup' | 'RelayGroup', number> = {
+    const typeCounters: Record<ComponentType | 'DiodeGroup' | 'CapacitorGroup' | 'VariableCapacitorGroup' | 'ResistorGroup' | 'TransistorGroup' | 'InductorGroup' | 'SwitchGroup' | 'RelayGroup' | 'GateGroup', number> = {
         CapacitorGroup: 0,
         DiodeGroup: 0,
         VariableCapacitorGroup: 0,
@@ -123,6 +124,7 @@ export function reorderComponentDesignators(components: AnalogNode[]): AnalogNod
         InductorGroup: 0,
         SwitchGroup: 0,
         RelayGroup: 0,
+        GateGroup: 0,
         ...initialValues
     };
 
