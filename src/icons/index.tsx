@@ -812,6 +812,7 @@ export function ANDIcon(props: SVGProps<SVGSVGElement>) {
             <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 3} strokeLinejoin="round" strokeLinecap="round" d="M0,200 H100 V100 H300 A 10 10 1 1 1 300,500 H100 V400 H0 100 V100 " />
             <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 3} strokeLinejoin="round" strokeLinecap="round" d="M0,200 H100 V100 H300 A 10 10 1 1 1 300,500 H100 V400 H0 100 V100 " />
             <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 3} d="M500,300 H600" />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 3} d="M500,300 H600" />
         </svg>
     );
 }
