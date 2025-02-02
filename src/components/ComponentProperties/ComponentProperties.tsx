@@ -95,6 +95,13 @@ export function ComponentProperties({
         }
     };
 
+    const handleChangeUnitOptional = (value: string) => {
+        if (node && dataComponent) {
+            updateNodeData(node?.id, { prefix_optional: value });
+            setDataComponent({ ...dataComponent, prefix_optional: value });
+        }
+    };
+
     const handleRemoveNode = () => {
         if (isSingleNodeSelection) {
             const nodeEdges = getEdges().filter(edge => edge.source === node?.id || edge.target === node?.id);
@@ -121,6 +128,7 @@ export function ComponentProperties({
             setDataComponent({ ...dataComponent, isDesignatorVisible: !newValue });
         }
     };
+
     const handleChangeHiddenValue = (e: CheckboxChangeEvent) => {
         const newValue = e.target.checked;
         if (node && dataComponent) {
@@ -128,6 +136,15 @@ export function ComponentProperties({
             setDataComponent({ ...dataComponent, isValueVisible: !newValue });
         }
     };
+
+    const handleChangeHiddenValueOptional = (e: CheckboxChangeEvent) => {
+        const newValue = e.target.checked;
+        if (node && dataComponent) {
+            updateNodeData(node?.id, { isValueOptionalVisible: !newValue });
+            setDataComponent({ ...dataComponent, isValueOptionalVisible: !newValue });
+        }
+    };
+
     const handleChangeState = (e: CheckboxChangeEvent) => {
         const newValue = e.target.checked;
         if (node && dataComponent) {
@@ -352,6 +369,34 @@ export function ComponentProperties({
                                             <Checkbox onChange={handleChangeHiddenValue} checked={!dataComponent?.isValueVisible} />
                                         </label>
                                     </div>
+                                    {dataComponent?.isValueOptionalVisible && <>
+                                        <Divider style={{ margin: "4px 0" }} variant="dashed" />
+                                        <div className={styles.value}>
+                                            <Flex vertical>
+                                                <label className={styles.value_label}>Optional Value</label>
+                                                <Input className={styles.value_number}
+                                                    value={dataComponent?.value_optional} size="middle"
+                                                    onChange={(e) => {
+                                                        const newValue = e.target.value ? parseFloat(e.target.value) : 0;
+                                                        if (dataComponent) {
+                                                            setDataComponent({ ...dataComponent, value_optional: newValue });
+                                                            updateNodeData(node.id, { value_optional: newValue });
+                                                        }
+                                                    }}
+                                                    addonAfter={dataComponent &&
+                                                        <Select defaultValue={dataComponent.prefix_optional} value={dataComponent.prefix_optional} onChange={handleChangeUnitOptional}>
+                                                            {dataComponent.unit_optional && UNITS[dataComponent.unit_optional].map(value => (
+                                                                <Option key={value} value={value}>{value}</Option>
+                                                            ))}
+                                                        </Select>}
+                                                />
+                                            </Flex>
+                                            <label className={`${styles.value_label} ${styles.value_hidden}`}>
+                                                Hidden
+                                                <Checkbox onChange={handleChangeHiddenValueOptional} checked={!dataComponent?.isValueOptionalVisible} />
+                                            </label>
+                                        </div>
+                                    </>}
                                 </>
                             }
                             {dataComponent?.type === ComponentType.Led &&

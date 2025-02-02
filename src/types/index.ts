@@ -72,7 +72,8 @@ export enum OhmType {
 
 export enum UnitsType {
     Ohm = 'ohm',
-    Voltage = 'volt',
+    VoltageDC = 'voltdc',
+    VoltageAC = 'voltac',
     Current = 'ampere',
     Capacitance = 'farad',
     Inductance = 'henry',
@@ -81,7 +82,8 @@ export enum UnitsType {
 
 export const UNITS = {
     ohm: ['Ω', 'KΩ', 'MΩ'],
-    volt: ['mV', 'V'],
+    voltdc: ['mV', 'V'],
+    voltac: ['mvAC', 'VAC'],
     farad: ['pF', 'nF', 'µF'],
     ampere: ['μA', 'mA', 'A'],
     henry: ['μH', 'mH', 'H'],

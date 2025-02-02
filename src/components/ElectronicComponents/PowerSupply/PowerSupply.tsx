@@ -7,7 +7,7 @@ import { CSSProperties, useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
 
 
-export function PowerSupply({ data: { type, rotation, flip, collapsed, isLock, designator, isDesignatorVisible, connectedHandles, size, state, isValueVisible, prefix, value, value_optional }, selected, id, parentId }: NodeProps<AnalogNode>) {
+export function PowerSupply({ data: { type, rotation, flip, collapsed, isLock, designator, isDesignatorVisible, connectedHandles, size, state, isValueVisible, prefix, value, value_optional, isValueOptionalVisible, prefix_optional }, selected, id, parentId }: NodeProps<AnalogNode>) {
     const { updateNode } = useReactFlow();
     const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
 
@@ -135,7 +135,7 @@ export function PowerSupply({ data: { type, rotation, flip, collapsed, isLock, d
             <Terminal type="source" position={terminalSettings.position[1]} id="2" isConnectable={!isConnected[1]} style={terminalSettings.adjustment[1]} />
             <Terminal type="source" position={terminalSettings.position[2]} id="3" isConnectable={!isConnected[2]} style={terminalSettings.adjustment[2]} />
             <Terminal type="source" position={terminalSettings.position[3]} id="4" isConnectable={!isConnected[3]} style={terminalSettings.adjustment[3]} />
-            {value_optional && <span className={`${styles.valueOptional}   ${rotation === 90 && styles.valueOptional_90}   ${rotation === 270 && styles.valueOptional_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value_optional}{prefix}</span>}
+            {value_optional && isValueOptionalVisible && <span className={`${styles.valueOptional}   ${rotation === 90 && styles.valueOptional_90}   ${rotation === 270 && styles.valueOptional_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value_optional}{prefix_optional}</span>}
             {isValueVisible && <span className={`${styles.value}  ${size === 'small' && styles.value_small} ${size === 'medium' && styles.value_medium} ${size === 'large' && styles.value_large}  ${rotation === 90 && styles.value_90}   ${rotation === 270 && styles.value_270}`} style={{ transform: `rotate(${rotation - rotation}deg) ` }}>{value}{prefix}</span>}
             {isDesignatorVisible && <span className={`${styles.designator} ${size === 'small' && styles.designator_small} ${size === 'medium' && styles.designator_medium} ${size === 'large' && styles.designator_large} ${rotation === 90 && styles.designator_90}   ${rotation === 270 && styles.designator_270}`} style={{ transform: `rotate(${rotation - rotation}deg)` }} >{designator}</span>}
         </div>
