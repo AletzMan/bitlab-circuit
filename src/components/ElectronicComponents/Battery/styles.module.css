@@ -54,8 +54,8 @@
 }
 
 .value_medium {
-    bottom: -8px;
-    left: 2px;
+    bottom: -10px;
+    left: calc(50% - 10px);
 
     &.value_90,
     &.value_270 {
@@ -77,8 +77,8 @@
     &.designator_90,
     &.designator_270 {
 
-        top: -4px;
-        left: 92px;
+        top: -20px;
+        right: 52px;
     }
 }
 
