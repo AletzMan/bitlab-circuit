@@ -43,6 +43,15 @@
     font-size: 0.6em;
 }
 
+.value {
+    color: var(--action-color);
+}
+
+.valueOptional {
+    position: absolute;
+    font-size: 0.5em;
+}
+
 .valueOptional {
     top: 10px;
     left: 12px;

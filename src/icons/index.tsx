@@ -914,6 +914,18 @@ export function BatteryIcon(props: SVGProps<SVGSVGElement>) {
     );
 }
 
+export function PhotovoltaicCellIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} height="33px" width="33px" viewBox="0 0 600 600" >
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M50,90 L100,130" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M90,40 L140,85" strokeLinejoin="miter" strokeLinecap="square" markerEnd='url(#head)' />
+            <path stroke="currentColor" fill="none" strokeWidth={STROKE_WIDTH * 4} d="M0,300 H200 V250 V350 V300  M266,175 V425 M332,250 V350  M400,175 V425 V300 H600  M480,115 V188 V150 H445 H515"></path>
+            <path stroke="currentColor" fill="none" strokeWidth={STROKE_WIDTH * 4} d="M0,300 H200 V250 V350 V300  M266,175 V425 M332,250 V350  M400,175 V425 V300 H600  M480,115 V188 V150 H445 H515"></path>
+            <circle fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} r={185} cx={300} cy={300} />
+        </svg>
+    );
+}
+
 export function PowerSupplyIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg {...props} height="33px" width="33px" viewBox="0 0 600 600" >

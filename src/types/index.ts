@@ -5,6 +5,7 @@ import { CSSProperties } from "react";
 
 export enum ComponentType {
     Battery = 'battery',
+    PhotovoltaicCell = 'photovoltaiccell',
     PowerSupply = 'powersupply',
     Resistor = 'resistor',
     Rheostat = "rheostat",
@@ -83,7 +84,7 @@ export enum UnitsType {
 export const UNITS = {
     ohm: ['Ω', 'KΩ', 'MΩ'],
     voltdc: ['mV', 'V'],
-    voltac: ['mvAC', 'VAC'],
+    voltac: ['VAC'],
     farad: ['pF', 'nF', 'µF'],
     ampere: ['μA', 'mA', 'A'],
     henry: ['μH', 'mH', 'H'],
