@@ -37,7 +37,7 @@ body {
 }
 
 [data-theme="dark"] {
-    --foreground-color: #FFFFFF;
+    --foreground-color: #ffffff;
     --designator-color: #c39950;
     --action-color: #0eb121;
     --action-background-color: #0eb12135;

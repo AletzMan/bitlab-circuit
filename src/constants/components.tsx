@@ -1,4 +1,4 @@
-import { ANDIcon, BJTNPNIcon, BJTPNPIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NANDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NORIcon, NOTIcon, NodeIcon, ORIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseNCIcon, PushButtonCloseNOIcon, PushButtonOpenNCIcon, PushButtonOpenNOIcon, RelayDPDTCloseIcon, RelayDPDTOpenIcon, RelayDPSTCloseIcon, RelayDPSTOpenIcon, RelaySPDTCloseIcon, RelaySPDTOpenIcon, RelaySPSTCloseIcon, RelaySPSTOpenIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchDPDTCloseIcon, SwitchDPDTOpenIcon, SwitchDPSTCloseIcon, SwitchDPSTOpenIcon, SwitchSPDTCloseIcon, SwitchSPDTOpenIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, XNORIcon, XORIcon, ZenerIcon } from "@/icons";
+import { ANDIcon, BJTNPNIcon, BJTPNPIcon, BUFFERIcon, BoardIcon, CapacitorIcon, DiodeIcon, FerriteCoreInductorIcon, InductorIcon, IronCoreInductorIcon, JFETNIcon, JFETPIcon, LDRIcon, LEDIcon, NANDIcon, NChainDepMOSFETIcon, NChainEnhMOSFETIcon, NORIcon, NOTIcon, NodeIcon, ORIcon, PChainDepMOSFETIcon, PChainEnhMOSFETIcon, PhotoDiodeIcon, PhotoTransistorNPN3PinsIcon, PhotoTransistorNPNIcon, PhotoTransistorPNP3PinsIcon, PhotoTransistorPNPIcon, PolarisedCapacitorIcon, PotentiometerIcon, PresetFerriteCoreInductorIcon, PresetIronCoreInductorIcon, PushButtonCloseNCIcon, PushButtonCloseNOIcon, PushButtonOpenNCIcon, PushButtonOpenNOIcon, RelayDPDTCloseIcon, RelayDPDTOpenIcon, RelayDPSTCloseIcon, RelayDPSTOpenIcon, RelaySPDTCloseIcon, RelaySPDTOpenIcon, RelaySPSTCloseIcon, RelaySPSTOpenIcon, ResistorIcon, RheostatIcon, SchottkyIcon, SwitchDPDTCloseIcon, SwitchDPDTOpenIcon, SwitchDPSTCloseIcon, SwitchDPSTOpenIcon, SwitchSPDTCloseIcon, SwitchSPDTOpenIcon, SwitchSPSTCloseIcon, SwitchSPSTOpenIcon, TVSDiodeIcon, ThermistorIcon, TrimmerCapacitorIcon, TunnelIcon, VaractorIcon, VariableCapacitorIcon, VariableFerriteCoreInductorIcon, VariableIronCoreInductorIcon, XNORIcon, XORIcon, ZenerIcon } from "@/icons";
 import { Categories, ComponentProperties, ComponentType, UnitsType } from "@/types";
 
 
@@ -891,7 +891,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         type: 'logicGate',
         has_properties: true,
         isDesignatorVisible: true,
-        isValueVisible: true,
+        isValueVisible: false,
         connectedHandles: [false, false, false],
         style: undefined,
         size: "small"
@@ -913,7 +913,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         type: 'logicGate',
         has_properties: true,
         isDesignatorVisible: true,
-        isValueVisible: true,
+        isValueVisible: false,
         connectedHandles: [false, false, false],
         style: undefined,
         size: "small"
@@ -935,7 +935,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         type: 'logicGate',
         has_properties: true,
         isDesignatorVisible: true,
-        isValueVisible: true,
+        isValueVisible: false,
         connectedHandles: [false, false, false],
         style: undefined,
         size: "small"
@@ -957,7 +957,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         type: 'logicGate',
         has_properties: true,
         isDesignatorVisible: true,
-        isValueVisible: true,
+        isValueVisible: false,
         connectedHandles: [false, false, false],
         style: undefined,
         size: "small"
@@ -974,9 +974,9 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         unit: UnitsType.Undefined,
         designator: "U",
         type: "logicGate",
-        has_properties: false,
+        has_properties: true,
         isValueVisible: false,
-        isDesignatorVisible: false,
+        isDesignatorVisible: true,
         connectedHandles: [false, false, false],
         color: undefined,
         size: "small",
@@ -999,7 +999,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         type: 'logicGate',
         has_properties: true,
         isDesignatorVisible: true,
-        isValueVisible: true,
+        isValueVisible: false,
         connectedHandles: [false, false, false],
         style: undefined,
         size: "small"
@@ -1021,7 +1021,29 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
         type: 'logicGate',
         has_properties: true,
         isDesignatorVisible: true,
-        isValueVisible: true,
+        isValueVisible: false,
+        connectedHandles: [false, false],
+        style: undefined,
+        size: "small"
+    },
+    [ComponentType.BUFFERGate]: {
+        name: 'BUFFER Gate',
+        state: {
+            on: false,
+            iconON: <BUFFERIcon />,
+            iconOFF: <BUFFERIcon />,
+        },
+        value: 0,
+        category: Categories["Logic Gates"],
+        componentType: ComponentType.BUFFERGate,
+        icon: <BUFFERIcon />,
+        unit: UnitsType.Undefined,
+        prefix: "",
+        designator: "U",
+        type: 'logicGate',
+        has_properties: true,
+        isDesignatorVisible: true,
+        isValueVisible: false,
         connectedHandles: [false, false],
         style: undefined,
         size: "small"

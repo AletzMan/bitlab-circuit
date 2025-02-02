@@ -57,6 +57,7 @@ export enum ComponentType {
     XORGate = 'xorgate',
     XNORGate = 'xnorgate',
     NOTGate = 'notgate',
+    BUFFERGate = 'buffergate',
     Board = 'board',
     Node = 'node',
 }
