@@ -34,8 +34,8 @@ BitLabCircuit es una aplicación para el diseño y simulación de circuitos elec
 ### 🔜 Próximas Mejoras
 - [ ] Soporte para más tipos de componentes.
 - [ ] Implementación de análisis de circuitos.
-- [ ] Implementación de análisis de Basic Shapes.
-- [ ] Implementación de análisis de Text Fields.
+- [ ] Implementación de Basic Shapes.
+- [ ] Implementación de Text Fields.
 - [ ] Exportación de circuitos en formatos estándar.
 - [ ] Integración con microcontroladores virtuales.
 - [ ] Simulación inicial.
