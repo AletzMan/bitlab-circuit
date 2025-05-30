@@ -1,125 +1,183 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
-    margin: 0;
-    font-family: var(--font-family);
-    background-color: #201f1f;
+	margin: 0;
+	font-family: var(--font-family);
+	background-color: #201f1f;
+}
+
+* {
+	font-family: var(--font-family);
 }
 
 :root {
-    --foreground-color: #000000;
-    --designator-color: #690303;
-    --action-color: #690303;
-    --background-color: #f3f2f2;
-    --background-color-tab: #ffffff;
-    --background-color-tab-inactive: #e6e6e6;
-    --foreground-color-tab-inactive: #909090;
-    --foreground-color-tab-active: #909090;
-    --border-color-tab: #d5d5d5;
-    --board-background-color: #fbfbfb;
-    --label-color: #343434;
-    --label-second-color: #343434;
-    --title-color: #b1b1b1;
-    --primary-color: #2db8d4;
-    --border-color: #DEDEDE;
-    --grid-large-color: #d6d6d6;
-    --grid-small-color: #e0e0e0;
-    --fill-minimap-node: #aca9a9;
-    --fill-minimap-node-mask: #e9e5e5;
-    --background-minimap: #f9f8f8;
-    --lock-color: #206ab3;
-    --selection-border-color: #c3781cee;
-    --selection-background-color: #c3781c17;
-    --group-border-color: #632626;
-    --group-background-color: #feffac20;
-    --font-family: "Jost", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	--foreground-color: #000000;
+	--designator-color: #690303;
+	--action-color: #690303;
+	--background-color: #f3f2f2;
+	--background-color-tab: #ffffff;
+	--background-color-tab-inactive: #e6e6e6;
+	--foreground-color-tab-inactive: #909090;
+	--foreground-color-tab-active: #909090;
+	--border-color-tab: #d5d5d5;
+	--board-background-color: #fbfbfb;
+	--label-color: #343434;
+	--label-second-color: #343434;
+	--title-color: #b1b1b1;
+	--primary-color: #2db8d4;
+	--border-color: #dedede;
+	--grid-large-color: #d6d6d6;
+	--grid-small-color: #e0e0e0;
+	--fill-minimap-node: #aca9a9;
+	--fill-minimap-node-mask: #e9e5e5;
+	--background-minimap: #f9f8f8;
+	--lock-color: #206ab3;
+	--selection-border-color: #c3781cee;
+	--selection-background-color: #c3781c17;
+	--group-border-color: #632626;
+	--group-background-color: #feffac20;
+	--font-family: "Jost", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 [data-theme="dark"] {
-    --foreground-color: #ffffff;
-    --designator-color: #c39950;
-    --action-color: #0eb121;
-    --action-background-color: #0eb12135;
-    --background-color: #292929;
-    --background-color-tab: #151515;
-    --background-color-tab-inactive: #414141;
-    --foreground-color-tab-inactive: #909090;
-    --foreground-color-tab-active: #909090;
-    --border-color-tab: #424242;
-    --board-background-color: #141414;
-    --label-color: #a4eeff;
-    --label-second-color: #c2c2c2;
-    --title-color: #737373;
-    --primary-color: #2db8d4;
-    --border-color: #585858;
-    --grid-large-color: #3a3a3a;
-    --grid-small-color: #292929;
-    --fill-minimap-node: #e4e4e4;
-    --fill-minimap-node-mask: #1a1a1a;
-    --background-minimap: #5f5f5f;
-    --lock-color: #4ec9e2;
-    --selection-border-color: #57ebffee;
-    --selection-background-color: #57d8ff17;
-    --group-border-color: #ada98a;
-    --group-background-color: #63604020;
+	--foreground-color: #ffffff;
+	--designator-color: #c39950;
+	--action-color: #0eb121;
+	--action-background-color: #0eb12135;
+	--background-color: #292929;
+	--background-color-tab: #151515;
+	--background-color-tab-inactive: #414141;
+	--foreground-color-tab-inactive: #909090;
+	--foreground-color-tab-active: #909090;
+	--border-color-tab: #424242;
+	--board-background-color: #141414;
+	--label-color: #a4eeff;
+	--label-second-color: #c2c2c2;
+	--title-color: #737373;
+	--primary-color: #2db8d4;
+	--border-color: #585858;
+	--grid-large-color: #3a3a3a;
+	--grid-small-color: #292929;
+	--fill-minimap-node: #e4e4e4;
+	--fill-minimap-node-mask: #1a1a1a;
+	--background-minimap: #5f5f5f;
+	--lock-color: #4ec9e2;
+	--selection-border-color: #57ebffee;
+	--selection-background-color: #57d8ff17;
+	--group-border-color: #ada98a;
+	--group-background-color: #63604020;
 }
 
 .react-flow__handle {
-    min-height: 0px;
-    min-width: 0px;
+	min-height: 0px;
+	min-width: 0px;
 }
 
 .react-flow__node {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 .react-flow__attribution {
-    display: none;
+	display: none;
 }
 
 .react-flow__handle.connectingto {
-    background: #f33524;
-    border-color: #f33524;
+	background: #f33524;
+	border-color: #f33524;
 }
 
 .react-flow__handle.valid {
-    background: #2dd451;
-    border-color: #2dd451;
+	background: #2dd451;
+	border-color: #2dd451;
 }
 
-
 .react-flow__handle.connectionindicator {
-    cursor: crosshair;
+	cursor: crosshair;
 }
 
 .react-flow__node.selectable {
-    cursor: grabbing;
+	cursor: grabbing;
 }
 
 .react-flow__node.draggable {
-    cursor: grab;
+	cursor: grab;
 }
 
 .react-flow__pane.selection {
-    cursor: default;
+	cursor: default;
 }
 
 .react-flow__pane.dragging {
-    cursor: grabbing;
+	cursor: grabbing;
 }
 
 .react-flow__edge.selectable:hover .react-flow__edge-path {
-    /* filter: drop-shadow(0 0 2px var(--wire-color));*/
-    stroke: red;
+	/* filter: drop-shadow(0 0 2px var(--wire-color));*/
+	stroke: red;
 }
 
 .react-flow__edge.selectable.selected .react-flow__edge-path {
-    stroke: #06d7c9;
-    filter: drop-shadow(0 0 1px #00ffee);
+	stroke: #06d7c9;
+	filter: drop-shadow(0 0 1px #00ffee);
 }
+
+.react-flow__nodesselection-rect,
+.react-flow__selection {
+	border: 1px dashed var(--primary-color);
+}
+
+.react-flow__minimap-node {
+	fill: var(--fill-minimap-node);
+}
+
+.react-flow__minimap {
+	background-color: var(--background-minimap);
+}
+
+.react-flow__minimap-mask {
+	fill: var(--fill-minimap-node-mask);
+}
+
+.ant-tooltip {
+	font-family: var(--font-family);
+	font-size: 0.8em;
+}
+
+.ant-color-picker-panel,
+.ant-color-picker .ant-color-picker-inner .ant-color-picker-input-container,
+.ant-color-picker .ant-color-picker-inner-content > .ant-divider,
+.ant-color-picker
+	.ant-color-picker-inner
+	.ant-color-picker-presets
+	.ant-collapse-item
+	> .ant-collapse-header {
+	display: none;
+}
+
+.ant-color-picker
+	.ant-color-picker-inner
+	.ant-color-picker-presets
+	.ant-collapse-item
+	> .ant-collapse-content
+	> .ant-collapse-content-box,
+.ant-color-picker .ant-color-picker-inner .ant-color-picker-presets-items {
+	display: flex;
+	flex-flow: row wrap;
+	max-width: 100px;
+}
+
+.ant-btn {
+	font-family: var(--font-family);
+	.ant-btn-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+/*
 
 .ant-card-head-title {
     font-weight: 500;
@@ -131,15 +189,6 @@ body {
     font-size: 1em;
 }
 
-.ant-tooltip {
-    font-family: var(--font-family);
-    font-size: 0.8em;
-}
-
-.react-flow__nodesselection-rect,
-.react-flow__selection {
-    border: 1px dashed var(--primary-color);
-}
 
 .ant-card {
     background-color: var(--background-color);
@@ -186,20 +235,6 @@ body {
 }
 
 
-.label {
-    padding: 0 0 0.5em 0;
-}
-
-.details_name {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-size: 1em;
-    font-weight: 500;
-    text-transform: capitalize;
-    color: var(--primary-color);
-    max-width: 270px;
-}
 
 
 .ant-switch.ant-switch-checked {
@@ -210,17 +245,6 @@ body {
     color: var(--primary-color);
 }
 
-.react-flow__minimap-node {
-    fill: var(--fill-minimap-node);
-}
-
-.react-flow__minimap {
-    background-color: var(--background-minimap);
-}
-
-.react-flow__minimap-mask {
-    fill: var(--fill-minimap-node-mask);
-}
 
 .ant-card {
     background-color: var(--background-color);
@@ -243,29 +267,31 @@ body {
 }
 
 
-.ant-color-picker-panel,
-.ant-color-picker .ant-color-picker-inner .ant-color-picker-input-container,
-.ant-color-picker .ant-color-picker-inner-content>.ant-divider,
-.ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-header {
-    display: none;
-}
-
-.ant-color-picker .ant-color-picker-inner .ant-color-picker-presets .ant-collapse-item>.ant-collapse-content>.ant-collapse-content-box,
-.ant-color-picker .ant-color-picker-inner .ant-color-picker-presets-items {
-    display: flex;
-    flex-flow: row wrap;
-    max-width: 100px;
-}
-
+*/
 .elementDrag {
-    color: var(--foreground-color);
-    border: 1px dashed var(--foreground-color);
-    border-radius: 0.25em;
-    width: 60px;
-    height: 60px;
+	color: var(--foreground-color);
+	border: 1px dashed var(--foreground-color);
+	border-radius: 0.25em;
+	width: 60px;
+	height: 60px;
 
-    &>svg {
-        width: 60px;
-        height: 60px;
-    }
+	& > svg {
+		width: 60px;
+		height: 60px;
+	}
+}
+
+.label {
+	padding: 0 0 0.5em 0;
+}
+
+.details_name {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-size: 1em;
+	font-weight: 500;
+	text-transform: capitalize;
+	color: var(--primary-color);
+	max-width: 270px;
 }
