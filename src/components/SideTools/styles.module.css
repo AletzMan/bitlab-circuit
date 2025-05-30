@@ -1,0 +1,121 @@
+.components {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+	padding-right: 0.25em;
+	height: calc(100svh - 410px);
+	overflow-y: auto;
+
+	/* &::-webkit-scrollbar {
+        background-color: red;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: blue;
+    }*/
+	/*scrollbar-width: thin;
+    scrollbar-color: #007 #bada55;
+    scrollbar-gutter: stable both-edges;*/
+
+	&::-webkit-scrollbar {
+		background-color: var(--border-color);
+		width: 6px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--primary-color);
+		border-radius: 0.25em;
+	}
+}
+
+.components_group {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 6px;
+	margin: 0;
+	padding: 6px;
+}
+
+.components_container {
+	display: flex;
+	flex-direction: column;
+	padding: 0 0 0 0 0;
+	border-radius: 4px;
+	border: 1px dashed var(--border-color-tab);
+	background-color: var(--board-background-color);
+}
+
+.components_title {
+	font-size: 0.8em;
+}
+
+.components_button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3em;
+	padding: 0;
+	height: 3em;
+	color: var(--title-color);
+
+	& > svg {
+		width: 2.5em;
+		height: 2.5em;
+	}
+
+	&:hover {
+		color: var(--foreground-color);
+	}
+}
+
+.containerTabs {
+	position: fixed;
+	right: 0;
+	top: 39px;
+	z-index: 10;
+	border-radius: 0;
+	width: 295px;
+	height: calc(100svh - 39px);
+	overflow-y: auto;
+	background-color: var(--board-background-color);
+
+	@media (width < 1200px) {
+		display: none;
+	}
+}
+
+.tabs {
+	width: 100%;
+	height: 100%;
+	padding: 0.25em;
+	border-left: 1px solid var(--border-color-tab);
+}
+
+.divider {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.label {
+	padding: 4px 0 4px 8px;
+	font-family: var(--font-family);
+	background-color: #ffffff10;
+	font-weight: 500;
+	color: var(--foreground-color);
+}
+
+.minimap {
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--fill-minimap-node-mask);
+}
+
+.details {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25em;
+	padding: 0;
+	width: 100%;
+}
