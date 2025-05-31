@@ -19,12 +19,12 @@ body {
 	--background-color-tab-inactive: #e6e6e6;
 	--foreground-color-tab-inactive: #909090;
 	--foreground-color-tab-active: #909090;
-	--border-color-tab: #d5d5d5;
+	--border-color-tab: #cecece;
 	--board-background-color: #fbfbfb;
 	--label-color: #343434;
 	--label-second-color: #343434;
 	--title-color: #b1b1b1;
-	--primary-color: #2db8d4;
+	--primary-color: #0caea8;
 	--border-color: #dedede;
 	--grid-large-color: #d6d6d6;
 	--grid-small-color: #e0e0e0;
@@ -54,7 +54,7 @@ body {
 	--label-color: #a4eeff;
 	--label-second-color: #c2c2c2;
 	--title-color: #737373;
-	--primary-color: #2db8d4;
+	--primary-color: #0caea8;
 	--border-color: #585858;
 	--grid-large-color: #3a3a3a;
 	--grid-small-color: #292929;
