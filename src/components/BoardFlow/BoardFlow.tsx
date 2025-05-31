@@ -162,12 +162,22 @@ export function BoardFlow() {
 	const setActiveTab = useSettings((state) => state.setActiveTab);
 	const setViewPort = useSettings((state) => state.setViewPort);
 	const viewPort = useSettings((state) => state.viewPort);
+	const viewTools = useSettings((state) => state.viewTools);
 	const dragOutsideRef = useRef<ComponentType | null>(null);
 	const edgeReconnectSuccessful = useRef(false);
 	const overlappingNodeRef = useRef<AnalogNode | null>(null);
 	const { screenToFlowPosition, getIntersectingNodes, updateNode } = useReactFlow();
-	const { addNode, addEdge, removeEdge, undo, redo, canRedo, canUndo } = useHistoryManager();
-	const { duplicateComponents } = useShortcuts({ undo, redo });
+	const { addNode, addEdge, removeEdge, recordNodeMove, removeNode, undo, redo, canRedo, canUndo } =
+		useHistoryManager();
+	const { duplicateComponents } = useShortcuts({
+		undo,
+		redo,
+		removeNode,
+		removeEdge,
+		addNode,
+	});
+	const nodeSelection = useRef<AnalogNode | null>(null);
+	const nodeBeingDragged = useRef<AnalogNode | null>(null);
 	const { currentTheme } = useTheme();
 	const {
 		selectedNode,
@@ -309,13 +319,18 @@ export function BoardFlow() {
 		}
 	};
 
-	const handleNodeClick = (e: React.MouseEvent<Element>, node: AnalogNode) => {
-		e.preventDefault();
+	const handleOnNodeDragStart = (_e: React.MouseEvent<Element>, node: AnalogNode) => {
+		setActiveTab("properties");
+		nodeBeingDragged.current = JSON.parse(JSON.stringify(node));
+		setSelectedNode(node);
+	};
+
+	const handleNodeClick = (_e: React.MouseEvent<Element>, node: AnalogNode) => {
+		nodeSelection.current = node;
 		setSelectedNode(node);
 		setSelectedEdge(undefined);
 		setActiveTab("properties");
 	};
-
 	const handlePaneClick = () => {
 		setSelectedNode(undefined);
 		setSelectedEdge(undefined);
@@ -403,8 +418,38 @@ export function BoardFlow() {
 		);
 	};
 
-	const handleNodeDragStop: OnNodeDrag<AnalogNode> = (e, dragNode) => {
-		e.preventDefault();
+	const handleNodeDragStop: OnNodeDrag<AnalogNode> = (_e, dragNode) => {
+		//console.log("dragNode", dragNode);
+		//console.log("selectedNode", selectedNode);
+		/*if (
+			selectedNode?.position.x !== dragNode?.position.x ||
+			selectedNode?.position.y !== dragNode?.position.y
+		) {
+			moveNode(dragNode);
+		}*/
+		if (nodeBeingDragged.current) {
+			const oldNode = nodeBeingDragged.current;
+			// ¡CRÍTICO! Obtén una COPIA PROFUNDA del nodo con su posición final.
+			const updatedNode = JSON.parse(JSON.stringify(dragNode));
+
+			// Llama a recordNodeMove para registrar el cambio en el historial
+			// Solo si la posición realmente cambió
+			if (
+				oldNode.position.x !== updatedNode.position.x ||
+				oldNode.position.y !== updatedNode.position.y
+			) {
+				recordNodeMove(oldNode, updatedNode);
+				console.log(
+					"DRAG STOP: Movimiento registrado. Old Pos:",
+					oldNode.position,
+					"New Pos:",
+					updatedNode.position
+				);
+			} else {
+				console.log("DRAG STOP: Posición no cambió, no se registró el movimiento.");
+			}
+			nodeBeingDragged.current = null; // Limpia la referencia
+		}
 		if (
 			!overlappingNodeRef.current ||
 			(overlappingNodeRef?.current?.type !== ComponentType.Board && dragNode?.parentId)
@@ -568,7 +613,7 @@ export function BoardFlow() {
 		>
 			<div className={styles.board}>
 				<MenuBar undo={undo} redo={redo} canUndo={canUndo} canRedo={canRedo} />
-				<div className={styles.flow}>
+				<div className={`${styles.flow} ${viewTools ? "" : styles.flow_hidden}`}>
 					<ReactFlow
 						defaultEdgeOptions={{ type: "wire" }}
 						nodes={nodes}
@@ -583,7 +628,7 @@ export function BoardFlow() {
 						isValidConnection={isConnectionValid}
 						onDragOver={handleOnDragover}
 						onDrop={handleOnDrop}
-						onNodeDragStart={handleNodeClick}
+						onNodeDragStart={handleOnNodeDragStart}
 						onEdgeClick={handleOnEdgeClick}
 						onNodeClick={handleNodeClick}
 						onPaneClick={handlePaneClick}
