@@ -1,152 +1,252 @@
-/* eslint-disable no-debugger */
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnalogNode, HistoryAction } from "@/types";
 import { Edge, useReactFlow } from "@xyflow/react";
 import { reorderComponentDesignators } from "@/helpers";
 
 type HistoryItem = {
-    action: HistoryAction;
-    data: AnalogNode | AnalogNode[] | Edge | Edge[] | undefined;
+	action: HistoryAction;
+	data:
+		| AnalogNode
+		| AnalogNode[]
+		| Edge
+		| Edge[]
+		| { oldNode: AnalogNode; updatedNode: AnalogNode }
+		| undefined;
+};
+
+// Función auxiliar para hacer una copia profunda (simple para objetos serializables JSON)
+const deepCopy = <T>(obj: T): T => {
+	if (obj === null || typeof obj !== "object") {
+		return obj;
+	}
+	// Considera usar lodash.clonedeep si tus nodos tienen funciones, Dates u objetos más complejos.
+	try {
+		return JSON.parse(JSON.stringify(obj));
+	} catch (e) {
+		console.error("Error al hacer deepCopy con JSON.parse(JSON.stringify()):", e);
+		console.warn("El objeto podría contener datos no serializables:", obj);
+		// Fallback: una copia superficial si JSON.stringify falla.
+		// Esto podría ser la causa del problema si la estructura es anidada y mutable.
+		return { ...obj };
+	}
 };
 
 export default function useHistoryManager() {
-    const [history, setHistory] = useState<HistoryItem[]>([]);
-    const currentIndex = useRef(-1);
+	const [history, setHistory] = useState<HistoryItem[]>([]);
+	const currentIndex = useRef<number>(-1); // -1: historial vacío, 0: primera acción
 
-    const { setNodes, setEdges, getNodes, getEdges } = useReactFlow();
+	// No necesitamos 'updateNode' aquí, usaremos 'setNodes' directamente para mayor control
+	const { setNodes, setEdges, getNodes, getEdges } = useReactFlow();
 
-    const addToHistory = useCallback(
-        (newStates: HistoryItem[]) => {
-            const newHistory = [...history].slice(0, currentIndex.current + 1);
-            newStates.forEach(newState => {
-                newHistory.push(newState);
-            });
-            setHistory(newHistory);
-            currentIndex.current += 1;
-        },
-        [history]
-    );
+	useEffect(() => {
+		console.log("DEBUG: Historial actual:", history);
+		console.log("DEBUG: Current Index:", currentIndex.current);
+	}, [history]);
 
-    const addNode = useCallback(
-        (node: AnalogNode | undefined, shouldAddToHistory = true) => {
-            if (node) setNodes((prevNodes) => prevNodes.concat(node));
-            if (shouldAddToHistory)
-                addToHistory([{
-                    action: HistoryAction.AddNode,
-                    data: node,
-                }]);
-        },
-        [addToHistory, setNodes]
-    );
+	// Modificada para recibir una sola `HistoryItem` para mayor claridad
+	const addToHistory = useCallback((newEntry: HistoryItem) => {
+		setHistory((prev) => {
+			// Si el currentIndex no apunta al final, truncamos el "futuro" del historial
+			const newHistory = prev.slice(0, currentIndex.current + 1);
+			const updated = [...newHistory, deepCopy(newEntry)]; // Asegura copia profunda al añadir
+			currentIndex.current = updated.length - 1;
+			return updated;
+		});
+	}, []);
 
-    const addEdge = useCallback(
-        (edge: Edge | undefined, shouldAddToHistory = true) => {
-            if (edge) setEdges((prevEdges) => prevEdges.concat(edge));
-            if (shouldAddToHistory) {
+	// --- Funciones internas que modifican el estado de React Flow (NO AÑADEN al historial) ---
+	// Estas son las que se llaman desde undo/redo para aplicar los cambios.
+	const _addNodes = useCallback(
+		(nodesToAdd: AnalogNode[]) => {
+			setNodes((prev) => [...prev, ...nodesToAdd]);
+		},
+		[setNodes]
+	);
 
-                addToHistory([{
-                    action: HistoryAction.AddEdge,
-                    data: edge,
-                }]);
-            }
-        },
-        [addToHistory, setEdges]
-    );
+	const _addEdges = useCallback(
+		(edgesToAdd: Edge[]) => {
+			setEdges((prev) => [...prev, ...edgesToAdd]);
+		},
+		[setEdges]
+	);
 
-    const removeNode = useCallback(
-        (nodes: AnalogNode[] | undefined, shouldAddToHistory = true) => {
-            if (nodes) {
-                const filteredNodes = getNodes().filter(
-                    node => !nodes.some(n => n.id === node.id)
-                );
-                const newOrder = reorderComponentDesignators(filteredNodes as AnalogNode[]);
-                setNodes(newOrder);
-            }
-            if (shouldAddToHistory) {
-                addToHistory([{
-                    action: HistoryAction.RemoveNode,
-                    data: nodes,
-                }]);
-            }
-        },
-        [addToHistory, setNodes]
-    );
+	const _removeNodes = useCallback(
+		(nodesToRemove: AnalogNode[]) => {
+			const remaining = getNodes().filter((n) => !nodesToRemove.some((r) => r.id === n.id));
+			const reordered = reorderComponentDesignators(remaining as AnalogNode[]);
+			setNodes(reordered);
+		},
+		[getNodes, setNodes]
+	);
 
-    const removeEdge = useCallback(
-        (edges: Edge[] | undefined, shouldAddToHistory = true) => {
-            if (edges) {
-                const filteredEdges = getEdges().filter(
-                    edge => !edges.some(n => n.id === edge.id)
-                );
-                setEdges(filteredEdges);
-            }
-            if (shouldAddToHistory) {
-                addToHistory([
-                    {
-                        action: HistoryAction.RemoveEdge,
-                        data: edges,
-                    },
-                ]);
-            }
-        },
-        [addToHistory, setEdges, getEdges]
-    );
+	const _removeEdges = useCallback(
+		(edgesToRemove: Edge[]) => {
+			const remaining = getEdges().filter((e) => !edgesToRemove.some((r) => r.id === e.id));
+			setEdges(remaining);
+		},
+		[getEdges, setEdges]
+	);
 
-    const undo = useCallback(() => {
-        const canUndo = currentIndex.current > -1;
-        if (canUndo) {
-            const { action, data } = history[currentIndex.current] || {};
-            currentIndex.current -= 1;
-            switch (action) {
-                case HistoryAction.AddNode: {
-                    removeNode([data as AnalogNode], false);
-                    break;
-                }
-                case HistoryAction.AddEdge: {
-                    removeEdge([data as Edge], false);
-                    break;
-                }
-                case HistoryAction.RemoveNode: {
-                    addNode(data as AnalogNode, false);
-                    break;
-                }
-                case HistoryAction.RemoveEdge: {
-                    addEdge(data as Edge, false);
-                    break;
-                }
-            }
-        }
-    }, [addEdge, addNode, history, removeEdge, removeNode]);
+	// Función interna para actualizar la posición de un nodo por su ID
+	const _updateNodePosition = useCallback(
+		(nodeId: string, position: { x: number; y: number }) => {
+			setNodes((prevNodes) =>
+				prevNodes.map((n) => (n.id === nodeId ? { ...n, position: position } : n))
+			);
+		},
+		[setNodes]
+	);
 
-    const redo = useCallback(() => {
-        const canRedo = currentIndex.current < history.length - 1;
-        if (canRedo) {
-            currentIndex.current += 1;
-            const { action, data } = history[currentIndex.current] || {};
-            switch (action) {
-                case HistoryAction.AddNode: {
-                    addNode(data as AnalogNode, false);
-                    break;
-                }
-                case HistoryAction.AddEdge: {
-                    addEdge(data as Edge, false);
-                    break;
-                }
-                case HistoryAction.RemoveNode: {
-                    removeNode([data as AnalogNode], false);
-                    break;
-                }
-                case HistoryAction.RemoveEdge: {
-                    removeEdge([data as Edge], false);
-                    break;
-                }
-            }
-        }
-    }, [addEdge, addNode, history, removeEdge, removeNode]);
+	// --- Acciones del usuario (estas funciones SÍ AÑADEN al historial) ---
 
-    const canUndo = currentIndex.current > -1;
-    const canRedo = currentIndex.current < history.length - 1;
+	const addNode = useCallback(
+		(node: AnalogNode | undefined) => {
+			// Eliminado 'track', siempre registra
+			if (!node) return;
+			_addNodes([node]);
+			addToHistory({ action: HistoryAction.AddNode, data: deepCopy(node) });
+		},
+		[_addNodes, addToHistory]
+	);
 
-    return { addNode, removeNode, addEdge, removeEdge, undo, redo, canUndo, canRedo };
+	const addEdge = useCallback(
+		(edge: Edge | undefined) => {
+			// Eliminado 'track', siempre registra
+			if (!edge) return;
+			_addEdges([edge]);
+			addToHistory({ action: HistoryAction.AddEdge, data: deepCopy(edge) });
+		},
+		[_addEdges, addToHistory]
+	);
+
+	const removeNode = useCallback(
+		(nodes: AnalogNode[]) => {
+			// Espera un array, simplifica el tipo
+			if (!nodes || nodes.length === 0) return;
+			_removeNodes(nodes);
+			addToHistory({ action: HistoryAction.RemoveNode, data: deepCopy(nodes) });
+		},
+		[_removeNodes, addToHistory]
+	);
+
+	const removeEdge = useCallback(
+		(edges: Edge[]) => {
+			// Espera un array
+			if (!edges || edges.length === 0) return;
+			_removeEdges(edges);
+			addToHistory({ action: HistoryAction.RemoveEdge, data: deepCopy(edges) });
+		},
+		[_removeEdges, addToHistory]
+	);
+
+	// ********* FUNCIÓN PARA REGISTRAR MOVIMIENTOS *********
+	// Recibe el estado del nodo ANTES y DESPUÉS del movimiento.
+	const recordNodeMove = useCallback(
+		(oldNode: AnalogNode, updatedNode: AnalogNode) => {
+			// Solo registra si la posición realmente cambió
+			if (
+				oldNode.position.x !== updatedNode.position.x ||
+				oldNode.position.y !== updatedNode.position.y
+			) {
+				// Guarda AMBOS nodos (deepCopy debería asegurar que sean inmutables)
+				addToHistory({
+					action: HistoryAction.MoveNode,
+					data: { oldNode: deepCopy(oldNode), updatedNode: deepCopy(updatedNode) },
+				});
+			}
+		},
+		[addToHistory]
+	);
+
+	// --- Lógica de Deshacer / Rehacer ---
+
+	const undo = useCallback(() => {
+		// No se puede deshacer si el puntero está antes de la primera acción (o si no hay acciones)
+		if (currentIndex.current < 0) {
+			console.warn("UNDO: Ya no hay más acciones para deshacer.");
+			return;
+		}
+
+		const actionToUndo = history[currentIndex.current]; // Obtiene la acción en el índice actual
+
+		switch (actionToUndo.action) {
+			case HistoryAction.AddNode:
+				// Para deshacer un AddNode, lo eliminamos. Data es un solo AnalogNode.
+				_removeNodes([actionToUndo.data as AnalogNode]);
+				break;
+			case HistoryAction.AddEdge:
+				// Para deshacer un AddEdge, lo eliminamos. Data es un solo Edge.
+				_removeEdges([actionToUndo.data as Edge]);
+				break;
+			case HistoryAction.RemoveNode:
+				// Para deshacer un RemoveNode, lo volvemos a añadir. Data es un array de AnalogNode.
+				_addNodes(actionToUndo.data as AnalogNode[]);
+				break;
+			case HistoryAction.RemoveEdge:
+				// Para deshacer un RemoveEdge, lo volvemos a añadir. Data es un array de Edge.
+				_addEdges(actionToUndo.data as Edge[]);
+				break;
+			case HistoryAction.MoveNode:
+				const moveDataUndo = actionToUndo.data as { oldNode: AnalogNode; updatedNode: AnalogNode };
+				// Para deshacer un movimiento, volvemos a la posición del oldNode
+				_updateNodePosition(moveDataUndo.oldNode.id, moveDataUndo.oldNode.position);
+				break;
+			default:
+				console.warn("UNDO: Acción no reconocida o no manejada:", actionToUndo.action);
+		}
+		currentIndex.current--; // Mueve el puntero UNA posición hacia atrás después de deshacer
+	}, [history, _addNodes, _addEdges, _removeNodes, _removeEdges, _updateNodePosition]);
+
+	const redo = useCallback(() => {
+		// No se puede rehacer si el puntero ya está en la última acción del historial
+		if (currentIndex.current >= history.length - 1) {
+			console.warn("REDO: Ya no hay más acciones para rehacer.");
+			return;
+		}
+
+		currentIndex.current++; // Mueve el puntero UNA posición hacia adelante ANTES de rehacer
+		const actionToRedo = history[currentIndex.current]; // Obtiene la acción en el nuevo índice
+
+		switch (actionToRedo.action) {
+			case HistoryAction.AddNode:
+				// Para rehacer un AddNode, lo volvemos a añadir. Data es un solo AnalogNode.
+				_addNodes([actionToRedo.data as AnalogNode]);
+				break;
+			case HistoryAction.AddEdge:
+				// Para rehacer un AddEdge, lo volvemos a añadir. Data es un solo Edge.
+				_addEdges([actionToRedo.data as Edge]);
+				break;
+			case HistoryAction.RemoveNode:
+				// Para rehacer un RemoveNode, lo volvemos a eliminar. Data es un array.
+				_removeNodes(actionToRedo.data as AnalogNode[]);
+				break;
+			case HistoryAction.RemoveEdge:
+				// Para rehacer un RemoveEdge, lo volvemos a eliminar. Data es un array.
+				_removeEdges(actionToRedo.data as Edge[]);
+				break;
+			case HistoryAction.MoveNode:
+				const moveDataRedo = actionToRedo.data as { oldNode: AnalogNode; updatedNode: AnalogNode };
+				// Para rehacer un movimiento, volvemos a la posición del updatedNode
+				_updateNodePosition(moveDataRedo.updatedNode.id, moveDataRedo.updatedNode.position);
+				break;
+			default:
+				console.warn("REDO: Acción no reconocida o no manejada:", actionToRedo.action);
+		}
+	}, [history, _addNodes, _addEdges, _removeNodes, _removeEdges, _updateNodePosition]);
+
+	// Comprobación de si se puede deshacer/rehacer
+	const canUndo = currentIndex.current >= 0; // Se puede deshacer si el índice es 0 o más (hay al menos 1 acción)
+	const canRedo = currentIndex.current < history.length - 1; // Se puede rehacer si el índice no es el último
+
+	return {
+		addNode,
+		removeNode,
+		addEdge,
+		removeEdge,
+		recordNodeMove, // Expón esta función para registrar movimientos
+		undo,
+		redo,
+		canUndo,
+		canRedo,
+	};
 }
