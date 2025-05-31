@@ -9,14 +9,10 @@
 .flow {
 	position: relative;
 	margin: 0em;
-	width: calc(100svw - 295px);
+	width: 100svw;
 	height: calc(100svh - 40px);
 	overflow: hidden;
 	background-color: var(--board-background-color);
-
-	@media (width < 1200px) {
-		width: 100svw;
-	}
 }
 
 .menu {
