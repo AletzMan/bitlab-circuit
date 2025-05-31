@@ -1,5 +1,5 @@
 import { Button, Collapse, Divider, Flex, Tabs, Tooltip } from "antd";
-import { DragEvent } from "react";
+import { DragEvent, useEffect } from "react";
 import { ComponentsMap } from "@/constants/components";
 import { MiniMap, useEdgesState } from "@xyflow/react";
 import styles from "./styles.module.css";
@@ -11,6 +11,7 @@ import { getImageBackgroundDrag } from "@/helpers";
 import { groupByToArray } from "@/helpers";
 import useHistoryManager from "@/hooks/useHistoryManager";
 import { useSettings } from "@/store";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 interface SideToolsProps {
 	duplicateComponents: () => void;
@@ -24,6 +25,19 @@ export function SideTools({ duplicateComponents, dragOutsideRef }: SideToolsProp
 	const activeTab = useSettings((state) => state.activeTab);
 	const setActiveTab = useSettings((state) => state.setActiveTab);
 	const viewTools = useSettings((state) => state.viewTools);
+	const setViewTools = useSettings((state) => state.setViewTools);
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth >= 1200) {
+				setViewTools(true);
+			} else {
+				setViewTools(false);
+			}
+		};
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	const handleOnDragStart = (e: DragEvent<HTMLElement>, type: ComponentType) => {
 		const imageBackgroundDrag = getImageBackgroundDrag(type);
@@ -37,9 +51,16 @@ export function SideTools({ duplicateComponents, dragOutsideRef }: SideToolsProp
 	};
 
 	return (
-		<div className={styles.containerTabs}>
+		<div
+			className={`${styles.containerTabs}  ${
+				viewTools ? styles["containerTabs_view"] : styles["containerTabs_hidden"]
+			}`}
+		>
+			<button className={styles["button_open"]} onClick={() => setViewTools(!viewTools)}>
+				{!viewTools ? <LeftOutlined /> : <RightOutlined />}
+			</button>
 			<Tabs
-				className={`${styles.tabs} ${viewTools ? styles["tabs_view"] : styles["tabs_hidden"]}`}
+				className={`${styles.tabs}`}
 				type="card"
 				size="small"
 				items={[

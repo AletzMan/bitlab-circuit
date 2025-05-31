@@ -76,12 +76,46 @@
 	border-radius: 0;
 	width: 295px;
 	height: calc(100svh - 39px);
-	overflow-y: auto;
 	background-color: var(--board-background-color);
+	transform: translateX(0);
+	transition: transform 0.15s ease-in-out;
+}
 
-	@media (width < 1200px) {
-		display: none;
+.button_open {
+	position: absolute;
+	top: 1px;
+	left: -1.4em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.5em;
+	height: 4em;
+	border-radius: 0.25em 0 0 0.25em;
+	background: linear-gradient(
+		to right,
+		var(--board-background-color),
+		var(--board-background-color)
+	);
+	border: 1px solid var(--border-color-tab);
+	color: var(--title-color);
+	transition: all 0.15s ease-in-out;
+	cursor: pointer;
+	z-index: 11;
+
+	&:hover {
+		color: var(--primary-color);
 	}
+}
+
+.containerTabs_view {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25em;
+	transform: translateX(0);
+}
+
+.containerTabs_hidden {
+	transform: translateX(295px);
 }
 
 .tabs {
