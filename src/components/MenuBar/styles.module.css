@@ -28,3 +28,11 @@
 	gap: 0.75em;
 	padding: 0 0.5em;
 }
+
+.button_menu {
+	display: none;
+
+	@media (width < 1200px) {
+		display: flex;
+	}
+}

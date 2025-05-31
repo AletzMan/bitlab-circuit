@@ -122,7 +122,12 @@ export function MenuBar({ undo, redo, canUndo, canRedo }: MenubarProps) {
 							unCheckedChildren={<LightIcon />}
 							onChange={handleChangeTheme}
 						/>
-						<Button type="text" icon={<MenuIcon />} onClick={() => setViewTools(!viewTools)} />
+						<Button
+							className={styles["button_menu"]}
+							type="text"
+							icon={<MenuIcon />}
+							onClick={() => setViewTools(!viewTools)}
+						/>
 					</div>
 				</nav>
 			</ConfigProvider>
