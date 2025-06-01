@@ -30,8 +30,6 @@ export function MenuBar() {
 	const { fitView } = useReactFlow();
 	const { undo, redo, canUndo, canRedo } = useHistory();
 
-	console.log(canUndo, canRedo);
-
 	const handleZoom = (position: "in" | "out" | "reset" | "fit") => {
 		const newZoom = viewPort.zoom;
 
