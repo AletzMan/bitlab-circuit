@@ -19,14 +19,7 @@ import {
 	XYPosition,
 } from "@xyflow/react";
 import { DragEvent, useCallback, useRef, KeyboardEvent, useEffect } from "react";
-import {
-	ComponentEdge,
-	AnalogNode,
-	ComponentCollapsed,
-	ComponentType,
-	UnitsType,
-	Categories,
-} from "@/types";
+import { ComponentEdge, AnalogNode, ComponentCollapsed, ComponentType } from "@/types";
 import { Wire } from "@/components/Wire/Wire";
 import { v4 as uuid } from "uuid";
 import styles from "./styles.module.css";
@@ -39,7 +32,6 @@ import { MechanicalComponent } from "@/components/ElectronicComponents/Mechanica
 import { getComponentProperties, getNewPositionByOverlapping, isPointInBox } from "@/helpers";
 import { ConfigProvider, theme } from "antd";
 import { useHistory } from "@/contexts/HistoryContext";
-import useShortcuts from "@/hooks/useShortcuts";
 import { ComponentsMap } from "@/constants/components";
 import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
 import { useSettings, useTheme } from "@/store";
@@ -57,7 +49,7 @@ import { MenuBar } from "../MenuBar/MenuBar";
 import { SideTools } from "../SideTools/SideTools";
 
 const initialNodes: AnalogNode[] = [
-	{
+	/*{
 		id: uuid(),
 		type: "analogComponent",
 		data: {
@@ -126,7 +118,7 @@ const initialNodes: AnalogNode[] = [
 			size: "small",
 		},
 		position: { x: 90, y: 90 },
-	},
+	},*/
 ];
 
 const initialEdges: ComponentEdge[] = [];
@@ -168,7 +160,6 @@ export function BoardFlow() {
 	const overlappingNodeRef = useRef<AnalogNode | null>(null);
 	const { screenToFlowPosition, getIntersectingNodes, updateNode } = useReactFlow();
 	const { addNode, addEdge, removeEdge, recordNodeMove } = useHistory();
-	const { duplicateComponents } = useShortcuts();
 	const nodeSelection = useRef<AnalogNode | null>(null);
 	const nodeBeingDragged = useRef<AnalogNode | null>(null);
 	const { currentTheme } = useTheme();
@@ -378,7 +369,6 @@ export function BoardFlow() {
 
 	const handleOnNodeDrag: OnNodeDrag<AnalogNode> = (e, dragNode) => {
 		e.preventDefault();
-
 		// Encontrar nodos superpuestos
 		const overlappingNode = getIntersectingNodes(dragNode)?.[0];
 		overlappingNodeRef.current = overlappingNode as AnalogNode;
@@ -412,14 +402,6 @@ export function BoardFlow() {
 	};
 
 	const handleNodeDragStop: OnNodeDrag<AnalogNode> = (_e, dragNode) => {
-		//console.log("dragNode", dragNode);
-		//console.log("selectedNode", selectedNode);
-		/*if (
-			selectedNode?.position.x !== dragNode?.position.x ||
-			selectedNode?.position.y !== dragNode?.position.y
-		) {
-			moveNode(dragNode);
-		}*/
 		if (nodeBeingDragged.current) {
 			const oldNode = nodeBeingDragged.current;
 			// ¡CRÍTICO! Obtén una COPIA PROFUNDA del nodo con su posición final.
@@ -432,14 +414,6 @@ export function BoardFlow() {
 				oldNode.position.y !== updatedNode.position.y
 			) {
 				recordNodeMove(oldNode, updatedNode);
-				console.log(
-					"DRAG STOP: Movimiento registrado. Old Pos:",
-					oldNode.position,
-					"New Pos:",
-					updatedNode.position
-				);
-			} else {
-				console.log("DRAG STOP: Posición no cambió, no se registró el movimiento.");
 			}
 			nodeBeingDragged.current = null; // Limpia la referencia
 		}
@@ -687,7 +661,7 @@ export function BoardFlow() {
 						</svg>
 					</ReactFlow>
 				</div>
-				<SideTools duplicateComponents={duplicateComponents} dragOutsideRef={dragOutsideRef} />
+				<SideTools dragOutsideRef={dragOutsideRef} />
 			</div>
 		</ConfigProvider>
 	);
