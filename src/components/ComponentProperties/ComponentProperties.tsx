@@ -35,9 +35,10 @@ import { LedColors } from "@/constants";
 import { AggregationColor } from "antd/es/color-picker/color";
 import { useSelectedItems } from "@/store";
 import { useHistory } from "@/contexts/HistoryContext";
+import useShortcuts from "@/hooks/useShortcuts";
 const { Option } = Select;
 
-export function ComponentProperties({ duplicateComponents }: { duplicateComponents: () => void }) {
+export function ComponentProperties() {
 	const { removeNode, removeEdge } = useHistory();
 	const node = useSelectedItems((state) => state.selectedNode);
 	const selectedNodes = useSelectedItems((state) => state.selectedNodes);
@@ -45,6 +46,7 @@ export function ComponentProperties({ duplicateComponents }: { duplicateComponen
 	const updateNodeInternals = useUpdateNodeInternals();
 	const { updateNodeData, updateNode, getNodes, getEdges } = useReactFlow();
 	const nodeData = useNodesData(node?.id as string);
+	const { duplicateComponents } = useShortcuts();
 	const [dataComponent, setDataComponent] = useState<ComponentData | undefined>(
 		nodeData?.data as ComponentData
 	);
