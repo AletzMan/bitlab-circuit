@@ -19,21 +19,18 @@ import { useReactFlow } from "@xyflow/react";
 import { useSettings } from "@/store";
 import { KeyboardEvent } from "react";
 import styles from "./styles.module.css";
+import { useHistory } from "@/contexts/HistoryContext";
 
-interface MenubarProps {
-	undo: () => void;
-	redo: () => void;
-	canUndo: boolean;
-	canRedo: boolean;
-}
-
-export function MenuBar({ undo, redo, canUndo, canRedo }: MenubarProps) {
+export function MenuBar() {
 	const { currentTheme, setCurrentTheme } = useTheme();
 	const viewPort = useSettings((state) => state.viewPort);
 	const setViewPort = useSettings((state) => state.setViewPort);
 	const setViewTools = useSettings((state) => state.setViewTools);
 	const viewTools = useSettings((state) => state.viewTools);
 	const { fitView } = useReactFlow();
+	const { undo, redo, canUndo, canRedo } = useHistory();
+
+	console.log(canUndo, canRedo);
 
 	const handleZoom = (position: "in" | "out" | "reset" | "fit") => {
 		const newZoom = viewPort.zoom;
