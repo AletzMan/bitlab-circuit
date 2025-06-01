@@ -290,11 +290,9 @@ export function groupByToArray<T, K extends keyof T>(
 }
 
 export function getNextDesignatorNumber(designator: string, nodes: AnalogNode[]): string {
-	console.log(nodes);
 	const quantityNodes = nodes.filter(
 		(node) => node.data.designator.replace(/\d+/g, "") === designator.replace(/\d+/g, "")
 	).length;
 	const letterDesignator = designator.replace(/\d+/g, "");
-	console.log(quantityNodes);
 	return `${letterDesignator}${quantityNodes + 1}`;
 }
