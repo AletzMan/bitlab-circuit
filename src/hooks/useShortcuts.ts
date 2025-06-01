@@ -5,21 +5,11 @@ import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { AnalogNode } from "@/types";
 import { getNextDesignatorNumber } from "@/helpers";
+import { useHistory } from "@/contexts/HistoryContext";
 
-export default function useShortcuts({
-	undo,
-	redo,
-	removeNode,
-	removeEdge,
-	addNode,
-}: {
-	undo: () => void;
-	redo: () => void;
-	removeNode: (nodes: AnalogNode[]) => void;
-	removeEdge: (edges: Edge[]) => void;
-	addNode: (node: AnalogNode) => void;
-}) {
+export default function useShortcuts() {
 	const { setNodes, getNodes, getEdges } = useReactFlow();
+	const { undo, redo, removeNode, removeEdge, addNode } = useHistory();
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
