@@ -13,11 +13,10 @@ import { useSettings } from "@/store";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 interface SideToolsProps {
-	duplicateComponents: () => void;
 	dragOutsideRef: React.MutableRefObject<ComponentType | null>;
 }
 
-export function SideTools({ duplicateComponents, dragOutsideRef }: SideToolsProps) {
+export function SideTools({ dragOutsideRef }: SideToolsProps) {
 	const { selectedNode, selectedNodes, selectedEdge, selectedEdges } = useSelectedItemsState();
 	const [, setEdges] = useEdgesState<ComponentEdge>([]);
 	const activeTab = useSettings((state) => state.activeTab);
@@ -145,9 +144,7 @@ export function SideTools({ duplicateComponents, dragOutsideRef }: SideToolsProp
 						key: "properties",
 						children: (
 							<div className={styles.details}>
-								{selectedNode && selectedNodes!.length > 0 && (
-									<ComponentProperties duplicateComponents={duplicateComponents} />
-								)}
+								{selectedNode && selectedNodes!.length > 0 && <ComponentProperties />}
 								{selectedEdge && selectedEdges?.length > 0 && <EdgeDetails setEdges={setEdges} />}
 							</div>
 						),
