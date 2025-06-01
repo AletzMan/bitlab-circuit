@@ -10,13 +10,13 @@ import { AggregationColor } from "antd/es/color-picker/color";
 import { useTheme } from "@/store";
 import { useReactFlow } from "@xyflow/react";
 import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
+import { useHistory } from "@/contexts/HistoryContext";
 
 interface IEdgeProps {
-	removeEdges: (edges: ComponentEdge[] | undefined) => void;
 	setEdges: Dispatch<SetStateAction<ComponentEdge[]>>;
 }
 
-export default function EdgeDetails({ removeEdges, setEdges }: IEdgeProps) {
+export default function EdgeDetails({ setEdges }: IEdgeProps) {
 	const { currentTheme } = useTheme();
 	const { getEdges, getNodes, setNodes } = useReactFlow();
 	const {
@@ -28,6 +28,7 @@ export default function EdgeDetails({ removeEdges, setEdges }: IEdgeProps) {
 	const [currentColor, setCurrentColor] = useState(edge?.data?.color);
 	const debouncedColor = useDebounce(currentColor, 500);
 	const presets = genPresets(CustomColorsWire);
+	const { removeEdge } = useHistory();
 
 	useEffect(() => {
 		setCurrentColor(edge?.data?.color);
@@ -52,9 +53,9 @@ export default function EdgeDetails({ removeEdges, setEdges }: IEdgeProps) {
 
 	const handleDelete = () => {
 		if (isSingleEdgeSelection && edge) {
-			removeEdges([edge]);
+			removeEdge([edge]);
 		} else {
-			removeEdges(selectedEdges);
+			removeEdge(selectedEdges);
 		}
 		setSelectedEdge(undefined);
 	};
@@ -109,17 +110,11 @@ export default function EdgeDetails({ removeEdges, setEdges }: IEdgeProps) {
 
 			// Propagar cambios a los nodos conectados por estos edges
 			connectedEdges.forEach((edge) => {
-				const connectedNodeId =
-					edge.source === nodeId ? edge.target : edge.source;
-				const connectedNode = getNodes().find(
-					(node) => node.id === connectedNodeId
-				);
+				const connectedNodeId = edge.source === nodeId ? edge.target : edge.source;
+				const connectedNode = getNodes().find((node) => node.id === connectedNodeId);
 
 				// Asegurarse de que el nodo es del tipo `nodeComponent` y no ha sido procesado
-				if (
-					connectedNode?.type === "nodeComponent" &&
-					!visitedNodes.has(connectedNode.id)
-				) {
+				if (connectedNode?.type === "nodeComponent" && !visitedNodes.has(connectedNode.id)) {
 					visitedNodes.add(connectedNode.id);
 					propagateEdges(connectedNode.id); // Propagar al siguiente nodo
 				}
@@ -179,12 +174,7 @@ export default function EdgeDetails({ removeEdges, setEdges }: IEdgeProps) {
 				<Divider style={{ margin: "16px 0" }} />
 				<label className="label">Actions</label>
 				<Flex gap={10} wrap>
-					<Button
-						className={styles.button}
-						variant="filled"
-						color="danger"
-						onClick={handleDelete}
-					>
+					<Button className={styles.button} variant="filled" color="danger" onClick={handleDelete}>
 						<DeletetIcon />
 					</Button>
 				</Flex>
