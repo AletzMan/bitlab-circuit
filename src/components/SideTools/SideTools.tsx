@@ -9,7 +9,6 @@ import EdgeDetails from "../EdgeDetails/EdgeDetails";
 import { ComponentEdge, ComponentType } from "@/types";
 import { getImageBackgroundDrag } from "@/helpers";
 import { groupByToArray } from "@/helpers";
-import useHistoryManager from "@/hooks/useHistoryManager";
 import { useSettings } from "@/store";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
@@ -21,7 +20,6 @@ interface SideToolsProps {
 export function SideTools({ duplicateComponents, dragOutsideRef }: SideToolsProps) {
 	const { selectedNode, selectedNodes, selectedEdge, selectedEdges } = useSelectedItemsState();
 	const [, setEdges] = useEdgesState<ComponentEdge>([]);
-	const { removeEdge } = useHistoryManager();
 	const activeTab = useSettings((state) => state.activeTab);
 	const setActiveTab = useSettings((state) => state.setActiveTab);
 	const viewTools = useSettings((state) => state.viewTools);
@@ -150,9 +148,7 @@ export function SideTools({ duplicateComponents, dragOutsideRef }: SideToolsProp
 								{selectedNode && selectedNodes!.length > 0 && (
 									<ComponentProperties duplicateComponents={duplicateComponents} />
 								)}
-								{selectedEdge && selectedEdges?.length > 0 && (
-									<EdgeDetails setEdges={setEdges} removeEdges={removeEdge} />
-								)}
+								{selectedEdge && selectedEdges?.length > 0 && <EdgeDetails setEdges={setEdges} />}
 							</div>
 						),
 					},
