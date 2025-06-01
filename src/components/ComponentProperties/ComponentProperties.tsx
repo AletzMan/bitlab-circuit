@@ -1,10 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-	Edge,
-	useNodesData,
-	useReactFlow,
-	useUpdateNodeInternals,
-} from "@xyflow/react";
+import { Edge, useNodesData, useReactFlow, useUpdateNodeInternals } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import {
@@ -29,37 +24,24 @@ import {
 	Button,
 	Flex,
 	Divider,
-	Card,
 	Tooltip,
 	Checkbox,
 	CheckboxChangeEvent,
 	ColorPicker,
 } from "antd";
-import {
-	ComponentData,
-	AnalogNode,
-	UNITS,
-	ComponentType,
-	Categories,
-} from "@/types";
+import { ComponentData, AnalogNode, UNITS, ComponentType, Categories } from "@/types";
 import { genPresets } from "@/helpers";
 import { LedColors } from "@/constants";
 import { AggregationColor } from "antd/es/color-picker/color";
 import { useSelectedItems } from "@/store";
-import useHistoryManager from "@/hooks/useHistoryManager";
+import { useHistory } from "@/contexts/HistoryContext";
 const { Option } = Select;
 
-export function ComponentProperties({
-	duplicateComponents,
-}: {
-	duplicateComponents: () => void;
-}) {
-	const { removeNode, removeEdge } = useHistoryManager();
+export function ComponentProperties({ duplicateComponents }: { duplicateComponents: () => void }) {
+	const { removeNode, removeEdge } = useHistory();
 	const node = useSelectedItems((state) => state.selectedNode);
 	const selectedNodes = useSelectedItems((state) => state.selectedNodes);
-	const isSingleNodeSelection = useSelectedItems(
-		(state) => state.isSingleNodeSelection
-	);
+	const isSingleNodeSelection = useSelectedItems((state) => state.isSingleNodeSelection);
 	const updateNodeInternals = useUpdateNodeInternals();
 	const { updateNodeData, updateNode, getNodes, getEdges } = useReactFlow();
 	const nodeData = useNodesData(node?.id as string);
@@ -101,8 +83,7 @@ export function ComponentProperties({
 
 	const handleRotateLeft = () => {
 		if (node && dataComponent) {
-			const checkRoation =
-				dataComponent.rotation === 0 ? 360 : dataComponent.rotation;
+			const checkRoation = dataComponent.rotation === 0 ? 360 : dataComponent.rotation;
 			let newRotation = checkRoation - 90;
 			if (dataComponent.flip.x === -1 && dataComponent.flip.y === -1) {
 				newRotation = checkRoation - 90;
@@ -153,21 +134,18 @@ export function ComponentProperties({
 				(edge) => edge.source === node?.id || edge.target === node?.id
 			);
 			removeEdge(nodeEdges);
-			removeNode([node as AnalogNode], true);
+			removeNode([node as AnalogNode]);
 		} else {
 			const selectedNodeIds = new Set(selectedNodes?.map((node) => node.id));
 			const nodeEdges: Edge[] = [];
 			getEdges().forEach((element) => {
-				if (
-					selectedNodeIds.has(element.source) ||
-					selectedNodeIds.has(element.target)
-				) {
+				if (selectedNodeIds.has(element.source) || selectedNodeIds.has(element.target)) {
 					nodeEdges.push(element);
 				}
 			});
 
-			removeEdge(nodeEdges, true);
-			removeNode(selectedNodes, true);
+			removeEdge(nodeEdges);
+			removeNode(selectedNodes as AnalogNode[]);
 		}
 	};
 
@@ -242,9 +220,7 @@ export function ComponentProperties({
 		switch (align) {
 			case "h-left":
 				{
-					const topNode = [...nodes].sort(
-						(a, b) => a.position.x - b.position.x
-					)[0];
+					const topNode = [...nodes].sort((a, b) => a.position.x - b.position.x)[0];
 					const posX = topNode.position.x;
 					const nodeHeight = topNode.measured?.width;
 					if (posX && nodeHeight) {
@@ -286,9 +262,7 @@ export function ComponentProperties({
 				{
 					const sortNodes = [...nodes].sort(
 						(a, b) =>
-							b.position.x +
-							(b.measured?.width ?? 0) -
-							(a.position.x + (a.measured?.width ?? 0))
+							b.position.x + (b.measured?.width ?? 0) - (a.position.x + (a.measured?.width ?? 0))
 					);
 					const bottomNode = sortNodes[0];
 					const posX = bottomNode.position.x;
@@ -311,9 +285,7 @@ export function ComponentProperties({
 				break;
 			case "v-top":
 				{
-					const topNode = [...nodes].sort(
-						(a, b) => a.position.y - b.position.y
-					)[0];
+					const topNode = [...nodes].sort((a, b) => a.position.y - b.position.y)[0];
 					const posY = topNode.position.y;
 					const nodeHeight = topNode.measured?.height;
 					if (posY && nodeHeight) {
@@ -355,9 +327,7 @@ export function ComponentProperties({
 				{
 					const sortNodes = [...nodes].sort(
 						(a, b) =>
-							b.position.y +
-							(b.measured?.height ?? 0) -
-							(a.position.y + (a.measured?.height ?? 0))
+							b.position.y + (b.measured?.height ?? 0) - (a.position.y + (a.measured?.height ?? 0))
 					);
 					const bottomNode = sortNodes[0];
 					const posY = bottomNode.position.y;
@@ -380,9 +350,7 @@ export function ComponentProperties({
 				break;
 			case "h-dist":
 				{
-					const sortedNodes = [...nodes].sort(
-						(a, b) => (a.position.x ?? 0) - (b.position.x ?? 0)
-					);
+					const sortedNodes = [...nodes].sort((a, b) => (a.position.x ?? 0) - (b.position.x ?? 0));
 
 					if (sortedNodes.length < 2) break;
 
@@ -403,9 +371,7 @@ export function ComponentProperties({
 				break;
 			case "v-dist":
 				{
-					const sortedNodes = [...nodes].sort(
-						(a, b) => (a.position.y ?? 0) - (b.position.y ?? 0)
-					);
+					const sortedNodes = [...nodes].sort((a, b) => (a.position.y ?? 0) - (b.position.y ?? 0));
 
 					if (sortedNodes.length < 2) break;
 
@@ -441,9 +407,7 @@ export function ComponentProperties({
 					<div className={styles.value}>
 						<Flex vertical>
 							<label className={styles.value_label}>Designator</label>
-							<label className={styles.label_designator}>
-								{node?.data?.designator}
-							</label>
+							<label className={styles.label_designator}>{node?.data?.designator}</label>
 						</Flex>
 						<label className={`${styles.value_label} ${styles.value_hidden}`}>
 							Hidden
@@ -466,9 +430,7 @@ export function ComponentProperties({
 												value={dataComponent?.value}
 												size="middle"
 												onChange={(e) => {
-													const newValue = e.target.value
-														? parseFloat(e.target.value)
-														: 0;
+													const newValue = e.target.value ? parseFloat(e.target.value) : 0;
 													if (dataComponent) {
 														setDataComponent({
 															...dataComponent,
@@ -494,9 +456,7 @@ export function ComponentProperties({
 												}
 											/>
 										</Flex>
-										<label
-											className={`${styles.value_label} ${styles.value_hidden}`}
-										>
+										<label className={`${styles.value_label} ${styles.value_hidden}`}>
 											Hidden
 											<Checkbox
 												onChange={handleChangeHiddenValue}
@@ -509,17 +469,13 @@ export function ComponentProperties({
 											<Divider style={{ margin: "4px 0" }} variant="dashed" />
 											<div className={styles.value}>
 												<Flex vertical>
-													<label className={styles.value_label}>
-														Optional Value
-													</label>
+													<label className={styles.value_label}>Optional Value</label>
 													<Input
 														className={styles.value_number}
 														value={dataComponent?.value_optional}
 														size="middle"
 														onChange={(e) => {
-															const newValue = e.target.value
-																? parseFloat(e.target.value)
-																: 0;
+															const newValue = e.target.value ? parseFloat(e.target.value) : 0;
 															if (dataComponent) {
 																setDataComponent({
 																	...dataComponent,
@@ -538,21 +494,17 @@ export function ComponentProperties({
 																	onChange={handleChangeUnitOptional}
 																>
 																	{dataComponent.unit_optional &&
-																		UNITS[dataComponent.unit_optional].map(
-																			(value) => (
-																				<Option key={value} value={value}>
-																					{value}
-																				</Option>
-																			)
-																		)}
+																		UNITS[dataComponent.unit_optional].map((value) => (
+																			<Option key={value} value={value}>
+																				{value}
+																			</Option>
+																		))}
 																</Select>
 															)
 														}
 													/>
 												</Flex>
-												<label
-													className={`${styles.value_label} ${styles.value_hidden}`}
-												>
+												<label className={`${styles.value_label} ${styles.value_hidden}`}>
 													Hidden
 													<Checkbox
 														onChange={handleChangeHiddenValueOptional}
@@ -566,10 +518,7 @@ export function ComponentProperties({
 							)}
 							{dataComponent?.type === ComponentType.Led && (
 								<>
-									<Divider
-										style={{ margin: "12px 0 4px 0" }}
-										variant="dashed"
-									/>
+									<Divider style={{ margin: "12px 0 4px 0" }} variant="dashed" />
 									<Flex vertical>
 										<label className={styles.value_label}>Color</label>
 										<Flex vertical align="flex-start" justify="center">
@@ -587,17 +536,11 @@ export function ComponentProperties({
 							)}
 							{dataComponent?.state && (
 								<>
-									<Divider
-										style={{ margin: "12px 0 4px 0" }}
-										variant="dashed"
-									/>
+									<Divider style={{ margin: "12px 0 4px 0" }} variant="dashed" />
 									<Flex vertical>
 										<label className={styles.value_label}>State</label>
 										<Flex vertical align="flex-start" justify="center">
-											<Checkbox
-												onChange={handleChangeState}
-												checked={dataComponent?.state.on}
-											>
+											<Checkbox onChange={handleChangeState} checked={dataComponent?.state.on}>
 												{dataComponent?.state.on ? "Closed" : "Open"}
 											</Checkbox>
 										</Flex>
@@ -613,12 +556,7 @@ export function ComponentProperties({
 				<>
 					<Flex className={styles.groupNodes} wrap gap="4px">
 						{selectedNodes?.map((node) => (
-							<Tooltip
-								key={node.id}
-								placement="top"
-								color="cyan"
-								title={node.data?.designator}
-							>
+							<Tooltip key={node.id} placement="top" color="cyan" title={node.data?.designator}>
 								<Button
 									key={node.id}
 									size="middle"
@@ -645,11 +583,7 @@ export function ComponentProperties({
 					<label className={styles.label}>Align</label>
 					<Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
 					<Flex className={styles.groupNodes} wrap gap="4px">
-						<Tooltip
-							placement="top"
-							title="Horizontal Align Left (Ctrl+Alt+Left)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Horizontal Align Left (Ctrl+Alt+Left)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -659,11 +593,7 @@ export function ComponentProperties({
 								<AlignLeftIcon />
 							</Button>
 						</Tooltip>
-						<Tooltip
-							placement="top"
-							title="Horizontal Align Center (Ctrl+Alt+Right)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Horizontal Align Center (Ctrl+Alt+Right)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -673,11 +603,7 @@ export function ComponentProperties({
 								<AlignHorizontalCenterIcon />
 							</Button>
 						</Tooltip>
-						<Tooltip
-							placement="top"
-							title="Horizontal Align Right (Ctrl+Alt+Right)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Horizontal Align Right (Ctrl+Alt+Right)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -687,11 +613,7 @@ export function ComponentProperties({
 								<AlignRightIcon />
 							</Button>
 						</Tooltip>
-						<Tooltip
-							placement="top"
-							title="Vertical Align Top (Ctrl+Alt+Up)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Vertical Align Top (Ctrl+Alt+Up)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -701,11 +623,7 @@ export function ComponentProperties({
 								<AlignTopIcon />
 							</Button>
 						</Tooltip>
-						<Tooltip
-							placement="top"
-							title="Vertical Align Center (Ctrl+Alt+Up)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Vertical Align Center (Ctrl+Alt+Up)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -715,11 +633,7 @@ export function ComponentProperties({
 								<AlignVerticalCenterIcon />
 							</Button>
 						</Tooltip>
-						<Tooltip
-							placement="top"
-							title="Vertical Align Bottom (Ctrl+Alt+Bottom)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Vertical Align Bottom (Ctrl+Alt+Bottom)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -734,11 +648,7 @@ export function ComponentProperties({
 					<label className={styles.label}>Distribute spacing</label>
 					<Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
 					<Flex className={styles.groupNodes} wrap gap="4px">
-						<Tooltip
-							placement="top"
-							title="Distribute Horizontal (Ctrl+Alt+0)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Distribute Horizontal (Ctrl+Alt+0)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -748,11 +658,7 @@ export function ComponentProperties({
 								<DistributeHorizontalIcon />
 							</Button>
 						</Tooltip>
-						<Tooltip
-							placement="top"
-							title="Distribute Vertical (Ctrl+Alt+1)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Distribute Vertical (Ctrl+Alt+1)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -771,11 +677,7 @@ export function ComponentProperties({
 					<label className="label">Transform</label>
 					<Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
 					<Flex gap={10} wrap>
-						<Tooltip
-							placement="top"
-							title="Flip Horizontal (Ctrl+Alt+Left)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Flip Horizontal (Ctrl+Alt+Left)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -788,11 +690,7 @@ export function ComponentProperties({
 								/>
 							</Button>
 						</Tooltip>
-						<Tooltip
-							placement="top"
-							title="Flip Vertical (Ctrl+Alt+Down)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Flip Vertical (Ctrl+Alt+Down)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -805,11 +703,7 @@ export function ComponentProperties({
 								/>
 							</Button>
 						</Tooltip>
-						<Tooltip
-							placement="top"
-							title="Rotate Left (Ctrl+Alt+L)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Rotate Left (Ctrl+Alt+L)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
@@ -819,11 +713,7 @@ export function ComponentProperties({
 								<RotateLeftIcon />
 							</Button>
 						</Tooltip>
-						<Tooltip
-							placement="top"
-							title="Rotate Right (Ctrl+Alt+R)"
-							color="cyan"
-						>
+						<Tooltip placement="top" title="Rotate Right (Ctrl+Alt+R)" color="cyan">
 							<Button
 								className={styles.button}
 								variant="outlined"
