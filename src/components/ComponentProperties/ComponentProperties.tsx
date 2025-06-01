@@ -201,7 +201,6 @@ export function ComponentProperties() {
 
 	const handleChangeColorWire = (value: AggregationColor, _css: string) => {
 		if (node && dataComponent) {
-			console.log(value.toHexString());
 			updateNodeData(node?.id, { color: value.toHexString() });
 			setDataComponent({ ...dataComponent, color: value.toHexString() });
 		}
@@ -390,8 +389,6 @@ export function ComponentProperties() {
 							position: { ...prevNode.position, y: newY },
 						}));
 					});
-
-					console.log("Distribución vertical completa:", sortedNodes);
 				}
 				break;
 
