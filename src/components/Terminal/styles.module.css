@@ -1,6 +1,7 @@
 .terminal {
-    width: 4px;
-    height: 4px;
-    background-color: var(--foreground-color);
-    border: 0 solid var(--foreground-color);
+	width: 1px;
+	height: 1px;
+	border-radius: 0;
+	background-color: var(--foreground-color);
+	border: 0 solid var(--foreground-color);
 }
