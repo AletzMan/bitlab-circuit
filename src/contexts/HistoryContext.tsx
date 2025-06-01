@@ -263,7 +263,6 @@ export const HistoryProvider: React.FC<HistoryProviderProps> = ({ children }) =>
 		() => currentIndex.current < history.length - 1,
 		[history.length, currentIndex.current]
 	);
-	console.log(currentIndex.current, history.length);
 
 	const contextValue = {
 		addNode,
