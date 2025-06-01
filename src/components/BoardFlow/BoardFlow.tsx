@@ -38,7 +38,7 @@ import { TransistorComponent } from "@/components/ElectronicComponents/Transisto
 import { MechanicalComponent } from "@/components/ElectronicComponents/MechanicalComponent/MechanicalComponent";
 import { getComponentProperties, getNewPositionByOverlapping, isPointInBox } from "@/helpers";
 import { ConfigProvider, theme } from "antd";
-import useHistoryManager from "@/hooks/useHistoryManager";
+import { useHistory } from "@/contexts/HistoryContext";
 import useShortcuts from "@/hooks/useShortcuts";
 import { ComponentsMap } from "@/constants/components";
 import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
@@ -167,15 +167,8 @@ export function BoardFlow() {
 	const edgeReconnectSuccessful = useRef(false);
 	const overlappingNodeRef = useRef<AnalogNode | null>(null);
 	const { screenToFlowPosition, getIntersectingNodes, updateNode } = useReactFlow();
-	const { addNode, addEdge, removeEdge, recordNodeMove, removeNode, undo, redo, canRedo, canUndo } =
-		useHistoryManager();
-	const { duplicateComponents } = useShortcuts({
-		undo,
-		redo,
-		removeNode,
-		removeEdge,
-		addNode,
-	});
+	const { addNode, addEdge, removeEdge, recordNodeMove } = useHistory();
+	const { duplicateComponents } = useShortcuts();
 	const nodeSelection = useRef<AnalogNode | null>(null);
 	const nodeBeingDragged = useRef<AnalogNode | null>(null);
 	const { currentTheme } = useTheme();
@@ -612,7 +605,7 @@ export function BoardFlow() {
 			}}
 		>
 			<div className={styles.board}>
-				<MenuBar undo={undo} redo={redo} canUndo={canUndo} canRedo={canRedo} />
+				<MenuBar />
 				<div className={`${styles.flow} ${viewTools ? "" : styles.flow_hidden}`}>
 					<ReactFlow
 						defaultEdgeOptions={{ type: "wire" }}
