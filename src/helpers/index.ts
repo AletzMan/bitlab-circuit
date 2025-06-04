@@ -11,6 +11,12 @@ import {
 import { XYPosition } from "@xyflow/react";
 import { createRoot } from "react-dom/client";
 
+/**
+ * Verifica si un punto está dentro de un cuadrado.
+ * @param point - El punto a verificar.
+ * @param box - El cuadrado en el que se verificará.
+ * @returns Un booleano que indica si el punto está dentro del cuadrado.
+ */
 export const isPointInBox = (
 	point: { x: number; y: number },
 	box: { x: number; y: number; height: number; width: number }
@@ -23,6 +29,11 @@ export const isPointInBox = (
 	);
 };
 
+/**
+ * Obtiene la unidad de un componente.
+ * @param type - El tipo del componente.
+ * @returns Un string que representa la unidad del componente.
+ */
 export function getUnit(type: ComponentType) {
 	let unit;
 	switch (type) {
@@ -38,7 +49,11 @@ export function getUnit(type: ComponentType) {
 	return unit;
 }
 
-// Función para calcular la luminancia
+/**
+ * Calcula la luminancia de un color en formato hexadecimal.
+ * @param hex - El color en formato hexadecimal.
+ * @returns Un número que representa la luminancia del color.
+ */
 export function getLuminance(hex: string): number {
 	const [r, g, b] = hex
 		.replace("#", "")
@@ -51,7 +66,12 @@ export function getLuminance(hex: string): number {
 	return 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
 }
 
-// Función para verificar si hay buen contraste
+/**
+ * Verifica si hay buen contraste.
+ * @param colorHex - El color en formato hexadecimal.
+ * @param theme - El tema ("dark" o "light").
+ * @returns Un booleano que indica si hay buen contraste.
+ */
 export function hasGoodContrast(colorHex: string, theme: "dark" | "light"): boolean {
 	const colorLuminance = getLuminance(colorHex);
 	const themeLuminance = theme === "dark" ? 0 : 1;
@@ -63,6 +83,11 @@ export function hasGoodContrast(colorHex: string, theme: "dark" | "light"): bool
 	return contrastRatio >= 4.5;
 }
 
+/**
+ * Genera los presets para los colores.
+ * @param customColors - Los colores personalizados.
+ * @returns Un array de presets.
+ */
 export function genPresets(customColors: { [key: string]: string[] }) {
 	return Object.entries(customColors).map<Presets>(([label, colors]) => ({
 		label,
@@ -71,6 +96,12 @@ export function genPresets(customColors: { [key: string]: string[] }) {
 	}));
 }
 
+/**
+ * Obtiene las propiedades de un componente.
+ * @param type - El tipo del componente.
+ * @param components - Los componentes del circuito.
+ * @returns Un objeto con las propiedades del componente.
+ */
 export function getComponentProperties(
 	type: ComponentType,
 	components: AnalogNode[]
@@ -124,6 +155,11 @@ const initialValues = Object.keys(ComponentsMap).reduce((acc, key) => {
 	return acc;
 }, {} as Record<ComponentType, number>);
 
+/**
+ * Reordena los designadores de los componentes.
+ * @param components - Los componentes a reordenar.
+ * @returns Un array de componentes con los designadores reordenados.
+ */
 export function reorderComponentDesignators(components: AnalogNode[]): AnalogNode[] {
 	const typeCounters: Record<
 		| ComponentType
@@ -185,6 +221,11 @@ export function reorderComponentDesignators(components: AnalogNode[]): AnalogNod
 	});
 }
 
+/**
+ * Obtiene la imagen de arrastre para un componente.
+ * @param type - El tipo del componente.
+ * @returns Un div con la imagen de arrastre.
+ */
 export function getImageBackgroundDrag(type: ComponentType): HTMLDivElement {
 	let currentComponent: ComponentProperties | undefined = undefined;
 
@@ -265,6 +306,12 @@ export const getNewPositionByOverlapping = (
 	return { x: dragNodePosition.x - offsetX, y: dragNodePosition.y - offsetY };
 };
 
+/**
+ * Agrupa los ítems en un objeto con claves y valores.
+ * @param items - Los ítems a agrupar.
+ * @param key - La clave por la que se agruparán los ítems.
+ * @returns Un objeto con claves y valores.
+ */
 export function groupBy<T, K extends keyof T>(items: T[], key: K): Record<string, T[]> {
 	return items.reduce((acc, item) => {
 		const groupKey = String(item[key]); // Convertimos la clave a string
@@ -276,6 +323,12 @@ export function groupBy<T, K extends keyof T>(items: T[], key: K): Record<string
 	}, {} as Record<string, T[]>);
 }
 
+/**
+ * Agrupa los ítems en un array de objetos con categoría e ítems.
+ * @param items - Los ítems a agrupar.
+ * @param key - La clave por la que se agruparán los ítems.
+ * @returns Un array de objetos con categoría e ítems.
+ */
 export function groupByToArray<T, K extends keyof T>(
 	items: T[],
 	key: K
@@ -296,6 +349,12 @@ export function groupByToArray<T, K extends keyof T>(
 	}));
 }
 
+/**
+ * Obtiene el siguiente número de designador para un componente.
+ * @param designator - El designador actual.
+ * @param nodes - Los nodos del circuito.
+ * @returns El siguiente número de designador.
+ */
 export function getNextDesignatorNumber(designator: string, nodes: AnalogNode[]): string {
 	const quantityNodes = nodes.filter(
 		(node) => node.data.designator.replace(/\d+/g, "") === designator.replace(/\d+/g, "")
@@ -304,6 +363,11 @@ export function getNextDesignatorNumber(designator: string, nodes: AnalogNode[])
 	return `${letterDesignator}${quantityNodes + 1}`;
 }
 
+/**
+ * Construye un gráfico a partir de las conexiones del circuito.
+ * @param edges - Las conexiones del circuito.
+ * @returns Un gráfico que representa el circuito.
+ */
 function buildGraph(edges: ComponentEdge[]): Map<string, Set<string>> {
 	const graph = new Map<string, Set<string>>();
 
@@ -321,6 +385,11 @@ function buildGraph(edges: ComponentEdge[]): Map<string, Set<string>> {
 	return graph;
 }
 
+/**
+ * Conecta los terminales internos de los nodos en el gráfico.
+ * @param nodes - Los nodos del circuito.
+ * @param graph - El gráfico que representa el circuito.
+ */
 function connectInternalTerminals(nodes: AnalogNode[], graph: Map<string, Set<string>>): void {
 	for (const node of nodes) {
 		const handles = node.data.connectedHandles;
@@ -339,6 +408,12 @@ function connectInternalTerminals(nodes: AnalogNode[], graph: Map<string, Set<st
 	}
 }
 
+/**
+ * Verifica si el circuito está listo para la simulación.
+ * @param nodes - Los nodos del circuito.
+ * @param edges - Las conexiones del circuito.
+ * @returns Un objeto que indica si el circuito está listo, un mensaje y las conexiones actualizadas.
+ */
 export function isSimulationReady(
 	nodes: AnalogNode[],
 	edges: ComponentEdge[]
@@ -349,7 +424,11 @@ export function isSimulationReady(
 	const powerSources = nodes.filter((n) => ["battery", "powersupply"].includes(n.data.type));
 
 	if (powerSources.length === 0) {
-		return { isReady: false, message: "No hay fuente de energía.", updatedEdges: edges };
+		return {
+			isReady: false,
+			message: "No hay fuente de energía.",
+			updatedEdges: edges,
+		};
 	}
 
 	let allValidPaths: string[][] = [];
@@ -376,27 +455,47 @@ export function isSimulationReady(
 		}
 	}
 
-	let updatedEdges = [...edges];
-
-	if (allValidPaths.length > 0) {
-		for (const path of allValidPaths) {
-			updatedEdges = markEdgeFlowDirection(path, updatedEdges);
-		}
-
+	if (allValidPaths.length === 0) {
 		return {
-			isReady: true,
-			message: "Circuito cerrado con al menos un camino.",
-			updatedEdges,
+			isReady: false,
+			message: "No se encontró un camino válido en el circuito.",
+			updatedEdges: edges,
 		};
 	}
 
+	// Validar polaridad consistente entre fuentes
+	const consistentPaths = allValidPaths.filter((path) =>
+		isPathPolarityConsistent(path, powerSources)
+	);
+
+	if (consistentPaths.length === 0) {
+		return {
+			isReady: false,
+			message: "Hay conflictos de polaridad entre las fuentes de energía.",
+			updatedEdges: edges,
+		};
+	}
+
+	// Marcar direcciones solo en caminos válidos y consistentes
+	let updatedEdges = [...edges];
+	for (const path of consistentPaths) {
+		updatedEdges = markEdgeFlowDirection(path, updatedEdges);
+	}
+
 	return {
-		isReady: false,
-		message: "No se encontró un camino válido en el circuito.",
+		isReady: true,
+		message: "Circuito cerrado con al menos un camino válido y polaridad consistente.",
 		updatedEdges,
 	};
 }
 
+/**
+ * Encuentra todos los caminos posibles en el gráfico.
+ * @param graph - El gráfico que representa el circuito.
+ * @param start - El nodo de inicio.
+ * @param end - El nodo de fin.
+ * @returns Un array de arrays que representan los caminos posibles.
+ */
 function findAllPaths(graph: Map<string, Set<string>>, start: string, end: string): string[][] {
 	const paths: string[][] = [];
 	const visited = new Set<string>();
@@ -423,6 +522,7 @@ function findAllPaths(graph: Map<string, Set<string>>, start: string, end: strin
 	dfs(start, [start]);
 	return paths;
 }
+
 type PathInfo = {
 	sourceId: string;
 	start: string;
@@ -431,6 +531,12 @@ type PathInfo = {
 	nodesInPath: AnalogNode[];
 };
 
+/**
+ * Obtiene los caminos cerrados en el circuito.
+ * @param nodes - Los nodos del circuito.
+ * @param edges - Las conexiones del circuito.
+ * @returns Un array de objetos que representan los caminos cerrados.
+ */
 export function getClosedCircuitPaths(nodes: AnalogNode[], edges: ComponentEdge[]): PathInfo[] {
 	const graph = buildGraph(edges);
 	connectInternalTerminals(nodes, graph);
@@ -478,8 +584,14 @@ export function getClosedCircuitPaths(nodes: AnalogNode[], edges: ComponentEdge[
 	return results;
 }
 
-export type FlowDirection = "forward" | "backward" | "none";
+export type FlowDirection = "forward" | "backward";
 
+/**
+ * Marca la dirección de las aristas en el circuito.
+ * @param path - El camino que se va a marcar.
+ * @param edges - Las aristas del circuito.
+ * @returns Un array de aristas actualizadas.
+ */
 export function markEdgeFlowDirection(path: string[], edges: ComponentEdge[]): ComponentEdge[] {
 	const updatedEdgeIds = new Set<string>();
 	const updatedEdges: ComponentEdge[] = [];
@@ -526,4 +638,41 @@ export function markEdgeFlowDirection(path: string[], edges: ComponentEdge[]): C
 	return edges.map((edge) =>
 		updatedEdgeIds.has(edge.id) ? updatedEdges.find((e) => e.id === edge.id)! : edge
 	);
+}
+
+/**
+ * Verifica si el circuito está cerrado y tiene una polaridad consistente.
+ * @param path - El camino que se va a verificar.
+ * @param powerSources - Las fuentes de energía del circuito.
+ * @returns Un booleano que indica si el circuito está cerrado y tiene una polaridad consistente.
+ */
+function isPathPolarityConsistent(path: string[], powerSources: AnalogNode[]): boolean {
+	//Iterar sobre las fuentes de energía del circuito para verificar si el circuito está cerrado y tiene una polaridad consistente.
+	for (let i = 0; i < powerSources.length; i++) {
+		const source = powerSources[i];
+		const handles = source.data.connectedHandles;
+		const posIndex = handles.findIndex((h) => h.type === "positive");
+		const negIndex = handles.findIndex((h) => h.type === "negative");
+
+		if (posIndex === -1 || negIndex === -1) continue;
+
+		const posHandle = `${source.id}:${posIndex + 1}`;
+		const negHandle = `${source.id}:${negIndex + 1}`;
+
+		const posIdx = path.indexOf(posHandle);
+		const negIdx = path.indexOf(negHandle);
+
+		if (posIdx !== -1 && negIdx !== -1) {
+			// Corriente convencional: entra por positivo y sale por negativo → positivo debe ir antes
+			if (posIdx < negIdx && i === 0) {
+				continue; // OK
+			} else if (posIdx > negIdx && i > 0) {
+				continue; // OK
+			} else {
+				return false; // conflicto de polaridad
+			}
+		}
+	}
+
+	return true;
 }
