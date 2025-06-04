@@ -12,7 +12,7 @@
 	stroke-miterlimit: 10;
 	stroke-opacity: 1;
 	animation: dash 0.5s linear infinite;
-	stroke: goldenrod;
+	stroke: var(--wire-color, var(--foreground-color));
 }
 
 .wire_simulation_reverse {
@@ -24,7 +24,7 @@
 	stroke-miterlimit: 10;
 	stroke-opacity: 1;
 	animation: dash-reverse 0.5s linear infinite;
-	stroke: goldenrod;
+	stroke: var(--wire-color, var(--foreground-color));
 }
 
 @keyframes dash {
