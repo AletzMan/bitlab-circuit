@@ -29,7 +29,6 @@ export function SimulationControls() {
 		const nodes = getNodes() as AnalogNode[];
 		const edges = getEdges() as ComponentEdge[];
 		const { isReady, message, updatedEdges } = isSimulationReady(nodes, edges);
-		console.log(updatedEdges);
 		updatedEdges.forEach((edge) => {
 			updateEdge(edge.id, edge);
 		});
