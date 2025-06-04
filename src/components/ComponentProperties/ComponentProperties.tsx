@@ -553,12 +553,12 @@ export function ComponentProperties() {
 			)}
 			{!isSingleNodeSelection && (
 				<>
-					<Flex className={styles.groupNodes} wrap gap="4px">
+					<Flex className={`${styles.groupNodes} scrollbar_thin`} wrap gap="4px">
 						{selectedNodes?.map((node) => (
 							<Tooltip key={node.id} placement="top" color="cyan" title={node.data?.designator}>
 								<Button
 									key={node.id}
-									size="middle"
+									size="small"
 									variant="filled"
 									color="cyan"
 									style={{
@@ -577,8 +577,8 @@ export function ComponentProperties() {
 								</Button>
 							</Tooltip>
 						))}
-						<Divider style={{ margin: "16px 0" }} />
 					</Flex>
+					<Divider style={{ margin: "16px 0" }} />
 					<label className={styles.label}>Align</label>
 					<Divider style={{ margin: "0px 0 12px 0" }} variant="dashed" />
 					<Flex className={styles.groupNodes} wrap gap="4px">
