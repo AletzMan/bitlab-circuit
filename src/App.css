@@ -14,6 +14,7 @@ body {
 	--foreground-color: #000000;
 	--designator-color: #690303;
 	--action-color: #690303;
+	--success-color: #0eb121;
 	--background-color: #f3f2f2;
 	--background-color-tab: #ffffff;
 	--background-color-tab-inactive: #e6e6e6;
@@ -43,6 +44,7 @@ body {
 	--foreground-color: #ffffff;
 	--designator-color: #c39950;
 	--action-color: #0eb121;
+	--success-color: #0eb121;
 	--action-background-color: #0eb12135;
 	--background-color: #292929;
 	--background-color-tab: #151515;
@@ -264,10 +266,14 @@ body {
 .ant-tabs-top>div>.ant-tabs-nav,
 .ant-tabs-bottom>div>.ant-tabs-nav {
     margin: 0;
+} 
+*/
+
+.scrollbar_thin {
+	scrollbar-width: thin;
+	scrollbar-color: var(--fill-minimap-node) var(--background-minimap);
 }
 
-
-*/
 .elementDrag {
 	color: var(--foreground-color);
 	border: 1px dashed var(--foreground-color);
