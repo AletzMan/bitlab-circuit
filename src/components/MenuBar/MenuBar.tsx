@@ -1,4 +1,4 @@
-import { Button, ConfigProvider, Divider, Switch, theme, Tooltip } from "antd";
+import { Button, ConfigProvider, Divider, Select, Switch, theme, Tooltip } from "antd";
 import {
 	DarkIcon,
 	ExportIcon,
@@ -15,11 +15,12 @@ import {
 	UndoIcon,
 } from "@/icons";
 import { useTheme } from "@/store";
-import { useReactFlow } from "@xyflow/react";
+import { BackgroundVariant, useReactFlow } from "@xyflow/react";
 import { useSettings } from "@/store";
 import { KeyboardEvent } from "react";
 import styles from "./styles.module.css";
 import { useHistory } from "@/contexts/HistoryContext";
+import { SimulationControls } from "./components/SimulationControls/SimulationControls";
 
 export function MenuBar() {
 	const { currentTheme, setCurrentTheme } = useTheme();
@@ -27,6 +28,8 @@ export function MenuBar() {
 	const setViewPort = useSettings((state) => state.setViewPort);
 	const setViewTools = useSettings((state) => state.setViewTools);
 	const viewTools = useSettings((state) => state.viewTools);
+	const gridType = useSettings((state) => state.currentGridType);
+	const setGridType = useSettings((state) => state.setCurrentGridType);
 	const { fitView } = useReactFlow();
 	const { undo, redo, canUndo, canRedo } = useHistory();
 
@@ -110,6 +113,15 @@ export function MenuBar() {
 						</Tooltip>
 					</div>
 					<Divider type="vertical" />
+					<Select value={gridType} onChange={(value) => setGridType(value)}>
+						<Select.Option value={BackgroundVariant.Cross}>Cross</Select.Option>
+						<Select.Option value={BackgroundVariant.Dots}>Dots</Select.Option>
+						<Select.Option value={BackgroundVariant.Lines}>Lines</Select.Option>
+					</Select>
+					<Divider type="vertical" />
+					<div className={styles.menubarButtonsGroup}>
+						<SimulationControls />
+					</div>
 					<div className={styles.switchContainer}>
 						<Switch
 							value={currentTheme === "light"}
