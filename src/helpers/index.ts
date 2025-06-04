@@ -1,6 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentsMap, TypeGroupKey, typeGroups } from "@/constants/components";
-import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
+import {
+	AnalogNode,
+	ComponentEdge,
+	ComponentProperties,
+	ComponentType,
+	EdgeData,
+	Presets,
+} from "../types";
 import { XYPosition } from "@xyflow/react";
 import { createRoot } from "react-dom/client";
 
@@ -295,4 +302,228 @@ export function getNextDesignatorNumber(designator: string, nodes: AnalogNode[])
 	).length;
 	const letterDesignator = designator.replace(/\d+/g, "");
 	return `${letterDesignator}${quantityNodes + 1}`;
+}
+
+function buildGraph(edges: ComponentEdge[]): Map<string, Set<string>> {
+	const graph = new Map<string, Set<string>>();
+
+	for (const edge of edges) {
+		const source = `${edge.source}:${edge.sourceHandle}`;
+		const target = `${edge.target}:${edge.targetHandle}`;
+
+		if (!graph.has(source)) graph.set(source, new Set());
+		if (!graph.has(target)) graph.set(target, new Set());
+
+		graph.get(source)!.add(target);
+		graph.get(target)!.add(source); // Bidireccional
+	}
+
+	return graph;
+}
+
+function connectInternalTerminals(nodes: AnalogNode[], graph: Map<string, Set<string>>): void {
+	for (const node of nodes) {
+		const handles = node.data.connectedHandles;
+		for (let i = 0; i < handles.length; i++) {
+			for (let j = i + 1; j < handles.length; j++) {
+				const h1 = `${node.id}:${i + 1}`;
+				const h2 = `${node.id}:${j + 1}`;
+
+				if (!graph.has(h1)) graph.set(h1, new Set());
+				if (!graph.has(h2)) graph.set(h2, new Set());
+
+				graph.get(h1)!.add(h2);
+				graph.get(h2)!.add(h1);
+			}
+		}
+	}
+}
+
+export function isSimulationReady(
+	nodes: AnalogNode[],
+	edges: ComponentEdge[]
+): { isReady: boolean; message: string; updatedEdges: ComponentEdge[] } {
+	const graph = buildGraph(edges);
+	connectInternalTerminals(nodes, graph);
+
+	const powerSources = nodes.filter((n) => ["battery", "powersupply"].includes(n.data.type));
+
+	if (powerSources.length === 0) {
+		return { isReady: false, message: "No hay fuente de energía.", updatedEdges: edges };
+	}
+
+	let allValidPaths: string[][] = [];
+
+	for (const source of powerSources) {
+		const handles = source.data.connectedHandles;
+
+		const posIndex = handles.findIndex((h) => h.type === "positive");
+		const negIndex = handles.findIndex((h) => h.type === "negative");
+
+		if (
+			posIndex !== -1 &&
+			negIndex !== -1 &&
+			handles[posIndex].isConnected &&
+			handles[negIndex].isConnected
+		) {
+			const start = `${source.id}:${posIndex + 1}`;
+			const end = `${source.id}:${negIndex + 1}`;
+
+			const paths = findAllPaths(graph, start, end);
+			const validPaths = paths.filter((p) => p.length > 2);
+
+			allValidPaths.push(...validPaths);
+		}
+	}
+
+	let updatedEdges = [...edges];
+
+	if (allValidPaths.length > 0) {
+		for (const path of allValidPaths) {
+			updatedEdges = markEdgeFlowDirection(path, updatedEdges);
+		}
+
+		return {
+			isReady: true,
+			message: "Circuito cerrado con al menos un camino.",
+			updatedEdges,
+		};
+	}
+
+	return {
+		isReady: false,
+		message: "No se encontró un camino válido en el circuito.",
+		updatedEdges,
+	};
+}
+
+function findAllPaths(graph: Map<string, Set<string>>, start: string, end: string): string[][] {
+	const paths: string[][] = [];
+	const visited = new Set<string>();
+
+	function dfs(current: string, path: string[]) {
+		if (current === end) {
+			paths.push([...path]);
+			return;
+		}
+
+		visited.add(current);
+
+		for (const neighbor of graph.get(current) || []) {
+			if (!visited.has(neighbor)) {
+				path.push(neighbor);
+				dfs(neighbor, path);
+				path.pop();
+			}
+		}
+
+		visited.delete(current);
+	}
+
+	dfs(start, [start]);
+	return paths;
+}
+type PathInfo = {
+	sourceId: string;
+	start: string;
+	end: string;
+	path: string[];
+	nodesInPath: AnalogNode[];
+};
+
+export function getClosedCircuitPaths(nodes: AnalogNode[], edges: ComponentEdge[]): PathInfo[] {
+	const graph = buildGraph(edges);
+	connectInternalTerminals(nodes, graph);
+
+	const powerSources = nodes.filter((n) => ["battery", "powersupply"].includes(n.data.type));
+
+	const results: PathInfo[] = [];
+
+	for (const source of powerSources) {
+		const handles = source.data.connectedHandles;
+
+		const posIndex = handles.findIndex((h) => h.type === "positive");
+		const negIndex = handles.findIndex((h) => h.type === "negative");
+
+		if (
+			posIndex !== -1 &&
+			negIndex !== -1 &&
+			handles[posIndex].isConnected &&
+			handles[negIndex].isConnected
+		) {
+			const start = `${source.id}:${posIndex + 1}`;
+			const end = `${source.id}:${negIndex + 1}`;
+
+			const paths = findAllPaths(graph, start, end);
+
+			// Solo caminos de longitud mayor a 2
+			const validPaths = paths.filter((p) => p.length > 2);
+
+			for (const path of validPaths) {
+				const nodeIds = new Set(path.map((handleId) => handleId.split(":")[0]));
+
+				const nodesInPath = nodes.filter((n) => nodeIds.has(n.id));
+
+				results.push({
+					sourceId: source.id,
+					start,
+					end,
+					path,
+					nodesInPath,
+				});
+			}
+		}
+	}
+
+	return results;
+}
+
+export type FlowDirection = "forward" | "backward" | "none";
+
+export function markEdgeFlowDirection(path: string[], edges: ComponentEdge[]): ComponentEdge[] {
+	const updatedEdgeIds = new Set<string>();
+	const updatedEdges: ComponentEdge[] = [];
+
+	for (let i = 0; i < path.length - 1; i++) {
+		const from = path[i];
+		const to = path[i + 1];
+
+		const [fromNode, fromHandle] = from.split(":");
+		const [toNode, toHandle] = to.split(":");
+
+		const edge = edges.find(
+			(e) =>
+				(e.source === fromNode &&
+					e.sourceHandle === fromHandle &&
+					e.target === toNode &&
+					e.targetHandle === toHandle) ||
+				(e.source === toNode &&
+					e.sourceHandle === toHandle &&
+					e.target === fromNode &&
+					e.targetHandle === fromHandle)
+		);
+
+		if (edge && !updatedEdgeIds.has(edge.id)) {
+			const isForward =
+				edge.source === toNode &&
+				edge.sourceHandle === toHandle &&
+				edge.target === fromNode &&
+				edge.targetHandle === fromHandle;
+
+			updatedEdgeIds.add(edge.id);
+
+			updatedEdges.push({
+				...edge,
+				data: {
+					...(edge.data as EdgeData),
+					flowDirection: isForward ? "forward" : "backward",
+				},
+			});
+		}
+	}
+
+	// Devolver una nueva lista con los edges modificados reemplazados
+	return edges.map((edge) =>
+		updatedEdgeIds.has(edge.id) ? updatedEdges.find((e) => e.id === edge.id)! : edge
+	);
 }
