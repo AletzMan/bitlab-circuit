@@ -264,10 +264,9 @@ export function BoardFlow() {
 			prefix_optional,
 			isValueOptionalVisible,
 		} = getComponentProperties(type, nodes);
-
 		if ((type as ComponentType) && Object.keys(ComponentsMap).includes(type)) {
 			node = {
-				id: uuid(),
+				id: `${designator.replace(/\d+/g, "")}-${uuid()}`,
 				type: typeComponent,
 				position,
 				data: {
@@ -286,7 +285,7 @@ export function BoardFlow() {
 					designator,
 					isDesignatorVisible,
 					isValueVisible,
-					connectedHandles,
+					connectedHandles: connectedHandles.map((handles) => ({ ...handles })),
 					color,
 					size,
 					value_optional,
@@ -315,6 +314,7 @@ export function BoardFlow() {
 		setSelectedEdge(undefined);
 		setActiveTab("properties");
 	};
+
 	const handlePaneClick = () => {
 		setSelectedNode(undefined);
 		setSelectedEdge(undefined);
@@ -337,20 +337,21 @@ export function BoardFlow() {
 		const oldNode = nodes.find((node) => node.id === oldEdge.target);
 		const newNode = nodes.find((node) => node.id === newConnection.target);
 		if (oldNode && newNode) {
-			const newHandlesStateOldNode = oldNode?.data.connectedHandles;
-			const newHandlesStateNewNode = newNode?.data.connectedHandles;
-			newHandlesStateOldNode[Number(oldEdge.targetHandle) - 1] = false;
-			newHandlesStateNewNode[Number(newConnection.targetHandle) - 1] = true;
+			const newHandlesStateOldNode = [...oldNode?.data.connectedHandles];
+			const newHandlesStateNewNode = [...newNode?.data.connectedHandles];
+			newHandlesStateOldNode[Number(oldEdge.targetHandle) - 1].isConnected = false;
+			newHandlesStateNewNode[Number(newConnection.targetHandle) - 1].isConnected = true;
+
 			updateNode(oldNode?.id, (prevNode) => ({
 				data: {
 					...prevNode.data,
-					connectedHandles: newHandlesStateOldNode,
+					connectedHandles: [...newHandlesStateOldNode],
 				},
 			}));
 			updateNode(newConnection.target, (prevNode) => ({
 				data: {
 					...prevNode.data,
-					connectedHandles: newHandlesStateNewNode,
+					connectedHandles: [...newHandlesStateNewNode],
 				},
 			}));
 		}
