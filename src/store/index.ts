@@ -106,3 +106,16 @@ export const useSettings = create<ISettings>((set) => ({
 			viewTools: value,
 		})),
 }));
+
+interface ISimulation {
+	isSimulationRunning: boolean;
+	setIsSimulationRunning: (value: boolean) => void;
+}
+
+export const useSimulation = create<ISimulation>((set) => ({
+	isSimulationRunning: false,
+	setIsSimulationRunning: (value: boolean) =>
+		set(() => ({
+			isSimulationRunning: value,
+		})),
+}));
