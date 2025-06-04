@@ -96,6 +96,11 @@ export enum ComponentCollapsed {
 	Undefined = "undefined",
 }
 
+export interface IConnectedHandles {
+	isConnected: boolean;
+	type: "positive" | "negative" | "passive" | "input" | "output";
+}
+
 export type ComponentData = {
 	name: string;
 	value: number | string;
@@ -123,7 +128,7 @@ export type ComponentData = {
 	isValueVisible: boolean;
 	isValueOptionalVisible?: boolean;
 	isDesignatorVisible: boolean;
-	connectedHandles: boolean[];
+	connectedHandles: IConnectedHandles[];
 	color?: string;
 	size: "small" | "medium" | "large";
 };
@@ -189,7 +194,7 @@ export type ComponentProperties = {
 	isValueVisible: boolean;
 	isValueOptionalVisible?: boolean;
 	isDesignatorVisible: boolean;
-	connectedHandles: boolean[];
+	connectedHandles: IConnectedHandles[];
 	color?: string;
 	size: "small" | "medium" | "large";
 	style: CSSProperties | undefined;
@@ -200,6 +205,7 @@ export type AnalogNode = Node<ComponentData, string>;
 export type EdgeData = {
 	color: string;
 	path: string;
+	flowDirection?: "forward" | "backward";
 };
 
 export type ComponentEdge = Edge<EdgeData, string>;
