@@ -3,5 +3,5 @@
 	height: 1px;
 	border-radius: 0;
 	background-color: var(--foreground-color);
-	border: 0 solid var(--foreground-color);
+	border: 0px solid transparent;
 }
