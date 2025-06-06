@@ -5,3 +5,9 @@
 	background-color: var(--foreground-color);
 	border: 0px solid transparent;
 }
+
+.terminal_connectable {
+	width: 7px;
+	height: 7px;
+	border-radius: 5px;
+}
