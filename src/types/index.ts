@@ -81,7 +81,7 @@ export enum UnitsType {
 }
 
 export const UNITS = {
-	ohm: ["Ω", "KΩ", "MΩ"],
+	ohm: ["Ω", "kΩ", "MΩ"],
 	voltdc: ["mV", "V"],
 	voltac: ["VAC"],
 	farad: ["pF", "nF", "µF"],
@@ -105,6 +105,8 @@ export type ComponentData = {
 	name: string;
 	value: number | string;
 	value_optional?: number | string;
+	currentDrop?: number;
+	voltageDrop?: number;
 	type: ComponentType;
 	category: Categories;
 	rotation: number;
@@ -206,6 +208,7 @@ export type EdgeData = {
 	color: string;
 	path: string;
 	flowDirection?: "forward" | "backward";
+	voltage: number;
 };
 
 export type ComponentEdge = Edge<EdgeData, string>;
