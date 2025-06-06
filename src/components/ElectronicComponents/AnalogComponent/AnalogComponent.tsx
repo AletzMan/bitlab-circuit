@@ -6,6 +6,14 @@ import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
 
+/**
+ * Component for rendering analog components in the flow chart.
+ * @param {{ type: ComponentType, value: string, rotation: number, flip: { x: number, y: number }, collapsed: ComponentCollapsed, isLock: boolean, prefix: string, designator: string, isDesignatorVisible: boolean, isValueVisible: boolean, connectedHandles: IConnectedHandles[], size: "small" | "medium" | "large", color: string, state: { on: boolean } }} data
+ * @param {boolean} selected
+ * @param {string} id
+ * @param {string | undefined} parentId
+ * @returns {JSX.Element}
+ */
 export function AnalogComponent({
 	data: {
 		type,
@@ -21,6 +29,7 @@ export function AnalogComponent({
 		connectedHandles,
 		size,
 		color,
+		state,
 	},
 	selected,
 	id,
@@ -40,7 +49,6 @@ export function AnalogComponent({
 
 	useEffect(() => {
 		setConnectedHandlesInternal(connectedHandles);
-		console.log("🚀 ~ useEffect ~ connectedHandles:", connectedHandles);
 	}, [connectedHandles]);
 
 	const isAdditionValid = collapsed === ComponentCollapsed.Add;
@@ -55,14 +63,15 @@ export function AnalogComponent({
 	};
 
 	useNodeConnections({ onConnect, onDisconnect });
+
 	const setConnectionsTerminals = (connections: Connection[], isOnConnect: boolean) => {
 		connections.forEach((connection) => {
 			const newState = [...connectedHandlesInternal];
 
 			if (connection.target === id && connection.targetHandle) {
 				const handleNumber = Number(connection.targetHandle) - 1;
-				newState[handleNumber].isConnected = isOnConnect;
 
+				newState[handleNumber].isConnected = isOnConnect;
 				setConnectedHandlesInternal(newState);
 				updateNode(id, (prevNode) => ({
 					data: {
@@ -172,7 +181,7 @@ export function AnalogComponent({
 				className={styles.icon}
 			>
 				{ComponentsMap[type].componentType === ComponentType.Led ? (
-					<LEDIcon color_led={color} />
+					<LEDIcon color_led={state?.on ? color : "white"} />
 				) : (
 					ComponentsMap[type].icon
 				)}
