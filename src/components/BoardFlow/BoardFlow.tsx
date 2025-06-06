@@ -323,6 +323,7 @@ export function BoardFlow() {
 
 	const handleOnEdgeClick = (e: React.MouseEvent<Element, MouseEvent>, edge: ComponentEdge) => {
 		e.preventDefault();
+		console.log(edge);
 		setSelectedEdge(edge);
 		setSelectedNode(undefined);
 		setActiveTab("properties");
