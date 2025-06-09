@@ -54,6 +54,8 @@ import { PowerSupply } from "../ElectronicComponents/PowerSupply/PowerSupply";
 import { Battery } from "../ElectronicComponents/Battery/Battery";
 import { MenuBar } from "../MenuBar/MenuBar";
 import { SideTools } from "../SideTools/SideTools";
+import { Potentiometer } from "../ElectronicComponents/Potentiometer/Potentiometer";
+import { PhotoTransistorComponent } from "../ElectronicComponents/PhotoTransistorComponent/PhotoTransistorComponent";
 
 const initialNodes: AnalogNode[] = [
 	{
@@ -1123,6 +1125,7 @@ const nodeTypes = {
 	analogComponent: AnalogComponent,
 	nodeComponent: NodeComponent,
 	transistorComponent: TransistorComponent,
+	photoTransistorComponent: PhotoTransistorComponent,
 	mechanicalComponent: MechanicalComponent,
 	board: Board,
 	switchSPDT: SwitchSPDT,
@@ -1134,6 +1137,7 @@ const nodeTypes = {
 	relayDPDT: RelayDPDT,
 	logicGate: LogicGate,
 	powerSupply: PowerSupply,
+	potentiometer: Potentiometer,
 	battery: Battery,
 };
 
