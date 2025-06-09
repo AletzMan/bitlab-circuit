@@ -5,7 +5,7 @@ export function Terminal(props: HandleProps) {
 	return (
 		<Handle
 			{...props}
-			className={`${styles.terminal} ${props.isConnectable ? styles.terminal_connectable : ""}`}
+			className={`${props.isConnectable ? styles.terminal_connectable : styles.terminal}`}
 		/>
 	);
 }
