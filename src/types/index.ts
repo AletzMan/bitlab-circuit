@@ -177,6 +177,8 @@ export type ComponentProperties = {
 		| "nodeComponent"
 		| "transistorComponent"
 		| "mechanicalComponent"
+		| "potentiometer"
+		| "photoTransistorComponent"
 		| "switchSPDT"
 		| "board"
 		| "switchDPST"
