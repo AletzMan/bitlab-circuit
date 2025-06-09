@@ -117,8 +117,6 @@ export type ComponentData = {
 	collapsed?: ComponentCollapsed;
 	state?: {
 		on: boolean;
-		iconON?: JSX.Element | undefined;
-		iconOFF?: JSX.Element | undefined;
 	};
 	isLock: boolean;
 	unit: UnitsType;
@@ -166,8 +164,6 @@ export type ComponentProperties = {
 	componentType: ComponentType;
 	state?: {
 		on: boolean;
-		iconON?: JSX.Element | undefined;
-		iconOFF?: JSX.Element | undefined;
 	};
 	icon: JSX.Element;
 	prefix: string;
@@ -209,6 +205,7 @@ export type EdgeData = {
 	path: string;
 	flowDirection?: "forward" | "backward";
 	voltage: number;
+	current: number;
 };
 
 export type ComponentEdge = Edge<EdgeData, string>;
