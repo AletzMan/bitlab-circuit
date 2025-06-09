@@ -399,13 +399,58 @@ export function SwitchDPDT({
 	}, [rotation, flip.x, flip.y]);
 
 	const handleChangeState = (e: MouseEvent<HTMLButtonElement>) => {
-		console.log(e);
-		updateNodeData(id, { state: { ...state, on: !state?.on } });
-		if (type === ComponentType.PusuhButtonClose || type === ComponentType.PusuhButtonOpen) {
-			setTimeout(() => {
-				updateNodeData(id, { state: { ...state, on: state?.on } });
-			}, 100);
-		}
+		// Usa updateNode con un actualizador funcional para obtener el estado más reciente
+		updateNode(id, (prevNode) => {
+			const currentOnState = (prevNode as AnalogNode).data.state?.on ?? false; // Obtén el estado 'on' actual del nodo previo
+			const newOnState = !currentOnState; // Calcula el nuevo estado
+
+			// Lógica para botones de pulso (mantienen el estado temporalmente)
+			if (type === ComponentType.PusuhButtonClose || type === ComponentType.PusuhButtonOpen) {
+				// Actualiza el nodo al nuevo estado (ON/OFF)
+				// Usamos updateNodeData para evitar un bucle de renderizado ya que el return del primer updateNode
+				// también actualiza el estado del nodo. Aquí solo queremos un efecto secundario.
+				updateNodeData(id, {
+					state: {
+						...(prevNode.data.state || {}), // Asegura que 'state' no sea undefined
+						on: newOnState,
+					},
+				});
+
+				// Restaura el estado original después de 100ms
+				setTimeout(() => {
+					updateNodeData(id, {
+						state: {
+							...(prevNode.data.state || {}), // Asegura que 'state' no sea undefined
+							on: currentOnState, // Vuelve al estado original
+						},
+					});
+				}, 100);
+
+				// Retorna el nodo con el estado *temporalmente* cambiado para la renderización inmediata
+				return {
+					...prevNode,
+					data: {
+						...prevNode.data,
+						state: {
+							...(prevNode.data.state || {}),
+							on: newOnState,
+						},
+					},
+				};
+			} else {
+				// Para interruptores normales, simplemente alterna el estado
+				return {
+					...prevNode, // Copia el nodo anterior
+					data: {
+						...prevNode.data, // Copia los datos anteriores del nodo
+						state: {
+							...(prevNode.data.state || {}), // Asegura que 'state' no sea undefined antes de copiar
+							on: newOnState, // Invierte el estado 'on' para el nuevo objeto de estado
+						},
+					},
+				};
+			}
+		});
 	};
 
 	console.log(connectedHandlesInternal);
