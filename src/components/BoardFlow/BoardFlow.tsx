@@ -155,6 +155,7 @@ const initialNodes: AnalogNode[] = [
 			type: ComponentType.Led,
 			category: Categories.Diodes,
 			value: 30,
+			color: "#0000FF",
 			isLock: false,
 			rotation: 90,
 			flip: {
@@ -177,7 +178,6 @@ const initialNodes: AnalogNode[] = [
 					type: "negative",
 				},
 			],
-			color: "#FF0000",
 			size: "small",
 			value_optional: 1.7,
 			unit_optional: UnitsType.VoltageDC,
@@ -202,6 +202,7 @@ const initialNodes: AnalogNode[] = [
 			type: ComponentType.Led,
 			category: Categories.Diodes,
 			value: 30,
+			color: "#FFFF00",
 			isLock: false,
 			rotation: 90,
 			flip: {
@@ -224,7 +225,6 @@ const initialNodes: AnalogNode[] = [
 					type: "negative",
 				},
 			],
-			color: "#FF0000",
 			size: "small",
 			value_optional: 1.7,
 			unit_optional: UnitsType.VoltageDC,
@@ -250,6 +250,7 @@ const initialNodes: AnalogNode[] = [
 			type: ComponentType.Led,
 			category: Categories.Diodes,
 			value: 30,
+			color: "#00FF00",
 			isLock: false,
 			rotation: 90,
 			flip: {
@@ -272,7 +273,6 @@ const initialNodes: AnalogNode[] = [
 					type: "negative",
 				},
 			],
-			color: "#FF0000",
 			size: "small",
 			value_optional: 1.7,
 			unit_optional: UnitsType.VoltageDC,
