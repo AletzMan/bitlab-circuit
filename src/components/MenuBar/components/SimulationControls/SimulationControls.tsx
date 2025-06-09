@@ -1,21 +1,26 @@
-import { calculateVoltageDropPerEdge, isSimulationReady, offAllComponents } from "@/helpers";
+// En src/components/MenuBar/components/SimulationControls/SimulationControls.tsx
+
 import { useSimulation } from "@/store";
-import { AnalogNode, ComponentEdge, ComponentType } from "@/types";
+import { AnalogNode, ComponentEdge, ComponentType } from "@/types"; // Importa tus tipos
+import { CombinedCircuitResults } from "@/workers/functions"; // Asegúrate de que esta importación sea correcta y worker-compatible
 import { CaretRightFilled, PauseOutlined } from "@ant-design/icons";
 import { useReactFlow, useStore } from "@xyflow/react";
-// No necesitamos 'shallow' si usamos el hash
 import { Button, notification, Tooltip } from "antd";
 import { NotificationPlacement } from "antd/es/notification/interface";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react"; // `useState` ya no para el worker, pero se usa para otros estados
 
 // --- Función para generar un hash de los estados de los interruptores ---
-// Esta función debe estar FUERA del componente para evitar ser recreada en cada render
 function getSwitchStatesHash(nodes: AnalogNode[]): string {
 	return nodes
-		.filter((node) => node.data.type === ComponentType.SwitchSPST)
-		.sort((a, b) => a.id.localeCompare(b.id)) // Ordena por ID para asegurar un orden consistente
-		.map((node) => `${node.id}:${node.data.state?.on ? "on" : "off"}`) // Crea una cadena para cada interruptor
-		.join(","); // Une todas las cadenas con una coma
+		.filter(
+			(node) =>
+				node.data.type === ComponentType.SwitchSPST ||
+				node.data.type === ComponentType.PusuhButtonOpen ||
+				node.data.type === ComponentType.PusuhButtonClose
+		)
+		.sort((a, b) => a.id.localeCompare(b.id))
+		.map((node) => `${node.id}:${node.data.state?.on ? "on" : "off"}`)
+		.join(",");
 }
 // ----------------------------------------------------------------------
 
@@ -23,19 +28,115 @@ export function SimulationControls() {
 	const { setIsSimulationRunning, isSimulationRunning } = useSimulation();
 	const { getNodes, getEdges, updateEdge, updateNode } = useReactFlow();
 	const [api, contextHolder] = notification.useNotification();
+	const lastSimulatedHashRef = useRef<string | null>(null);
 
-	// 1. Usa useStore para obtener el hash de los estados de los interruptores
-	const switchStateHash = useStore(
-		(state) => getSwitchStatesHash(state.nodes as AnalogNode[])
-		// No necesitamos función de comparación aquí porque el hash es una cadena (comparación por valor)
-	);
+	// *** ¡VUELTA A USAR useRef PARA EL WORKER! ***
+	const workerRef = useRef<Worker | null>(null);
 
-	// 2. El useEffect ahora depende de 'isSimulationRunning' y del 'switchStateHash'
+	const switchStateHash = useStore((state) => getSwitchStatesHash(state.nodes as AnalogNode[]));
+
 	useEffect(() => {
-		if (isSimulationRunning) {
-			startSimulation();
+		// Inicializa el worker solo una vez cuando el componente se monte
+		if (!workerRef.current) {
+			const circuitWorker = new Worker(
+				new URL("../../../../workers/circuit.worker?worker", import.meta.url),
+				{ type: "module" }
+			);
+
+			// Asigna el worker a la referencia
+			workerRef.current = circuitWorker;
+			console.log(
+				"Hilo principal: Worker CREADO y asignado a workerRef.current:",
+				workerRef.current
+			); // LOG AQUI
+
+			// Manejar mensajes del Web Worker
+			circuitWorker.onmessage = (event) => {
+				console.log("Hilo principal: Datos recibidos COMPLETOS del worker:", event.data); // LOG AQUI
+				const { type, results, message, updatedNodes, updatedEdgesForDisplay } = event.data;
+
+				if (type === "simulationResults") {
+					const simulationResults: CombinedCircuitResults = results;
+					const initialEdgesFromWorker: ComponentEdge[] = updatedEdgesForDisplay;
+
+					console.table(simulationResults.edgeVoltagesAtStart);
+					console.table(simulationResults.componentVoltageDrops);
+					console.table(simulationResults.nodeVoltages);
+					console.log(simulationResults.nodeStateChanges);
+					console.log("Edges updated:", JSON.stringify(updatedEdgesForDisplay));
+
+					// Aquí actualizas tu ReactFlow con los resultados
+					simulationResults.edgeVoltagesAtStart.forEach((currentEdgeResult) => {
+						const currentEdgeData = initialEdgesFromWorker.find(
+							(edge) => edge.id === currentEdgeResult.edgeId
+						);
+						if (currentEdgeData) {
+							updateEdge(currentEdgeData.id, {
+								...currentEdgeData,
+								data: {
+									...currentEdgeData.data,
+									voltage: currentEdgeResult.voltage,
+									current: currentEdgeResult.current,
+									flowDirection: currentEdgeData.data?.flowDirection,
+								},
+							});
+						}
+					});
+
+					simulationResults.nodeStateChanges.forEach((nodeUpdate) => {
+						updateNode(nodeUpdate.id, (currentNode) => {
+							if ((currentNode as AnalogNode).data.state?.on !== nodeUpdate.state.on) {
+								return {
+									...currentNode,
+									data: {
+										...currentNode.data,
+										state: {
+											...(currentNode as AnalogNode).data.state,
+											on: nodeUpdate.state.on,
+										},
+									},
+								};
+							}
+							return currentNode;
+						});
+					});
+				} else if (type === "simulationError") {
+					openNotification("topRight", message);
+					setIsSimulationRunning(false);
+				} else if (type === "componentsOff") {
+					const updatedNodesTwo: AnalogNode[] = updatedNodes;
+					updatedNodesTwo.forEach((node) => {
+						updateNode(node.id, node);
+					});
+				}
+			};
+
+			circuitWorker.onerror = (error) => {
+				console.error("Error en el Web Worker:", error);
+				openNotification("topRight", "Ocurrió un error en la simulación. Revisa la consola.");
+				setIsSimulationRunning(false);
+			};
 		}
-	}, [isSimulationRunning, switchStateHash]); // <-- Dependencia clave
+
+		// Lógica de inicio/reinicio de simulación
+		if (isSimulationRunning) {
+			if (lastSimulatedHashRef.current !== switchStateHash) {
+				startSimulation();
+				lastSimulatedHashRef.current = switchStateHash;
+			} else {
+				console.log("🔁 El estado del interruptor no cambió, no se vuelve a simular.");
+			}
+		}
+
+		// Limpieza: terminar el worker cuando el componente se desmonte
+		return () => {
+			if (workerRef.current) {
+				console.log("Hilo principal: Terminando worker:", workerRef.current); // LOG AQUI
+				workerRef.current.terminate();
+				workerRef.current = null;
+			}
+		};
+	}, [isSimulationRunning, switchStateHash, updateEdge, updateNode, api, setIsSimulationRunning]); // Dependencias del useEffect
 
 	const openNotification = (placement: NotificationPlacement, message: string) => {
 		api.error({
@@ -49,10 +150,16 @@ export function SimulationControls() {
 	function handleSimulationClick() {
 		const currentState = isSimulationRunning;
 		if (currentState) {
-			const updatedNodes = offAllComponents(getNodes() as AnalogNode[]);
-			updatedNodes.forEach((node) => {
-				updateNode(node.id, node);
-			});
+			if (workerRef.current) {
+				// Usa workerRef.current
+				console.log("Hilo principal: postMessage a worker (stop):", workerRef.current); // LOG AQUI
+				workerRef.current.postMessage({
+					type: "stopSimulation",
+					payload: {
+						nodesArray: getNodes() as AnalogNode[],
+					},
+				});
+			}
 			setIsSimulationRunning(false);
 			return;
 		}
@@ -63,55 +170,21 @@ export function SimulationControls() {
 	const startSimulation = () => {
 		const nodes = getNodes() as AnalogNode[];
 		const edges = getEdges() as ComponentEdge[];
-		const { isReady, message, updatedEdges, paths } = isSimulationReady(nodes, edges);
 
-		if (isReady) {
-			const results = calculateVoltageDropPerEdge(edges, nodes, paths);
-
-			console.clear(); // Mueve o desactiva para depurar mejor
-			console.table(results.edgeVoltagesAtStart);
-			console.table(results.componentVoltageDrops);
-			console.table(results.nodeVoltages);
-			console.table(results.nodeStateChanges.map((node) => node.state));
-
-			updatedEdges.forEach((currentEdge) => {
-				const newVoltage =
-					results.edgeVoltagesAtStart?.find((edge) => edge.edgeId === currentEdge.id)?.voltage ?? 0;
-				// Solo actualiza si el voltaje de la arista ha cambiado
-				if (currentEdge.data?.voltage !== newVoltage) {
-					updateEdge(currentEdge.id, {
-						...currentEdge,
-						data: {
-							...currentEdge.data,
-							voltage: newVoltage,
-						},
-					});
-				}
+		if (workerRef.current) {
+			// Usa workerRef.current
+			console.log("Hilo principal: postMessage a worker (start):", workerRef.current); // LOG AQUI
+			console.log("NODES", nodes);
+			workerRef.current.postMessage({
+				type: "startSimulation",
+				payload: {
+					nodesArray: nodes,
+					edgesArray: edges,
+				},
 			});
-
-			results.nodeStateChanges.forEach((nodeUpdate) => {
-				const currentNode = nodes.find((nodeFind) => nodeFind.id === nodeUpdate.id);
-				if (currentNode) {
-					// *** ¡CRÍTICO!: Solo llama a updateNode si el estado 'on' es realmente diferente ***
-					if (currentNode.data.state?.on !== nodeUpdate.state.on) {
-						updateNode(nodeUpdate.id, {
-							...currentNode,
-							data: {
-								...currentNode?.data,
-								state: {
-									...currentNode?.data.state,
-									on: nodeUpdate.state.on,
-								},
-							},
-						});
-					} else {
-						// console.log(`Nodo ${nodeUpdate.id}: 'on' sin cambios (${currentNode.data.state?.on}). No se actualiza.`);
-					}
-				}
-			});
+			console.log("Datos de simulación enviados al Web Worker...");
 		} else {
-			openNotification("topRight", message);
-			setIsSimulationRunning(false); // Detener simulación en caso de error
+			console.error("Worker no inicializado para simulación.");
 		}
 	};
 
