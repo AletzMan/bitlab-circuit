@@ -2,12 +2,25 @@
 	width: 1px;
 	height: 1px;
 	border-radius: 0;
-	background-color: var(--foreground-color);
 	border: 0px solid transparent;
+	background-color: var(--foreground-color);
+
+	&:after {
+		content: "";
+		position: absolute;
+		width: 5px;
+		height: 1px;
+		top: 0px;
+		left: -2px;
+		border-radius: 0;
+		border: 0px solid transparent;
+		background-color: var(--foreground-color);
+	}
 }
 
 .terminal_connectable {
-	width: 7px;
-	height: 7px;
-	border-radius: 5px;
+	width: 3px;
+	height: 3px;
+	border-radius: 1px;
+	background-color: var(--foreground-color);
 }
