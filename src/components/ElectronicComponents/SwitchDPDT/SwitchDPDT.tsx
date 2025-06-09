@@ -6,7 +6,13 @@ import {
 	IConnectedHandles,
 	ITerminalSetting,
 } from "@/types";
-import { ArrowPushIcon, LockIcon, UnlockIcon } from "@/icons";
+import {
+	ArrowPushIcon,
+	LockIcon,
+	SwitchDPDTCloseIcon,
+	SwitchDPDTOpenIcon,
+	UnlockIcon,
+} from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState, MouseEvent, CSSProperties } from "react";
@@ -398,7 +404,7 @@ export function SwitchDPDT({
 		}
 	}, [rotation, flip.x, flip.y]);
 
-	const handleChangeState = (e: MouseEvent<HTMLButtonElement>) => {
+	const handleChangeState = (_e: MouseEvent<HTMLButtonElement>) => {
 		// Usa updateNode con un actualizador funcional para obtener el estado más reciente
 		updateNode(id, (prevNode) => {
 			const currentOnState = (prevNode as AnalogNode).data.state?.on ?? false; // Obtén el estado 'on' actual del nodo previo
@@ -493,11 +499,15 @@ export function SwitchDPDT({
 					})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})`,
 				}}
 			>
-				{state
-					? state?.on
-						? ComponentsMap[type]?.state?.iconON
-						: ComponentsMap[type].state?.iconOFF
-					: ComponentsMap[type].icon}
+				{state ? (
+					state?.on ? (
+						<SwitchDPDTCloseIcon />
+					) : (
+						<SwitchDPDTOpenIcon />
+					)
+				) : (
+					ComponentsMap[type].icon
+				)}
 			</div>
 			<Terminal
 				type="source"
