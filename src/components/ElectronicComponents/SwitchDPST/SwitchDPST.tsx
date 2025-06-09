@@ -1,6 +1,12 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
-import { AnalogNode, ComponentCollapsed, ComponentType } from "@/types";
-import { ArrowPushIcon, LockIcon, UnlockIcon } from "@/icons";
+import { AnalogNode, ComponentCollapsed, ComponentType, IConnectedHandles } from "@/types";
+import {
+	ArrowPushIcon,
+	LockIcon,
+	SwitchDPSTCloseIcon,
+	SwitchDPSTOpenIcon,
+	UnlockIcon,
+} from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { CSSProperties, useEffect, useMemo, useState } from "react";
@@ -24,10 +30,27 @@ export function SwitchDPST({
 	parentId,
 }: NodeProps<AnalogNode>) {
 	const { updateNode, updateNodeData } = useReactFlow();
-	const [isConnected, setIsConnected] = useState<boolean[]>([false, false]);
+	const [connectedHandlesInternal, setConnectedHandlesInternal] = useState<IConnectedHandles[]>([
+		{
+			isConnected: false,
+			type: "passive",
+		},
+		{
+			isConnected: false,
+			type: "passive",
+		},
+		{
+			isConnected: false,
+			type: "passive",
+		},
+		{
+			isConnected: false,
+			type: "passive",
+		},
+	]);
 
 	useEffect(() => {
-		setIsConnected(connectedHandles.map((handle) => handle.isConnected));
+		setConnectedHandlesInternal(connectedHandles);
 	}, [connectedHandles]);
 
 	const isAdditionValid = collapsed === ComponentCollapsed.Add;
@@ -45,33 +68,29 @@ export function SwitchDPST({
 
 	const setConnectionsTerminals = (connections: Connection[], isOnConnect: boolean) => {
 		connections.map((connection) => {
-			const newState = [...isConnected];
+			const newState = [...connectedHandlesInternal];
 			if (connection.target === id) {
 				const handleNumber = Number(connection.targetHandle) - 1;
-				newState[handleNumber] = isOnConnect;
-				setIsConnected(newState);
+				newState[handleNumber].isConnected = isOnConnect;
+
+				setConnectedHandlesInternal(newState);
 				updateNode(id, (prevNode) => ({
 					data: {
 						...prevNode.data,
-						connectedHandles: {
-							...(prevNode as AnalogNode).data.connectedHandles,
-							[handleNumber]: isOnConnect,
-						},
+						connectedHandles: [...newState],
 					},
 				}));
 				return connection.target === id;
 			}
 			if (connection.source === id) {
 				const handleNumber = Number(connection.sourceHandle) - 1;
-				newState[handleNumber] = isOnConnect;
-				setIsConnected(newState);
+				newState[handleNumber].isConnected = isOnConnect;
+
+				setConnectedHandlesInternal(newState);
 				updateNode(id, (prevNode) => ({
 					data: {
 						...prevNode.data,
-						connectedHandles: {
-							...(prevNode as AnalogNode).data.connectedHandles,
-							[handleNumber]: isOnConnect,
-						},
+						connectedHandles: [...newState],
 					},
 				}));
 				return connection.source === id;
@@ -280,38 +299,42 @@ export function SwitchDPST({
 					})  scaleY(${rotation === 0 || rotation === 180 ? flip.y : flip.x})`,
 				}}
 			>
-				{state
-					? state?.on
-						? ComponentsMap[type]?.state?.iconON
-						: ComponentsMap[type].state?.iconOFF
-					: ComponentsMap[type].icon}
+				{state ? (
+					state?.on ? (
+						<SwitchDPSTCloseIcon />
+					) : (
+						<SwitchDPSTOpenIcon />
+					)
+				) : (
+					ComponentsMap[type].icon
+				)}
 			</div>
 			<Terminal
 				type="source"
 				position={terminalSettings.position[0]}
 				id="1"
-				isConnectable={!isConnected[0]}
+				isConnectable={!connectedHandlesInternal[0].isConnected}
 				style={terminalSettings.adjustment[0]}
 			/>
 			<Terminal
 				type="source"
 				position={terminalSettings.position[1]}
 				id="2"
-				isConnectable={!isConnected[1]}
+				isConnectable={!connectedHandlesInternal[1].isConnected}
 				style={terminalSettings.adjustment[1]}
 			/>
 			<Terminal
 				type="source"
 				position={terminalSettings.position[2]}
 				id="3"
-				isConnectable={!isConnected[2]}
+				isConnectable={!connectedHandlesInternal[2].isConnected}
 				style={terminalSettings.adjustment[2]}
 			/>
 			<Terminal
 				type="source"
 				position={terminalSettings.position[3]}
 				id="4"
-				isConnectable={!isConnected[3]}
+				isConnectable={!connectedHandlesInternal[3].isConnected}
 				style={terminalSettings.adjustment[3]}
 			/>
 			{isDesignatorVisible && (
