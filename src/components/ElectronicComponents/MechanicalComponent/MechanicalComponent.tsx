@@ -1,6 +1,16 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
 import { AnalogNode, ComponentCollapsed, ComponentType, IConnectedHandles } from "@/types";
-import { ArrowPushIcon, LockIcon, UnlockIcon } from "@/icons";
+import {
+	ArrowPushIcon,
+	LockIcon,
+	PushButtonCloseNCIcon,
+	PushButtonCloseNOIcon,
+	PushButtonOpenNCIcon,
+	PushButtonOpenNOIcon,
+	SwitchSPSTCloseIcon,
+	SwitchSPSTOpenIcon,
+	UnlockIcon,
+} from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
@@ -51,6 +61,36 @@ export function MechanicalComponent({
 	};
 
 	useNodeConnections({ onConnect, onDisconnect });
+
+	const iconsOFF = [
+		{
+			type: ComponentType.SwitchSPST,
+			icon: <SwitchSPSTOpenIcon />,
+		},
+		{
+			type: ComponentType.PusuhButtonOpen,
+			icon: <PushButtonOpenNOIcon />,
+		},
+		{
+			type: ComponentType.PusuhButtonClose,
+			icon: <PushButtonOpenNCIcon />,
+		},
+	];
+
+	const iconsON = [
+		{
+			type: ComponentType.SwitchSPST,
+			icon: <SwitchSPSTCloseIcon />,
+		},
+		{
+			type: ComponentType.PusuhButtonOpen,
+			icon: <PushButtonCloseNOIcon />,
+		},
+		{
+			type: ComponentType.PusuhButtonClose,
+			icon: <PushButtonCloseNCIcon />,
+		},
+	];
 
 	const setConnectionsTerminals = (connections: Connection[], isOnConnect: boolean) => {
 		connections.forEach((connection) => {
@@ -144,7 +184,7 @@ export function MechanicalComponent({
 		if (type === ComponentType.PusuhButtonClose || type === ComponentType.PusuhButtonOpen) {
 			setTimeout(() => {
 				updateNodeData(id, { state: { ...state, on: newOnState } });
-			}, 100);
+			}, 300);
 		}
 	};
 
@@ -188,8 +228,8 @@ export function MechanicalComponent({
 			>
 				{state
 					? state?.on
-						? ComponentsMap[type]?.state?.iconON
-						: ComponentsMap[type].state?.iconOFF
+						? iconsON.find((icon) => icon.type === type)?.icon
+						: iconsOFF.find((icon) => icon.type === type)?.icon
 					: ComponentsMap[type].icon}
 			</div>
 			<Terminal
