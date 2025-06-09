@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-const STROKE_WIDTH = 3;
+const STROKE_WIDTH = 2.5;
 
 export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
