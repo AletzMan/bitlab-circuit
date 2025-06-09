@@ -1,9 +1,8 @@
-import { BaseEdge, EdgeProps, MarkerType, getSmoothStepPath, useReactFlow } from "@xyflow/react";
+import { BaseEdge, EdgeProps, MarkerType, getSmoothStepPath } from "@xyflow/react";
 import styles from "./styles.module.css";
 import { ComponentEdge } from "@/types";
 import { CSSProperties } from "react";
 import { useSimulation, useTheme } from "@/store";
-import { markEdgeFlowDirection } from "@/helpers";
 
 export function Wire({
 	sourceX,
@@ -28,9 +27,13 @@ export function Wire({
 	const { isSimulationRunning } = useSimulation();
 
 	const flowDirection = data?.flowDirection;
+	const voltage = data?.voltage;
+	const current = data?.current;
 
 	const simulationClassName = isSimulationRunning
-		? flowDirection === "backward"
+		? voltage === 0 && current === 0
+			? ""
+			: flowDirection === "backward"
 			? styles.wire_simulation
 			: flowDirection === "forward"
 			? styles.wire_simulation_reverse

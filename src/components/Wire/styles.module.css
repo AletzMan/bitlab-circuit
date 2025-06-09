@@ -1,30 +1,26 @@
 .wire {
 	stroke-width: 1;
 	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: miter;
 	stroke: var(--wire-color, var(--foreground-color));
 }
 
 .wire_simulation {
 	stroke-dasharray: 5;
 	stroke-dashoffset: 0;
-	stroke-linecap: round;
-	stroke-linejoin: round;
 	stroke-miterlimit: 10;
 	stroke-opacity: 1;
 	animation: dash 0.5s linear infinite;
-	stroke: var(--wire-color, var(--foreground-color));
 }
 
 .wire_simulation_reverse {
 	/* Igual que wire_simulation pero animación inversa */
 	stroke-dasharray: 5;
 	stroke-dashoffset: 0;
-	stroke-linecap: round;
-	stroke-linejoin: round;
 	stroke-miterlimit: 10;
 	stroke-opacity: 1;
 	animation: dash-reverse 0.5s linear infinite;
-	stroke: var(--wire-color, var(--foreground-color));
 }
 
 @keyframes dash {
