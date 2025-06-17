@@ -6,6 +6,7 @@ export enum ComponentType {
 	Battery = "battery",
 	PhotovoltaicCell = "photovoltaiccell",
 	PowerSupply = "powersupply",
+	Ground = "ground",
 	Resistor = "resistor",
 	Rheostat = "rheostat",
 	Thermistor = "thermistor",
@@ -98,7 +99,7 @@ export enum ComponentCollapsed {
 
 export interface IConnectedHandles {
 	isConnected: boolean;
-	type: "positive" | "negative" | "passive" | "input" | "output";
+	type: "positive" | "negative" | "passive" | "input" | "output" | "ground";
 }
 
 export type ComponentData = {
@@ -107,6 +108,8 @@ export type ComponentData = {
 	value_optional?: number | string;
 	currentDrop?: number;
 	voltageDrop?: number;
+	forwardVoltage?: number;
+	internalResistance?: number;
 	type: ComponentType;
 	category: Categories;
 	rotation: number;
@@ -168,6 +171,8 @@ export type ComponentProperties = {
 	icon: JSX.Element;
 	prefix: string;
 	collapsed?: ComponentCollapsed;
+	forwardVoltage?: number;
+	internalResistance?: number;
 	unit: UnitsType;
 	unit_optional?: UnitsType;
 	prefix_optional?: string;
@@ -189,6 +194,7 @@ export type ComponentProperties = {
 		| "relayDPDT"
 		| "logicGate"
 		| "powerSupply"
+		| "ground"
 		| "battery";
 	has_properties: boolean;
 	isValueVisible: boolean;
