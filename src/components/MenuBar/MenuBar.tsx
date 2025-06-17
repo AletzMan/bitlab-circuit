@@ -21,6 +21,7 @@ import { KeyboardEvent } from "react";
 import styles from "./styles.module.css";
 import { useHistory } from "@/contexts/HistoryContext";
 import { SimulationControls } from "./components/SimulationControls/SimulationControls";
+import { WorkbenchTools } from "./components/WorkbenchTools/WorkbenchTools";
 
 export function MenuBar() {
 	const { currentTheme, setCurrentTheme } = useTheme();
@@ -122,6 +123,11 @@ export function MenuBar() {
 					<div className={styles.menubarButtonsGroup}>
 						<SimulationControls />
 					</div>
+					<Divider type="vertical" />
+					<div className={styles.menubarButtonsGroup}>
+						<WorkbenchTools />
+					</div>
+					<Divider type="vertical" />
 					<div className={styles.switchContainer}>
 						<Switch
 							value={currentTheme === "light"}
