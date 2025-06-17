@@ -399,7 +399,7 @@ export function ComponentProperties() {
 
 	return (
 		<article className={styles.details}>
-			{isSingleNodeSelection && (
+			{isSingleNodeSelection && node?.data?.type !== ComponentType.Ground && (
 				<>
 					<label className="details_name">{dataComponent?.name}</label>
 					<Divider style={{ margin: "6px 0" }} />
