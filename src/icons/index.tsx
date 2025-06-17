@@ -2,6 +2,37 @@ import { SVGProps } from "react";
 
 const STROKE_WIDTH = 2.5;
 
+export function GroundIcon(props: SVGProps<SVGSVGElement>) {
+	return (
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 400 400">
+			<path
+				strokeWidth={STROKE_WIDTH * 4}
+				fill="none"
+				stroke="currentColor"
+				d="M 200, 0 L 200, 200"
+			></path>
+			<path
+				strokeWidth={STROKE_WIDTH * 4}
+				fill="none"
+				stroke="currentColor"
+				d="M 50, 200 L 350, 200 "
+			></path>
+			<path
+				strokeWidth={STROKE_WIDTH * 4}
+				fill="none"
+				stroke="currentColor"
+				d="M 100, 300 L 300, 300 "
+			></path>
+			<path
+				strokeWidth={STROKE_WIDTH * 4}
+				fill="none"
+				stroke="currentColor"
+				d="M 150, 395 L 250, 395 "
+			></path>
+		</svg>
+	);
+}
+
 export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg
@@ -2853,13 +2884,7 @@ export function BatteryIcon(props: SVGProps<SVGSVGElement>) {
 				stroke="currentColor"
 				fill="none"
 				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,300 H200 V250 V350 V300  M266,175 V425 M332,250 V350  M400,175 V425 V300 H600  M470,115 V188 V150 H435 H505"
-			></path>
-			<path
-				stroke="currentColor"
-				fill="none"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,300 H200 V250 V350 V300  M266,175 V425 M332,250 V350  M400,175 V425 V300 H600  M470,115 V188 V150 H435 H505"
+				d="M0,300 H200 V175 V435 V300  M266,250 V350 M332,175 V425  M400,250 V350 V300 H600 M130,115 V188 V150 H95 H165"
 			></path>
 		</svg>
 	);
@@ -3339,6 +3364,32 @@ export function DistributeHorizontalIcon(props: SVGProps<SVGSVGElement>) {
 					d="M20 19a1 1 0 1 1 0 2H4a1 1 0 1 1 0-2zM17 8a2 2 0 0 1 1.995 1.85L19 10v4a2 2 0 0 1-1.85 1.995L17 16H7a2 2 0 0 1-1.995-1.85L5 14v-4a2 2 0 0 1 1.85-1.995L7 8zm3-5a1 1 0 1 1 0 2H4a1 1 0 0 1 0-2z"
 				></path>
 			</g>
+		</svg>
+	);
+}
+
+export function ProbeIcon(props: SVGProps<SVGSVGElement>) {
+	return (
+		<svg {...props} width="20px" height="20px" viewBox="0 0 24 24">
+			<path
+				fill="currentColor"
+				d="m19.47 3.47l-6 6l-2.94.53c-.31.03-.59.18-.81.4l-6.91 6.91a2.76 2.76 0 0 0 0 3.89a2.76 2.76 0 0 0 3.89 0l6.91-6.91c.22-.22.39-.5.42-.79l.51-2.96l6-6L22 2zM11 14.38c-.76 0-1.38-.62-1.38-1.38s.62-1.38 1.38-1.38s1.38.62 1.38 1.38A1.39 1.39 0 0 1 11 14.38"
+			></path>
+		</svg>
+	);
+}
+
+export function CursorIcon(props: SVGProps<SVGSVGElement>) {
+	return (
+		<svg {...props} width="24px" height="24px" viewBox="0 0 48 48">
+			<path
+				fill="#e0e0e0"
+				d="M27.8 39.7c-.1 0-.2 0-.4-.1s-.4-.3-.6-.5l-3.7-8.6l-4.5 4.2q-.15.3-.6.3c-.1 0-.3 0-.4-.1c-.3-.1-.6-.5-.6-.9V12c0-.4.2-.8.6-.9c.1-.1.3-.1.4-.1c.2 0 .5.1.7.3l16 15c.3.3.4.7.3 1.1s-.5.6-.9.7l-6.3.6l3.9 8.5c.1.2.1.5 0 .8c-.1.2-.3.5-.5.6l-2.9 1.3c-.2-.2-.4-.2-.5-.2"
+			></path>
+			<path
+				fill="#212121"
+				d="m18 12l16 15l-7.7.7l4.5 9.8l-2.9 1.3l-4.3-9.9L18 34zm0-2c-.3 0-.5.1-.8.2c-.7.3-1.2 1-1.2 1.8v22c0 .8.5 1.5 1.2 1.8c.3.2.6.2.8.2c.5 0 1-.2 1.4-.5l3.4-3.2l3.1 7.3c.2.5.6.9 1.1 1.1c.2.1.5.1.7.1c.3 0 .5-.1.8-.2l2.9-1.3c.5-.2.9-.6 1.1-1.1s.2-1.1 0-1.5l-3.3-7.2l4.9-.4c.8-.1 1.5-.6 1.7-1.3c.3-.7.1-1.6-.5-2.1l-16-15c-.3-.5-.8-.7-1.3-.7"
+			></path>
 		</svg>
 	);
 }
