@@ -10,10 +10,8 @@ import {
 	isSimulationReady,
 	offAllComponents,
 } from "./functions";
-console.log("¡Hola desde el worker simple!"); // Esto será la línea 1
 onmessage = (event) => {
 	const { type, payload } = event.data;
-	console.log("Worker: Mensaje recibido:", event.data);
 	if (type === "startSimulation") {
 		const { nodesArray, edgesArray } = payload;
 
@@ -22,45 +20,27 @@ onmessage = (event) => {
 		const nodes: AnalogNode[] = nodesArray;
 		const edges: ComponentEdge[] = edgesArray;
 		try {
-			//console.log("Worker: Llamando a isSimulationReady..."); // <-- Agrega este log
-
 			// 1. Ejecuta isSimulationReady en el worker
-			const { isReady, message, updatedEdges, paths, graph } = isSimulationReady(nodes, edges);
-			//console.log("Worker: isSimulationReady resultado:", isReady, message); // <-- Agrega este log
-
+			const { isReady, message, updatedEdges } = isSimulationReady(nodes, edges);
 			if (!isReady) {
-				console.log("Worker: Simulación no lista, enviando error."); // <-- Agrega este log
-
 				// Si la simulación no está lista, envía un mensaje de error de vuelta al hilo principal
 				self.postMessage({ type: "simulationError", message });
 				return; // Termina la ejecución en el worker para este mensaje
 			}
-			//console.log("Worker: Simulación lista, llamando a calculateVoltageDropPerEdge..."); // <-- Agrega este log
 
 			// 2. Si la simulación está lista, ejecuta calculateVoltageDropPerEdge en el worker
 			const results: CombinedCircuitResults = calculateVoltageDropPerEdge(
 				updatedEdges, // Usa los updatedEdges de isSimulationReady
-				nodes,
-				paths,
-				graph
+				nodes
 			);
-
-			console.log("Worker: Objeto de resultados FINAL que se envía:", {
-				type: "simulationResults",
-				results: results,
-				updatedEdgesForDisplay: updatedEdges,
-			});
 
 			// 3. Envía los resultados y los edges actualizados de vuelta al hilo principal
 			postMessage({
 				type: "simulationResults",
 				results: results,
-				// También puedes enviar updatedEdges si tu UI necesita esos datos específicos
-				// de la fase de isSimulationReady para actualizar la visualización de los edges.
 				updatedEdgesForDisplay: updatedEdges,
 			});
 		} catch (error) {
-			console.error("Worker: Error al ejecutar la simulación:", error);
 			postMessage({ type: "simulationError", message: "Error al ejecutar la simulación" });
 		}
 	} else if (type === "stopSimulation") {
