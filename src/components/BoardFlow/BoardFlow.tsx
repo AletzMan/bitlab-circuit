@@ -56,6 +56,10 @@ import { MenuBar } from "../MenuBar/MenuBar";
 import { SideTools } from "../SideTools/SideTools";
 import { Potentiometer } from "../ElectronicComponents/Potentiometer/Potentiometer";
 import { PhotoTransistorComponent } from "../ElectronicComponents/PhotoTransistorComponent/PhotoTransistorComponent";
+import { Ground } from "../ElectronicComponents/Ground/Ground";
+
+const LED_FORWARD_VOLTAGE = 1.7;
+const LED_INTERNAL_RESISTANCE = 8.5;
 
 const initialNodes: AnalogNode[] = [
 	{
@@ -71,7 +75,7 @@ const initialNodes: AnalogNode[] = [
 			category: Categories["Power & Supply"],
 			value: 12,
 			isLock: false,
-			rotation: 270,
+			rotation: 90,
 			flip: {
 				x: 1,
 				y: 1,
@@ -156,7 +160,7 @@ const initialNodes: AnalogNode[] = [
 			name: "LED",
 			type: ComponentType.Led,
 			category: Categories.Diodes,
-			value: 30,
+			value: 1.8,
 			color: "#0000FF",
 			isLock: false,
 			rotation: 90,
@@ -164,8 +168,8 @@ const initialNodes: AnalogNode[] = [
 				x: 1,
 				y: 1,
 			},
-			unit: UnitsType.Current,
-			prefix: "µA",
+			unit: UnitsType.VoltageDC,
+			prefix: "V",
 			has_properties: true,
 			designator: "LED1",
 			isDesignatorVisible: true,
@@ -181,9 +185,11 @@ const initialNodes: AnalogNode[] = [
 				},
 			],
 			size: "small",
-			value_optional: 1.7,
-			unit_optional: UnitsType.VoltageDC,
-			prefix_optional: "V",
+			value_optional: 30,
+			forwardVoltage: LED_FORWARD_VOLTAGE,
+			internalResistance: LED_INTERNAL_RESISTANCE,
+			unit_optional: UnitsType.Current,
+			prefix_optional: "µA",
 			collapsed: ComponentCollapsed.Undefined,
 		},
 		measured: {
@@ -203,7 +209,7 @@ const initialNodes: AnalogNode[] = [
 			name: "LED",
 			type: ComponentType.Led,
 			category: Categories.Diodes,
-			value: 30,
+			value: 1.8,
 			color: "#FFFF00",
 			isLock: false,
 			rotation: 90,
@@ -211,8 +217,8 @@ const initialNodes: AnalogNode[] = [
 				x: 1,
 				y: 1,
 			},
-			unit: UnitsType.Current,
-			prefix: "µA",
+			unit: UnitsType.VoltageDC,
+			prefix: "V",
 			has_properties: true,
 			designator: "LED2",
 			isDesignatorVisible: true,
@@ -228,9 +234,11 @@ const initialNodes: AnalogNode[] = [
 				},
 			],
 			size: "small",
-			value_optional: 1.7,
-			unit_optional: UnitsType.VoltageDC,
-			prefix_optional: "V",
+			value_optional: 30,
+			forwardVoltage: LED_FORWARD_VOLTAGE,
+			internalResistance: LED_INTERNAL_RESISTANCE,
+			unit_optional: UnitsType.Current,
+			prefix_optional: "µA",
 			collapsed: ComponentCollapsed.Undefined,
 		},
 		measured: {
@@ -251,7 +259,7 @@ const initialNodes: AnalogNode[] = [
 			name: "LED",
 			type: ComponentType.Led,
 			category: Categories.Diodes,
-			value: 30,
+			value: 1.8,
 			color: "#00FF00",
 			isLock: false,
 			rotation: 90,
@@ -259,8 +267,8 @@ const initialNodes: AnalogNode[] = [
 				x: 1,
 				y: 1,
 			},
-			unit: UnitsType.Current,
-			prefix: "µA",
+			unit: UnitsType.VoltageDC,
+			prefix: "V",
 			has_properties: true,
 			designator: "LED3",
 			isDesignatorVisible: true,
@@ -276,9 +284,11 @@ const initialNodes: AnalogNode[] = [
 				},
 			],
 			size: "small",
-			value_optional: 1.7,
-			unit_optional: UnitsType.VoltageDC,
-			prefix_optional: "V",
+			value_optional: 30,
+			forwardVoltage: LED_FORWARD_VOLTAGE,
+			internalResistance: LED_INTERNAL_RESISTANCE,
+			unit_optional: UnitsType.Current,
+			prefix_optional: "µA",
 			collapsed: ComponentCollapsed.Undefined,
 		},
 		measured: {
@@ -298,15 +308,15 @@ const initialNodes: AnalogNode[] = [
 			name: "LED",
 			type: ComponentType.Led,
 			category: Categories.Diodes,
-			value: 30,
+			value: 1.8,
 			isLock: false,
 			rotation: 90,
 			flip: {
 				x: 1,
 				y: 1,
 			},
-			unit: UnitsType.Current,
-			prefix: "µA",
+			unit: UnitsType.VoltageDC,
+			prefix: "V",
 			has_properties: true,
 			designator: "LED4",
 			isDesignatorVisible: true,
@@ -323,9 +333,11 @@ const initialNodes: AnalogNode[] = [
 			],
 			color: "#FF0000",
 			size: "small",
-			value_optional: 1.7,
-			unit_optional: UnitsType.VoltageDC,
-			prefix_optional: "V",
+			value_optional: 30,
+			forwardVoltage: LED_FORWARD_VOLTAGE,
+			internalResistance: LED_INTERNAL_RESISTANCE,
+			unit_optional: UnitsType.Current,
+			prefix_optional: "µA",
 			collapsed: ComponentCollapsed.Undefined,
 		},
 		measured: {
@@ -354,7 +366,7 @@ const initialNodes: AnalogNode[] = [
 				y: 1,
 			},
 			state: {
-				on: false,
+				on: true,
 			},
 			unit: UnitsType.Undefined,
 			prefix: "",
@@ -401,7 +413,7 @@ const initialNodes: AnalogNode[] = [
 				y: 1,
 			},
 			state: {
-				on: false,
+				on: true,
 			},
 			unit: UnitsType.Undefined,
 			prefix: "",
@@ -448,7 +460,7 @@ const initialNodes: AnalogNode[] = [
 				y: 1,
 			},
 			state: {
-				on: false,
+				on: true,
 			},
 			unit: UnitsType.Undefined,
 			prefix: "",
@@ -493,7 +505,7 @@ const initialNodes: AnalogNode[] = [
 				y: 1,
 			},
 			state: {
-				on: false,
+				on: true,
 			},
 			unit: UnitsType.Undefined,
 			prefix: "",
@@ -831,6 +843,96 @@ const initialNodes: AnalogNode[] = [
 			height: 20,
 		},
 	},
+	{
+		id: "N-47e85f20-fdd7-4afd-bec2-334f1aeddf13",
+		type: "nodeComponent",
+		position: {
+			x: 90,
+			y: 590,
+		},
+		data: {
+			name: "Node",
+			type: ComponentType.Node,
+			category: Categories.Structure,
+			value: 0,
+			isLock: false,
+			rotation: 0,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			unit: UnitsType.Undefined,
+			prefix: "",
+			has_properties: false,
+			designator: "N7",
+			isDesignatorVisible: false,
+			isValueVisible: false,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: false,
+					type: "passive",
+				},
+			],
+			color: "var(--foreground-color)",
+			size: "small",
+			collapsed: ComponentCollapsed.Undefined,
+		},
+		measured: {
+			width: 20,
+			height: 20,
+		},
+	},
+	{
+		id: "G-101d9cac-2a02-4cf9-88a0-69a56fe69eab",
+		type: "ground",
+		position: {
+			x: 80,
+			y: 670,
+		},
+		data: {
+			name: "Ground",
+			type: ComponentType.Ground,
+			category: Categories["Power & Supply"],
+			value: 0,
+			isLock: false,
+			rotation: 0,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			unit: UnitsType.Undefined,
+			prefix: "",
+			has_properties: false,
+			designator: "G1",
+			isDesignatorVisible: false,
+			isValueVisible: false,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+			],
+			color: "var(--foreground-color)",
+			size: "small",
+			collapsed: ComponentCollapsed.Undefined,
+		},
+		measured: {
+			width: 20,
+			height: 20,
+		},
+	},
 ];
 
 export const initialEdges: ComponentEdge[] = [
@@ -852,7 +954,7 @@ export const initialEdges: ComponentEdge[] = [
 	{
 		type: "wire",
 		source: "BAT-9510b9ee-e78f-42fc-8831-f4fd47fedb27",
-		sourceHandle: "2",
+		sourceHandle: "1",
 		target: "SW-70c15e67-4a12-4c8a-8d9d-41dae008a19b",
 		targetHandle: "1",
 		id: "62887ee1-5782-414d-9653-b1d5b8ff1bb2",
@@ -866,11 +968,11 @@ export const initialEdges: ComponentEdge[] = [
 	},
 	{
 		type: "wire",
-		source: "R-60595347-b9ad-4e1d-b94b-cbd6b17907cd",
-		sourceHandle: "1",
-		target: "BAT-9510b9ee-e78f-42fc-8831-f4fd47fedb27",
+		source: "BAT-9510b9ee-e78f-42fc-8831-f4fd47fedb27",
+		sourceHandle: "2",
+		target: "N-47e85f20-fdd7-4afd-bec2-334f1aeddf13",
 		targetHandle: "1",
-		id: "064bafac-9154-452c-b03b-e4aa5e73414d",
+		id: "08d7889-89bb-4662-a298-aa8af3a6f68f",
 		data: {
 			color: "var(--foreground-color)",
 			path: "",
@@ -1119,8 +1221,413 @@ export const initialEdges: ComponentEdge[] = [
 			current: 0,
 		},
 	},
+	{
+		type: "wire",
+		source: "R-60595347-b9ad-4e1d-b94b-cbd6b17907cd",
+		sourceHandle: "1",
+		target: "N-47e85f20-fdd7-4afd-bec2-334f1aeddf13",
+		targetHandle: "2",
+		id: "492f4017-c42b-4bd9-8d19-2eeaf6f40ddc",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		type: "wire",
+		id: "eb47da95-029d-426c-bd88-933fbcd27864",
+		source: "G-101d9cac-2a02-4cf9-88a0-69a56fe69eab",
+		sourceHandle: "1",
+		target: "N-47e85f20-fdd7-4afd-bec2-334f1aeddf13",
+		targetHandle: "3",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+];
+/*
+"N-47e85f20-fdd7-4afd-bec2-334f1aeddf13"
+targetHandle
+: 
+"2"
+		id: "492f4017-c42b-4bd9-8d19-2eeaf6f40ddc",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+];
+/*
+sourceHandle
+: 
+"1"
+target
+: 
+"N-47e85f20-fdd7-4afd-bec2-334f1aeddf13"
+targetHandle
+: 
+"3"
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+];
+/*
+"N-47e85f20-fdd7-4afd-bec2-334f1aeddf13"
+targetHandle
+: 
+"2"
+		id: "492f4017-c42b-4bd9-8d19-2eeaf6f40ddc",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+];
+/*
+const initialNodes: AnalogNode[] = [
+	{
+		id: "BAT-9510b9ee-e78f-42fc-8831-f4fd47fedb27",
+		position: { x: 70, y: 170 },
+		type: "battery",
+		data: {
+			name: "Battery",
+			value: 12,
+			type: ComponentType.Battery,
+			category: Categories["Power & Supply"],
+			unit: UnitsType.VoltageDC,
+			rotation: 90,
+			flip: { x: 1, y: 1 },
+			isLock: false,
+			prefix: "V",
+			designator: "BAT1",
+			isDesignatorVisible: true,
+			isValueVisible: true,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "negative",
+				},
+				{
+					isConnected: true,
+					type: "positive",
+				},
+			],
+			size: "small",
+			collapsed: ComponentCollapsed.Undefined,
+			state: undefined,
+			value_optional: undefined,
+			unit_optional: undefined,
+			prefix_optional: undefined,
+			isValueOptionalVisible: false,
+			has_properties: true,
+		},
+	},
+	{
+		id: "SW-7acf74e7-1035-4341-8e73-70f12995e299",
+		position: { x: 170, y: 70 },
+		type: "mechanicalComponent",
+		data: {
+			name: "Switch",
+			value: 12,
+			type: ComponentType.SwitchSPST,
+			category: Categories["Switches & Relays"],
+			unit: UnitsType.Undefined,
+			rotation: 0,
+			flip: { x: 1, y: 1 },
+			isLock: false,
+			prefix: "",
+			designator: "SW1",
+			isDesignatorVisible: true,
+			isValueVisible: true,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "negative",
+				},
+				{
+					isConnected: true,
+					type: "positive",
+				},
+			],
+			size: "small",
+			collapsed: ComponentCollapsed.Undefined,
+			state: {
+				on: true,
+			},
+			value_optional: undefined,
+			unit_optional: undefined,
+			prefix_optional: undefined,
+			isValueOptionalVisible: false,
+			has_properties: true,
+		},
+	},
+	{
+		id: "LED-9e93506b-54cc-4f96-a77b-a0503de49e4d",
+		position: { x: 270, y: 170 },
+		type: "analogComponent",
+		data: {
+			name: "LED",
+			type: ComponentType.Led,
+			category: Categories.Diodes,
+			value: 1.8,
+			unit: UnitsType.VoltageDC,
+			forwardVoltage: 1.8,
+			currentDrop: 1.8,
+			internalResistance: 100,
+			rotation: 90,
+			flip: { x: 1, y: 1 },
+			isLock: false,
+			prefix: "V",
+			designator: "LED1",
+			isDesignatorVisible: true,
+			isValueVisible: true,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "negative",
+				},
+				{
+					isConnected: true,
+					type: "positive",
+				},
+			],
+			size: "small",
+			collapsed: ComponentCollapsed.Undefined,
+			state: undefined,
+			value_optional: undefined,
+			unit_optional: undefined,
+			prefix_optional: undefined,
+			isValueOptionalVisible: false,
+			has_properties: true,
+		},
+	},
+	{
+		id: "R-7acf74e7-1035-4341-8e73-70f12995e299",
+		position: { x: 170, y: 270 },
+		type: "analogComponent",
+		data: {
+			name: "Resistor",
+			value: 515,
+			type: ComponentType.Resistor,
+			category: Categories["Resistors"],
+			unit: UnitsType.Ohm,
+			rotation: 0,
+			flip: { x: 1, y: 1 },
+			isLock: false,
+			prefix: "",
+			designator: "R1",
+			isDesignatorVisible: true,
+			isValueVisible: true,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+			],
+			size: "small",
+			collapsed: ComponentCollapsed.Undefined,
+			state: undefined,
+			value_optional: undefined,
+			unit_optional: undefined,
+			prefix_optional: undefined,
+			isValueOptionalVisible: false,
+			has_properties: true,
+		},
+	},
+	{
+		id: "N-11202414-8af2-426a-9637-a9a795033d7a",
+		position: { x: 90, y: 290 },
+		type: "nodeComponent",
+		data: {
+			name: "Node",
+			value: 0,
+			type: ComponentType.Node,
+			category: Categories.Structure,
+			unit: UnitsType.Undefined,
+			rotation: 0,
+			flip: { x: 1, y: 1 },
+			isLock: false,
+			prefix: "",
+			designator: "N1",
+			isDesignatorVisible: false,
+			isValueVisible: false,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: false,
+					type: "passive",
+				},
+			],
+			size: "small",
+			collapsed: ComponentCollapsed.Undefined,
+			state: undefined,
+			value_optional: undefined,
+			unit_optional: undefined,
+			prefix_optional: undefined,
+			isValueOptionalVisible: false,
+			has_properties: false,
+		},
+	},
+	{
+		id: "G-7acf74e7-1035-4341-8e73-70f12995e299",
+		position: { x: 80, y: 350 },
+		type: "ground",
+		data: {
+			name: "Ground",
+			value: 0,
+			type: ComponentType.Ground,
+			category: Categories["Power & Supply"],
+			unit: UnitsType.Undefined,
+			rotation: 0,
+			flip: { x: 1, y: 1 },
+			isLock: false,
+			prefix: "",
+			designator: "G1",
+			isDesignatorVisible: false,
+			isValueVisible: false,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "ground",
+				},
+			],
+			size: "small",
+			collapsed: ComponentCollapsed.Undefined,
+			state: undefined,
+			value_optional: undefined,
+			unit_optional: undefined,
+			prefix_optional: undefined,
+			isValueOptionalVisible: false,
+			has_properties: false,
+		},
+	},
 ];
 
+const initialEdges: ComponentEdge[] = [
+	{
+		id: "EDGE-9510b9ee-e78f-42fc-8831-f4fd47fedb27",
+		source: "BAT-9510b9ee-e78f-42fc-8831-f4fd47fedb27",
+		sourceHandle: "1",
+		type: "wire",
+		target: "SW-7acf74e7-1035-4341-8e73-70f12995e299",
+		targetHandle: "1",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		id: "EDGE-9e93506b-54cc-4f96-a77b-a0503de49e4d",
+		source: "SW-7acf74e7-1035-4341-8e73-70f12995e299",
+		sourceHandle: "2",
+		target: "LED-9e93506b-54cc-4f96-a77b-a0503de49e4d",
+		targetHandle: "1",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		id: "EDGE-yh454523",
+		source: "LED-9e93506b-54cc-4f96-a77b-a0503de49e4d",
+		sourceHandle: "2",
+		type: "wire",
+		target: "R-7acf74e7-1035-4341-8e73-70f12995e299",
+		targetHandle: "2",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		id: "EDGE-yh4545asdsdsdasd23",
+		source: "R-7acf74e7-1035-4341-8e73-70f12995e299",
+		sourceHandle: "1",
+		type: "wire",
+		target: "N-11202414-8af2-426a-9637-a9a795033d7a",
+		targetHandle: "2",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		id: "EDGE-yh4545asdasd23",
+		source: "N-11202414-8af2-426a-9637-a9a795033d7a",
+		sourceHandle: "1",
+		type: "wire",
+		target: "BAT-9510b9ee-e78f-42fc-8831-f4fd47fedb27",
+		targetHandle: "2",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		id: "EDGE-yh4545asdasdasdasd23",
+		source: "G-7acf74e7-1035-4341-8e73-70f12995e299",
+		sourceHandle: "1",
+		type: "wire",
+		target: "N-11202414-8af2-426a-9637-a9a795033d7a",
+		targetHandle: "3",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+];
+*/
 const nodeTypes = {
 	analogComponent: AnalogComponent,
 	nodeComponent: NodeComponent,
@@ -1139,6 +1646,7 @@ const nodeTypes = {
 	powerSupply: PowerSupply,
 	potentiometer: Potentiometer,
 	battery: Battery,
+	ground: Ground,
 };
 
 const edgeTypes = {
@@ -1260,6 +1768,8 @@ export function BoardFlow() {
 			collapsed,
 			state,
 			value_optional,
+			forwardVoltage,
+			internalResistance,
 			unit_optional,
 			prefix_optional,
 			isValueOptionalVisible,
@@ -1289,6 +1799,8 @@ export function BoardFlow() {
 					color,
 					size,
 					value_optional,
+					forwardVoltage,
+					internalResistance,
 					unit_optional,
 					prefix_optional,
 					isValueOptionalVisible,
@@ -1313,7 +1825,7 @@ export function BoardFlow() {
 		setSelectedNode(node);
 		setSelectedEdge(undefined);
 		setActiveTab("properties");
-		console.log(node.id);
+		console.log(node);
 	};
 
 	const handlePaneClick = () => {
@@ -1324,7 +1836,7 @@ export function BoardFlow() {
 
 	const handleOnEdgeClick = (e: React.MouseEvent<Element, MouseEvent>, edge: ComponentEdge) => {
 		e.preventDefault();
-		console.log(edge.id);
+		console.log(edge);
 		setSelectedEdge(edge);
 		setSelectedNode(undefined);
 		setActiveTab("properties");
