@@ -141,6 +141,8 @@ export function getComponentProperties(
 		isDesignatorVisible: ComponentsMap[type].isDesignatorVisible,
 		isValueVisible: ComponentsMap[type].isValueVisible,
 		isValueOptionalVisible: ComponentsMap[type].isValueOptionalVisible,
+		forwardVoltage: ComponentsMap[type].forwardVoltage,
+		internalResistance: ComponentsMap[type].internalResistance,
 		connectedHandles: ComponentsMap[type].connectedHandles,
 		color: ComponentsMap[type].color,
 		size: ComponentsMap[type].size,
