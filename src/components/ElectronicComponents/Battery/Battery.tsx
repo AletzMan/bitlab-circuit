@@ -182,14 +182,6 @@ export function Battery({
 				id="2"
 				isConnectable={!connectedHandlesInternal[1].isConnected}
 			/>
-			{type === ComponentType.Potentiometer && (
-				<Terminal
-					type="source"
-					position={terminalSettings[2]}
-					id="3"
-					isConnectable={!connectedHandlesInternal[2].isConnected}
-				/>
-			)}
 			{isValueVisible && (
 				<span
 					className={`${styles.value}  ${size === "small" && styles.value_small} ${
