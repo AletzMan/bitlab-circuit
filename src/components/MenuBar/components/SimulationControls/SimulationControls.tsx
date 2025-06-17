@@ -1,13 +1,10 @@
-// En src/components/MenuBar/components/SimulationControls/SimulationControls.tsx
-
 import { useSimulation } from "@/store";
-import { AnalogNode, ComponentEdge, ComponentType } from "@/types"; // Importa tus tipos
-import { CombinedCircuitResults } from "@/workers/functions"; // Asegúrate de que esta importación sea correcta y worker-compatible
+import { AnalogNode, ComponentEdge, ComponentType } from "@/types";
+import { ComponentInfo, EdgeInfo } from "@/workers/functions";
 import { CaretRightFilled, PauseOutlined } from "@ant-design/icons";
 import { useReactFlow, useStore } from "@xyflow/react";
 import { Button, notification, Tooltip } from "antd";
-import { NotificationPlacement } from "antd/es/notification/interface";
-import { useEffect, useRef } from "react"; // `useState` ya no para el worker, pero se usa para otros estados
+import { useEffect, useRef } from "react";
 
 // --- Función para generar un hash de los estados de los interruptores ---
 function getSwitchStatesHash(nodes: AnalogNode[]): string {
@@ -26,130 +23,130 @@ function getSwitchStatesHash(nodes: AnalogNode[]): string {
 
 export function SimulationControls() {
 	const { setIsSimulationRunning, isSimulationRunning } = useSimulation();
-	const { getNodes, getEdges, updateEdge, updateNode } = useReactFlow();
 	const [api, contextHolder] = notification.useNotification();
-	const lastSimulatedHashRef = useRef<string | null>(null);
-
-	// *** ¡VUELTA A USAR useRef PARA EL WORKER! ***
 	const workerRef = useRef<Worker | null>(null);
+	const { getNodes, getEdges, updateEdge, updateNode } = useReactFlow(); // <-- Importa setNodes y setEdges
 
-	const switchStateHash = useStore((state) => getSwitchStatesHash(state.nodes as AnalogNode[]));
+	// Estado para detectar cambios en interruptores
+	const switchStatesHashRef = useRef<string>("");
 
+	// Hook para el worker
 	useEffect(() => {
-		// Inicializa el worker solo una vez cuando el componente se monte
-		if (!workerRef.current) {
-			const circuitWorker = new Worker(
-				new URL("../../../../workers/circuit.worker?worker", import.meta.url),
-				{ type: "module" }
-			);
+		workerRef.current = new Worker(
+			new URL("../../../../workers/circuit.worker.ts", import.meta.url),
+			{
+				type: "module",
+			}
+		);
 
-			// Asigna el worker a la referencia
-			workerRef.current = circuitWorker;
-			console.log(
-				"Hilo principal: Worker CREADO y asignado a workerRef.current:",
-				workerRef.current
-			); // LOG AQUI
+		workerRef.current.onmessage = (event: MessageEvent) => {
+			const { type, results, message } = event.data; // Desestructuramos para acceder a 'results'
+			console.log("Hilo principal: Mensaje recibido del worker:", event.data);
 
-			// Manejar mensajes del Web Worker
-			circuitWorker.onmessage = (event) => {
-				console.log("Hilo principal: Datos recibidos COMPLETOS del worker:", event.data); // LOG AQUI
-				const { type, results, message, updatedNodes, updatedEdgesForDisplay } = event.data;
-
-				if (type === "simulationResults") {
-					const simulationResults: CombinedCircuitResults = results;
-					const initialEdgesFromWorker: ComponentEdge[] = updatedEdgesForDisplay;
-
-					console.table(simulationResults.edgeVoltagesAtStart);
-					console.table(simulationResults.componentVoltageDrops);
-					console.table(simulationResults.nodeVoltages);
-					console.log(simulationResults.nodeStateChanges);
-					console.log("Edges updated:", JSON.stringify(updatedEdgesForDisplay));
-
-					// Aquí actualizas tu ReactFlow con los resultados
-					simulationResults.edgeVoltagesAtStart.forEach((currentEdgeResult) => {
-						const currentEdgeData = initialEdgesFromWorker.find(
-							(edge) => edge.id === currentEdgeResult.edgeId
-						);
-						if (currentEdgeData) {
-							updateEdge(currentEdgeData.id, {
-								...currentEdgeData,
-								data: {
-									...currentEdgeData.data,
-									voltage: currentEdgeResult.voltage,
-									current: currentEdgeResult.current,
-									flowDirection: currentEdgeData.data?.flowDirection,
-								},
-							});
-						}
-					});
-
-					simulationResults.nodeStateChanges.forEach((nodeUpdate) => {
-						updateNode(nodeUpdate.id, (currentNode) => {
-							if ((currentNode as AnalogNode).data.state?.on !== nodeUpdate.state.on) {
-								return {
-									...currentNode,
-									data: {
-										...currentNode.data,
-										state: {
-											...(currentNode as AnalogNode).data.state,
-											on: nodeUpdate.state.on,
-										},
-									},
-								};
-							}
-							return currentNode;
+			if (type === "simulationResults") {
+				// Aquí es donde tomas los resultados y los aplicas a los nodos y aristas.
+				// Los `updatedNodes` y `updatedEdgesForDisplay` vienen dentro del objeto `results`
+				// enviado desde el worker.
+				if (results?.updatedNodes) {
+					console.log("Nodos actualizados aplicados:", results.updatedNodes);
+					const updatedNodes = results.updatedNodes as ComponentInfo[];
+					updatedNodes.forEach((node) => {
+						const nodeData = getNodes().find((n) => n.id === node.componentId);
+						updateNode(node.componentId, {
+							...nodeData,
+							data: {
+								...nodeData?.data,
+								voltageDrop: node.voltageDrop,
+								currentDrop: node.currentDrop,
+								state: { on: node.isOn },
+							},
 						});
 					});
-				} else if (type === "simulationError") {
-					openNotification("topRight", message);
-					setIsSimulationRunning(false);
-				} else if (type === "componentsOff") {
-					const updatedNodesTwo: AnalogNode[] = updatedNodes;
-					updatedNodesTwo.forEach((node) => {
-						updateNode(node.id, node);
+				}
+				if (results.circuitResults) {
+					console.log("Resultados de la simulación:");
+					console.dir(results.circuitResults);
+				}
+				if (results.updatedEdges) {
+					console.log("Aristas actualizadas aplicadas:", results.updatedEdges);
+					const updatedEdges = results.updatedEdges as EdgeInfo[];
+
+					updatedEdges.forEach((edge) => {
+						const edgeData = getEdges().find((e) => e.id === edge.edgeId);
+						updateEdge(edge.edgeId, {
+							...edgeData,
+							data: {
+								...edgeData?.data,
+								color: "var(--foreground-color)",
+								path: edgeData?.data?.path,
+								voltage: edge.voltageDisplay,
+							},
+						});
 					});
 				}
-			};
 
-			circuitWorker.onerror = (error) => {
-				console.error("Error en el Web Worker:", error);
-				openNotification("topRight", "Ocurrió un error en la simulación. Revisa la consola.");
-				setIsSimulationRunning(false);
-			};
-		}
-
-		// Lógica de inicio/reinicio de simulación
-		if (isSimulationRunning) {
-			if (lastSimulatedHashRef.current !== switchStateHash) {
-				startSimulation();
-				lastSimulatedHashRef.current = switchStateHash;
-			} else {
-				console.log("🔁 El estado del interruptor no cambió, no se vuelve a simular.");
+				if (results?.error) {
+					openNotificationWithIcon("error", "Error de Simulación", results.error);
+				}
+			} else if (type === "simulationError") {
+				openNotificationWithIcon("error", "Error del Worker", message);
+				setIsSimulationRunning(false); // Detener la simulación en caso de error
 			}
-		}
+		};
 
-		// Limpieza: terminar el worker cuando el componente se desmonte
+		workerRef.current.onerror = (error) => {
+			console.error("Error del Web Worker:", error);
+			openNotificationWithIcon(
+				"error",
+				"Error Crítico del Worker",
+				"Ha ocurrido un error inesperado en la simulación."
+			);
+			setIsSimulationRunning(false); // Detener la simulación en caso de error
+		};
+
 		return () => {
 			if (workerRef.current) {
-				console.log("Hilo principal: Terminando worker:", workerRef.current); // LOG AQUI
 				workerRef.current.terminate();
 				workerRef.current = null;
 			}
 		};
-	}, [isSimulationRunning, switchStateHash, updateEdge, updateNode, api, setIsSimulationRunning]); // Dependencias del useEffect
+	}, []); // Dependencias: [] para que se ejecute solo una vez al montar el componente
 
-	const openNotification = (placement: NotificationPlacement, message: string) => {
-		api.error({
-			message: "Error al iniciar la simulación",
-			description: message,
-			placement,
-			showProgress: true,
+	// Hook para detectar cambios en los interruptores y reiniciar la simulación
+	// No usa `useNodes` de ReactFlow para evitar re-renderizados innecesarios del componente
+	// cuando cambian otras propiedades del nodo. Solo reacciona a cambios en los interruptores.
+	const nodes = useStore((state) => state.nodes);
+
+	useEffect(() => {
+		if (!isSimulationRunning) return; // Solo si la simulación está corriendo
+
+		const currentSwitchStatesHash = getSwitchStatesHash(nodes as AnalogNode[]);
+
+		if (
+			switchStatesHashRef.current !== "" &&
+			switchStatesHashRef.current !== currentSwitchStatesHash
+		) {
+			console.log("Cambio en el estado de los interruptores detectado. Reiniciando simulación...");
+			startSimulation(); // Reinicia la simulación si cambian los interruptores
+		}
+		switchStatesHashRef.current = currentSwitchStatesHash;
+	}, [nodes, isSimulationRunning]); // Depende de `nodes` y `isSimulationRunning`
+
+	const openNotificationWithIcon = (
+		type: "success" | "info" | "warning" | "error",
+		message: string,
+		description: string
+	) => {
+		api[type]({
+			message: message,
+			description: description,
+			placement: "topRight",
+			duration: 3,
 		});
 	};
 
-	function handleSimulationClick() {
-		const currentState = isSimulationRunning;
-		if (currentState) {
+	const handleRunPauseSimulation = () => {
+		if (isSimulationRunning) {
 			if (workerRef.current) {
 				// Usa workerRef.current
 				console.log("Hilo principal: postMessage a worker (stop):", workerRef.current); // LOG AQUI
@@ -165,16 +162,13 @@ export function SimulationControls() {
 		}
 		startSimulation();
 		setIsSimulationRunning(true);
-	}
+	};
 
 	const startSimulation = () => {
 		const nodes = getNodes() as AnalogNode[];
 		const edges = getEdges() as ComponentEdge[];
 
 		if (workerRef.current) {
-			// Usa workerRef.current
-			console.log("Hilo principal: postMessage a worker (start):", workerRef.current); // LOG AQUI
-			console.log("NODES", nodes);
 			workerRef.current.postMessage({
 				type: "startSimulation",
 				payload: {
@@ -182,12 +176,10 @@ export function SimulationControls() {
 					edgesArray: edges,
 				},
 			});
-			console.log("Datos de simulación enviados al Web Worker...");
 		} else {
 			console.error("Worker no inicializado para simulación.");
 		}
 	};
-
 	return (
 		<>
 			{contextHolder}
@@ -196,12 +188,12 @@ export function SimulationControls() {
 					type="text"
 					icon={
 						isSimulationRunning ? (
-							<PauseOutlined style={{ fontSize: "1.3em", color: "var(--success-color)" }} />
+							<PauseOutlined style={{ color: "var(--accent-color)" }} />
 						) : (
-							<CaretRightFilled style={{ fontSize: "1.5em", color: "var(--success-color)" }} />
+							<CaretRightFilled style={{ color: "var(--accent-color)" }} />
 						)
 					}
-					onClick={handleSimulationClick}
+					onClick={handleRunPauseSimulation}
 				/>
 			</Tooltip>
 		</>
