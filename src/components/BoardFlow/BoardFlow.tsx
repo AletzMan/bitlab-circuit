@@ -41,7 +41,7 @@ import { ConfigProvider, theme } from "antd";
 import { useHistory } from "@/contexts/HistoryContext";
 import { ComponentsMap } from "@/constants/components";
 import { useSelectedItemsState } from "@/hooks/useSelectedItemsState";
-import { useSettings, useTheme } from "@/store";
+import { useSettings, useTheme, useWorkbenchTools } from "@/store";
 import { SwitchSPDT } from "../ElectronicComponents/SwitchSPDT/SwitchSPDT";
 import { SwitchDPST } from "../ElectronicComponents/SwitchDPST/SwitchDPST";
 import { SwitchDPDT } from "../ElectronicComponents/SwitchDPDT/SwitchDPDT";
@@ -1681,6 +1681,7 @@ export function BoardFlow() {
 		setIsSingleNodeSelection,
 		setIsSingleEdgeSelection,
 	} = useSelectedItemsState();
+	const workbenchTools = useWorkbenchTools((state) => state.workbenchTools);
 
 	useEffect(() => {
 		document.documentElement.setAttribute("data-theme", currentTheme);
@@ -1835,18 +1836,37 @@ export function BoardFlow() {
 	};
 
 	const handleOnEdgeClick = (e: React.MouseEvent<Element, MouseEvent>, edge: ComponentEdge) => {
-		e.preventDefault();
 		console.log(edge);
-		setSelectedEdge(edge);
-		setSelectedNode(undefined);
-		setActiveTab("properties");
+		if (workbenchTools === "probe") {
+			const { x, y } = screenToFlowPosition({
+				x: e.clientX,
+				y: e.clientY,
+			});
+			const voltageEdge = edge?.data?.voltage;
+			const viewPort = document.body.querySelector(".react-flow__viewport") as HTMLElement;
+			const newElement = document.createElement("div");
+			newElement.style.left = `${x + 4}px`;
+			newElement.style.top = `${y + 4}px`;
+			newElement.className = "viewVoltage";
+			newElement.innerHTML = `${voltageEdge?.toFixed(2)} V`;
+			viewPort.appendChild(newElement);
+			console.log(x);
+			console.log(y);
+		} else {
+			e.preventDefault();
+			setSelectedEdge(edge);
+			setSelectedNode(undefined);
+			setActiveTab("properties");
+		}
 	};
 
 	const handleReconnectStart = () => {
+		if (workbenchTools === "probe") return;
 		edgeReconnectSuccessful.current = false;
 	};
 
 	const handleReconnect = (oldEdge: ComponentEdge, newConnection: Connection) => {
+		if (workbenchTools === "probe") return;
 		edgeReconnectSuccessful.current = true;
 		const oldNode = nodes.find((node) => node.id === oldEdge.target);
 		const newNode = nodes.find((node) => node.id === newConnection.target);
@@ -1873,12 +1893,14 @@ export function BoardFlow() {
 	};
 
 	const handleReconnectEnd = (_: MouseEvent | TouchEvent, edge: Edge) => {
+		if (workbenchTools === "probe") return;
 		if (!edgeReconnectSuccessful.current) {
 			removeEdge([edge]);
 		}
 	};
 
 	const handleOnEdgesChanges: OnEdgesChange<ComponentEdge> = (changes) => {
+		if (workbenchTools === "probe") return;
 		onEdgesChange(changes);
 	};
 
@@ -2093,7 +2115,7 @@ export function BoardFlow() {
 				algorithm: currentTheme === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm,
 			}}
 		>
-			<div className={styles.board}>
+			<div className={`${styles.board}`}>
 				<MenuBar />
 				<div className={`${styles.flow} ${viewTools ? "" : styles.flow_hidden}`}>
 					<ReactFlow
