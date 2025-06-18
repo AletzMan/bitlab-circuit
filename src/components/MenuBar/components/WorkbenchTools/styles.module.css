@@ -3,3 +3,11 @@
 	align-items: center;
 	gap: 4px;
 }
+
+.workbenchTool_active {
+	cursor: default;
+}
+
+.workbenchTool_inactive {
+	cursor: not-allowed;
+}
