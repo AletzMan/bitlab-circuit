@@ -73,12 +73,13 @@ export function SimulationControls() {
 
 					updatedEdges.forEach((edge) => {
 						const edgeData = getEdges().find((e) => e.id === edge.edgeId);
+						console.log("EdgeData:", edgeData);
+						console.log("Edge:", edge);
 						updateEdge(edge.edgeId, {
 							...edgeData,
 							data: {
 								...edgeData?.data,
-								color: "var(--foreground-color)",
-								path: edgeData?.data?.path,
+								path: "REr",
 								voltage: edge.voltageDisplay,
 							},
 						});
