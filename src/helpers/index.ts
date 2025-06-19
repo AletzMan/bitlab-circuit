@@ -1,14 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentsMap, TypeGroupKey, typeGroups } from "@/constants/components";
-import {
-	AnalogNode,
-	Categories,
-	ComponentEdge,
-	ComponentProperties,
-	ComponentType,
-	EdgeData,
-	Presets,
-} from "../types";
+import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
 import { XYPosition } from "@xyflow/react";
 import { createRoot } from "react-dom/client";
 
@@ -392,4 +384,12 @@ export function changeVoltageView(edgeId: string, voltage: number) {
 	if (measurementElement) {
 		measurementElement.innerHTML = `${voltage.toFixed(2)} V`;
 	}
+}
+
+export function clearVoltageView() {
+	const measurementsElement = document.querySelectorAll(`.viewVoltage`);
+	if (!measurementsElement) return;
+	measurementsElement.forEach((measurementElement) => {
+		measurementElement.innerHTML = "0 V";
+	});
 }

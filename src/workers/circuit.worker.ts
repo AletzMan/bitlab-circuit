@@ -1,8 +1,3 @@
-// circuit.worker.ts
-// Asegúrate de que todas estas funciones y tipos estén disponibles aquí,
-// ya sea que las definas directamente o las importes de otros archivos (si tu proyecto está modularizado).
-// Si importas de otros archivos, esos archivos también deben ser accesibles/empaquetados por tu bundler para el worker.
-
 import { AnalogNode, ComponentEdge } from "../types"; // Ajusta la ruta a tus tipos
 import {
 	calculateVoltageDropPerEdge,

@@ -2,6 +2,40 @@ import { SVGProps } from "react";
 
 const STROKE_WIDTH = 2.5;
 
+export function LogoBitlab(props: SVGProps<SVGSVGElement>) {
+	return (
+		<svg
+			{...props}
+			height="40px"
+			width="40px"
+			fill="currentColor"
+			viewBox="0 0 500 500"
+			style={{ backgroundColor: "#FF000015" }}
+		>
+			<rect
+				x="100"
+				y="100"
+				width="300"
+				height="300"
+				rx="50"
+				ry="50"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth={25}
+			/>
+			<g transform="scale(17) translate(9, 9)">
+				<path
+					fill="#fff"
+					d="M3.15 11.96c-.14 0-.25-.05-.34-.11c-.29-.2-.36-.58-.2-1.03L4.3 6H3.24a.74.74 0 0 1-.62-.32c-.14-.21-.15-.48-.04-.74L4.42.66c.16-.38.57-.66.97-.66H9.1c.26 0 .49.12.62.32a.8.8 0 0 1 .04.74L7.68 5h1.09c.33 0 .58.16.69.42c.05.15.13.53-.34.98l-5.27 5.22c-.28.26-.52.34-.7.34"
+				/>
+			</g>
+			<circle cx="60" cy="60" r="35" fill="currentColor" stroke="currentColor" strokeWidth={1} />
+			<path d="M 60 60 L 200 60" stroke="currentColor" strokeWidth={25} />
+			<circle cx="440" cy="440" r="35" fill="currentColor" stroke="currentColor" strokeWidth={1} />
+		</svg>
+	);
+}
+
 export function GroundIcon(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 400 400">
