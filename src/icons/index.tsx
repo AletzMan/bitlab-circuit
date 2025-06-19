@@ -446,6 +446,14 @@ export function LEDIcon(props: PropsLED) {
 			<line
 				x1="0"
 				y1="300"
+				x2="200"
+				y2="300"
+				stroke="currentColor"
+				strokeWidth={STROKE_WIDTH * 4}
+			/>
+			<line
+				x1="400"
+				y1="300"
 				x2="600"
 				y2="300"
 				stroke="currentColor"
@@ -453,7 +461,7 @@ export function LEDIcon(props: PropsLED) {
 			/>
 			<polygon
 				points="210,400 390,300 210,200"
-				fill="currentColor"
+				fill="transparent"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 				stroke="currentColor"
