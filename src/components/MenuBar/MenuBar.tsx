@@ -1,10 +1,8 @@
-import { Button, ConfigProvider, Divider, Select, Switch, theme, Tooltip } from "antd";
+import { Button, ConfigProvider, Divider, Select, theme, Tooltip } from "antd";
 import {
-	DarkIcon,
 	ExportIcon,
 	FileIcon,
 	FitZoomIcon,
-	LightIcon,
 	MenuIcon,
 	MinusIcon,
 	OpenFileIcon,
@@ -14,17 +12,16 @@ import {
 	SaveIcon,
 	UndoIcon,
 } from "@/icons";
-import { useTheme } from "@/store";
 import { BackgroundVariant, useReactFlow } from "@xyflow/react";
-import { useSettings } from "@/store";
-import { KeyboardEvent } from "react";
+import { useSettings, useTheme } from "@/store";
 import styles from "./styles.module.css";
 import { useHistory } from "@/contexts/HistoryContext";
 import { SimulationControls } from "./components/SimulationControls/SimulationControls";
 import { WorkbenchTools } from "./components/WorkbenchTools/WorkbenchTools";
+import { SwitchTheme } from "../SwitchTheme/SwitchTheme";
 
 export function MenuBar() {
-	const { currentTheme, setCurrentTheme } = useTheme();
+	const currentTheme = useTheme((state) => state.currentTheme);
 	const viewPort = useSettings((state) => state.viewPort);
 	const setViewPort = useSettings((state) => state.setViewPort);
 	const setViewTools = useSettings((state) => state.setViewTools);
@@ -55,16 +52,6 @@ export function MenuBar() {
 			default:
 				break;
 		}
-	};
-
-	const handleChangeTheme = (
-		checked: boolean,
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent> | KeyboardEvent<HTMLButtonElement>
-	) => {
-		e.preventDefault();
-		const newTheme = checked ? "light" : "dark";
-		setCurrentTheme(newTheme);
-		document.documentElement.setAttribute("data-theme", newTheme);
 	};
 
 	return (
@@ -129,12 +116,7 @@ export function MenuBar() {
 					</div>
 					<Divider type="vertical" />
 					<div className={styles.switchContainer}>
-						<Switch
-							value={currentTheme === "light"}
-							checkedChildren={<DarkIcon />}
-							unCheckedChildren={<LightIcon />}
-							onChange={handleChangeTheme}
-						/>
+						<SwitchTheme />
 						<Button
 							className={styles["button_menu"]}
 							type="text"
