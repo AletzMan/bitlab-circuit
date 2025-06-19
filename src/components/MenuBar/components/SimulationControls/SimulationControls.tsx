@@ -1,3 +1,4 @@
+import { changeVoltageView } from "@/helpers";
 import { useSimulation } from "@/store";
 import { AnalogNode, ComponentEdge, ComponentType } from "@/types";
 import { ComponentInfo, EdgeInfo } from "@/workers/functions";
@@ -51,16 +52,14 @@ export function SimulationControls() {
 					console.log("Nodos actualizados aplicados:", results.updatedNodes);
 					const updatedNodes = results.updatedNodes as ComponentInfo[];
 					updatedNodes.forEach((node) => {
-						const nodeData = getNodes().find((n) => n.id === node.componentId);
-						updateNode(node.componentId, {
-							...nodeData,
+						updateNode(node.componentId, (prevNode) => ({
 							data: {
-								...nodeData?.data,
+								...prevNode.data,
 								voltageDrop: node.voltageDrop,
 								currentDrop: node.currentDrop,
 								state: { on: node.isOn },
 							},
-						});
+						}));
 					});
 				}
 				if (results.circuitResults) {
@@ -72,17 +71,15 @@ export function SimulationControls() {
 					const updatedEdges = results.updatedEdges as EdgeInfo[];
 
 					updatedEdges.forEach((edge) => {
-						const edgeData = getEdges().find((e) => e.id === edge.edgeId);
-						console.log("EdgeData:", edgeData);
+						changeVoltageView(edge.edgeId, edge.voltageDisplay);
 						console.log("Edge:", edge);
-						updateEdge(edge.edgeId, {
-							...edgeData,
+						updateEdge(edge.edgeId, (prevEdge) => ({
 							data: {
-								...edgeData?.data,
+								...prevEdge.data,
 								path: "REr",
 								voltage: edge.voltageDisplay,
 							},
-						});
+						}));
 					});
 				}
 
