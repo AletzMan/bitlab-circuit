@@ -423,7 +423,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
 		],
 		style: undefined,
 		size: "small",
-		color: "#FF0000",
+		color: "transparent",
 	},
 	[ComponentType.Zener]: {
 		name: "Zener",
