@@ -36,7 +36,12 @@ import { Board } from "@/components/ElectronicComponents/Board/Board";
 import { NodeComponent } from "@/components/ElectronicComponents/NodeComponent/NodeComponent";
 import { TransistorComponent } from "@/components/ElectronicComponents/TransistorComponent/TransistorComponent";
 import { MechanicalComponent } from "@/components/ElectronicComponents/MechanicalComponent/MechanicalComponent";
-import { getComponentProperties, getNewPositionByOverlapping, isPointInBox } from "@/helpers";
+import {
+	createVoltageView,
+	getComponentProperties,
+	getNewPositionByOverlapping,
+	isPointInBox,
+} from "@/helpers";
 import { ConfigProvider, theme } from "antd";
 import { useHistory } from "@/contexts/HistoryContext";
 import { ComponentsMap } from "@/constants/components";
@@ -160,7 +165,7 @@ const initialNodes: AnalogNode[] = [
 			name: "LED",
 			type: ComponentType.Led,
 			category: Categories.Diodes,
-			value: 1.8,
+			value: LED_FORWARD_VOLTAGE,
 			color: "#0000FF",
 			isLock: false,
 			rotation: 90,
@@ -209,7 +214,7 @@ const initialNodes: AnalogNode[] = [
 			name: "LED",
 			type: ComponentType.Led,
 			category: Categories.Diodes,
-			value: 1.8,
+			value: LED_FORWARD_VOLTAGE,
 			color: "#FFFF00",
 			isLock: false,
 			rotation: 90,
@@ -259,7 +264,7 @@ const initialNodes: AnalogNode[] = [
 			name: "LED",
 			type: ComponentType.Led,
 			category: Categories.Diodes,
-			value: 1.8,
+			value: LED_FORWARD_VOLTAGE,
 			color: "#00FF00",
 			isLock: false,
 			rotation: 90,
@@ -308,7 +313,7 @@ const initialNodes: AnalogNode[] = [
 			name: "LED",
 			type: ComponentType.Led,
 			category: Categories.Diodes,
-			value: 1.8,
+			value: LED_FORWARD_VOLTAGE,
 			isLock: false,
 			rotation: 90,
 			flip: {
@@ -1685,6 +1690,10 @@ export function BoardFlow() {
 
 	useEffect(() => {
 		document.documentElement.setAttribute("data-theme", currentTheme);
+		const viewPort = document.body.querySelector(".react-flow__viewport") as HTMLElement;
+		const containerMeasurements = document.createElement("div");
+		containerMeasurements.className = "container-measurements";
+		viewPort.appendChild(containerMeasurements);
 	}, []);
 
 	const onConnect = useCallback(
@@ -1843,17 +1852,9 @@ export function BoardFlow() {
 				y: e.clientY,
 			});
 			const voltageEdge = edge?.data?.voltage;
-			const viewPort = document.body.querySelector(".react-flow__viewport") as HTMLElement;
-			const newElement = document.createElement("div");
-			newElement.style.left = `${x + 4}px`;
-			newElement.style.top = `${y + 4}px`;
-			newElement.className = "viewVoltage";
-			newElement.innerHTML = `${voltageEdge?.toFixed(2)} V`;
-			viewPort.appendChild(newElement);
-			console.log(x);
-			console.log(y);
+
+			createVoltageView(x, y, voltageEdge || 0, edge.id);
 		} else {
-			e.preventDefault();
 			setSelectedEdge(edge);
 			setSelectedNode(undefined);
 			setActiveTab("properties");
@@ -1900,7 +1901,6 @@ export function BoardFlow() {
 	};
 
 	const handleOnEdgesChanges: OnEdgesChange<ComponentEdge> = (changes) => {
-		if (workbenchTools === "probe") return;
 		onEdgesChange(changes);
 	};
 
