@@ -34,6 +34,9 @@ body {
 	--designator-color: #690303;
 	--action-color: #690303;
 	--success-color: #0eb121;
+	--measure-color: #00fa1d;
+	--measure-background-color: #0b3610;
+	--measure-border-color: #09b41d;
 	--background-color: #f3f2f2;
 	--background-color-tab: #ffffff;
 	--background-color-tab-inactive: #e6e6e6;
@@ -64,6 +67,9 @@ body {
 	--designator-color: #c39950;
 	--action-color: #0eb121;
 	--success-color: #0eb121;
+	--measure-color: #0aee25;
+	--measure-background-color: #022506;
+	--measure-border-color: #059616;
 	--action-background-color: #0eb12135;
 	--background-color: #292929;
 	--background-color-tab: #151515;
@@ -325,26 +331,32 @@ body {
 	justify-content: center;
 	align-items: center;
 	width: 50px;
-	height: 30px;
-	background-color: var(--background-color-tab);
-	border: 1px solid var(--foreground-color);
+	height: 25px;
+	background-color: var(--measure-background-color);
+	border: 1px solid var(--measure-border-color);
 	border-radius: 0 5px 5px 5px;
 	font-size: 12px;
-	color: var(--foreground-color);
-	z-index: 1000;
+	color: var(--measure-color);
+	z-index: 999999999;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #ff0000;
+		border: 1px solid #ff0000;
+	}
 
 	/* Triangulo */
 	&:after {
 		content: "";
 		position: absolute;
-		top: -7px;
-		left: -5px;
+		top: -10px;
+		left: -6px;
 		width: 0;
 		height: 0;
-		border-left: 3px solid transparent;
-		border-right: 3px solid transparent;
-		border-bottom: 10px solid var(--foreground-color);
-		transform: rotate(-45deg);
+		border-left: 2px solid transparent;
+		border-right: 2px solid transparent;
+		border-bottom: 13px solid var(--measure-border-color);
+		transform: rotate(-50deg);
 		z-index: -1;
 	}
 }
