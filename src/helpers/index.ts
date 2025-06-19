@@ -371,3 +371,25 @@ export function getNextDesignatorNumber(designator: string, nodes: AnalogNode[])
 	const letterDesignator = designator.replace(/\d+/g, "");
 	return `${letterDesignator}${quantityNodes + 1}`;
 }
+
+export function createVoltageView(x: number, y: number, voltage: number, edgeId: string) {
+	const viewPort = document.body.querySelector(".container-measurements") as HTMLElement;
+	const measurementElement = document.querySelector(`.measurement-${edgeId}`);
+	if (measurementElement) {
+		measurementElement.remove();
+	}
+	const newElement = document.createElement("div");
+	newElement.style.left = `${x + 8}px`;
+	newElement.style.top = `${y + 6}px`;
+	newElement.className = "viewVoltage";
+	newElement.classList.add(`measurement-${edgeId}`);
+	newElement.innerHTML = `${voltage.toFixed(2)} V`;
+	viewPort.appendChild(newElement);
+}
+
+export function changeVoltageView(edgeId: string, voltage: number) {
+	const measurementElement = document.querySelector(`.measurement-${edgeId}`);
+	if (measurementElement) {
+		measurementElement.innerHTML = `${voltage.toFixed(2)} V`;
+	}
+}
