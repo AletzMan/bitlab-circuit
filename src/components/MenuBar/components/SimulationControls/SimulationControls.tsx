@@ -1,4 +1,4 @@
-import { changeVoltageView } from "@/helpers";
+import { changeVoltageView, clearVoltageView } from "@/helpers";
 import { useSimulation } from "@/store";
 import { AnalogNode, ComponentEdge, ComponentType } from "@/types";
 import { ComponentInfo, EdgeInfo } from "@/workers/functions";
@@ -154,6 +154,7 @@ export function SimulationControls() {
 						nodesArray: getNodes() as AnalogNode[],
 					},
 				});
+				clearVoltageView();
 			}
 			setIsSimulationRunning(false);
 			return;
