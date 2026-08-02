@@ -2,7 +2,8 @@
 import { ComponentsMap, TypeGroupKey, typeGroups } from "@/constants/components";
 import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
 import { XYPosition } from "@xyflow/react";
-import { createRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client"; 
+
 
 /**
  * Verifica si un punto está dentro de un cuadrado.
@@ -202,9 +203,8 @@ export function reorderComponentDesignators(components: AnalogNode[]): AnalogNod
 		// Generar la nueva referencia
 		const newDesignator = groupKey
 			? `${typeGroups[groupKey].designator}${typeCounters[groupKey]}` // Usa la primera letra del grupo
-			: `${ComponentsMap[component.data.type].designator.toUpperCase()}${
-					typeCounters[component.data.type]
-			  }`;
+			: `${ComponentsMap[component.data.type].designator.toUpperCase()}${typeCounters[component.data.type]
+			}`;
 
 		return {
 			...component,
@@ -231,15 +231,20 @@ export function getImageBackgroundDrag(type: ComponentType): HTMLDivElement {
 	const tempContainer = document.createElement("div");
 	if (currentComponent) {
 		tempContainer.className = "elementDrag";
+		// Posicionar fuera del viewport para evitar reflow/scroll
+		tempContainer.style.position = "fixed";
+		tempContainer.style.left = "-9999px";
+		tempContainer.style.top = "-9999px";
+		tempContainer.style.pointerEvents = "none";
 
-		// Renderizar el ResistorIcon en el contenedor
+		// Renderizar el ícono en el contenedor
 		const root = createRoot(tempContainer as HTMLElement);
 		root.render(currentComponent.icon);
 		document.body.appendChild(tempContainer);
 
-		// Usar el contenedor como la imagen de arrastre
+		// Remover el contenedor después de que el browser tome la imagen
 		setTimeout(() => {
-			root.unmount(); // Desmontar el componente
+			root.unmount();
 			document.body.removeChild(tempContainer);
 		}, 0);
 	}
@@ -261,14 +266,14 @@ export const getNewPositionByOverlapping = (
 		overlappingNodePosition.x === dragNodePosition.x
 			? "none"
 			: overlappingNodePosition.x > dragNodePosition.x
-			? "left"
-			: "right";
+				? "left"
+				: "right";
 	const verticalOverlapping: "top" | "bottom" | "none" =
 		overlappingNodePosition.y === dragNodePosition.y
 			? "none"
 			: overlappingNodePosition.y > dragNodePosition.y
-			? "top"
-			: "bottom";
+				? "top"
+				: "bottom";
 
 	// Si no hay solapamiento en ninguna dirección, no mover el nodo
 	if (horizontalOverlapping === "none" && verticalOverlapping === "none") {
@@ -364,32 +369,449 @@ export function getNextDesignatorNumber(designator: string, nodes: AnalogNode[])
 	return `${letterDesignator}${quantityNodes + 1}`;
 }
 
-export function createVoltageView(x: number, y: number, voltage: number, edgeId: string) {
-	const viewPort = document.body.querySelector(".container-measurements") as HTMLElement;
+
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+export enum ProbeOrientation {
+	Left = "left",
+	Right = "right",
+	Top = "top",
+	Bottom = "bottom",
+}
+
+export enum MeasurementType {
+	Voltage = "voltage",
+	Current = "current",
+	Resistance = "resistance",
+}
+
+export interface MeasurementData {
+	type: MeasurementType;
+	edgeId?: string;
+	nodeId?: string;
+	secondaryEdgeId?: string; // Para mediciones que requieren dos puntos
+	secondaryNodeId?: string;
+	value: number;
+}
+
+export function createMeasurementView(
+	measurementId: string,
+	type: MeasurementType,
+	value: number,
+	primaryX: number,
+	primaryY: number,
+	orientation: ProbeOrientation,
+	secondaryX?: number,
+	secondaryY?: number
+) {
+
+	const container = document.querySelector(
+		".container-measurements"
+	) as HTMLElement;
+
+	if (!container) return;
+
+	removeProbe(measurementId);
+
+	//----------------------------------------
+	// SVG
+	//----------------------------------------
+
+	let svg = container.querySelector(".measurement-layer") as SVGSVGElement;
+
+	if (!svg) {
+		svg = document.createElementNS(SVG_NS, "svg");
+		svg.classList.add("measurement-layer");
+		container.appendChild(svg);
+	}
+
+	//----------------------------------------
+	// Probe
+	//----------------------------------------
+
+	const probe = document.createElement("div");
+	probe.className = `viewVoltage measurement-${measurementId}`;
+	probe.dataset.measurementId = measurementId;
+	probe.dataset.measurementType = type;
+
+	probe.addEventListener("click", () => {
+		//removeProbe(measurementId);
+	});
+
+	//----------------------------------------
+
+	const header = document.createElement("div");
+	header.className = "measurement-header";
+
+	let unit = "V";
+	let label = "DC VOLTAGE";
+
+	switch (type) {
+		case MeasurementType.Voltage:
+			label = "DC VOLTAGE";
+			unit = "V";
+			break;
+		case MeasurementType.Current:
+			label = "DC CURRENT";
+			unit = "A";
+			break;
+		case MeasurementType.Resistance:
+			label = "RESISTANCE";
+			unit = "Ω";
+			break;
+	}
+
+	header.innerText = label;
+
+	//----------------------------------------
+
+	const display = document.createElement("div");
+	display.className = "measurement-display";
+	display.innerHTML = `${value.toFixed(2)} <span class="unit">${unit}</span>`;
+
+	probe.append(
+		header,
+		display
+	);
+
+	//----------------------------------------
+
+	const node = document.createElement("div");
+	node.className = `measurement-node measurement-node-${measurementId}`;
+
+	//----------------------------------------
+
+	node.style.left = `${primaryX}px`;
+	node.style.top = `${primaryY}px`;
+
+	//----------------------------------------
+	// Posicionar probe
+	//----------------------------------------
+
+	const pos = getProbePosition(
+		primaryX,
+		primaryY,
+		orientation
+	);
+
+	probe.style.left = `${pos.x}px`;
+	probe.style.top = `${pos.y}px`;
+	probe.style.cursor = "grab";
+
+	//----------------------------------------
+
+	container.appendChild(node);
+	container.appendChild(probe);
+
+	//----------------------------------------
+	// Wire
+	//----------------------------------------
+
+	const glow = document.createElementNS(SVG_NS, "path");
+	glow.classList.add("measurement-wire-glow", `wire-glow-${measurementId}`);
+	const wire = document.createElementNS(SVG_NS, "path");
+	wire.classList.add("measurement-wire", `wire-${measurementId}`);
+	svg.append(glow);
+	svg.append(wire);
+
+	// Calcular el centro del probe para el wire
+	const probeWidth = 84;
+	const probeHeight = 44;
+	const transformOffsetX = 14;
+	const transformOffsetY = -18;
+
+	// Función para actualizar el wire
+	const updateWireFromProbe = (probeX: number, probeY: number) => {
+		const probeCenterX = probeX + probeWidth / 2 + transformOffsetX;
+		const probeCenterY = probeY + probeHeight / 2 + transformOffsetY;
+		updateWire(
+			primaryX,
+			primaryY,
+			probeCenterX,
+			probeCenterY,
+			wire,
+			glow
+		);
+	};
+
+	// Inicializar wire
+	updateWireFromProbe(pos.x, pos.y);
+
+	// Si hay un segundo punto (para mediciones de corriente/resistencia), crear segundo wire
+	let secondaryNode: HTMLElement | null = null;
+	let secondaryWire: SVGPathElement | null = null;
+	let secondaryGlow: SVGPathElement | null = null;
+
+	if (secondaryX !== undefined && secondaryY !== undefined) {
+		secondaryNode = document.createElement("div");
+		secondaryNode.className = `measurement-node measurement-node-${measurementId}-secondary`;
+		secondaryNode.style.left = `${secondaryX}px`;
+		secondaryNode.style.top = `${secondaryY}px`;
+		container.appendChild(secondaryNode);
+
+		secondaryGlow = document.createElementNS(SVG_NS, "path");
+		secondaryGlow.classList.add("measurement-wire-glow", `wire-glow-${measurementId}-secondary`);
+		secondaryWire = document.createElementNS(SVG_NS, "path");
+		secondaryWire.classList.add("measurement-wire", `wire-${measurementId}-secondary`);
+		svg.append(secondaryGlow);
+		svg.append(secondaryWire);
+
+		const updateSecondaryWire = (probeX: number, probeY: number) => {
+			const probeCenterX = probeX + probeWidth / 2 + transformOffsetX;
+			const probeCenterY = probeY + probeHeight / 2 + transformOffsetY;
+			updateWire(
+				secondaryX,
+				secondaryY,
+				probeCenterX,
+				probeCenterY,
+				secondaryWire!,
+				secondaryGlow!
+			);
+		};
+
+		updateSecondaryWire(pos.x, pos.y);
+	}
+
+	//----------------------------------------
+	// Arrastre del probe
+	//----------------------------------------
+
+	let isDragging = false;
+	let dragOffsetX = 0;
+	let dragOffsetY = 0;
+
+	probe.addEventListener("mousedown", (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		isDragging = true;
+		probe.style.cursor = "grabbing";
+
+		const currentProbeX = parseFloat(probe.style.left) || 0;
+		const currentProbeY = parseFloat(probe.style.top) || 0;
+		dragOffsetX = e.clientX - currentProbeX;
+		dragOffsetY = e.clientY - currentProbeY;
+	});
+
+	document.addEventListener("mousemove", (e) => {
+		if (!isDragging) return;
+
+		const viewport = document.querySelector(".react-flow__viewport") as HTMLElement;
+		if (!viewport) return;
+
+		const transform = viewport.style.transform;
+		let zoom = 1;
+		let panX = 0;
+		let panY = 0;
+
+		if (transform) {
+			const scaleMatch = transform.match(/scale\(([^)]+)\)/);
+			const translateMatch = transform.match(/translate\(([^,]+),\s*([^)]+)\)/);
+
+			if (scaleMatch) zoom = parseFloat(scaleMatch[1]);
+			if (translateMatch) {
+				panX = parseFloat(translateMatch[1]);
+				panY = parseFloat(translateMatch[2]);
+			}
+		}
+
+		const newProbeX = (e.clientX - panX) / zoom - dragOffsetX / zoom;
+		const newProbeY = (e.clientY - panY) / zoom - dragOffsetY / zoom;
+
+		probe.style.left = `${newProbeX}px`;
+		probe.style.top = `${newProbeY}px`;
+
+		updateWireFromProbe(newProbeX, newProbeY);
+
+		if (secondaryWire && secondaryGlow) {
+			const probeCenterX = newProbeX + probeWidth / 2 + transformOffsetX;
+			const probeCenterY = newProbeY + probeHeight / 2 + transformOffsetY;
+			updateWire(
+				secondaryX!,
+				secondaryY!,
+				probeCenterX,
+				probeCenterY,
+				secondaryWire,
+				secondaryGlow
+			);
+		}
+	});
+
+	document.addEventListener("mouseup", () => {
+		if (isDragging) {
+			isDragging = false;
+			probe.style.cursor = "grab";
+		}
+	});
+
+}
+
+// Mantener compatibilidad con la función anterior
+export function createVoltageView(
+	x: number,
+	y: number,
+	voltage: number,
+	edgeId: string,
+	orientation: ProbeOrientation
+) {
+	createMeasurementView(
+		edgeId,
+		MeasurementType.Voltage,
+		voltage,
+		x,
+		y,
+		orientation
+	);
+}
+
+function getProbePosition(
+	x: number,
+	y: number,
+	side: ProbeOrientation
+): { x: number; y: number } {
+
+	const width = 92;
+	const height = 44;
+	switch (side) {
+		case "top":
+			return {
+				x: x - width / 2,
+				y: y - 70
+			}
+
+		case "bottom":
+			return {
+				x: x - width / 2,
+				y: y + 45
+			};
+
+		case "left":
+			return {
+				x: x - width - 25,
+				y: y - height / 2
+			};
+
+		case "right":
+			return {
+				x: x + 25,
+				y: y - height / 2
+			};
+
+		default:
+			return { x, y };
+	}
+}
+
+function updateWire(
+	nodeX: number,
+	nodeY: number,
+	probeX: number,
+	probeY: number,
+	wire: SVGPathElement,
+	glow: SVGPathElement
+) {
+
+	const d = `M ${nodeX} ${nodeY} L ${probeX} ${probeY}`;
+	wire.setAttribute("d", d);
+	glow.setAttribute("d", d);
+
+}
+
+export function removeProbe(measurementId: string) {
+	console.log("Removing probe", measurementId);
+	document.querySelector(`.measurement-${measurementId}`)?.remove();
+	document.querySelector(`.measurement-node-${measurementId}`)?.remove();
+	document.querySelector(`.measurement-node-${measurementId}-secondary`)?.remove();
+	document.querySelector(`.wire-${measurementId}`)?.remove();
+	document.querySelector(`.wire-${measurementId}-secondary`)?.remove();
+	document.querySelector(`.wire-glow-${measurementId}`)?.remove();
+	document.querySelector(`.wire-glow-${measurementId}-secondary`)?.remove();
+}
+
+export function changeMeasurementView(measurementId: string, value: number, type?: MeasurementType) {
+	const measurementElement = document.querySelector(`.measurement-${measurementId}`) as HTMLElement;
+	if (measurementElement) {
+		const display = measurementElement.querySelector(".measurement-display");
+		if (display) {
+			const measurementType = type || (measurementElement.dataset.measurementType as MeasurementType) || MeasurementType.Voltage;
+			let unit = "V";
+
+			switch (measurementType) {
+				case MeasurementType.Voltage:
+					unit = "V";
+					break;
+				case MeasurementType.Current:
+					unit = "A";
+					break;
+				case MeasurementType.Resistance:
+					unit = "Ω";
+					break;
+			}
+
+			display.innerHTML = `${value.toFixed(2)} <span class="unit">${unit}</span>`;
+		}
+	}
+}
+
+// Mantener compatibilidad con la función anterior
+export function changeVoltageView(edgeId: string, voltage: number) {
+	changeMeasurementView(edgeId, voltage, MeasurementType.Voltage);
+}
+
+/*
+export function removeProbe(edgeId: string) {
 	const measurementElement = document.querySelector(`.measurement-${edgeId}`);
 	if (measurementElement) {
 		measurementElement.remove();
 	}
-	const newElement = document.createElement("div");
-	newElement.style.left = `${x + 8}px`;
-	newElement.style.top = `${y + 6}px`;
-	newElement.className = "viewVoltage";
-	newElement.classList.add(`measurement-${edgeId}`);
-	newElement.innerHTML = `${voltage.toFixed(2)} V`;
-	viewPort.appendChild(newElement);
-}
-
-export function changeVoltageView(edgeId: string, voltage: number) {
-	const measurementElement = document.querySelector(`.measurement-${edgeId}`);
-	if (measurementElement) {
-		measurementElement.innerHTML = `${voltage.toFixed(2)} V`;
-	}
-}
+}*/
 
 export function clearVoltageView() {
-	const measurementsElement = document.querySelectorAll(`.viewVoltage`);
-	if (!measurementsElement) return;
-	measurementsElement.forEach((measurementElement) => {
-		measurementElement.innerHTML = "0 V";
+	const measurements = document.querySelectorAll(".viewVoltage");
+	measurements.forEach((measurement) => {
+		const display = measurement.querySelector(".measurement-display");
+		if (display) {
+			const measurementElement = measurement as HTMLElement;
+			const measurementType = measurementElement.dataset.measurementType as MeasurementType || MeasurementType.Voltage;
+			let unit = "V";
+
+			switch (measurementType) {
+				case MeasurementType.Voltage:
+					unit = "V";
+					break;
+				case MeasurementType.Current:
+					unit = "A";
+					break;
+				case MeasurementType.Resistance:
+					unit = "Ω";
+					break;
+			}
+
+			display.innerHTML = `0.00 <span class="unit">${unit}</span>`;
+		}
 	});
+}
+
+
+export function formatCurrent(amperes: number): string {
+    if (amperes === 0) return "0 A";
+
+    const absAmperes = Math.abs(amperes);
+    const sign = amperes < 0 ? "-" : "";
+
+    if (absAmperes >= 1) {
+        // 1 A o más
+        return `${sign}${absAmperes.toFixed(2)} A`;
+    } else if (absAmperes >= 1e-3) {
+        // Rango de miliamperios (0.001 A a 0.999 A)
+        return `${sign}${(absAmperes * 1e3).toFixed(0)} mA`;
+    } else if (absAmperes >= 1e-6) {
+        // Rango de microamperios (0.000001 A a 0.000999 A)
+        return `${sign}${(absAmperes * 1e6).toFixed(0)} µA`;
+    } else if (absAmperes >= 1e-9) {
+        // Rango de nanoamperios
+        return `${sign}${(absAmperes * 1e9).toFixed(0)} nA`;
+    } else {
+        // Valores extremadamente pequeños (picoamperios o cercanos a cero por tolerancia del MNA)
+        return `0 A`;
+    }
 }
