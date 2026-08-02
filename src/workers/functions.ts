@@ -126,33 +126,6 @@ function buildGraph(edges: ComponentEdge[], nodes: AnalogNode[]): Map<string, Se
 				}
 			}
 		}
-		// ---> AÑADE ESTA SECCIÓN PARA LOS SWITCHES <---
-		else if (
-			node.data.type === ComponentType.SwitchSPST ||
-			node.data.type === ComponentType.PusuhButtonClose ||
-			node.data.type === ComponentType.PusuhButtonOpen
-		) {
-			const handle1 = `${node.id}:1`; // Asumiendo handles '1' y '2' para switches
-			const handle2 = `${node.id}:2`;
-
-			// CRUCIAL: Solo añade la conexión si el switch está ON
-			// Si node.data.state es undefined o node.data.state.on es false, el switch está OFF
-			const isSwitchOn = node.data.state?.on === true;
-
-			if (isSwitchOn) {
-				if (!graph.has(handle1)) graph.set(handle1, new Set());
-				if (!graph.has(handle2)) graph.set(handle2, new Set());
-
-				graph.get(handle1)!.add(handle2);
-				graph.get(handle2)!.add(handle1);
-			}
-			// Si el switch está OFF, NO se añade ninguna arista entre sus handles internos.
-		}
-		// Para otros componentes (resistencias, LEDs, baterías), sus terminales están
-		// siempre "internamente conectados" para formar parte de la malla MNA,
-		// pero esa conexión no se representa en el grafo de nodos eléctricos.
-		// Sus handles se conectan a los nodos eléctricos a través de los *cables* (edges)
-		// y su comportamiento (resistencia, fuente de voltaje) se modela en solveMNA.
 	}
 
 	return graph;
@@ -210,8 +183,15 @@ function assignElectricalNodes(
 		ComponentType.Schottky,
 		ComponentType.Zener,
 		ComponentType.SwitchSPST,
+		ComponentType.SwitchDPST,
+		ComponentType.SwitchSPDT,
+		ComponentType.SwitchDPDT,
 		ComponentType.PusuhButtonOpen,
 		ComponentType.PusuhButtonClose,
+		ComponentType.RelaySPST,
+		ComponentType.RelayDPST,
+		ComponentType.RelaySPDT,
+		ComponentType.RelayDPDT,
 		ComponentType.Ammeter,
 	]);
 
@@ -433,17 +413,31 @@ function prepareForMNA(
 		// Asignación inteligente de compNode1Id y compNode2Id basada en el tipo de componente
 		switch (node.data.type) {
 			case ComponentType.Resistor:
+			case ComponentType.Rheostat:
+			case ComponentType.Thermistor:
+			case ComponentType.Photoresistance:
 			case ComponentType.Capacitor:
+			case ComponentType.PolarisedCapacitor:
+			case ComponentType.VariableCapacitor:
+			case ComponentType.TrimmerCapacitor:
 			case ComponentType.Inductor:
-			case ComponentType.SwitchSPST: // y otros interruptores simples
-			// ... (añade más tipos que tienen 2 terminales genéricos) ...
+			case ComponentType.FerriteCoreInductor:
+			case ComponentType.IronCoreInductor:
+			case ComponentType.PresetFerriteCoreInductor:
+			case ComponentType.PresetIronCoreInductor:
+			case ComponentType.VariableFerriteCoreInductor:
+			case ComponentType.VariableIronCoreInductor:
+			case ComponentType.SwitchSPST:
+			case ComponentType.SwitchDPST:
+			case ComponentType.SwitchSPDT:
+			case ComponentType.SwitchDPDT:
 			case ComponentType.PusuhButtonClose:
 			case ComponentType.PusuhButtonOpen:
+			case ComponentType.RelaySPST:
+			case ComponentType.RelayDPST:
+			case ComponentType.RelaySPDT:
+			case ComponentType.RelayDPDT:
 			case ComponentType.Ammeter:
-				// Para estos, el orden de 1 y 2 generalmente no importa para la función,
-				// pero si tus visuales o la simulación dependen de un orden específico,
-				// usa electricalNodeId1 y electricalNodeId2.
-
 				compNode1Id = electricalNodeId1;
 				compNode2Id = electricalNodeId2;
 				if (!compNode1Id || !compNode2Id) {
@@ -465,9 +459,12 @@ function prepareForMNA(
 
 			case ComponentType.Diode:
 			case ComponentType.Led:
-			case ComponentType.Schottky:
 			case ComponentType.Zener:
-				// ... (otros diodos y LED) ...
+			case ComponentType.Schottky:
+			case ComponentType.Tunnel:
+			case ComponentType.PhotoDiode:
+			case ComponentType.TVSDiode:
+			case ComponentType.Varactor:
 				// Para diodos y LEDs, handle '1' es ánodo (node1Id) y handle '2' es cátodo (node2Id)
 				compNode1Id = electricalNodeId1; // Ánodo
 				compNode2Id = electricalNodeId2; // Cátodo
@@ -621,8 +618,8 @@ function solveMNA(
 		};
 
 		// Agregar resistencia de fuga a tierra para evitar nodos flotantes y matriz singular
-		const leakageConductance = 1e-7; // 10MΩ - pequeña para no afectar el circuito pero suficiente para evitar singularidad
-		for (const [nodeId, node] of electricalNodes) {
+		const leakageConductance = 1e-10; // 10GΩ - muy pequeña para no afectar el circuito pero suficiente para evitar singularidad
+		for (const [nodeId] of electricalNodes) {
 			if (nodeId !== groundNodeId) {
 				const nodeIdx = nodeMap.get(nodeId);
 				if (nodeIdx !== undefined) {
@@ -640,7 +637,7 @@ function solveMNA(
 				case ComponentType.Potentiometer:
 				case ComponentType.Rheostat:
 				case ComponentType.Photoresistance:
-					const resistance = comp.value && comp.value !== 0 ? comp.value : 1e-9;
+					const resistance = comp.value && comp.value !== 0 ? comp.value : 1e-4;
 					const conductance = 1 / resistance;
 					addConductance(n1Idx, n2Idx, conductance);
 					break;
@@ -702,9 +699,12 @@ function solveMNA(
 					break;
 
 				case ComponentType.SwitchSPST:
+				case ComponentType.SwitchDPST:
+				case ComponentType.SwitchSPDT:
+				case ComponentType.SwitchDPDT:
 				case ComponentType.PusuhButtonOpen:
 				case ComponentType.PusuhButtonClose:
-					const switchConductance = comp.state ? 1e9 : 1e-12; // Muy alta para cerrado, muy baja para abierto (1TΩ)
+					const switchConductance = comp.state ? 1e4 : 1e-11; // Alta para cerrado, baja para abierto (100GΩ)
 					addConductance(n1Idx, n2Idx, switchConductance);
 					break;
 
@@ -720,7 +720,7 @@ function solveMNA(
 				case ComponentType.Capacitor:
 				case ComponentType.PolarisedCapacitor:
 				case ComponentType.VariableCapacitor:
-					const capConductance = 1e-12; // En DC, un capacitor es un circuito abierto (conductancia muy baja)
+					const capConductance = 1e-11; // En DC, un capacitor es un circuito abierto (conductancia muy baja)
 					addConductance(n1Idx, n2Idx, capConductance);
 					break;
 
@@ -731,12 +731,12 @@ function solveMNA(
 				case ComponentType.VariableFerriteCoreInductor:
 				case ComponentType.PresetIronCoreInductor:
 				case ComponentType.PresetFerriteCoreInductor:
-					const indConductanceInMNA = 1e9; // En DC, un inductor es un cortocircuito (conductancia muy alta)
+					const indConductanceInMNA = 1e4; // En DC, un inductor es un cortocircuito (conductancia alta)
 					addConductance(n1Idx, n2Idx, indConductanceInMNA);
 					break;
 
 				default:
-					const defaultCond = 1e-12; // Para otros componentes no modelados, tratarlos como circuito abierto
+					const defaultCond = 1e-11; // Para otros componentes no modelados, tratarlos como circuito abierto
 					addConductance(n1Idx, n2Idx, defaultCond);
 					break;
 			}
@@ -892,8 +892,15 @@ function solveMNA(
 				break;
 
 			case ComponentType.SwitchSPST:
+			case ComponentType.SwitchDPST:
+			case ComponentType.SwitchSPDT:
+			case ComponentType.SwitchDPDT:
 			case ComponentType.PusuhButtonOpen:
 			case ComponentType.PusuhButtonClose:
+			case ComponentType.RelaySPST:
+			case ComponentType.RelayDPST:
+			case ComponentType.RelaySPDT:
+			case ComponentType.RelayDPDT:
 				isOn = comp.state;
 				if (isOn) {
 					// Si el switch está cerrado, su corriente es la corriente de la rama
