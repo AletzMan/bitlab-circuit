@@ -44,8 +44,10 @@ export default function EdgeDetails({ setEdges }: IEdgeProps) {
 								...edgePrev.data,
 								color: debouncedColor as string,
 								path: "",
+								voltage: edgePrev.data?.voltage ?? 0,
+								current: edgePrev.data?.current ?? 0,
 							},
-					  }
+						}
 					: edgePrev
 			)
 		);
@@ -76,7 +78,7 @@ export default function EdgeDetails({ setEdges }: IEdgeProps) {
 									...node.data,
 									color: css as string, // Cambiar color del nodo
 								},
-						  }
+							}
 						: node
 				)
 			);
@@ -101,6 +103,8 @@ export default function EdgeDetails({ setEdges }: IEdgeProps) {
 								...edgePrev.data,
 								color: css as string, // Cambiar color
 								path: "", // Otras propiedades que desees cambiar
+								voltage: edgePrev.data?.voltage ?? 0,
+								current: edgePrev.data?.current ?? 0,
 							},
 						};
 					}
@@ -145,8 +149,10 @@ export default function EdgeDetails({ setEdges }: IEdgeProps) {
 								...edgePrev.data,
 								color: css as string, // Cambiar color
 								path: "", // Otras propiedades que desees cambiar
+								voltage: edgePrev.data?.voltage ?? 0,
+								current: edgePrev.data?.current ?? 0,
 							},
-					  }
+						}
 					: edgePrev
 			)
 		);
@@ -157,7 +163,7 @@ export default function EdgeDetails({ setEdges }: IEdgeProps) {
 	return (
 		<Card className={styles.details} size="small" type="inner">
 			<Flex vertical>
-				<label className="details_name">Wire</label>
+				<label className={styles.details_name}>Wire</label>
 				<Flex>
 					<Flex vertical align="center">
 						<ColorPicker
@@ -172,9 +178,9 @@ export default function EdgeDetails({ setEdges }: IEdgeProps) {
 					</Flex>
 				</Flex>
 				<Divider style={{ margin: "16px 0" }} />
-				<label className="label">Actions</label>
+				<label className={styles.label}>Actions</label>
 				<Flex gap={10} wrap>
-					<Button className={styles.button} variant="filled" color="danger" onClick={handleDelete}>
+					<Button className={styles.button} type="primary" danger onClick={handleDelete}>
 						<DeletetIcon />
 					</Button>
 				</Flex>

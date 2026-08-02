@@ -1,5 +1,6 @@
 import { ReactFlowProvider } from "@xyflow/react";
-import "@xyflow/react/dist/style.css";
+import "@xyflow/react/dist/style.css"; 
+import '@fontsource-variable/tektur/wght.css';
 import "./App.css";
 import { ConfigProvider } from "antd";
 import theme from "./theme/themeConfig";

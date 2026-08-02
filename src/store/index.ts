@@ -121,13 +121,13 @@ export const useSimulation = create<ISimulation>((set) => ({
 }));
 
 interface IWorkbenchTools {
-	workbenchTools: "cursor" | "probe";
-	setWorkbenchTools: (value: "cursor" | "probe") => void;
+	workbenchTools: "cursor" | "voltmeter";
+	setWorkbenchTools: (value: "cursor" | "voltmeter") => void;
 }
 
 export const useWorkbenchTools = create<IWorkbenchTools>((set) => ({
 	workbenchTools: "cursor",
-	setWorkbenchTools: (value: "cursor" | "probe") =>
+	setWorkbenchTools: (value: "cursor" | "voltmeter") =>
 		set(() => ({
 			workbenchTools: value,
 		})),

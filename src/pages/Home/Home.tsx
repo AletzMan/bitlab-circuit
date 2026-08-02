@@ -1,327 +1,295 @@
 "use client";
 
 import {
-	SettingOutlined,
-	PlayCircleOutlined,
-	CheckCircleOutlined,
-	ClockCircleOutlined,
-	DownloadOutlined,
 	GithubOutlined,
-	BulbOutlined,
-	ExperimentOutlined, // Represents CircuitBoard, or you can find a more suitable one
-	ToolOutlined, // Represents Wrench
-	DatabaseOutlined,
-	CloudOutlined,
-	FileTextOutlined,
-	GatewayOutlined, // Represents Shapes, or find a more geometric one
-	BarChartOutlined,
-	DashboardOutlined, // Represents Cpu
-	ThunderboltOutlined,
-	PlayCircleFilled, // Represents Zap
+	RightOutlined,
+	ExperimentOutlined
 } from "@ant-design/icons";
 import styles from "./styles.module.css";
 import { Link } from "react-router";
 import { ConfigProvider, theme } from "antd";
-import { useTheme } from "@/store";
-import { LogoBitlab } from "@/icons";
+import {
+	ResistorIcon,
+	CapacitorIcon,
+	DiodeIcon,
+	BJTNPNIcon,
+	InductorIcon,
+	LEDIcon,
+	GroundIcon,
+	PotentiometerIcon,
+} from "@/icons";
 
 export function Home() {
-	const currentTheme = useTheme((state) => state.currentTheme);
-
-	const features = [
-		{
-			icon: <ToolOutlined className={styles.featureIcon} />,
-			title: "Interfaz Intuitiva",
-			description:
-				"Diseña circuitos fácilmente con nuestra interfaz drag-and-drop optimizada para productividad.",
-		},
-		{
-			icon: <DashboardOutlined className={styles.featureIcon} />,
-			title: "Biblioteca Completa",
-			description: "Amplia colección de componentes electrónicos listos para usar en tus diseños.",
-		},
-		{
-			icon: <ThunderboltOutlined className={styles.featureIcon} />,
-			title: "Simulación Analógica",
-			description: "Simula el comportamiento de circuitos analógicos en tiempo real con precisión.",
-		},
-		{
-			icon: <SettingOutlined className={styles.featureIcon} />,
-			title: "Personalización",
-			description:
-				"Personaliza componentes y parámetros para adaptarse a tus necesidades específicas.",
-		},
-	];
-
 	const components = [
-		{ name: "Resistors", icon: "🔧", description: "Resistencias de diferentes valores" },
-		{ name: "Capacitors", icon: "⚡", description: "Condensadores electrolíticos y cerámicos" },
-		{ name: "Diodes", icon: "🔺", description: "Diodos rectificadores y LED" },
-		{ name: "Transistors", icon: "📡", description: "BJT, MOSFET y otros transistores" },
-		{ name: "Inductors", icon: "🌀", description: "Bobinas e inductores variables" },
-		{ name: "Switches & Relays", icon: "🔘", description: "Interruptores y relés" },
-		{ name: "Logic Gates", icon: "🚪", description: "Puertas lógicas básicas" },
-		{ name: "Power & Supply", icon: "🔋", description: "Fuentes de alimentación" },
+		{ name: "Resistores", icon: <ResistorIcon />, description: "Valores fijos y variables", index: "01" },
+		{ name: "Capacitores", icon: <CapacitorIcon />, description: "Cerámicos y electrolíticos", index: "02" },
+		{ name: "Diodos", icon: <DiodeIcon />, description: "Rectificación y Zener", index: "03" },
+		{ name: "Transistores", icon: <BJTNPNIcon />, description: "BJT y semiconductores base", index: "04" },
+		{ name: "Inductores", icon: <InductorIcon />, description: "Bobinas estándar", index: "05" },
+		{ name: "Ópticos", icon: <LEDIcon />, description: "Emisión de luz y displays", index: "06" },
+		{ name: "Potenciómetros", icon: <PotentiometerIcon />, description: "Control resistivo dinámico", index: "07" },
+		{ name: "Suministro", icon: <GroundIcon />, description: "Fuentes de poder y tierras", index: "08" },
 	];
 
-	const completedFeatures = [
-		"Creación de interfaz gráfica",
-		"Implementación de componentes básicos",
-		"Conexión de elementos",
-		"Edición y modificación de componentes",
-		"Simulación de circuitos analógicos",
+	const roadmapCompleted = [
+		{ title: "Motor Analógico Base", description: "Simulación DC funcional y motor de renderizado de componentes.", date: "2025.Q2" },
+		{ title: "Enrutamiento dinámico", description: "Conexión fluida de nodos con trazado inteligente en el canvas.", date: "2025.Q3" },
 	];
 
-	const upcomingFeatures = [
-		{
-			icon: <DatabaseOutlined className={styles.upcomingIcon} />,
-			title: "Local Storage",
-			description: "Guardar diagramas en el navegador",
-		},
-		{
-			icon: <CloudOutlined className={styles.upcomingIcon} />,
-			title: "Autenticación y Sync",
-			description: "Acceso desde cualquier dispositivo",
-		},
-	];
-
-	const futureFeatures = [
-		{ icon: <DashboardOutlined className={styles.futureIcon} />, text: "Más tipos de componentes" },
-		{ icon: <GatewayOutlined className={styles.futureIcon} />, text: "Basic Shapes" },
-		{ icon: <FileTextOutlined className={styles.futureIcon} />, text: "Text Fields y notas" },
-		{
-			icon: <DownloadOutlined className={styles.futureIcon} />,
-			text: "Exportación en formatos estándar",
-		},
-		{
-			icon: <ThunderboltOutlined className={styles.futureIcon} />,
-			text: "Simulación de circuitos digitales",
-		},
-		{
-			icon: <BarChartOutlined className={styles.futureIcon} />,
-			text: "Análisis avanzado de circuitos",
-		},
+	const roadmapUpcoming = [
+		{ title: "Almacenamiento persistente", description: "Guardado local de proyectos y exportación de archivos.", date: "2026.Q3" },
+		{ title: "Osciloscopio virtual", description: "Análisis gráfico para circuitos en corriente alterna.", date: "2026.Q4" },
 	];
 
 	return (
-		<ConfigProvider
-			theme={{
-				algorithm: currentTheme === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm,
-			}}
-		>
+		<ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
 			<div className={styles.layout}>
+
 				{/* Header */}
 				<header className={styles.header}>
 					<div className={styles.headerContent}>
 						<div className={styles.logo}>
-							<LogoBitlab />
+							<ExperimentOutlined className={styles.logoIcon} style={{ fontSize: '20px' }} />
 							<span className={styles.logoText}>BitLabCircuit</span>
 						</div>
-						<div className={styles.navigation}>
-							<button className={styles.githubBtn}>
-								<GithubOutlined className={styles.githubIcon} />
-								GitHub
-							</button>
-						</div>
+						<a href="https://github.com/AletzMan/bitlab-circuit" target="_blank" rel="noopener noreferrer" className={styles.githubBtn}>
+							<GithubOutlined style={{ fontSize: '16px' }} />
+							<span>GitHub</span>
+						</a>
 					</div>
 				</header>
 
 				<main>
-					{/* Hero Section */}
+					{/* Hero Directo y Honesto */}
 					<section className={styles.heroSection}>
-						<div className={styles.container}>
-							<div className={styles.heroContent}>
-								<div className={styles.heroBadge}>
-									<BulbOutlined className={styles.badgeIcon} />
-									<span>Simulación Analógica Disponible</span>
-								</div>
-
-								<h1 className={styles.heroTitle}>
-									Diseña y Simula
-									<span className={styles.gradientText}> Circuitos Electrónicos</span>
-								</h1>
-
-								<p className={styles.heroDescription}>
-									BitLabCircuit es tu herramienta completa para el diseño y simulación de circuitos
-									electrónicos. Construye, conecta y prueba circuitos de manera interactiva con
-									nuestra interfaz intuitiva.
-								</p>
-
-								<div className={styles.heroButtons}>
-									<Link to="/board" className={styles.primaryBtn}>
-										<PlayCircleFilled className={styles.btnIcon} />
-										Comenzar a Diseñar
-									</Link>
+						<div className={styles.heroContainer}>
+							<div className={styles.heroBadge}>
+								Open Source Electronics Workbench
+							</div>
+							<h1 className={styles.heroTitle}>
+								Diseño y simulación<br />de circuitos electrónicos.
+							</h1>
+							<p className={styles.heroDescription}>
+								Herramienta web de código abierto para el prototipado visual de sistemas
+								analógicos y digitales de forma limpia y directa.
+							</p>
+							<div className={styles.heroCta}>
+								<Link to="/board" className={styles.primaryBtn}>
+									Iniciar Entorno <RightOutlined />
+								</Link>
+								<div className={styles.heroStats}>
+									<span className={styles.heroStat}><span className={styles.heroStatValue}>8</span> Tipos de componente</span>
+									<span className={styles.heroStatDivider} />
+									<span className={styles.heroStat}><span className={styles.heroStatValue}>DC</span> Solver activo</span>
+									<span className={styles.heroStatDivider} />
+									<span className={styles.heroStat}><span className={styles.heroStatValue}>v0.2</span> Alpha</span>
 								</div>
 							</div>
 						</div>
 					</section>
 
-					{/* Features Section */}
-					<section className={styles.featuresSection}>
-						<div className={styles.container}>
-							<div className={styles.sectionHeader}>
-								<h2 className={styles.sectionTitle}>Características Principales</h2>
-								<p className={styles.sectionDescription}>
-									Todo lo que necesitas para diseñar y simular circuitos electrónicos profesionales
-								</p>
-							</div>
+					{/* Vista Previa Principal del Canvas */}
+					<section className={styles.previewSection}>
+						<div className={styles.canvasPreview}>
+							<div className={styles.canvasFrame}>
+								<div className={styles.canvasHeaderBar}>
+									<div className={styles.canvasDots}>
+										<span className={styles.canvasDot} />
+										<span className={styles.canvasDot} />
+										<span className={styles.canvasDot} />
+									</div>
+									<span>workspace://bitlab-circuit/board</span>
+									<span>[SIM_ACTIVE]</span>
+								</div>
+								<div className={styles.canvasBody}>
+									{/* Schematic SVG */}
+									<svg className={styles.schematicSvg} viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
+										{/* Grid dots */}
+										<defs>
+											<pattern id="sgrid" width="24" height="24" patternUnits="userSpaceOnUse">
+												<circle cx="12" cy="12" r="0.8" fill="rgba(56,189,248,0.12)" />
+											</pattern>
+										</defs>
+										<rect width="800" height="360" fill="url(#sgrid)" />
 
-							<div className={styles.featuresGrid}>
-								{features.map((feature, index) => (
-									<div key={index} className={styles.featureCard}>
-										<div className={styles.featureCardContent}>
-											<div className={styles.featureIconWrapper}>{feature.icon}</div>
-											<h4 className={styles.featureTitle}>{feature.title}</h4>
-											<p className={styles.featureDescription}>{feature.description}</p>
+										{/* Wire lines */}
+										<g stroke="#38bdf8" strokeWidth="1.5" fill="none" opacity="0.55">
+											{/* Top rail */}
+											<line x1="120" y1="100" x2="680" y2="100" />
+											{/* Bottom rail */}
+											<line x1="120" y1="260" x2="680" y2="260" />
+											{/* Left vertical */}
+											<line x1="120" y1="100" x2="120" y2="260" />
+											{/* Right vertical */}
+											<line x1="680" y1="100" x2="680" y2="260" />
+											{/* Mid junction lines */}
+											<line x1="280" y1="100" x2="280" y2="145" />
+											<line x1="280" y1="215" x2="280" y2="260" />
+											<line x1="480" y1="100" x2="480" y2="145" />
+											<line x1="480" y1="215" x2="480" y2="260" />
+										</g>
+
+										{/* Resistor symbol at center-left */}
+										<g stroke="#38bdf8" strokeWidth="1.5" fill="none" opacity="0.8">
+											<rect x="240" y="148" width="80" height="24" rx="0" />
+											<text x="280" y="143" textAnchor="middle" fontSize="9" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">R1</text>
+											<text x="280" y="188" textAnchor="middle" fontSize="9" fill="rgba(56,189,248,0.7)" fontFamily="JetBrains Mono, monospace">10kΩ</text>
+										</g>
+
+										{/* Capacitor symbol at center-right */}
+										<g stroke="#38bdf8" strokeWidth="1.5" fill="none" opacity="0.8">
+											<line x1="480" y1="145" x2="480" y2="170" />
+											<line x1="455" y1="170" x2="505" y2="170" />
+											<line x1="455" y1="180" x2="505" y2="180" />
+											<line x1="480" y1="180" x2="480" y2="215" />
+											<text x="516" y="178" fontSize="9" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">C1</text>
+											<text x="516" y="192" fontSize="9" fill="rgba(56,189,248,0.7)" fontFamily="JetBrains Mono, monospace">100μF</text>
+										</g>
+
+										{/* Voltage source left */}
+										<g stroke="#38bdf8" strokeWidth="1.5" fill="none" opacity="0.8">
+											<circle cx="120" cy="180" r="28" />
+											<line x1="120" y1="157" x2="120" y2="168" />
+											<line x1="114" y1="163" x2="126" y2="163" />
+											<line x1="114" y1="197" x2="126" y2="197" />
+											<text x="150" y="178" fontSize="9" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">Vs</text>
+											<text x="150" y="192" fontSize="9" fill="rgba(56,189,248,0.7)" fontFamily="JetBrains Mono, monospace">5V DC</text>
+										</g>
+
+										{/* Node dots */}
+										<g fill="#38bdf8" opacity="0.9">
+											<circle cx="280" cy="100" r="3.5" />
+											<circle cx="480" cy="100" r="3.5" />
+											<circle cx="280" cy="260" r="3.5" />
+											<circle cx="480" cy="260" r="3.5" />
+										</g>
+
+										{/* Voltage annotation */}
+										<g fontFamily="JetBrains Mono, monospace" fontSize="10" fill="rgba(56,189,248,0.5)">
+											<text x="590" y="96">+5.00V</text>
+											<text x="590" y="264">GND</text>
+										</g>
+
+										{/* Status label */}
+										<text x="400" y="330" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="rgba(148,163,184,0.4)">// LIENZO DE TRABAJO ACTIVO — entorno interactivo de esquemáticos</text>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					{/* Sección 1: Prototipado Visual (Texto + Mockup de Producto) */}
+					<section className={styles.splitSection}>
+						<div className={styles.splitContent}>
+							<span className={styles.sectionLabel}>// ENTORNO DE TRABAJO</span>
+							<h2 className={styles.sectionTitle}>Diseño sin fricción en el canvas</h2>
+							<p className={styles.heroDescription} style={{ fontSize: '16px', margin: '16px 0 24px 0' }}>
+								Un lienzo de trabajo limpio diseñado específicamente para poner tus esquemáticos en el centro,
+								eliminando barras de herramientas saturadas e interfaces invasivas.
+							</p>
+						</div>
+						<div>
+							<div className={styles.featureMockup}>
+								<div className={styles.mockupHeader}>
+									<span>canvas_interaction.tsx</span>
+									<span>[DRAG & DROP]</span>
+								</div>
+								<div className={styles.mockupBody}>
+									[Representación visual de nodos y terminales conectándose dinámicamente]
+								</div>
+							</div>
+						</div>
+					</section>
+
+					{/* Sección 2: Simulación en Tiempo Real (Mockup de Producto + Texto) */}
+					<section className={styles.splitSection}>
+						<div>
+							<div className={styles.featureMockup}>
+								<div className={styles.mockupHeader}>
+									<span>dc_solver_engine.js</span>
+									<span>[STATUS: RUNNING]</span>
+								</div>
+								<div className={styles.mockupBody}>
+									[Gráfica de validación de voltajes y corrientes instantáneas]
+								</div>
+							</div>
+						</div>
+						<div className={styles.splitContent}>
+							<span className={styles.sectionLabel}>// MOTOR DE SIMULACIÓN</span>
+							<h2 className={styles.sectionTitle}>Validación instantánea</h2>
+							<p className={styles.heroDescription} style={{ fontSize: '16px', margin: '16px 0 24px 0' }}>
+								Ejecuta análisis de corriente continua (DC) directamente en el navegador.
+								Comprueba el comportamiento de los circuitos de forma inmediata al cambiar parámetros.
+							</p>
+						</div>
+					</section>
+
+					{/* Librería de Componentes */}
+					<section className={styles.sectionWrapper}>
+						<div className={styles.sectionHeader}>
+							<span className={styles.sectionLabel}>// LIBRERÍA</span>
+							<h2 className={styles.sectionTitle}>Componentes disponibles</h2>
+						</div>
+
+						<div className={styles.hybridGrid}>
+							{components.map((component, index) => (
+								<div key={index} className={styles.gridCell}>
+									<span className={styles.cellIndex}>{component.index}</span>
+									<div className={styles.cellIcon}>{component.icon}</div>
+									<h5 className={styles.cellTitle}>{component.name}</h5>
+									<p className={styles.cellDescription}>{component.description}</p>
+								</div>
+							))}
+						</div>
+					</section>
+
+					{/* Roadmap / Estado del Proyecto */}
+					<section className={styles.sectionWrapper}>
+						<div className={styles.sectionHeader}>
+							<span className={styles.sectionLabel}>// DESARROLLO</span>
+							<h2 className={styles.sectionTitle}>Estado del proyecto</h2>
+						</div>
+
+						<div className={styles.roadmapGrid}>
+							<div className={styles.roadmapColumn}>
+								<h3 className={styles.cellTitle} style={{ marginBottom: '32px' }}>Implementado</h3>
+								<div className={styles.roadmapList}>
+									{roadmapCompleted.map((item, index) => (
+										<div key={index} className={styles.roadmapItem} data-active="true">
+											<div className={styles.roadmapItemHeader}>
+												<h5 className={styles.roadmapItemTitle}>{item.title}</h5>
+												<span className={styles.roadmapDate}>{item.date}</span>
+											</div>
+											<p className={styles.roadmapItemDesc}>{item.description}</p>
 										</div>
-									</div>
-								))}
-							</div>
-						</div>
-					</section>
-
-					{/* Components Section */}
-					<section className={styles.componentsSection}>
-						<div className={styles.container}>
-							<div className={styles.sectionHeader}>
-								<h2 className={styles.sectionTitle}>Componentes Disponibles</h2>
-								<p className={styles.sectionDescription}>
-									Biblioteca completa de componentes electrónicos para todos tus proyectos
-								</p>
-							</div>
-
-							<div className={styles.componentsGrid}>
-								{components.map((component, index) => (
-									<div key={index} className={styles.componentCard}>
-										<div className={styles.componentContent}>
-											<div className={styles.componentIcon}>{component.icon}</div>
-											<h5 className={styles.componentTitle}>{component.name}</h5>
-											<p className={styles.componentDescription}>{component.description}</p>
-										</div>
-									</div>
-								))}
-							</div>
-						</div>
-					</section>
-
-					{/* Roadmap Section */}
-					<section className={styles.roadmapSection}>
-						<div className={styles.container}>
-							<div className={styles.sectionHeader}>
-								<h2 className={styles.sectionTitle}>Roadmap de Desarrollo</h2>
-								<p className={styles.sectionDescription}>
-									Conoce las próximas características y mejoras planificadas
-								</p>
-							</div>
-
-							<div className={styles.roadmapGrid}>
-								{/* Completed */}
-								<div className={styles.roadmapColumn}>
-									<div className={styles.roadmapHeader}>
-										<CheckCircleOutlined className={styles.completedIcon} />
-										<h3 className={styles.roadmapTitle}>Versión Inicial ✅</h3>
-									</div>
-
-									<div className={styles.featureList}>
-										{completedFeatures.map((item, index) => (
-											<div key={index} className={styles.featureItem}>
-												<CheckCircleOutlined className={styles.checkIcon} />
-												<span>{item}</span>
-											</div>
-										))}
-									</div>
-								</div>
-
-								{/* Upcoming */}
-								<div className={styles.roadmapColumn}>
-									<div className={styles.roadmapHeader}>
-										<ClockCircleOutlined className={styles.upcomingIconHeader} />
-										<h3 className={styles.roadmapTitle}>Próximas Mejoras</h3>
-									</div>
-
-									<div className={styles.upcomingList}>
-										{upcomingFeatures.map((item, index) => (
-											<div key={index} className={styles.upcomingCard}>
-												<div className={styles.upcomingContent}>
-													<div>{item.icon}</div>
-													<div>
-														<h5 className={styles.upcomingTitle}>{item.title}</h5>
-														<p className={styles.upcomingDescription}>{item.description}</p>
-													</div>
-												</div>
-											</div>
-										))}
-									</div>
+									))}
 								</div>
 							</div>
-
-							{/* Future Features */}
-							<div className={styles.futureFeatures}>
-								<div className={styles.roadmapHeader}>
-									<BulbOutlined className={styles.futureIconHeader} />
-									<h3 className={styles.roadmapTitle}>Futuras Mejoras</h3>
-								</div>
-
-								<div className={styles.futureGrid}>
-									{futureFeatures.map((item, index) => (
-										<div key={index} className={styles.futureFeatureItem}>
-											<div className={styles.futureFeatureContent}>
-												<div>{item.icon}</div>
-												<span>{item.text}</span>
+							<div className={styles.roadmapColumn}>
+								<h3 className={styles.cellTitle} style={{ marginBottom: '32px', color: 'var(--text-secondary)' }}>Próximamente</h3>
+								<div className={styles.roadmapList}>
+									{roadmapUpcoming.map((item, index) => (
+										<div key={index} className={styles.roadmapItem} data-active="false">
+											<div className={styles.roadmapItemHeader}>
+												<h5 className={styles.roadmapItemTitle}>{item.title}</h5>
+												<span className={styles.roadmapDate}>{item.date}</span>
 											</div>
+											<p className={styles.roadmapItemDesc}>{item.description}</p>
 										</div>
 									))}
 								</div>
 							</div>
 						</div>
 					</section>
-
-					{/* CTA Section */}
-					<section className={styles.ctaSection}>
-						<div className={styles.container}>
-							<div className={styles.ctaContent}>
-								<h2 className={styles.ctaTitle}>¿Listo para Comenzar?</h2>
-								<p className={styles.ctaDescription}>
-									Únete a la comunidad de ingenieros y estudiantes que ya están usando BitLabCircuit
-								</p>
-								<div className={styles.ctaButtons}>
-									<button className={styles.ctaPrimaryBtn}>
-										<PlayCircleOutlined className={styles.btnIcon} />
-										Probar Ahora
-									</button>
-								</div>
-							</div>
-						</div>
-					</section>
 				</main>
 
-				{/* Footer */}
 				<footer className={styles.footer}>
-					<div className={styles.container}>
-						<div className={styles.footerContent}>
-							<div className={styles.footerLogo}>
-								<ExperimentOutlined className={styles.footerLogoIcon} />
-								<span className={styles.footerLogoText}>BitLabCircuit</span>
-							</div>
-							<div className={styles.footerLinks}>
-								<a href="#" className={styles.footerLink}>
-									Documentación
-								</a>
-								<a href="#" className={styles.footerLink}>
-									Soporte
-								</a>
-								<a href="#" className={styles.footerLink}>
-									GitHub
-								</a>
-							</div>
+					<div className={styles.footerContent}>
+						<div className={styles.logo}>
+							<span className={styles.logoText}>BitLabCircuit</span>
 						</div>
-						<div className={styles.footerDivider}></div>
-						<div className={styles.footerBottom}>
-							<span className={styles.footerCopyright}>
-								© 2024 BitLabCircuit. Diseñado para ingenieros y estudiantes apasionados por la
-								electrónica.
-							</span>
+						<div>
+							Herramienta de simulación electrónica open source.
 						</div>
 					</div>
 				</footer>
