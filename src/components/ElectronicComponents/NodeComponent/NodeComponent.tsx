@@ -39,11 +39,15 @@ export function NodeComponent({
 		connections.map((connection) => {
 			if (connection.target === id) {
 				const handleNumber = Number(connection.targetHandle) - 1;
-				newState[handleNumber].isConnected = isOnConnect;
+				if (handleNumber >= 0 && handleNumber < newState.length && newState[handleNumber]) {
+					newState[handleNumber].isConnected = isOnConnect;
+				}
 			}
 			if (connection.source === id) {
 				const handleNumber = Number(connection.sourceHandle) - 1;
-				newState[handleNumber].isConnected = isOnConnect;
+				if (handleNumber >= 0 && handleNumber < newState.length && newState[handleNumber]) {
+					newState[handleNumber].isConnected = isOnConnect;
+				}
 			}
 		});
 		setIsConnected(newState.map((handle) => handle.isConnected));
