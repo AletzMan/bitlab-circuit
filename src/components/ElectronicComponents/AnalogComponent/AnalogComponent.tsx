@@ -183,7 +183,7 @@ export function AnalogComponent({
 				className={styles.icon}
 			>
 				{ComponentsMap[type].componentType === ComponentType.Led ? (
-					<LEDIcon color_led={state?.on ? color : "#F3F82200"} />
+					<LEDIcon color_led={state?.on ? (!color || color === "transparent" ? "#FF0000" : color) : "#F3F82200"} />
 				) : (
 					ComponentsMap[type].icon
 				)}
