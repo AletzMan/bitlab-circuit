@@ -2,7 +2,7 @@
 import { ComponentsMap, TypeGroupKey, typeGroups } from "@/constants/components";
 import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
 import { XYPosition } from "@xyflow/react";
-import { createRoot } from "react-dom/client"; 
+import { createRoot } from "react-dom/client";
 
 
 /**
@@ -793,25 +793,25 @@ export function clearVoltageView() {
 
 
 export function formatCurrent(amperes: number): string {
-    if (amperes === 0) return "0 A";
+	if (amperes === 0) return "0 A";
 
-    const absAmperes = Math.abs(amperes);
-    const sign = amperes < 0 ? "-" : "";
+	const absAmperes = Math.abs(amperes);
+	const sign = amperes < 0 ? "-" : "";
 
-    if (absAmperes >= 1) {
-        // 1 A o más
-        return `${sign}${absAmperes.toFixed(2)} A`;
-    } else if (absAmperes >= 1e-3) {
-        // Rango de miliamperios (0.001 A a 0.999 A)
-        return `${sign}${(absAmperes * 1e3).toFixed(0)} mA`;
-    } else if (absAmperes >= 1e-6) {
-        // Rango de microamperios (0.000001 A a 0.000999 A)
-        return `${sign}${(absAmperes * 1e6).toFixed(0)} µA`;
-    } else if (absAmperes >= 1e-9) {
-        // Rango de nanoamperios
-        return `${sign}${(absAmperes * 1e9).toFixed(0)} nA`;
-    } else {
-        // Valores extremadamente pequeños (picoamperios o cercanos a cero por tolerancia del MNA)
-        return `0 A`;
-    }
+	if (absAmperes >= 1) {
+		// 1 A o más
+		return `${sign}${absAmperes.toFixed(2)} A`;
+	} else if (absAmperes >= 1e-3) {
+		// Rango de miliamperios (0.001 A a 0.999 A)
+		return `${sign}${(absAmperes * 1e3).toFixed(2)} mA`;
+	} else if (absAmperes >= 1e-6) {
+		// Rango de microamperios (0.000001 A a 0.000999 A)
+		return `${sign}${(absAmperes * 1e6).toFixed(2)} µA`;
+	} else if (absAmperes >= 1e-9) {
+		// Rango de nanoamperios
+		return `${sign}${(absAmperes * 1e9).toFixed(2)} nA`;
+	} else {
+		// Valores extremadamente pequeños (picoamperios o cercanos a cero por tolerancia del MNA)
+		return `0 A`;
+	}
 }
