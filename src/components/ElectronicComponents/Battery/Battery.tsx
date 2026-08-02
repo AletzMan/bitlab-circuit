@@ -1,5 +1,5 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
-import { AnalogNode, ComponentCollapsed, ComponentType, IConnectedHandles } from "@/types";
+import { AnalogNode, ComponentCollapsed, IConnectedHandles } from "@/types";
 import { LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";

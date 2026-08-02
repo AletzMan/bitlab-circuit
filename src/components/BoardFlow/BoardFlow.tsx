@@ -70,470 +70,470 @@ const LED_FORWARD_VOLTAGE = 1.7;
 const LED_INTERNAL_RESISTANCE = 8.5;
 /*
 const initialNodes: AnalogNode[] = [
-    {
-        id: "G-858f3b9a-580f-4431-8d46-0f6b63abe43d",
-        type: "ground",
-        position: {
-            x: 780,
-            y: 800,
-        },
-        data: {
-            name: "G1",
-            type: ComponentType.Ground,
-            category: Categories["Power & Supply"],
-            value: 0,
-            isLock: false,
-            rotation: 0,
-            flip: {
-                x: 1,
-                y: 1,
-            },
-            unit: UnitsType.Undefined,
-            prefix: "",
-            has_properties: true,
-            designator: "G1",
-            isDesignatorVisible: false,
-            isValueVisible: false,
-            connectedHandles: [
-                {
-                    isConnected: true,
-                    type: "ground",
-                },
-            ],
-            size: "small",
-            collapsed: undefined,
-        },
-    },
-    {
-        id: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
-        type: "nodeComponent",
-        position: {
-            x: 790,
-            y: 690,
-        },
-        data: {
-            name: "N1",
-            type: ComponentType.Node,
-            category: Categories.Structure,
-            value: 0,
-            isLock: false,
-            rotation: 0,
-            flip: {
-                x: 1,
-                y: 1,
-            },
-            unit: UnitsType.Undefined,
-            prefix: "",
-            has_properties: false,
-            designator: "N1",
-            isDesignatorVisible: false,
-            isValueVisible: false,
-            connectedHandles: [
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-            ],
-            color: "var(--foreground-color)",
-            size: "small",
-            collapsed: undefined,
-        },
-    },
-    {
-        id: "N-df5557af-d67e-454e-8752-2aa5b9c73093",
-        type: "nodeComponent",
-        position: {
-            x: 790,
-            y: 290,
-        },
-        data: {
-            name: "N2",
-            type: ComponentType.Node,
-            category: Categories.Structure,
-            value: 0,
-            isLock: false,
-            rotation: 0,
-            flip: {
-                x: 1,
-                y: 1,
-            },
-            unit: UnitsType.Undefined,
-            prefix: "",
-            has_properties: false,
-            designator: "N2",
-            isDesignatorVisible: false,
-            isValueVisible: false,
-            connectedHandles: [
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-            ],
-            color: "var(--foreground-color)",
-            size: "small",
-            collapsed: undefined,
-        },
-    },
-    {
-        id: "R-f75061d6-fcd4-4f1d-b1d8-6d20e99cb02a",
-        type: "analogComponent",
-        position: {
-            x: 470,
-            y: 470,
-        },
-        data: {
-            name: "R1",
-            type: ComponentType.Resistor,
-            category: Categories.Resistors,
-            value: 100,
-            isLock: false,
-            rotation: 90,
-            flip: {
-                x: 1,
-                y: 1,
-            },
-            state: {
-                on: false,
-            },
-            unit: UnitsType.Ohm,
-            prefix: "Ω",
-            has_properties: true,
-            designator: "R1",
-            isDesignatorVisible: true,
-            isValueVisible: true,
-            connectedHandles: [
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-            ],
-            size: "small",
-            voltageDrop: 4.999500049995,
-            currentDrop: 0.04999500049995,
-            collapsed: undefined,
-        },
-    },
-    {
-        id: "R-aeeef049-a750-4bc8-b7cd-8f7edcadc030",
-        type: "analogComponent",
-        position: {
-            x: 1070,
-            y: 470,
-        },
-        data: {
-            name: "R2",
-            type: ComponentType.Resistor,
-            category: Categories.Resistors,
-            value: 1,
-            isLock: false,
-            rotation: 90,
-            flip: {
-                x: 1,
-                y: 1,
-            },
-            state: {
-                on: false,
-            },
-            unit: UnitsType.Ohm,
-            prefix: "kΩ",
-            has_properties: true,
-            designator: "R2",
-            isDesignatorVisible: true,
-            isValueVisible: true,
-            connectedHandles: [
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-            ],
-            size: "small",
-            voltageDrop: 4.999950000499995,
-            currentDrop: 0.0049999500004999945,
-            collapsed: undefined,
-        },
-    },
-    {
-        id: "BAT-e0ae5867-f732-4e97-889c-66164888a506",
-        type: "battery",
-        position: {
-            x: 860,
-            y: 110,
-        },
-        data: {
-            name: "BAT1",
-            type: ComponentType.Battery,
-            category: Categories["Power & Supply"],
-            value: 5,
-            isLock: false,
-            rotation: 0,
-            flip: {
-                x: 1,
-                y: 1,
-            },
-            state: {
-                on: false,
-            },
-            unit: UnitsType.VoltageDC,
-            prefix: "V",
-            has_properties: true,
-            designator: "BAT1",
-            isDesignatorVisible: true,
-            isValueVisible: true,
-            connectedHandles: [
-                {
-                    isConnected: true,
-                    type: "negative",
-                },
-                {
-                    isConnected: true,
-                    type: "positive",
-                },
-            ],
-            size: "small",
-            voltageDrop: 5,
-            currentDrop: -0.054994950500449995,
-            collapsed: undefined,
-        },
-    },
-    {
-        id: "AM-f8613fd7-a4a4-4f86-afa0-1622b555453f",
-        type: "analogComponent",
-        position: {
-            x: 620,
-            y: 670,
-        },
-        data: {
-            name: "AM1",
-            type: ComponentType.Ammeter,
-            category: Categories.Measurement,
-            value: 0,
-            isLock: false,
-            rotation: 0,
-            flip: {
-                x: 1,
-                y: 1,
-            },
-            state: {
-                on: false,
-            },
-            unit: UnitsType.Current,
-            prefix: "A",
-            has_properties: true,
-            designator: "AM1",
-            isDesignatorVisible: true,
-            isValueVisible: true,
-            connectedHandles: [
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-            ],
-            size: "small",
-            voltageDrop: 0,
-            currentDrop: 0,
-            collapsed: undefined,
-        },
-    },
-    {
-        id: "AM-abaf9c1a-bdf7-4f78-8e69-87f61955d4f1",
-        type: "analogComponent",
-        position: {
-            x: 920,
-            y: 670,
-        },
-        data: {
-            name: "AM2",
-            type: ComponentType.Ammeter,
-            category: Categories.Measurement,
-            value: 0,
-            isLock: false,
-            rotation: 0,
-            flip: {
-                x: 1,
-                y: 1,
-            },
-            state: {
-                on: false,
-            },
-            unit: UnitsType.Current,
-            prefix: "A",
-            has_properties: true,
-            designator: "AM2",
-            isDesignatorVisible: true,
-            isValueVisible: true,
-            connectedHandles: [
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-                {
-                    isConnected: true,
-                    type: "passive",
-                },
-            ],
-            size: "small",
-            voltageDrop: 0,
-            currentDrop: 0,
-            collapsed: undefined,
-        },
-    },
+	{
+		id: "G-858f3b9a-580f-4431-8d46-0f6b63abe43d",
+		type: "ground",
+		position: {
+			x: 780,
+			y: 800,
+		},
+		data: {
+			name: "G1",
+			type: ComponentType.Ground,
+			category: Categories["Power & Supply"],
+			value: 0,
+			isLock: false,
+			rotation: 0,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			unit: UnitsType.Undefined,
+			prefix: "",
+			has_properties: true,
+			designator: "G1",
+			isDesignatorVisible: false,
+			isValueVisible: false,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "ground",
+				},
+			],
+			size: "small",
+			collapsed: undefined,
+		},
+	},
+	{
+		id: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
+		type: "nodeComponent",
+		position: {
+			x: 790,
+			y: 690,
+		},
+		data: {
+			name: "N1",
+			type: ComponentType.Node,
+			category: Categories.Structure,
+			value: 0,
+			isLock: false,
+			rotation: 0,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			unit: UnitsType.Undefined,
+			prefix: "",
+			has_properties: false,
+			designator: "N1",
+			isDesignatorVisible: false,
+			isValueVisible: false,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+			],
+			color: "var(--foreground-color)",
+			size: "small",
+			collapsed: undefined,
+		},
+	},
+	{
+		id: "N-df5557af-d67e-454e-8752-2aa5b9c73093",
+		type: "nodeComponent",
+		position: {
+			x: 790,
+			y: 290,
+		},
+		data: {
+			name: "N2",
+			type: ComponentType.Node,
+			category: Categories.Structure,
+			value: 0,
+			isLock: false,
+			rotation: 0,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			unit: UnitsType.Undefined,
+			prefix: "",
+			has_properties: false,
+			designator: "N2",
+			isDesignatorVisible: false,
+			isValueVisible: false,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+			],
+			color: "var(--foreground-color)",
+			size: "small",
+			collapsed: undefined,
+		},
+	},
+	{
+		id: "R-f75061d6-fcd4-4f1d-b1d8-6d20e99cb02a",
+		type: "analogComponent",
+		position: {
+			x: 470,
+			y: 470,
+		},
+		data: {
+			name: "R1",
+			type: ComponentType.Resistor,
+			category: Categories.Resistors,
+			value: 100,
+			isLock: false,
+			rotation: 90,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			state: {
+				on: false,
+			},
+			unit: UnitsType.Ohm,
+			prefix: "Ω",
+			has_properties: true,
+			designator: "R1",
+			isDesignatorVisible: true,
+			isValueVisible: true,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+			],
+			size: "small",
+			voltageDrop: 4.999500049995,
+			currentDrop: 0.04999500049995,
+			collapsed: undefined,
+		},
+	},
+	{
+		id: "R-aeeef049-a750-4bc8-b7cd-8f7edcadc030",
+		type: "analogComponent",
+		position: {
+			x: 1070,
+			y: 470,
+		},
+		data: {
+			name: "R2",
+			type: ComponentType.Resistor,
+			category: Categories.Resistors,
+			value: 1,
+			isLock: false,
+			rotation: 90,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			state: {
+				on: false,
+			},
+			unit: UnitsType.Ohm,
+			prefix: "kΩ",
+			has_properties: true,
+			designator: "R2",
+			isDesignatorVisible: true,
+			isValueVisible: true,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+			],
+			size: "small",
+			voltageDrop: 4.999950000499995,
+			currentDrop: 0.0049999500004999945,
+			collapsed: undefined,
+		},
+	},
+	{
+		id: "BAT-e0ae5867-f732-4e97-889c-66164888a506",
+		type: "battery",
+		position: {
+			x: 860,
+			y: 110,
+		},
+		data: {
+			name: "BAT1",
+			type: ComponentType.Battery,
+			category: Categories["Power & Supply"],
+			value: 5,
+			isLock: false,
+			rotation: 0,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			state: {
+				on: false,
+			},
+			unit: UnitsType.VoltageDC,
+			prefix: "V",
+			has_properties: true,
+			designator: "BAT1",
+			isDesignatorVisible: true,
+			isValueVisible: true,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "negative",
+				},
+				{
+					isConnected: true,
+					type: "positive",
+				},
+			],
+			size: "small",
+			voltageDrop: 5,
+			currentDrop: -0.054994950500449995,
+			collapsed: undefined,
+		},
+	},
+	{
+		id: "AM-f8613fd7-a4a4-4f86-afa0-1622b555453f",
+		type: "analogComponent",
+		position: {
+			x: 620,
+			y: 670,
+		},
+		data: {
+			name: "AM1",
+			type: ComponentType.Ammeter,
+			category: Categories.Measurement,
+			value: 0,
+			isLock: false,
+			rotation: 0,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			state: {
+				on: false,
+			},
+			unit: UnitsType.Current,
+			prefix: "A",
+			has_properties: true,
+			designator: "AM1",
+			isDesignatorVisible: true,
+			isValueVisible: true,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+			],
+			size: "small",
+			voltageDrop: 0,
+			currentDrop: 0,
+			collapsed: undefined,
+		},
+	},
+	{
+		id: "AM-abaf9c1a-bdf7-4f78-8e69-87f61955d4f1",
+		type: "analogComponent",
+		position: {
+			x: 920,
+			y: 670,
+		},
+		data: {
+			name: "AM2",
+			type: ComponentType.Ammeter,
+			category: Categories.Measurement,
+			value: 0,
+			isLock: false,
+			rotation: 0,
+			flip: {
+				x: 1,
+				y: 1,
+			},
+			state: {
+				on: false,
+			},
+			unit: UnitsType.Current,
+			prefix: "A",
+			has_properties: true,
+			designator: "AM2",
+			isDesignatorVisible: true,
+			isValueVisible: true,
+			connectedHandles: [
+				{
+					isConnected: true,
+					type: "passive",
+				},
+				{
+					isConnected: true,
+					type: "passive",
+				},
+			],
+			size: "small",
+			voltageDrop: 0,
+			currentDrop: 0,
+			collapsed: undefined,
+		},
+	},
 ];
 export const initialEdges: ComponentEdge[] = [
-    {
-        type: "wire",
-        source: "G-858f3b9a-580f-4431-8d46-0f6b63abe43d",
-        sourceHandle: "1",
-        target: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
-        targetHandle: "3",
-        id: "d4cc11e3-cc45-4252-88e9-4473df378fa5",
-        data: {
-            color: "var(--foreground-color)",
-            path: "",
-            flowDirection: undefined,
-            voltage: 0,
-            current: 0,
-        },
-    },
-    {
-        type: "wire",
-        source: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
-        sourceHandle: "4",
-        target: "AM-f8613fd7-a4a4-4f86-afa0-1622b555453f",
-        targetHandle: "2",
-        id: "2cb880f5-4511-4572-9d8d-9d5056b79629",
-        data: {
-            color: "var(--foreground-color)",
-            path: "",
-            flowDirection: undefined,
-            voltage: 0,
-            current: 0,
-        },
-    },
-    {
-        type: "wire",
-        source: "AM-f8613fd7-a4a4-4f86-afa0-1622b555453f",
-        sourceHandle: "1",
-        target: "R-f75061d6-fcd4-4f1d-b1d8-6d20e99cb02a",
-        targetHandle: "2",
-        id: "6ab92cef-8b98-4fe8-9baa-201eba815cb2",
-        data: {
-            color: "var(--foreground-color)",
-            path: "",
-            flowDirection: undefined,
-            voltage: 0,
-            current: 0,
-        },
-    },
-    {
-        type: "wire",
-        source: "R-f75061d6-fcd4-4f1d-b1d8-6d20e99cb02a",
-        sourceHandle: "1",
-        target: "N-df5557af-d67e-454e-8752-2aa5b9c73093",
-        targetHandle: "4",
-        id: "175a877f-ce56-4542-a33c-5b1b416d88af",
-        data: {
-            color: "var(--foreground-color)",
-            path: "",
-            flowDirection: undefined,
-            voltage: 0,
-            current: 0,
-        },
-    },
-    {
-        type: "wire",
-        source: "AM-abaf9c1a-bdf7-4f78-8e69-87f61955d4f1",
-        sourceHandle: "1",
-        target: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
-        targetHandle: "2",
-        id: "d00a77fa-64a2-407d-a6ff-bf6435d7fc56",
-        data: {
-            color: "var(--foreground-color)",
-            path: "",
-            flowDirection: undefined,
-            voltage: 0,
-            current: 0,
-        },
-    },
-    {
-        type: "wire",
-        source: "AM-abaf9c1a-bdf7-4f78-8e69-87f61955d4f1",
-        sourceHandle: "2",
-        target: "R-aeeef049-a750-4bc8-b7cd-8f7edcadc030",
-        targetHandle: "2",
-        id: "cfed9198-b9b3-4e1b-b3dd-aeac38a476e7",
-        data: {
-            color: "var(--foreground-color)",
-            path: "",
-            flowDirection: undefined,
-            voltage: 0,
-            current: 0,
-        },
-    },
-    {
-        type: "wire",
-        source: "R-aeeef049-a750-4bc8-b7cd-8f7edcadc030",
-        sourceHandle: "1",
-        target: "N-df5557af-d67e-454e-8752-2aa5b9c73093",
-        targetHandle: "2",
-        id: "fa67a79d-6748-4a7c-886d-205b12544dee",
-        data: {
-            color: "var(--foreground-color)",
-            path: "",
-            flowDirection: undefined,
-            voltage: 0,
-            current: 0,
-        },
-    },
-    {
-        type: "wire",
-        source: "BAT-e0ae5867-f732-4e97-889c-66164888a506",
-        sourceHandle: "1",
-        target: "N-df5557af-d67e-454e-8752-2aa5b9c73093",
-        targetHandle: "1",
-        id: "d3176860-235e-4d40-b8f1-4e768e1da5a7",
-        data: {
-            color: "var(--foreground-color)",
-            path: "",
-            flowDirection: undefined,
-            voltage: 0,
-            current: 0,
-        },
-    },
-    {
-        type: "wire",
-        source: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
-        sourceHandle: "1",
-        target: "BAT-e0ae5867-f732-4e97-889c-66164888a506",
-        targetHandle: "2",
-        id: "457ffea7-6b65-468c-bd6b-cbd3fc1c5635",
-        data: {
-            color: "var(--foreground-color)",
-            path: "",
-            flowDirection: undefined,
-            voltage: 0,
-            current: 0,
-        },
-    },
+	{
+		type: "wire",
+		source: "G-858f3b9a-580f-4431-8d46-0f6b63abe43d",
+		sourceHandle: "1",
+		target: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
+		targetHandle: "3",
+		id: "d4cc11e3-cc45-4252-88e9-4473df378fa5",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		type: "wire",
+		source: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
+		sourceHandle: "4",
+		target: "AM-f8613fd7-a4a4-4f86-afa0-1622b555453f",
+		targetHandle: "2",
+		id: "2cb880f5-4511-4572-9d8d-9d5056b79629",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		type: "wire",
+		source: "AM-f8613fd7-a4a4-4f86-afa0-1622b555453f",
+		sourceHandle: "1",
+		target: "R-f75061d6-fcd4-4f1d-b1d8-6d20e99cb02a",
+		targetHandle: "2",
+		id: "6ab92cef-8b98-4fe8-9baa-201eba815cb2",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		type: "wire",
+		source: "R-f75061d6-fcd4-4f1d-b1d8-6d20e99cb02a",
+		sourceHandle: "1",
+		target: "N-df5557af-d67e-454e-8752-2aa5b9c73093",
+		targetHandle: "4",
+		id: "175a877f-ce56-4542-a33c-5b1b416d88af",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		type: "wire",
+		source: "AM-abaf9c1a-bdf7-4f78-8e69-87f61955d4f1",
+		sourceHandle: "1",
+		target: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
+		targetHandle: "2",
+		id: "d00a77fa-64a2-407d-a6ff-bf6435d7fc56",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		type: "wire",
+		source: "AM-abaf9c1a-bdf7-4f78-8e69-87f61955d4f1",
+		sourceHandle: "2",
+		target: "R-aeeef049-a750-4bc8-b7cd-8f7edcadc030",
+		targetHandle: "2",
+		id: "cfed9198-b9b3-4e1b-b3dd-aeac38a476e7",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		type: "wire",
+		source: "R-aeeef049-a750-4bc8-b7cd-8f7edcadc030",
+		sourceHandle: "1",
+		target: "N-df5557af-d67e-454e-8752-2aa5b9c73093",
+		targetHandle: "2",
+		id: "fa67a79d-6748-4a7c-886d-205b12544dee",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		type: "wire",
+		source: "BAT-e0ae5867-f732-4e97-889c-66164888a506",
+		sourceHandle: "1",
+		target: "N-df5557af-d67e-454e-8752-2aa5b9c73093",
+		targetHandle: "1",
+		id: "d3176860-235e-4d40-b8f1-4e768e1da5a7",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
+	{
+		type: "wire",
+		source: "N-56610f82-52f6-4773-915f-e7c1c0e31b23",
+		sourceHandle: "1",
+		target: "BAT-e0ae5867-f732-4e97-889c-66164888a506",
+		targetHandle: "2",
+		id: "457ffea7-6b65-468c-bd6b-cbd3fc1c5635",
+		data: {
+			color: "var(--foreground-color)",
+			path: "",
+			flowDirection: undefined,
+			voltage: 0,
+			current: 0,
+		},
+	},
 ];
 */
 
@@ -2307,7 +2307,7 @@ export function BoardFlow() {
 		nodeSelection.current = node;
 		setSelectedNode(node);
 		setSelectedEdge(undefined);
-		setActiveTab("properties"); 
+		setActiveTab("properties");
 	};
 
 	const handlePaneClick = () => {
@@ -2316,117 +2316,117 @@ export function BoardFlow() {
 		setActiveTab("components");
 	};
 
-const handleOnEdgeClick = (
-	e: React.MouseEvent<Element, MouseEvent>,
-	edge: ComponentEdge
-) => {
+	const handleOnEdgeClick = (
+		e: React.MouseEvent<Element, MouseEvent>,
+		edge: ComponentEdge
+	) => {
 
-	if (workbenchTools === "cursor") {
+		if (workbenchTools === "cursor") {
 
-		setSelectedEdge(edge);
-		setSelectedNode(undefined);
-		setActiveTab("properties");
-		return;
+			setSelectedEdge(edge);
+			setSelectedNode(undefined);
+			setActiveTab("properties");
+			return;
 
-	}
+		}
 
-	const clickPos = screenToFlowPosition({
-		x: e.clientX,
-		y: e.clientY,
-	});
+		const clickPos = screenToFlowPosition({
+			x: e.clientX,
+			y: e.clientY,
+		});
 
-	let exactX = clickPos.x;
-	let exactY = clickPos.y;
+		let exactX = clickPos.x;
+		let exactY = clickPos.y;
 
-	const pathElement = e.target as SVGPathElement;
+		const pathElement = e.target as SVGPathElement;
 
-	let orientation: "top" | "bottom" | "left" | "right" = "top";
+		let orientation: "top" | "bottom" | "left" | "right" = "top";
 
-	if (
-		pathElement &&
-		pathElement.tagName.toLowerCase() === "path" &&
-		typeof pathElement.getTotalLength === "function"
-	) {
+		if (
+			pathElement &&
+			pathElement.tagName.toLowerCase() === "path" &&
+			typeof pathElement.getTotalLength === "function"
+		) {
 
-		const pathLength = pathElement.getTotalLength();
+			const pathLength = pathElement.getTotalLength();
 
-		let minDistance = Infinity;
-		let bestLength = 0;
+			let minDistance = Infinity;
+			let bestLength = 0;
 
-		//----------------------------------------
-		// Buscar el punto más cercano del cable
-		//----------------------------------------
+			//----------------------------------------
+			// Buscar el punto más cercano del cable
+			//----------------------------------------
 
-		for (let i = 0; i <= pathLength; i += 2) {
+			for (let i = 0; i <= pathLength; i += 2) {
 
-			const point = pathElement.getPointAtLength(i);
+				const point = pathElement.getPointAtLength(i);
 
-			const dist = Math.hypot(
-				point.x - clickPos.x,
-				point.y - clickPos.y
+				const dist = Math.hypot(
+					point.x - clickPos.x,
+					point.y - clickPos.y
+				);
+
+				if (dist < minDistance) {
+
+					minDistance = dist;
+
+					bestLength = i;
+
+					exactX = point.x;
+					exactY = point.y;
+
+				}
+
+			}
+
+			//----------------------------------------
+			// Obtener dirección del cable
+			//----------------------------------------
+
+			const before = pathElement.getPointAtLength(
+				Math.max(0, bestLength - 6)
 			);
 
-			if (dist < minDistance) {
+			const after = pathElement.getPointAtLength(
+				Math.min(pathLength, bestLength + 6)
+			);
 
-				minDistance = dist;
+			const dx = after.x - before.x;
+			const dy = after.y - before.y;
 
-				bestLength = i;
+			//----------------------------------------
+			// Decidir lado automáticamente
+			//----------------------------------------
 
-				exactX = point.x;
-				exactY = point.y;
-
+			if (Math.abs(dx) > Math.abs(dy)) {
+				// Cable horizontal
+				orientation = exactY < window.innerHeight / 2
+					? "top"
+					: "bottom";
+			}
+			else {
+				// Cable vertical
+				orientation = exactX < window.innerWidth / 2
+					? "right"
+					: "left";
 			}
 
 		}
 
-		//----------------------------------------
-		// Obtener dirección del cable
-		//----------------------------------------
-
-		const before = pathElement.getPointAtLength(
-			Math.max(0, bestLength - 6)
-		);
-
-		const after = pathElement.getPointAtLength(
-			Math.min(pathLength, bestLength + 6)
-		);
-
-		const dx = after.x - before.x;
-		const dy = after.y - before.y;
-
-		//----------------------------------------
-		// Decidir lado automáticamente
-		//----------------------------------------
-
-		if (Math.abs(dx) > Math.abs(dy)) {
-			// Cable horizontal
-			orientation = exactY < window.innerHeight / 2
-					? "top"
-					: "bottom";
-		}
-		else {
-			// Cable vertical
-			orientation = exactX < window.innerWidth / 2
-					? "right"
-					: "left";
+		// Usar la función genérica de medición según la herramienta seleccionada
+		if (workbenchTools === "voltmeter") {
+			// Voltímetro: medición de un solo punto
+			createMeasurementView(
+				edge.id,
+				MeasurementType.Voltage,
+				edge.data?.voltage ?? 0,
+				exactX,
+				exactY,
+				orientation as ProbeOrientation
+			);
 		}
 
-	}
-
-	// Usar la función genérica de medición según la herramienta seleccionada
-	if (workbenchTools === "voltmeter") {
-		// Voltímetro: medición de un solo punto
-		createMeasurementView(
-			edge.id,
-			MeasurementType.Voltage,
-			edge.data?.voltage ?? 0,
-			exactX,
-			exactY,
-			orientation as ProbeOrientation
-		);
-	}
-
-};
+	};
 
 	const handleReconnectStart = () => {
 		if (workbenchTools !== "cursor") return;
