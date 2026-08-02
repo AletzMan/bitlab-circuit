@@ -1,5 +1,6 @@
 import {
 	ANDIcon,
+	AmmeterIcon,
 	BJTNPNIcon,
 	BJTPNPIcon,
 	BUFFERIcon,
@@ -120,8 +121,6 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
 		isDesignatorVisible: false,
 		isValueVisible: false,
 		connectedHandles: [
-			{ isConnected: false, type: "passive" },
-			{ isConnected: false, type: "passive" },
 			{ isConnected: false, type: "passive" },
 			{ isConnected: false, type: "passive" },
 		],
@@ -1376,6 +1375,26 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
 		],
 		style: undefined,
 		size: "small",
+	},
+	[ComponentType.Ammeter]: {
+		name: "Ammeter",
+		value: 0,
+		category: Categories.Measurement,
+		componentType: ComponentType.Ammeter,
+		icon: <AmmeterIcon />,
+		unit: UnitsType.Current,
+		prefix: "A",
+		designator: "AM",
+		type: "analogComponent",
+		has_properties: true,
+		isDesignatorVisible: true,
+		isValueVisible: true,
+		connectedHandles: [
+			{ isConnected: false, type: "passive" },
+			{ isConnected: false, type: "passive" },
+		],
+		style: undefined,
+		size: "large",
 	},
 };
 

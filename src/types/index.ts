@@ -63,6 +63,7 @@ export enum ComponentType {
 	BUFFERGate = "buffergate",
 	Board = "board",
 	Node = "node",
+	Ammeter = "ammeter",
 }
 
 export enum OhmType {
@@ -157,6 +158,7 @@ export enum Categories {
 	"Switches & Relays" = "Switches & Relays",
 	"Logic Gates" = "Logic Gates",
 	"Power & Supply" = "Power & Supply",
+	Measurement = "Measurement",
 }
 
 export type ComponentProperties = {
