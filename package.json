@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "5.x",
+    "@fontsource-variable/tektur": "^5.3.0",
     "@types/d3-drag": "^3.0.7",
     "@types/d3-selection": "^3.0.11",
     "@xyflow/react": "^12.4.2",
