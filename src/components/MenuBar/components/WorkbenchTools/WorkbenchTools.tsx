@@ -13,13 +13,14 @@ export function WorkbenchTools() {
 		if (isSimulationRunning) {
 			document.body.classList.remove("cursor");
 			document.body.classList.add("probe");
-			setWorkbenchTools("probe");
+			setWorkbenchTools("voltmeter");
 		} else {
 			document.body.classList.remove("probe");
 			document.body.classList.add("cursor");
 			setWorkbenchTools("cursor");
 		}
 	}, [isSimulationRunning]);
+
 	return (
 		<div
 			className={`${styles.workbenchTools} ${
@@ -31,13 +32,15 @@ export function WorkbenchTools() {
 					type={workbenchTools === "cursor" ? "primary" : "text"}
 					icon={<CursorIcon />}
 					disabled={isSimulationRunning}
+					onClick={() => setWorkbenchTools("cursor")}
 				/>
 			</Tooltip>
-			<Tooltip title={isSimulationRunning ? "Probe" : "Simulation not running"}>
+			<Tooltip title={isSimulationRunning ? "Voltmeter" : "Simulation not running"}>
 				<Button
-					type={workbenchTools === "probe" ? "primary" : "text"}
+					type={workbenchTools === "voltmeter" ? "primary" : "text"}
 					icon={<ProbeIcon />}
 					disabled={!isSimulationRunning}
+					onClick={() => setWorkbenchTools("voltmeter")}
 				/>
 			</Tooltip>
 		</div>

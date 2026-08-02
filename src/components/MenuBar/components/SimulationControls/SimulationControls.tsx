@@ -1,4 +1,4 @@
-import { changeVoltageView, clearVoltageView } from "@/helpers";
+import { changeMeasurementView, clearVoltageView, MeasurementType } from "@/helpers";
 import { useSimulation } from "@/store";
 import { AnalogNode, ComponentEdge, ComponentType } from "@/types";
 import { ComponentInfo, EdgeInfo } from "@/workers/functions";
@@ -52,6 +52,7 @@ export function SimulationControls() {
 					console.log("Nodos actualizados aplicados:", results.updatedNodes);
 					const updatedNodes = results.updatedNodes as ComponentInfo[];
 					updatedNodes.forEach((node) => {
+						console.log(`Updating node ${node.componentId}: currentDrop=${node.currentDrop}, voltageDrop=${node.voltageDrop}`);
 						updateNode(node.componentId, (prevNode) => ({
 							data: {
 								...prevNode.data,
@@ -71,7 +72,7 @@ export function SimulationControls() {
 					const updatedEdges = results.updatedEdges as EdgeInfo[];
 
 					updatedEdges.forEach((edge) => {
-						changeVoltageView(edge.edgeId, edge.voltageDisplay);
+						changeMeasurementView(edge.edgeId, edge.voltageDisplay, MeasurementType.Voltage);
 						console.log("Edge:", edge);
 						updateEdge(edge.edgeId, (prevEdge) => ({
 							data: {
@@ -155,6 +156,17 @@ export function SimulationControls() {
 					},
 				});
 				clearVoltageView();
+				// Limpiar valores de currentDrop y voltageDrop de todos los nodos
+				const nodes = getNodes() as AnalogNode[];
+				nodes.forEach((node) => {
+					updateNode(node.id, (prevNode) => ({
+						data: {
+							...prevNode.data,
+							currentDrop: undefined,
+							voltageDrop: undefined,
+						},
+					}));
+				});
 			}
 			setIsSimulationRunning(false);
 			return;

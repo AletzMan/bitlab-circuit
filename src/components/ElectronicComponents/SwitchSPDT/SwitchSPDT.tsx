@@ -217,8 +217,7 @@ export function SwitchSPDT({
 		}
 	}, [rotation, flip.x, flip.y]);
 
-	const handleChangeState = (e: MouseEvent<HTMLButtonElement>) => {
-		console.log(e);
+	const handleChangeState = (_e: MouseEvent<HTMLButtonElement>) => { 
 		updateNodeData(id, { state: { ...state, on: !state?.on } });
 		if (type === ComponentType.PusuhButtonClose || type === ComponentType.PusuhButtonOpen) {
 			setTimeout(() => {

@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
+import { formatCurrent } from "@/helpers";
 
 /**
  * Component for rendering analog components in the flow chart.
@@ -30,6 +31,7 @@ export function AnalogComponent({
 		size,
 		color,
 		state,
+		currentDrop,
 	},
 	selected,
 	id,
@@ -186,6 +188,20 @@ export function AnalogComponent({
 					ComponentsMap[type].icon
 				)}
 			</div>
+			{ComponentsMap[type].componentType === ComponentType.Ammeter && isValueVisible && (
+				<div
+					className={styles.viewVoltage}
+					style={{
+						transform: `rotate(${rotation}deg)`,
+					}}
+				>
+					<div className={styles["measurement-header"]}>DC CURRENT</div>
+					<div className={styles["measurement-display"]}>
+						{formatCurrent(currentDrop ?? 0).split(" ")[0]}
+						<span className={styles.unit}>{formatCurrent(currentDrop ?? 0).split(" ")[1]}</span>
+					</div>
+				</div>
+			)}
 			<Terminal
 				type="source"
 				position={terminalSettings[0]}

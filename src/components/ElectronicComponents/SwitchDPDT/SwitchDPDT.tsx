@@ -458,8 +458,7 @@ export function SwitchDPDT({
 			}
 		});
 	};
-
-	console.log(connectedHandlesInternal);
+ 
 
 	return (
 		<div

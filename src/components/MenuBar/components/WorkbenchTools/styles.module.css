@@ -11,3 +11,7 @@
 .workbenchTool_inactive {
 	cursor: not-allowed;
 }
+
+.measurementTypeSelector {
+	margin-left: 8px;
+}
