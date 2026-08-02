@@ -147,7 +147,6 @@ function buildGraph(edges: ComponentEdge[], nodes: AnalogNode[]): Map<string, Se
 				graph.get(handle2)!.add(handle1);
 			}
 			// Si el switch está OFF, NO se añade ninguna arista entre sus handles internos.
-			// Esto asegura que assignElectricalNodes los vea como desconectados.
 		}
 		// Para otros componentes (resistencias, LEDs, baterías), sus terminales están
 		// siempre "internamente conectados" para formar parte de la malla MNA,
@@ -201,6 +200,41 @@ function assignElectricalNodes(
 	// --- PASO 2: Recorrer el grafo para crear los electricalNodes ---
 	const visitedHandles = new Set<string>();
 
+	// Componentes que dividen los nodos eléctricos (sus handles deben estar en diferentes nodos eléctricos)
+	const nodeSplittingComponents = new Set<ComponentType>([
+		ComponentType.Resistor,
+		ComponentType.Capacitor,
+		ComponentType.Inductor,
+		ComponentType.Led,
+		ComponentType.Diode,
+		ComponentType.Schottky,
+		ComponentType.Zener,
+		ComponentType.SwitchSPST,
+		ComponentType.PusuhButtonOpen,
+		ComponentType.PusuhButtonClose,
+		ComponentType.Ammeter,
+	]);
+
+	// Función auxiliar para obtener el tipo de componente desde un handle
+	const getComponentTypeFromHandle = (handleId: string): ComponentType | null => {
+		const nodeId = handleId.split(':')[0];
+		const node = nodes.find(n => n.id === nodeId);
+		return node?.data.type || null;
+	};
+
+	// Función auxiliar para verificar si dos handles pertenecen al mismo componente que divide nodos
+	const areHandlesFromSameSplittingComponent = (handle1: string, handle2: string): boolean => {
+		const nodeId1 = handle1.split(':')[0];
+		const nodeId2 = handle2.split(':')[0];
+		// Si son handles del mismo componente
+		if (nodeId1 === nodeId2) {
+			const componentType = getComponentTypeFromHandle(handle1);
+			// Y ese componente divide nodos
+			return componentType !== null && nodeSplittingComponents.has(componentType);
+		}
+		return false;
+	};
+
 	// Primero, si encontramos un handle de tierra, procesamos su grupo de nodos primero.
 	if (startingGroundHandle) {
 		const newGroundId = `N${electricalNodeIndex}`;
@@ -226,9 +260,12 @@ function assignElectricalNodes(
 
 			const neighbors = graph.get(currentTraverseHandle) || new Set<string>();
 			for (const neighborHandle of neighbors) {
-				if (!visitedHandles.has(neighborHandle)) {
-					visitedHandles.add(neighborHandle);
-					queue.push(neighborHandle);
+				// Solo cruzamos si no son handles del mismo componente que divide nodos
+				if (!areHandlesFromSameSplittingComponent(currentTraverseHandle, neighborHandle)) {
+					if (!visitedHandles.has(neighborHandle)) {
+						visitedHandles.add(neighborHandle);
+						queue.push(neighborHandle);
+					}
 				}
 			}
 		}
@@ -270,9 +307,12 @@ function assignElectricalNodes(
 
 					const neighbors = graph.get(currentTraverseHandle) || new Set<string>();
 					for (const neighborHandle of neighbors) {
-						if (!visitedHandles.has(neighborHandle)) {
-							visitedHandles.add(neighborHandle);
-							queue.push(neighborHandle);
+						// Solo cruzamos si no son handles del mismo componente que divide nodos
+						if (!areHandlesFromSameSplittingComponent(currentTraverseHandle, neighborHandle)) {
+							if (!visitedHandles.has(neighborHandle)) {
+								visitedHandles.add(neighborHandle);
+								queue.push(neighborHandle);
+							}
 						}
 					}
 				}
@@ -302,6 +342,39 @@ function assignElectricalNodes(
 
 	return { electricalNodes, nodeToElectricalNodeMap, groundNodeId, groundIndex };
 }
+
+/**
+ * Convierte un valor con su prefijo al valor base (sin multiplicador).
+ * Por ejemplo: 1 kΩ → 1000 Ω, 1 mV → 0.001 V
+ */
+function convertValueWithPrefix(value: number, prefix: string): number {
+	const multipliers: Record<string, number> = {
+		// Resistencia
+		"Ω": 1,
+		"kΩ": 1000,
+		"MΩ": 1000000,
+		// Voltaje
+		"mV": 0.001,
+		"V": 1,
+		"VAC": 1,
+		// Corriente
+		"μA": 0.000001,
+		"mA": 0.001,
+		"A": 1,
+		// Capacitancia
+		"pF": 0.000000000001,
+		"nF": 0.000000001,
+		"µF": 0.000001,
+		// Inductancia
+		"μH": 0.000001,
+		"mH": 0.001,
+		"H": 1,
+	};
+
+	const multiplier = multipliers[prefix] || 1;
+	return value * multiplier;
+}
+
 /**
  * Convierte los nodos y edges de ReactFlow en un formato compatible con MNA.
  * Retorna los componentes MNA, un mapa de nodos eléctricos y el ID del nodo de tierra.
@@ -366,6 +439,7 @@ function prepareForMNA(
 			// ... (añade más tipos que tienen 2 terminales genéricos) ...
 			case ComponentType.PusuhButtonClose:
 			case ComponentType.PusuhButtonOpen:
+			case ComponentType.Ammeter:
 				// Para estos, el orden de 1 y 2 generalmente no importa para la función,
 				// pero si tus visuales o la simulación dependen de un orden específico,
 				// usa electricalNodeId1 y electricalNodeId2.
@@ -378,12 +452,13 @@ function prepareForMNA(
 					);
 					continue; // Skip if not fully connected
 				}
+				const componentValue = convertValueWithPrefix(Number(node.data.value), node.data.prefix);
 				mnaComponents.push({
 					id: node.id,
 					type: node.data.type,
 					node1Id: compNode1Id,
 					node2Id: compNode2Id,
-					value: Number(node.data.value),
+					value: componentValue,
 					state: node.data.state?.on, // For switches
 				});
 				break;
@@ -401,13 +476,14 @@ function prepareForMNA(
 					console.warn(`Diode-type component ${node.id} is not fully connected. Skipping.`);
 					continue;
 				}
+				const forwardVoltage = convertValueWithPrefix(Number(node.data.forwardVoltage || node.data.value), node.data.prefix);
 				mnaComponents.push({
 					id: node.id,
 					type: node.data.type,
 					node1Id: compNode1Id,
 					node2Id: compNode2Id,
 					color: node.data.color, // For LEDs
-					voltageDrop: node.data.forwardVoltage, // For LEDs
+					voltageDrop: forwardVoltage, // For LEDs
 					internalResistance: node.data.internalResistance,
 				});
 				break;
@@ -430,12 +506,13 @@ function prepareForMNA(
 				// porque electricalNodeId2 (que es el nodeToElectricalNodeMap.get(`${node.id}:2`))
 				// YA DEBERÍA SER N0 si la función assignElectricalNodes hizo su trabajo.
 
+				const voltageValue = convertValueWithPrefix(Number(node.data.value), node.data.prefix);
 				mnaComponents.push({
 					id: node.id,
 					type: node.data.type,
 					node1Id: compNode1Id, // Positivo
 					node2Id: compNode2Id, // Negativo (¡este debería ser N0 si está conectado a tierra!)
-					value: Number(node.data.value),
+					value: voltageValue,
 				});
 				break;
 
@@ -543,6 +620,17 @@ function solveMNA(
 			}
 		};
 
+		// Agregar resistencia de fuga a tierra para evitar nodos flotantes y matriz singular
+		const leakageConductance = 1e-7; // 10MΩ - pequeña para no afectar el circuito pero suficiente para evitar singularidad
+		for (const [nodeId, node] of electricalNodes) {
+			if (nodeId !== groundNodeId) {
+				const nodeIdx = nodeMap.get(nodeId);
+				if (nodeIdx !== undefined) {
+					A.set([nodeIdx, nodeIdx], A.get([nodeIdx, nodeIdx]) + leakageConductance);
+				}
+			}
+		}
+
 		mnaComponents.forEach((comp) => {
 			const n1Idx = nodeMap.get(comp.node1Id)!;
 			const n2Idx = nodeMap.get(comp.node2Id)!;
@@ -616,10 +704,17 @@ function solveMNA(
 				case ComponentType.SwitchSPST:
 				case ComponentType.PusuhButtonOpen:
 				case ComponentType.PusuhButtonClose:
-					/*const switchConductance = comp.state ? 1e9 : 1e-12; // Muy alta para cerrado, muy baja para abierto
+					const switchConductance = comp.state ? 1e9 : 1e-12; // Muy alta para cerrado, muy baja para abierto (1TΩ)
 					addConductance(n1Idx, n2Idx, switchConductance);
 					break;
-					*/
+
+				case ComponentType.Ammeter:
+					// El amperímetro se modela como una resistencia muy baja para no afectar el circuito
+					// Usamos 0.01 ohms (10 miliohms) para comportamiento realista
+					const ammeterResistance = 0.01; // 0.01 ohms (10 miliohms)
+					const ammeterConductance = 1 / ammeterResistance; // 100 siemens
+					console.log(`MNA: Adding ammeter ${comp.id} with resistance=${ammeterResistance}, conductance=${ammeterConductance}, n1Idx=${n1Idx}, n2Idx=${n2Idx}`);
+					addConductance(n1Idx, n2Idx, ammeterConductance);
 					break;
 
 				case ComponentType.Capacitor:
@@ -745,10 +840,13 @@ function solveMNA(
 				// Ajustar el signo si es necesario para que sea corriente saliendo del positivo.
 				const node1 = currentElectricalNodes.get(comp.node1Id)!;
 				const node2 = currentElectricalNodes.get(comp.node2Id)!;
+				console.log(`Power source ${comp.id}: node1.voltage=${node1.voltage}, node2.voltage=${node2.voltage}, raw mainBranchCurrent=${mainBranchCurrent}`);
 				if (node1.voltage! < node2.voltage!) {
 					// Si node1 es el cátodo y node2 es el ánodo (como una batería que va de negativo a positivo)
 					mainBranchCurrent = -mainBranchCurrent; // Invertir signo para que sea saliendo del positivo
+					console.log(`Power source ${comp.id}: inverted mainBranchCurrent to ${mainBranchCurrent}`);
 				}
+				console.log(`Power source ${comp.id}: final mainBranchCurrent=${mainBranchCurrent}`);
 			}
 			break; // Asume que hay solo una fuente principal para esta rama serie
 		}
@@ -808,16 +906,6 @@ function solveMNA(
 					} else {
 						current = voltageDrop / 1e-9; // Fallback: resistencia muy baja
 					}
-				} else {
-					current = 0; // Abierto
-				}
-				break;
-
-			case ComponentType.PowerSupply:
-			case ComponentType.Battery:
-				const sourceXIndex = voltageSourceToXIndexMap.get(comp.id);
-				if (sourceXIndex !== undefined && finalX) {
-					current = finalX.get([sourceXIndex, 0]) as number; // La corriente de la fuente es la variable extra en X
 				}
 				break;
 
@@ -846,6 +934,25 @@ function solveMNA(
 					// Fallback: si no hay corriente principal disponible
 					const inductorDCCond = 1e9; // Conductancia asumida de cortocircuito
 					current = voltageDrop * inductorDCCond;
+				}
+				break;
+
+			case ComponentType.Ammeter:
+				// El amperímetro se modela como resistencia en MNA
+				// Calculamos la corriente usando I = V / R con la misma resistencia
+				const ammeterResistance = 0.01; // 0.01 ohms - debe coincidir con MNA
+				current = voltageDrop / ammeterResistance;
+				// Usamos el valor absoluto para mostrar la magnitud de la corriente
+				current = Math.abs(current);
+				console.log(`Ammeter ${comp.id}: node1Id=${comp.node1Id}, node2Id=${comp.node2Id}, node1.voltage=${node1.voltage}, node2.voltage=${node2.voltage}, voltageDrop=${voltageDrop}, resistance=${ammeterResistance}, current=${current}`);
+				// Verificar si los nodos son iguales (cortocircuito)
+				if (comp.node1Id === comp.node2Id) {
+					console.log(`Ammeter ${comp.id}: WARNING - node1Id === node2Id, short circuit detected!`);
+				}
+				// Asegurarnos de que current sea un número válido
+				if (isNaN(current) || !isFinite(current)) {
+					current = 0;
+					console.log(`Ammeter ${comp.id}: current is NaN or infinite, setting to 0`);
 				}
 				break;
 
@@ -1042,11 +1149,14 @@ export function updateCircuitVisualsAnimation(
 		});
 	}
 	for (const component of components) {
+		const componentId = component[0];
+		const componentData = component[1];
+		console.log(`Component ${componentId}: current=${componentData.current}, voltageDrop=${componentData.voltageDrop}`);
 		nodesResults.push({
-			componentId: component[0],
-			voltageDrop: component[1].voltageDrop || 0,
-			currentDrop: component[1].current || 0,
-			isOn: component[1].isOn || false,
+			componentId: componentId,
+			voltageDrop: componentData.voltageDrop || 0,
+			currentDrop: componentData.current || 0,
+			isOn: componentData.isOn || false,
 		});
 	}
 
