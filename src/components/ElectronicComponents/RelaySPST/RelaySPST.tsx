@@ -263,8 +263,8 @@ export function RelaySPST({
 			>
 				{state
 					? state?.on
-						? ComponentsMap[type]?.state?.iconON
-						: ComponentsMap[type].state?.iconOFF
+						? ComponentsMap[type]?.icon
+						: ComponentsMap[type]?.icon
 					: ComponentsMap[type].icon}
 			</div>
 			<Terminal
