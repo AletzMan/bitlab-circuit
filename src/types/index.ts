@@ -6,6 +6,7 @@ export enum ComponentType {
 	Battery = "battery",
 	PhotovoltaicCell = "photovoltaiccell",
 	PowerSupply = "powersupply",
+	CurrentSource = "currentsource",
 	Ground = "ground",
 	Resistor = "resistor",
 	Rheostat = "rheostat",

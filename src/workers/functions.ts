@@ -732,6 +732,67 @@ function findAllPaths(
 }
 
 /**
+ * Resuelve el circuito con una corriente de prueba inyectada para medir resistencia.
+ * @param node1Id - ID del primer nodo del ohmmeter.
+ * @param node2Id - ID del segundo nodo del ohmmeter.
+ * @param testCurrent - Corriente de prueba a inyectar (en amperios).
+ * @param mnaComponents - Lista de componentes MNA originales.
+ * @param electricalNodes - Mapa de nodos eléctricos.
+ * @param groundNodeId - ID del nodo de tierra.
+ * @returns Resistencia equivalente entre los dos nodos.
+ */
+function solveOhmmeterWithTestCurrent(
+	node1Id: string,
+	node2Id: string,
+	testCurrent: number,
+	mnaComponents: MNAComponent[],
+	electricalNodes: Map<string, ElectricalNode>,
+	groundNodeId: string
+): number {
+	// Crear una copia de los componentes sin el ohmmeter
+	const testComponents = mnaComponents.filter(
+		c => c.type !== ComponentType.Ohmmeter
+	);
+
+	// Agregar una fuente de corriente de prueba entre los dos nodos
+	const testCurrentSource: MNAComponent = {
+		id: 'test-current-source',
+		type: ComponentType.CurrentSource, // Usamos un tipo temporal
+		node1Id: node1Id,
+		node2Id: node2Id,
+		value: testCurrent,
+	};
+
+	testComponents.push(testCurrentSource);
+
+	// Resolver el circuito con MNA
+	try {
+		const results = solveMNA(testComponents, electricalNodes, groundNodeId);
+		
+		// Obtener el voltaje entre los dos nodos
+		const node1 = results.electricalNodes.get(node1Id);
+		const node2 = results.electricalNodes.get(node2Id);
+		
+		if (!node1 || !node2) {
+			return Infinity;
+		}
+		
+		const voltageDrop = Math.abs((node1.voltage || 0) - (node2.voltage || 0));
+		
+		// Calcular resistencia: R = V / I
+		if (voltageDrop < 1e-12) {
+			return 0; // Cortocircuito
+		}
+		
+		const resistance = voltageDrop / testCurrent;
+		return resistance;
+	} catch (e) {
+		console.error('Error solving ohmmeter with test current:', e);
+		return Infinity;
+	}
+}
+
+/**
  * Encuentra todos los componentes MNA conectados entre dos nodos.
  */
 function findAllComponentsBetweenNodes(
@@ -917,14 +978,28 @@ function solveMNA(
 						A.set([n2Idx, vsIdx], A.get([n2Idx, vsIdx]) - 1);
 					}
 
-					// Ecuación de la fuente de voltaje: V_n1 - V_n2 = V_source
+					// Ecuación de la fuente de voltaje: Vn1 - Vn2 = V_source
+					if (vsIdx !== -1) {
+						if (n1Idx !== -1) {
+							A.set([vsIdx, n1Idx], A.get([vsIdx, n1Idx]) + 1);
+						}
+						if (n2Idx !== -1) {
+							A.set([vsIdx, n2Idx], A.get([vsIdx, n2Idx]) - 1);
+						}
+						Z.set([vsIdx, 0], comp.value || 0);
+					}
+					break;
+
+				case ComponentType.CurrentSource:
+					// Fuente de corriente ideal: inyecta corriente conocida
+					// KCL: corriente entra en n1, sale de n2
+					const currentSourceValue = comp.value || 0;
 					if (n1Idx !== -1) {
-						A.set([vsIdx, n1Idx], A.get([vsIdx, n1Idx]) + 1);
+						Z.set([n1Idx, 0], Z.get([n1Idx, 0]) + currentSourceValue);
 					}
 					if (n2Idx !== -1) {
-						A.set([vsIdx, n2Idx], A.get([vsIdx, n2Idx]) - 1);
+						Z.set([n2Idx, 0], Z.get([n2Idx, 0]) - currentSourceValue);
 					}
-					Z.set([vsIdx, 0], comp.value || 0);
 					break;
 
 				case ComponentType.SwitchSPST:
@@ -1193,7 +1268,8 @@ function solveMNA(
 				break;
 
 			case ComponentType.Ohmmeter:
-				// El óhmetro calcula la resistencia equivalente del circuito entre sus dos terminales
+				// El óhmetro inyecta una corriente de prueba y mide el voltaje
+				// R = V / I_test
 				
 				// Si los dos nodos son el mismo, es un cortocircuito
 				if (comp.node1Id === comp.node2Id) {
@@ -1202,18 +1278,32 @@ function solveMNA(
 					break;
 				}
 
-				// Calcular resistencia equivalente usando análisis de caminos en el grafo
-				// Esto funciona para circuitos serie-paralelo
-				const equivalentResistance = calculateEquivalentResistance(
-					comp.node1Id, 
-					comp.node2Id, 
-					mnaComponents, 
-					currentElectricalNodes
+				// Detectar si hay fuentes de voltaje activas en el circuito
+				const hasActiveVoltageSource = mnaComponents.some(
+					c => c.type === ComponentType.PowerSupply || c.type === ComponentType.Battery
+				);
+
+				if (hasActiveVoltageSource) {
+					// No se puede medir resistencia con fuentes activas
+					componentStates.set(comp.id, { isOn: false, resistance: Infinity });
+					console.log(`Ohmmeter ${comp.id}: Cannot measure - active voltage source detected`);
+					break;
+				}
+
+				// Inyectar corriente de prueba (1 mA) y resolver el circuito
+				const testCurrent = 0.001; // 1 mA
+				const ohmmeterResistance = solveOhmmeterWithTestCurrent(
+					comp.node1Id,
+					comp.node2Id,
+					testCurrent,
+					mnaComponents,
+					currentElectricalNodes,
+					groundNodeId
 				);
 
 				// Guardamos la resistencia en el componente para mostrar en UI
-				componentStates.set(comp.id, { isOn: false, resistance: equivalentResistance });
-				console.log(`Ohmmeter ${comp.id}: node1Id=${comp.node1Id}, node2Id=${comp.node2Id}, equivalentResistance=${equivalentResistance}`);
+				componentStates.set(comp.id, { isOn: false, resistance: ohmmeterResistance });
+				console.log(`Ohmmeter ${comp.id}: node1Id=${comp.node1Id}, node2Id=${comp.node2Id}, resistance=${ohmmeterResistance} Ω`);
 				break;
 
 			default:
