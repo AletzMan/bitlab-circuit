@@ -815,3 +815,27 @@ export function formatCurrent(amperes: number): string {
 		return `0.00 A`;
 	}
 }
+
+export function formatResistance(ohms: number): string {
+	if (ohms === 0) return `${0.00} Ω`;
+
+	const absOhms = Math.abs(ohms);
+	const sign = ohms < 0 ? "-" : "";
+
+	if (absOhms >= 1e6) {
+		// 1 MΩ o más
+		return `${sign}${(absOhms / 1e6).toFixed(4)} MΩ`;
+	} else if (absOhms >= 1e3) {
+		// Rango de kilo-ohms (1 kΩ a 999 kΩ)
+		return `${sign}${(absOhms / 1e3).toFixed(4)} kΩ`;
+	} else if (absOhms >= 1) {
+		// Rango de ohms (1 Ω a 999 Ω)
+		return `${sign}${absOhms.toFixed(4)} Ω`;
+	} else if (absOhms >= 1e-3) {
+		// Rango de mili-ohms (0.001 Ω a 0.999 Ω)
+		return `${sign}${(absOhms * 1e3).toFixed(4)} mΩ`;
+	} else {
+		// Valores extremadamente pequeños
+		return `0.00 Ω`;
+	}
+}
