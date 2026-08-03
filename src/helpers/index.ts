@@ -793,7 +793,7 @@ export function clearVoltageView() {
 
 
 export function formatCurrent(amperes: number): string {
-	if (amperes === 0) return "0 A";
+	if (amperes === 0) return `${0.00} A`;
 
 	const absAmperes = Math.abs(amperes);
 	const sign = amperes < 0 ? "-" : "";
@@ -812,6 +812,6 @@ export function formatCurrent(amperes: number): string {
 		return `${sign}${(absAmperes * 1e9).toFixed(2)} nA`;
 	} else {
 		// Valores extremadamente pequeños (picoamperios o cercanos a cero por tolerancia del MNA)
-		return `0 A`;
+		return `0.00 A`;
 	}
 }

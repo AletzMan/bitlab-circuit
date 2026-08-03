@@ -36,6 +36,7 @@ import { Board } from "@/components/ElectronicComponents/Board/Board";
 import { NodeComponent } from "@/components/ElectronicComponents/NodeComponent/NodeComponent";
 import { TransistorComponent } from "@/components/ElectronicComponents/TransistorComponent/TransistorComponent";
 import { MechanicalComponent } from "@/components/ElectronicComponents/MechanicalComponent/MechanicalComponent";
+import { MeasurementComponent } from "@/components/ElectronicComponents/MeasurementComponent/MeasurementComponent";
 import {
 	createMeasurementView,
 	getComponentProperties,
@@ -2125,6 +2126,7 @@ const nodeTypes = {
 	potentiometer: Potentiometer,
 	battery: Battery,
 	ground: Ground,
+	measurementComponent: MeasurementComponent,
 };
 
 const edgeTypes = {
