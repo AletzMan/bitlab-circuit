@@ -839,3 +839,27 @@ export function formatResistance(ohms: number): string {
 		return `0.00 Ω`;
 	}
 }
+
+export function formatVoltage(volts: number): string {
+	if (volts === 0) return `${0.00} V`;
+
+	const absVolts = Math.abs(volts);
+	const sign = volts < 0 ? "-" : "";
+
+	if (absVolts >= 1e3) {
+		// 1 kV o más
+		return `${sign}${(absVolts / 1e3).toFixed(2)} kV`;
+	} else if (absVolts >= 1) {
+		// Rango de voltios (1 V a 999 V)
+		return `${sign}${absVolts.toFixed(2)} V`;
+	} else if (absVolts >= 1e-3) {
+		// Rango de milivoltios (0.001 V a 0.999 V)
+		return `${sign}${(absVolts * 1e3).toFixed(2)} mV`;
+	} else if (absVolts >= 1e-6) {
+		// Rango de microvoltios (0.000001 V a 0.000999 V)
+		return `${sign}${(absVolts * 1e6).toFixed(2)} µV`;
+	} else {
+		// Valores extremadamente pequeños
+		return `0.00 V`;
+	}
+}

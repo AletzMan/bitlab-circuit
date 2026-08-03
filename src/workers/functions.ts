@@ -195,6 +195,7 @@ function assignElectricalNodes(
 		ComponentType.RelaySPDT,
 		ComponentType.RelayDPDT,
 		ComponentType.Ammeter,
+		ComponentType.Voltmeter,
 	]);
 
 	// Función auxiliar para obtener el tipo de componente desde un handle
@@ -454,6 +455,7 @@ function prepareForMNA(
 			case ComponentType.RelayDPDT:
 			case ComponentType.Ammeter:
 			case ComponentType.Ohmmeter:
+			case ComponentType.Voltmeter:
 				compNode1Id = electricalNodeId1;
 				compNode2Id = electricalNodeId2;
 				if (!compNode1Id || !compNode2Id) {
@@ -1030,6 +1032,15 @@ function solveMNA(
 					addConductance(n1Idx, n2Idx, ohmmeterConductance);
 					break;
 
+				case ComponentType.Voltmeter:
+					// El voltímetro se modela como una resistencia muy alta para no afectar el circuito
+					// Usamos 1GΩ para comportamiento realista (casi circuito abierto)
+					const voltmeterResistance = 1e9; // 1GΩ
+					const voltmeterConductance = 1 / voltmeterResistance; // 1e-9 siemens
+					console.log(`MNA: Adding voltmeter ${comp.id} with resistance=${voltmeterResistance}, conductance=${voltmeterConductance}, n1Idx=${n1Idx}, n2Idx=${n2Idx}`);
+					addConductance(n1Idx, n2Idx, voltmeterConductance);
+					break;
+
 				case ComponentType.Capacitor:
 				case ComponentType.PolarisedCapacitor:
 				case ComponentType.VariableCapacitor:
@@ -1270,7 +1281,7 @@ function solveMNA(
 			case ComponentType.Ohmmeter:
 				// El óhmetro inyecta una corriente de prueba y mide el voltaje
 				// R = V / I_test
-				
+
 				// Si los dos nodos son el mismo, es un cortocircuito
 				if (comp.node1Id === comp.node2Id) {
 					componentStates.set(comp.id, { isOn: false, resistance: 0 });
@@ -1304,6 +1315,12 @@ function solveMNA(
 				// Guardamos la resistencia en el componente para mostrar en UI
 				componentStates.set(comp.id, { isOn: false, resistance: ohmmeterResistance });
 				console.log(`Ohmmeter ${comp.id}: node1Id=${comp.node1Id}, node2Id=${comp.node2Id}, resistance=${ohmmeterResistance} Ω`);
+				break;
+
+			case ComponentType.Voltmeter:
+				// El voltímetro mide el voltaje directamente entre los dos nodos
+				// Ya está modelado como resistencia muy alta en MNA, así que el voltageDrop está disponible
+				console.log(`Voltmeter ${comp.id}: node1Id=${comp.node1Id}, node2Id=${comp.node2Id}, node1.voltage=${node1.voltage}, node2.voltage=${node2.voltage}, voltageDrop=${voltageDrop}`);
 				break;
 
 			default:
