@@ -179,6 +179,52 @@ export function OhmmeterIcon(props: SVGProps<SVGSVGElement>) {
 	);
 }
 
+export function VoltmeterIcon(props: SVGProps<SVGSVGElement>) {
+	return (
+		<svg
+			{...props}
+			height="33px"
+			width="33px"
+			fill="currentColor"
+			version="1.1"
+			viewBox="0 0 600 600"
+		>
+			<rect
+				x="150"
+				y="200"
+				width="300"
+				height="200"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth={STROKE_WIDTH * 4}
+				rx="20"
+			/>
+			<path
+				strokeWidth={STROKE_WIDTH * 4}
+				fill="none"
+				stroke="currentColor"
+				d="M 0,300 L 150,300"
+			/>
+			<path
+				strokeWidth={STROKE_WIDTH * 4}
+				fill="none"
+				stroke="currentColor"
+				d="M 450,300 L 600,300"
+			/>
+			<text
+				x="300"
+				y="340"
+				textAnchor="middle"
+				fontSize="120"
+				fill="currentColor"
+				stroke="none"
+			>
+				V
+			</text>
+		</svg>
+	);
+}
+
 export function RheostatIcon(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
