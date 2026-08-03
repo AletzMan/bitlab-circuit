@@ -1,35 +1,33 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
 import { AnalogNode, ComponentCollapsed, ComponentType, IConnectedHandles } from "@/types";
-import { LEDIcon, LockIcon, UnlockIcon } from "@/icons";
+import { LockIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
+import { formatCurrent } from "@/helpers";
 
 /**
- * Component for rendering analog components in the flow chart.
+ * Component for rendering measurement components in the flow chart.
  * @param {{ type: ComponentType, value: string, rotation: number, flip: { x: number, y: number }, collapsed: ComponentCollapsed, isLock: boolean, prefix: string, designator: string, isDesignatorVisible: boolean, isValueVisible: boolean, connectedHandles: IConnectedHandles[], size: "small" | "medium" | "large", color: string, state: { on: boolean } }} data
  * @param {boolean} selected
  * @param {string} id
  * @param {string | undefined} parentId
  * @returns {JSX.Element}
  */
-export function AnalogComponent({
+export function MeasurementComponent({
 	data: {
 		type,
-		value,
 		rotation,
 		flip,
 		collapsed,
 		isLock,
-		prefix,
 		designator,
 		isDesignatorVisible,
 		isValueVisible,
 		connectedHandles,
 		size,
-		color,
-		state,
+		currentDrop,
 	},
 	selected,
 	id,
@@ -100,52 +98,52 @@ export function AnalogComponent({
 		let position: Position[] = [];
 		switch (rotation) {
 			case 0: {
-				position = [Position.Left, Position.Right, Position.Top];
+				position = [Position.Left, Position.Right];
 				if (flip.x === -1 && flip.y === 1) {
-					position = [Position.Right, Position.Left, Position.Top];
+					position = [Position.Right, Position.Left];
 				} else if (flip.y === -1 && flip.x === 1) {
-					position = [Position.Left, Position.Right, Position.Bottom];
+					position = [Position.Left, Position.Right];
 				} else if (flip.y === -1 && flip.x === -1) {
-					position = [Position.Right, Position.Left, Position.Bottom];
+					position = [Position.Right, Position.Left];
 				}
 				return position;
 			}
 			case 90: {
-				position = [Position.Top, Position.Bottom, Position.Right];
+				position = [Position.Top, Position.Bottom];
 				if (flip.x === -1 && flip.y === 1) {
-					position = [Position.Top, Position.Bottom, Position.Left];
+					position = [Position.Top, Position.Bottom];
 				} else if (flip.y === -1 && flip.x === 1) {
-					position = [Position.Bottom, Position.Top, Position.Right];
+					position = [Position.Bottom, Position.Top];
 				} else if (flip.y === -1 && flip.x === -1) {
-					position = [Position.Bottom, Position.Top, Position.Left];
+					position = [Position.Bottom, Position.Top];
 				}
 				return position;
 			}
 			case 180: {
-				position = [Position.Right, Position.Left, Position.Bottom];
+				position = [Position.Right, Position.Left];
 				if (flip.x === -1 && flip.y === 1) {
-					position = [Position.Left, Position.Right, Position.Bottom];
+					position = [Position.Left, Position.Right];
 				} else if (flip.y === -1 && flip.x === 1) {
-					position = [Position.Right, Position.Left, Position.Top];
+					position = [Position.Right, Position.Left];
 				} else if (flip.y === -1 && flip.x === -1) {
-					position = [Position.Left, Position.Right, Position.Top];
+					position = [Position.Left, Position.Right];
 				}
 				return position;
 			}
 			case 270: {
-				position = [Position.Bottom, Position.Top, Position.Left];
+				position = [Position.Bottom, Position.Top];
 				if (flip.x === -1 && flip.y === 1) {
-					position = [Position.Bottom, Position.Top, Position.Right];
+					position = [Position.Bottom, Position.Top];
 				} else if (flip.y === -1 && flip.x === 1) {
-					position = [Position.Top, Position.Bottom, Position.Left];
+					position = [Position.Top, Position.Bottom];
 				} else if (flip.y === -1 && flip.x === -1) {
-					position = [Position.Top, Position.Bottom, Position.Right];
+					position = [Position.Top, Position.Bottom];
 				}
 				return position;
 			}
 
 			default:
-				return [Position.Right, Position.Left, Position.Top];
+				return [Position.Right, Position.Left];
 		}
 	}, [rotation, flip.x, flip.y]);
 
@@ -180,12 +178,22 @@ export function AnalogComponent({
 				}}
 				className={styles.icon}
 			>
-				{ComponentsMap[type].componentType === ComponentType.Led ? (
-					<LEDIcon color_led={state?.on ? (!color || color === "transparent" ? "#FF0000" : color) : "#F3F82200"} />
-				) : (
-					ComponentsMap[type].icon
-				)}
+				{ComponentsMap[type].icon}
 			</div>
+			{ComponentsMap[type].componentType === ComponentType.Ammeter && isValueVisible && (
+				<div
+					className={styles.viewVoltage}
+					/*style={{
+						transform: `rotate(${rotation}deg)`,
+					}}*/
+				>
+					<div className={styles["measurement-header"]}>DC CURRENT</div>
+					<div className={styles["measurement-display"]}>
+						{formatCurrent(currentDrop ?? 0.00).split(" ")[0]}
+						<span className={styles.unit}>{formatCurrent(currentDrop ?? 0).split(" ")[1]}</span>
+					</div>
+				</div>
+			)}
 			<Terminal
 				type="source"
 				position={terminalSettings[0]}
@@ -198,27 +206,8 @@ export function AnalogComponent({
 				id="2"
 				isConnectable={!connectedHandlesInternal[1].isConnected}
 			/>
-			{type === ComponentType.Potentiometer && (
-				<Terminal
-					type="source"
-					position={terminalSettings[2]}
-					id="3"
-					isConnectable={!connectedHandlesInternal[2].isConnected}
-				/>
-			)}
-			{isValueVisible && (
-				<span
-					className={`${styles.value}  ${size === "small" && styles.value_small} ${
-						size === "medium" && styles.value_medium
-					} ${size === "large" && styles.value_large}  ${rotation === 90 && styles.value_90}   ${
-						rotation === 270 && styles.value_270
-					}`}
-					style={{ transform: `rotate(${rotation - rotation}deg) ` }}
-				>
-					{value}
-					{prefix}
-				</span>
-			)}
+			<div className={`${styles.pin} ${styles["pin-left"]} ${rotation === 90 && styles["pin-left-90"]} ${rotation === 180 && styles["pin-left-180"]} ${rotation === 270 && styles["pin-left-270"]}`}></div>
+			<div className={`${styles.pin} ${styles["pin-right"]} ${rotation === 90 && styles["pin-right-90"]} ${rotation === 180 && styles["pin-right-180"]} ${rotation === 270 && styles["pin-right-270"]}`}></div>
 			{isDesignatorVisible && (
 				<span
 					className={`${styles.designator} ${size === "small" && styles.designator_small} ${

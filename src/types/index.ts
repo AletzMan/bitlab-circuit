@@ -197,7 +197,8 @@ export type ComponentProperties = {
 		| "logicGate"
 		| "powerSupply"
 		| "ground"
-		| "battery";
+		| "battery"
+		| "measurementComponent";
 	has_properties: boolean;
 	isValueVisible: boolean;
 	isValueOptionalVisible?: boolean;

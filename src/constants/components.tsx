@@ -1385,7 +1385,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
 		unit: UnitsType.Current,
 		prefix: "A",
 		designator: "AM",
-		type: "analogComponent",
+		type: "measurementComponent",
 		has_properties: true,
 		isDesignatorVisible: true,
 		isValueVisible: true,
