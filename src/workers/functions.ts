@@ -29,6 +29,7 @@ export interface MNAComponent {
 export interface SimulationResults {
 	electricalNodes: Map<string, ElectricalNode>;
 	components: Map<string, { current?: number; voltageDrop?: number; isOn?: boolean }>;
+	componentStates?: Map<string, { isOn: boolean; current?: number; voltageDrop?: number; resistance?: number }>;
 }
 
 export interface EdgeInfo {
@@ -40,6 +41,7 @@ export interface ComponentInfo {
 	componentId: string;
 	voltageDrop: number;
 	currentDrop: number;
+	resistanceDrop?: number;
 	isOn: boolean;
 }
 
@@ -376,7 +378,20 @@ function prepareForMNA(
 		graph
 	); // Asegúrate de que assignElectricalNodes esté con la última versión
 
-	if (groundNodeId === null) {
+	// If no ground but Ohmmeter is present, use the first electrical node as reference
+	const hasOhmmeter = nodes.some((node) => node.data.type === ComponentType.Ohmmeter);
+	let actualGroundNodeId = groundNodeId;
+	
+	if (groundNodeId === null && hasOhmmeter) {
+		// Use the first electrical node as ground reference for Ohmmeter-only circuits
+		const firstNode = electricalNodes.values().next().value;
+		if (firstNode) {
+			actualGroundNodeId = firstNode.id;
+			firstNode.isGround = true;
+		} else {
+			throw new Error("No electrical nodes found in the circuit.");
+		}
+	} else if (groundNodeId === null) {
 		throw new Error("No ground node found in the circuit. A ground reference is required for MNA.");
 	}
 
@@ -438,6 +453,7 @@ function prepareForMNA(
 			case ComponentType.RelaySPDT:
 			case ComponentType.RelayDPDT:
 			case ComponentType.Ammeter:
+			case ComponentType.Ohmmeter:
 				compNode1Id = electricalNodeId1;
 				compNode2Id = electricalNodeId2;
 				if (!compNode1Id || !compNode2Id) {
@@ -531,7 +547,218 @@ function prepareForMNA(
 		}
 	}
 
-	return { mnaComponents, electricalNodes, groundNodeId, paths, graph };
+	return { mnaComponents, electricalNodes, groundNodeId: actualGroundNodeId, paths, graph };
+}
+
+/**
+ * Calcula la resistencia equivalente entre dos nodos usando análisis de caminos.
+ * @param startNodeId - ID del nodo inicial.
+ * @param endNodeId - ID del nodo final.
+ * @param mnaComponents - Lista de componentes MNA.
+ * @param electricalNodes - Mapa de nodos eléctricos.
+ * @returns Resistencia equivalente entre los dos nodos.
+ */
+function calculateEquivalentResistance(
+	startNodeId: string,
+	endNodeId: string,
+	mnaComponents: MNAComponent[],
+	electricalNodes: Map<string, ElectricalNode>
+): number {
+	// Obtener los handles conectados a cada nodo eléctrico
+	const startNode = electricalNodes.get(startNodeId);
+	const endNode = electricalNodes.get(endNodeId);
+	
+	if (!startNode || !endNode) {
+		return Infinity;
+	}
+	
+	// Crear un grafo simplificado basado en nodos eléctricos
+	const electricalGraph = new Map<string, Set<string>>();
+	
+	// Inicializar el grafo con todos los nodos eléctricos
+	for (const [nodeId] of electricalNodes) {
+		electricalGraph.set(nodeId, new Set());
+	}
+	
+	// Añadir conexiones basadas en componentes resistivos
+	console.log(`Ohmmeter: Building electrical graph with ${mnaComponents.length} components`);
+	for (const comp of mnaComponents) {
+		if (comp.node1Id && comp.node2Id) {
+			if (!electricalGraph.has(comp.node1Id)) electricalGraph.set(comp.node1Id, new Set());
+			if (!electricalGraph.has(comp.node2Id)) electricalGraph.set(comp.node2Id, new Set());
+			electricalGraph.get(comp.node1Id)!.add(comp.node2Id);
+			electricalGraph.get(comp.node2Id)!.add(comp.node1Id);
+			console.log(`Ohmmeter:   Component ${comp.type} (${comp.id}): ${comp.node1Id} <-> ${comp.node2Id}`);
+		}
+	}
+	
+	console.log(`Ohmmeter: Electrical graph:`, Object.fromEntries(electricalGraph));
+	
+	// Encontrar todos los caminos simples entre los dos nodos
+	const paths = findAllPaths(startNodeId, endNodeId, electricalGraph);
+	
+	if (paths.length === 0) {
+		return Infinity; // No hay conexión
+	}
+	
+	console.log(`Ohmmeter: Found ${paths.length} paths between ${startNodeId} and ${endNodeId}`);
+	
+	// Calcular la resistencia de cada camino
+	const pathResistances: number[] = [];
+	for (const path of paths) {
+		// Ignorar el camino directo que es solo el ohmmeter mismo (start -> end)
+		if (path.length === 2 && path[0] === startNodeId && path[1] === endNodeId) {
+			console.log(`Ohmmeter: Path: ${path.join(' -> ')} (skipping - direct ohmmeter path)`);
+			continue;
+		}
+		
+		let pathResistance = 0;
+		console.log(`Ohmmeter: Path: ${path.join(' -> ')}`);
+		
+		for (let i = 0; i < path.length - 1; i++) {
+			const node1 = path[i];
+			const node2 = path[i + 1];
+			
+			// Encontrar TODOS los componentes conectados entre estos dos nodos
+			const componentsBetweenNodes = findAllComponentsBetweenNodes(node1, node2, mnaComponents);
+			
+			if (componentsBetweenNodes.length === 0) {
+				// Si no hay componente resistivo, es un cable (resistencia ~0)
+				console.log(`Ohmmeter:   ${node1} -> ${node2}: 0 Ω (wire)`);
+				pathResistance += 0;
+			} else {
+				// Calcular resistencia equivalente de componentes en paralelo
+				let segmentResistance = 0;
+				let hasResistiveComponents = false;
+				
+				for (const comp of componentsBetweenNodes) {
+					if (comp.type === ComponentType.Resistor || 
+					    comp.type === ComponentType.Potentiometer ||
+					    comp.type === ComponentType.Rheostat ||
+					    comp.type === ComponentType.Photoresistance) {
+						const r = comp.value || 0;
+						if (r > 0) {
+							if (segmentResistance === 0) {
+								segmentResistance = r;
+							} else {
+								// Paralelo: 1/R_eq = 1/R1 + 1/R2
+								segmentResistance = (segmentResistance * r) / (segmentResistance + r);
+							}
+							hasResistiveComponents = true;
+						}
+					} else if (comp.type === ComponentType.Ohmmeter) {
+						// Ignorar el ohmmeter mismo
+						continue;
+					} else {
+						// Otro tipo de componente, asumimos resistencia infinita
+						console.log(`Ohmmeter:   ${node1} -> ${node2}: Infinity (${comp.type})`);
+						pathResistance = Infinity;
+						break;
+					}
+				}
+				
+				if (pathResistance === Infinity) {
+					break;
+				}
+				
+				if (hasResistiveComponents) {
+					pathResistance += segmentResistance;
+					console.log(`Ohmmeter:   ${node1} -> ${node2}: ${segmentResistance} Ω (${componentsBetweenNodes.length} components in parallel)`);
+				} else {
+					console.log(`Ohmmeter:   ${node1} -> ${node2}: 0 Ω (wire)`);
+					pathResistance += 0;
+				}
+			}
+		}
+		
+		if (pathResistance !== Infinity) {
+			pathResistances.push(pathResistance);
+			console.log(`Ohmmeter: Path resistance: ${pathResistance} Ω`);
+		}
+	}
+	
+	if (pathResistances.length === 0) {
+		return Infinity;
+	}
+	
+	console.log(`Ohmmeter: Path resistances: [${pathResistances.join(', ')}] Ω`);
+	
+	// Los caminos están en paralelo, calcular resistencia equivalente
+	let equivalentResistance = 0;
+	for (const r of pathResistances) {
+		if (r === 0) {
+			return 0; // Cortocircuito
+		}
+		equivalentResistance += 1 / r;
+	}
+	
+	const result = equivalentResistance > 0 ? 1 / equivalentResistance : Infinity;
+	console.log(`Ohmmeter: Equivalent resistance: ${result} Ω`);
+	return result;
+}
+
+/**
+ * Encuentra todos los caminos simples entre dos nodos en el grafo.
+ */
+function findAllPaths(
+	start: string,
+	end: string,
+	graph: Map<string, Set<string>>,
+	visited: Set<string> = new Set(),
+	path: string[] = []
+): string[][] {
+	visited.add(start);
+	path.push(start);
+	
+	if (start === end) {
+		const result = [path.slice()];
+		path.pop();
+		visited.delete(start);
+		return result;
+	}
+	
+	const paths: string[][] = [];
+	const neighbors = graph.get(start) || new Set();
+	
+	for (const neighbor of neighbors) {
+		if (!visited.has(neighbor)) {
+			paths.push(...findAllPaths(neighbor, end, graph, visited, path));
+		}
+	}
+	
+	path.pop();
+	visited.delete(start);
+	return paths;
+}
+
+/**
+ * Encuentra todos los componentes MNA conectados entre dos nodos.
+ */
+function findAllComponentsBetweenNodes(
+	node1Id: string,
+	node2Id: string,
+	mnaComponents: MNAComponent[]
+): MNAComponent[] {
+	const components: MNAComponent[] = [];
+	for (const comp of mnaComponents) {
+		if ((comp.node1Id === node1Id && comp.node2Id === node2Id) ||
+		    (comp.node1Id === node2Id && comp.node2Id === node1Id)) {
+			components.push(comp);
+		}
+	}
+	return components;
+}
+
+/**
+ * Encuentra un componente MNA conectado entre dos nodos.
+ */
+function findComponentBetweenNodes(
+	node1Id: string,
+	node2Id: string,
+	mnaComponents: MNAComponent[]
+): MNAComponent | null {
+	const components = findAllComponentsBetweenNodes(node1Id, node2Id, mnaComponents);
+	return components.length > 0 ? components[0] : null;
 }
 
 /**
@@ -562,7 +789,7 @@ function solveMNA(
 
 	const componentStates = new Map<
 		string,
-		{ isOn: boolean; current?: number; voltageDrop?: number }
+		{ isOn: boolean; current?: number; voltageDrop?: number; resistance?: number }
 	>();
 
 	mnaComponents.forEach((comp) => {
@@ -570,6 +797,8 @@ function solveMNA(
 			componentStates.set(comp.id, { isOn: false });
 		} else if (comp.type === ComponentType.SwitchSPST) {
 			componentStates.set(comp.id, { isOn: comp.state as boolean });
+		} else if (comp.type === ComponentType.Ohmmeter) {
+			componentStates.set(comp.id, { isOn: false });
 		}
 	});
 
@@ -715,6 +944,15 @@ function solveMNA(
 					const ammeterConductance = 1 / ammeterResistance; // 100 siemens
 					console.log(`MNA: Adding ammeter ${comp.id} with resistance=${ammeterResistance}, conductance=${ammeterConductance}, n1Idx=${n1Idx}, n2Idx=${n2Idx}`);
 					addConductance(n1Idx, n2Idx, ammeterConductance);
+					break;
+
+				case ComponentType.Ohmmeter:
+					// El óhmetro se modela como una resistencia muy alta para no afectar el circuito
+					// Usamos 1GΩ para comportamiento realista (casi circuito abierto)
+					const ohmmeterResistance = 1e9; // 1GΩ
+					const ohmmeterConductance = 1 / ohmmeterResistance; // 1e-9 siemens
+					console.log(`MNA: Adding ohmmeter ${comp.id} with resistance=${ohmmeterResistance}, conductance=${ohmmeterConductance}, n1Idx=${n1Idx}, n2Idx=${n2Idx}`);
+					addConductance(n1Idx, n2Idx, ohmmeterConductance);
 					break;
 
 				case ComponentType.Capacitor:
@@ -952,15 +1190,30 @@ function solveMNA(
 				// Usamos el valor absoluto para mostrar la magnitud de la corriente
 				current = Math.abs(current);
 				console.log(`Ammeter ${comp.id}: node1Id=${comp.node1Id}, node2Id=${comp.node2Id}, node1.voltage=${node1.voltage}, node2.voltage=${node2.voltage}, voltageDrop=${voltageDrop}, resistance=${ammeterResistance}, current=${current}`);
-				// Verificar si los nodos son iguales (cortocircuito)
+				break;
+
+			case ComponentType.Ohmmeter:
+				// El óhmetro calcula la resistencia equivalente del circuito entre sus dos terminales
+				
+				// Si los dos nodos son el mismo, es un cortocircuito
 				if (comp.node1Id === comp.node2Id) {
-					console.log(`Ammeter ${comp.id}: WARNING - node1Id === node2Id, short circuit detected!`);
+					componentStates.set(comp.id, { isOn: false, resistance: 0 });
+					console.log(`Ohmmeter ${comp.id}: short circuit (same node), resistance=0`);
+					break;
 				}
-				// Asegurarnos de que current sea un número válido
-				if (isNaN(current) || !isFinite(current)) {
-					current = 0;
-					console.log(`Ammeter ${comp.id}: current is NaN or infinite, setting to 0`);
-				}
+
+				// Calcular resistencia equivalente usando análisis de caminos en el grafo
+				// Esto funciona para circuitos serie-paralelo
+				const equivalentResistance = calculateEquivalentResistance(
+					comp.node1Id, 
+					comp.node2Id, 
+					mnaComponents, 
+					currentElectricalNodes
+				);
+
+				// Guardamos la resistencia en el componente para mostrar en UI
+				componentStates.set(comp.id, { isOn: false, resistance: equivalentResistance });
+				console.log(`Ohmmeter ${comp.id}: node1Id=${comp.node1Id}, node2Id=${comp.node2Id}, equivalentResistance=${equivalentResistance}`);
 				break;
 
 			default:
@@ -974,6 +1227,7 @@ function solveMNA(
 	return {
 		electricalNodes: currentElectricalNodes,
 		components: componentsResult,
+		componentStates,
 	};
 }
 
@@ -1016,12 +1270,14 @@ export function isSimulationReady(
 		};
 	}
 
-	// 2. Check for power sources
+	// 2. Check for power sources (but allow simulation if only Ohmmeter is present)
 	const hasPowerSource = nodes.some(
 		(node) =>
 			node.data.type === ComponentType.PowerSupply || node.data.type === ComponentType.Battery
 	);
-	if (!hasPowerSource) {
+	const hasOhmmeter = nodes.some((node) => node.data.type === ComponentType.Ohmmeter);
+	
+	if (!hasPowerSource && !hasOhmmeter) {
 		return {
 			isReady: false,
 			message: "No power source found in the circuit.",
@@ -1029,9 +1285,9 @@ export function isSimulationReady(
 		};
 	}
 
-	// 3. Check for ground
+	// 3. Check for ground (but allow simulation if only Ohmmeter is present)
 	const hasGround = nodes.some((node) => node.data.type === ComponentType.Ground);
-	if (!hasGround) {
+	if (!hasGround && !hasOhmmeter) {
 		return {
 			isReady: false,
 			message: "No ground (reference) found in the circuit. Please add a ground component.",
@@ -1087,7 +1343,7 @@ export function calculateVoltageDropPerEdge(
 	} catch (e: any) {
 		console.error("Error solving MNA:", e);
 		error = e.message || "Circuit cannot be solved.";
-		simulationResults = { electricalNodes: new Map(), components: new Map() }; // Return empty results on error
+		simulationResults = { electricalNodes: new Map(), components: new Map(), componentStates: new Map() }; // Return empty results on error
 	}
 
 	return {
@@ -1139,7 +1395,7 @@ export function updateCircuitVisualsAnimation(
 	let nodesResults: ComponentInfo[] = [];
 	const edgesResults: EdgeInfo[] = [];
 
-	const { electricalNodes, components } = simulationResults;
+	const { electricalNodes, components, componentStates } = simulationResults;
 	for (const edge of edges) {
 		const sourceNode = `${edge.source}:${edge.sourceHandle}`;
 		const targetNode = `${edge.target}:${edge.targetHandle}`;
@@ -1158,11 +1414,13 @@ export function updateCircuitVisualsAnimation(
 	for (const component of components) {
 		const componentId = component[0];
 		const componentData = component[1];
+		const componentState = componentStates?.get(componentId);
 		console.log(`Component ${componentId}: current=${componentData.current}, voltageDrop=${componentData.voltageDrop}`);
 		nodesResults.push({
 			componentId: componentId,
 			voltageDrop: componentData.voltageDrop || 0,
 			currentDrop: componentData.current || 0,
+			resistanceDrop: componentState?.resistance,
 			isOn: componentData.isOn || false,
 		});
 	}
