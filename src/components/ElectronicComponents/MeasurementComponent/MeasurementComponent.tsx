@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
-import { formatCurrent } from "@/helpers";
+import { formatCurrent, formatResistance } from "@/helpers";
 
 /**
  * Component for rendering measurement components in the flow chart.
@@ -28,6 +28,7 @@ export function MeasurementComponent({
 		connectedHandles,
 		size,
 		currentDrop,
+		resistanceDrop,
 	},
 	selected,
 	id,
@@ -191,6 +192,17 @@ export function MeasurementComponent({
 					<div className={styles["measurement-display"]}>
 						{formatCurrent(currentDrop ?? 0.00).split(" ")[0]}
 						<span className={styles.unit}>{formatCurrent(currentDrop ?? 0).split(" ")[1]}</span>
+					</div>
+				</div>
+			)}
+			{ComponentsMap[type].componentType === ComponentType.Ohmmeter && isValueVisible && (
+				<div
+					className={styles.viewVoltage}
+				>
+					<div className={styles["measurement-header"]}>RESISTANCE</div>
+					<div className={styles["measurement-display"]}>
+						{formatResistance(resistanceDrop ?? 0.00).split(" ")[0]}
+						<span className={styles.unit}>{formatResistance(resistanceDrop ?? 0).split(" ")[1]}</span>
 					</div>
 				</div>
 			)}

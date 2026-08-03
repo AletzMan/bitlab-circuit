@@ -52,12 +52,13 @@ export function SimulationControls() {
 					console.log("Nodos actualizados aplicados:", results.updatedNodes);
 					const updatedNodes = results.updatedNodes as ComponentInfo[];
 					updatedNodes.forEach((node) => {
-						console.log(`Updating node ${node.componentId}: currentDrop=${node.currentDrop}, voltageDrop=${node.voltageDrop}`);
+						console.log(`Updating node ${node.componentId}: currentDrop=${node.currentDrop}, voltageDrop=${node.voltageDrop}, resistanceDrop=${node.resistanceDrop}`);
 						updateNode(node.componentId, (prevNode) => ({
 							data: {
 								...prevNode.data,
 								voltageDrop: node.voltageDrop,
 								currentDrop: node.currentDrop,
+								resistanceDrop: node.resistanceDrop,
 								state: { on: node.isOn },
 							},
 						}));
