@@ -2173,6 +2173,7 @@ export function BoardFlow() {
 
 	const onConnect = useCallback(
 		(connection: Connection) => {
+			console.log(connection);
 			const edge = {
 				...connection,
 				id: uuid(),

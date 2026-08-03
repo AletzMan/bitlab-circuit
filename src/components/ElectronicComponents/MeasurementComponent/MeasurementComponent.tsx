@@ -223,14 +223,14 @@ export function MeasurementComponent({
 				position={terminalSettings[0]}
 				id="1"
 				isConnectable={!connectedHandlesInternal[0].isConnected}
-				isPolarized 
+				data-ispolarized={"polarized"}
 			/>
 			<Terminal
 				type="source"
 				position={terminalSettings[1]}
 				id="2"
 				isConnectable={!connectedHandlesInternal[1].isConnected}
-				isPolarized 
+				data-ispolarized={"polarized"}
 			/>
 			<div className={`${styles.pin} ${styles["pin-left"]}  ${rotation === 90 && styles["pin-left-90"]} ${rotation === 180 && styles["pin-left-180"]} ${rotation === 270 && styles["pin-left-270"]}`}></div>
 			<div className={`${styles.pin} ${styles["pin-right"]} ${rotation === 90 && styles["pin-right-90"]} ${rotation === 180 && styles["pin-right-180"]} ${rotation === 270 && styles["pin-right-270"]}`}></div>
