@@ -55,4 +55,10 @@
 	height: 3px;
 	border-radius: 1px;
 	background-color: var(--foreground-color);
+ 
+	
+}
+.terminal_polarized[data-handleid="1"] {
+	background-color: var(--positive-color);
+	border: 1px solid var(--positive-color);
 }

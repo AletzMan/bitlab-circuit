@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { useEffect, useMemo, useState } from "react";
 import { ComponentsMap } from "@/constants/components";
-import { formatCurrent, formatResistance } from "@/helpers";
+import { formatCurrent, formatResistance, formatVoltage } from "@/helpers";
 
 /**
  * Component for rendering measurement components in the flow chart.
@@ -29,6 +29,7 @@ export function MeasurementComponent({
 		size,
 		currentDrop,
 		resistanceDrop,
+		voltageDrop,
 	},
 	selected,
 	id,
@@ -206,19 +207,32 @@ export function MeasurementComponent({
 					</div>
 				</div>
 			)}
+			{ComponentsMap[type].componentType === ComponentType.Voltmeter && isValueVisible && (
+				<div
+					className={styles.viewVoltage}
+				>
+					<div className={styles["measurement-header"]}>DC VOLTAGE</div>
+					<div className={styles["measurement-display"]}>
+						{formatVoltage(voltageDrop ?? 0.00).split(" ")[0]}
+						<span className={styles.unit}>{formatVoltage(voltageDrop ?? 0).split(" ")[1]}</span>
+					</div>
+				</div>
+			)}
 			<Terminal
 				type="source"
 				position={terminalSettings[0]}
 				id="1"
 				isConnectable={!connectedHandlesInternal[0].isConnected}
+				isPolarized 
 			/>
 			<Terminal
 				type="source"
 				position={terminalSettings[1]}
 				id="2"
 				isConnectable={!connectedHandlesInternal[1].isConnected}
+				isPolarized 
 			/>
-			<div className={`${styles.pin} ${styles["pin-left"]} ${rotation === 90 && styles["pin-left-90"]} ${rotation === 180 && styles["pin-left-180"]} ${rotation === 270 && styles["pin-left-270"]}`}></div>
+			<div className={`${styles.pin} ${styles["pin-left"]}  ${rotation === 90 && styles["pin-left-90"]} ${rotation === 180 && styles["pin-left-180"]} ${rotation === 270 && styles["pin-left-270"]}`}></div>
 			<div className={`${styles.pin} ${styles["pin-right"]} ${rotation === 90 && styles["pin-right-90"]} ${rotation === 180 && styles["pin-right-180"]} ${rotation === 270 && styles["pin-right-270"]}`}></div>
 			{isDesignatorVisible && (
 				<span

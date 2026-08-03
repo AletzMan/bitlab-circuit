@@ -34,6 +34,8 @@ body {
 	--foreground-color: #000000;
 	--designator-color: #690303;
 	--action-color: #690303;
+	--positive-color: #ff0000;
+	--negative-color: #100e0e;
 	--success-color: #0eb121;
 	--measure-color: #00fa1d;
 	--measure-background-color: #0b3610;
