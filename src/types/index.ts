@@ -64,6 +64,7 @@ export enum ComponentType {
 	Board = "board",
 	Node = "node",
 	Ammeter = "ammeter",
+	Ohmmeter = "ohmmeter",
 }
 
 export enum OhmType {
@@ -109,6 +110,7 @@ export type ComponentData = {
 	value_optional?: number | string;
 	currentDrop?: number;
 	voltageDrop?: number;
+	resistanceDrop?: number;
 	forwardVoltage?: number;
 	internalResistance?: number;
 	type: ComponentType;
