@@ -189,8 +189,8 @@
 	padding: 3px;
 	border-radius: 4px;
 	background:
-		radial-gradient(circle at 6px 6px, rgba(255, 255, 255, .09) 1px, transparent 1.4px),
-		radial-gradient(circle at calc(100% - 6px) 6px, rgba(255, 255, 255, .09) 1px, transparent 1.4px),
+		radial-gradient(circle at 6px 6px, rgba(255, 255, 255, .15) 1px, transparent 1.4px),
+		radial-gradient(circle at calc(100% - 6px) 6px, rgba(255, 255, 255, .15) 1px, transparent 1.4px),
 		radial-gradient(circle at 6px calc(100% - 6px), rgba(255, 255, 255, .09) 1px, transparent 1.4px),
 		radial-gradient(circle at calc(100% - 6px) calc(100% - 6px), rgba(255, 255, 255, .09) 1px, transparent 1.4px),
 		linear-gradient(160deg, var(--mm-bezel-1), var(--mm-bezel-2));

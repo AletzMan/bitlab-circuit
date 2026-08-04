@@ -2,8 +2,7 @@
 import { ComponentsMap, TypeGroupKey, typeGroups } from "@/constants/components";
 import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
 import { Connection, XYPosition } from "@xyflow/react";
-import { createRoot } from "react-dom/client";
-
+import { createRoot } from "react-dom/client"; 
 
 /**
  * Verifica si un punto está dentro de un cuadrado.
@@ -434,10 +433,6 @@ export function createMeasurementView(
 	probe.dataset.measurementId = measurementId;
 	probe.dataset.measurementType = type;
 
-	probe.addEventListener("click", () => {
-		//removeProbe(measurementId);
-	});
-
 	//----------------------------------------
 
 	const header = document.createElement("div");
@@ -502,6 +497,30 @@ export function createMeasurementView(
 
 	container.appendChild(node);
 	container.appendChild(probe);
+
+
+
+	//----------------------------------------
+	//-----------Remove Button Logic----------
+	//----------------------------------------
+
+	const removeButton = document.createElement("button");
+	removeButton.className = "measurement-remove";
+	// El mismo SVG que usa Ant Design para CloseOutlined
+	removeButton.innerHTML = `
+  <span role="img" aria-label="close" class="anticon anticon-close">
+    <svg viewBox="64 64 896 896" focusable="false" data-icon="close" width="10px" height="10px" fill="currentColor" aria-hidden="true">
+      <path d="M563.8 512l262.5-262.5c12.5-12.5 12.5-32.8 0-45.3l-28.3-28.3c-12.5-12.5-32.8-12.5-45.3 0L490.2 438.4 227.7 175.9c-12.5-12.5-32.8-12.5-45.3 0l-28.3 28.3c-12.5 12.5-12.5 32.8 0 45.3L416.6 512 154.1 774.5c-12.5 12.5-12.5 32.8 0 45.3l28.3 28.3c12.5 12.5 32.8 12.5 45.3 0l262.5-262.5 262.5 262.5c12.5 12.5 32.8 12.5 45.3 0l28.3-28.3c12.5-12.5 12.5-32.8 0-45.3L563.8 512z"></path>
+    </svg>
+  </span>
+`;
+	removeButton.addEventListener("click", () => {
+		removeProbe(measurementId);
+	});
+
+	probe.appendChild(removeButton);
+
+
 
 	//----------------------------------------
 	// Wire
@@ -873,15 +892,15 @@ export function getWireColor(connection: Connection, nodes: AnalogNode[]): strin
 	const targetNode = nodes.find((node) => node.id === connection.target);
 	const nameNodeSource = sourceNode?.data.name;
 	const nameNodeTarget = targetNode?.data.name;
-	
-	if(customColorNodeDevices.includes(nameNodeSource || "") ) {
-		if(connection.sourceHandle === "1") {
+
+	if (customColorNodeDevices.includes(nameNodeSource || "")) {
+		if (connection.sourceHandle === "1") {
 			return "var(--positive-color)";
 		}
 		return "var(--negative-color)";
 	}
-	if(customColorNodeDevices.includes(nameNodeTarget || "") ) {
-		if(connection.targetHandle === "1") {
+	if (customColorNodeDevices.includes(nameNodeTarget || "")) {
+		if (connection.targetHandle === "1") {
 			return "var(--positive-color)";
 		}
 		return "var(--negative-color)";

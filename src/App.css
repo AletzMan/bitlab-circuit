@@ -1,30 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 
+
+/* Estilos base en body */
 body {
-	margin: 0;
-	font-family: var(--font-family);
-	background-color: var(--background-color);
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
 
-	&.cursor {
-		.react-flow__pane.selection {
-			cursor: default;
-		}
+    &.cursor {
+        .react-flow__pane.selection {
+            cursor: default;
+        }
 
-		.react-flow__edge.selectable {
-			cursor: pointer;
-		}
-	}
+        .react-flow__edge.selectable {
+            cursor: pointer;
+        }
+    }
 
-	&.probe {
-		.react-flow__pane.selection {
-			cursor: url("/public/probe.svg") 20 20, crosshair;
-		}
-
-		.react-flow__edge.selectable {
-			cursor: url("/public/probe.svg") 20 20, crosshair;
-		}
-	}
+    /* 🌙 Modo Oscuro por defecto (Punta Blanca) */
+    &.probe {
+        .react-flow__pane.selection,
+        .react-flow__edge.selectable {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" transform="rotate(90)"><path fill="%23f2c606" d="m19.47 3.47l-6 6l-2.94.53c-.31.03-.59.18-.81.4l-6.91 6.91a2.76 2.76 0 0 0 0 3.89a2.76 2.76 0 0 0 3.89 0l6.91-6.91c.22-.22.39-.5.42-.79l.51-2.96l6-6L22 2zM11 14.38c-.76 0-1.38-.62-1.38-1.38s.62-1.38 1.38-1.38s1.38.62 1.38 1.38A1.39 1.39 0 0 1 11 14.38"/></svg>') 25 25, crosshair;
+        }
+    }
 }
+
+/* ☀️ Modo Claro (Apuntando al <html data-theme="light">) */
+html[data-theme="light"] {
+    body.probe {
+        .react-flow__pane.selection,
+        .react-flow__edge.selectable {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" transform="rotate(90)"><path fill="%23c78602" d="m19.47 3.47l-6 6l-2.94.53c-.31.03-.59.18-.81.4l-6.91 6.91a2.76 2.76 0 0 0 0 3.89a2.76 2.76 0 0 0 3.89 0l6.91-6.91c.22-.22.39-.5.42-.79l.51-2.96l6-6L22 2zM11 14.38c-.76 0-1.38-.62-1.38-1.38s.62-1.38 1.38-1.38s1.38.62 1.38 1.38A1.39 1.39 0 0 1 11 14.38"/></svg>') 25 25, crosshair;
+        }
+    }
+}
+
 
 * {
 	font-family: var(--font-family);
@@ -68,15 +79,15 @@ body {
 	--font-display: 'Tektur Variable', system-ui;
 
 
-	/* Measurement - Light Mode */  
- --mm-accent: #00d655;      
-    --mm-amber: #4a3810;    
-    --mm-bezel-1: #dedede;     
-    --mm-bezel-2: #bcbcbc;      
-    --mm-screen-1: #0b110e;
-    --mm-screen-2: #020403; 
-    --mm-line: #bbbbbb;
-    --mm-text-dim: #94a59b;
+	/* Measurement - Light Mode */
+	--mm-accent: #00d655;
+	--mm-amber: #4a3810;
+	--mm-bezel-1: #dedede;
+	--mm-bezel-2: #bcbcbc;
+	--mm-screen-1: #0b110e;
+	--mm-screen-2: #020403;
+	--mm-line: #bbbbbb;
+	--mm-text-dim: #94a59b;
 }
 
 [data-theme="dark"] {
@@ -124,7 +135,7 @@ body {
 	--mm-screen-2: #020403;
 	--mm-line: #333b36;
 	--mm-text-dim: #808b8d;
-} 
+}
 
 .react-flow__handle {
 	min-height: 0px;
@@ -456,8 +467,8 @@ body {
 	padding: 3px;
 	border-radius: 4px;
 	background:
-		radial-gradient(circle at 6px 6px, rgba(255, 255, 255, .09) 1px, transparent 1.4px),
-		radial-gradient(circle at calc(100% - 6px) 6px, rgba(255, 255, 255, .09) 1px, transparent 1.4px),
+		radial-gradient(circle at 6px 6px, rgba(255, 255, 255, .15) 1px, transparent 1.4px),
+		radial-gradient(circle at calc(100% - 6px) 6px, rgba(255, 255, 255, .15) 1px, transparent 1.4px),
 		radial-gradient(circle at 6px calc(100% - 6px), rgba(255, 255, 255, .09) 1px, transparent 1.4px),
 		radial-gradient(circle at calc(100% - 6px) calc(100% - 6px), rgba(255, 255, 255, .09) 1px, transparent 1.4px),
 		linear-gradient(160deg, var(--mm-bezel-1), var(--mm-bezel-2));
@@ -478,12 +489,19 @@ body {
 ==================================================*/
 
 .viewVoltage:hover {
-	border-color: var(--mm-accent); 
+	border-color: var(--mm-accent);
 	box-shadow:
 		0 0 0 1px rgba(0, 255, 238, 0.25),
 		0 0 16px rgba(0, 213, 255, 0.22),
 		0 7px 16px rgba(0, 0, 0, .5);
+
+	& .measurement-remove {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(-26px);
+	}
 }
+
 
 .viewVoltage:hover .measurement-display {
 	color: #8cf3ff;
@@ -496,6 +514,36 @@ body {
 .viewVoltage:focus-visible {
 	outline: 2px solid var(--mm-accent);
 	outline-offset: 2px;
+}
+
+/*==================================================
+    REMOVE BUTTON
+==================================================*/
+
+.measurement-remove {
+	position: absolute;
+	top: -0px;
+	right: 0px;
+	width: 24px;
+	height: 24px;
+	border-radius: 3px; 
+	background: var(--mm-bezel-1);
+	color: var(--foreground-color);
+	border: 1px solid var(--mm-line);
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all .2s;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.measurement-remove:hover {
+	background: #ff4444;
+	transform: scale(1.1);
 }
 
 /*==================================================
@@ -515,7 +563,8 @@ body {
 	text-transform: uppercase;
 	color: var(--mm-amber);
 	opacity: .85;
-} 
+}
+
 /*==================================================
     DISPLAY — pantalla LCD
 ==================================================*/
