@@ -53,7 +53,7 @@ export function NodeComponent({
 		setIsConnected(newState.map((handle) => handle.isConnected));
 		updateNode(id, (prevNode) => ({ data: { ...prevNode.data, connectedHandles: newState } }));
 	};
-
+ 
 	return (
 		<div
 			className={`${styles.box}  ${isAdditionValid && styles.box_valid} ${

@@ -125,6 +125,8 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
 		connectedHandles: [
 			{ isConnected: false, type: "passive" },
 			{ isConnected: false, type: "passive" },
+			{ isConnected: false, type: "passive" },
+			{ isConnected: false, type: "passive" },
 		],
 		color: "var(--foreground-color)",
 		style: undefined,
@@ -1394,7 +1396,7 @@ export const ComponentsMap: Record<ComponentType, ComponentProperties> = {
 		isValueVisible: true,
 		connectedHandles: [
 			{ isConnected: false, type: "passive" },
-			{ isConnected: false, type: "passive" },
+			{ isConnected: false, type: "passive" }, 
 		],
 		style: undefined,
 		size: "large",
