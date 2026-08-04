@@ -35,7 +35,7 @@ body {
 	--designator-color: #690303;
 	--action-color: #690303;
 	--positive-color: #ff0000;
-	--negative-color: #100e0e;
+	--negative-color: #4e4e4e;
 	--success-color: #0eb121;
 	--measure-color: #00fa1d;
 	--measure-background-color: #0b3610;
@@ -68,21 +68,23 @@ body {
 	--font-display: 'Tektur Variable', system-ui;
 
 
-	/* Measurement */
-	--mm-accent: #00ff6a;
-	--mm-amber: #e8b45c;
-	--mm-bezel-1: #1b201d;
-	--mm-bezel-2: #0f120f;
-	--mm-screen-1: #0a1310;
-	--mm-screen-2: #020403;
-	--mm-line: #333b36;
-	--mm-text-dim: #6f7d76;
+	/* Measurement - Light Mode */  
+ --mm-accent: #00d655;      
+    --mm-amber: #4a3810;    
+    --mm-bezel-1: #dedede;     
+    --mm-bezel-2: #bcbcbc;      
+    --mm-screen-1: #0b110e;
+    --mm-screen-2: #020403; 
+    --mm-line: #bbbbbb;
+    --mm-text-dim: #94a59b;
 }
 
 [data-theme="dark"] {
 	--foreground-color: #ffffff;
 	--designator-color: #c39950;
 	--action-color: #0eb121;
+	--positive-color: #ff0000;
+	--negative-color: #9a9a99;
 	--success-color: #0eb121;
 	--measure-color: #0aee25;
 	--measure-background-color: #011904;
@@ -112,7 +114,17 @@ body {
 	--selection-background-color: #57d8ff17;
 	--group-border-color: #ada98a;
 	--group-background-color: #63604020;
-}
+
+	/* Measurement */
+	--mm-accent: #0fbbfe;
+	--mm-amber: #e8b45c;
+	--mm-bezel-1: #1b201d;
+	--mm-bezel-2: #0f120f;
+	--mm-screen-1: #0a1310;
+	--mm-screen-2: #020403;
+	--mm-line: #333b36;
+	--mm-text-dim: #808b8d;
+} 
 
 .react-flow__handle {
 	min-height: 0px;
@@ -404,9 +416,9 @@ body {
 	background: var(--mm-accent);
 	transform: translate(-50%, -50%);
 	box-shadow:
-		0 0 0 2px #10300d,
-		0 0 6px rgba(0, 255, 106, .7),
-		0 0 14px rgba(0, 255, 106, .35);
+		0 0 0 2px #0d2730,
+		0 0 6px rgba(0, 217, 255, 0.7),
+		0 0 14px rgba(0, 229, 255, 0.35);
 	pointer-events: none;
 	z-index: 1000;
 }
@@ -440,7 +452,7 @@ body {
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	width: 84px;
+	width: 80px;
 	padding: 3px;
 	border-radius: 4px;
 	background:
@@ -466,16 +478,15 @@ body {
 ==================================================*/
 
 .viewVoltage:hover {
-	border-color: var(--mm-accent);
-	transform: translate(14px, -22px) translateY(-1px);
+	border-color: var(--mm-accent); 
 	box-shadow:
-		0 0 0 1px rgba(0, 255, 106, .25),
-		0 0 16px rgba(0, 255, 106, .22),
+		0 0 0 1px rgba(0, 255, 238, 0.25),
+		0 0 16px rgba(0, 213, 255, 0.22),
 		0 7px 16px rgba(0, 0, 0, .5);
 }
 
 .viewVoltage:hover .measurement-display {
-	color: #8cffaf;
+	color: #8cf3ff;
 }
 
 .viewVoltage:hover .measurement-display::after {
@@ -504,16 +515,7 @@ body {
 	text-transform: uppercase;
 	color: var(--mm-amber);
 	opacity: .85;
-}
-
-.measurement-header::before {
-	content: "⎓";
-	font-size: 9px;
-	line-height: 1;
-	color: var(--mm-amber);
-	opacity: .9;
-}
-
+} 
 /*==================================================
     DISPLAY — pantalla LCD
 ==================================================*/
@@ -532,10 +534,10 @@ body {
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .6);
 	color: var(--mm-accent);
 	font-family: var(--font-display);
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: 400;
 	letter-spacing: .02em;
-	text-shadow: 0 0 4px rgba(0, 255, 106, .55), 0 0 10px rgba(0, 255, 106, .25);
+	text-shadow: 0 0 4px rgba(0, 213, 255, 0.55), 0 0 10px rgba(0, 255, 106, .25);
 	transition: color .15s;
 }
 

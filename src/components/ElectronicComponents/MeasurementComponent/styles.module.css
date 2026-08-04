@@ -81,7 +81,7 @@
     top: 50%;
     right: -2px;
     transform: translateY(-50%);
-    background-color: var(--foreground-color);
+    background-color: var(--negative-color);
 }
 
 .pin-left-90 {
@@ -89,7 +89,7 @@
     left: 50%;
     width: 1px;
     height: 10px;
-    transform: translateX(-50%);
+    transform: translateX(-50%); 
 }
 
 .pin-right-90 {
@@ -107,7 +107,7 @@
     width: 10px;
     height: 1px;
     transform: translateY(-50%); 
-    background-color: var(--foreground-color);
+    background-color: var(--negative-color);
 }
 
 .pin-right-180 {
@@ -211,13 +211,13 @@
 .viewVoltage:hover {
 	border-color: var(--mm-accent); 
 	box-shadow:
-		0 0 0 1px rgba(0, 255, 106, .25),
-		0 0 16px rgba(0, 255, 106, .22),
+		0 0 0 1px rgba(0, 255, 238, 0.25),
+		0 0 16px rgba(0, 213, 255, 0.22),
 		0 7px 16px rgba(0, 0, 0, .5);
 }
 
 .viewVoltage:hover .measurement-display {
-	color: #8cffaf;
+	color: #8cf3ff;
 }
 
 .viewVoltage:hover .measurement-display::after {
@@ -242,21 +242,13 @@
 	height: 15px;
 	font-family: var(--font-display);
 	font-size: 7.5px;
-	font-weight: 400;
+	font-weight: 600;
 	letter-spacing: .14em;
 	text-transform: uppercase;
 	color: var(--mm-amber);
 	opacity: .85;
 }
-
-.measurement-header::before {
-	content: "⎓";
-	font-size: 9px;
-	line-height: 1;
-	color: var(--mm-amber);
-	opacity: .9;
-}
-
+ 
 /*==================================================
     DISPLAY — pantalla LCD
 ==================================================*/
@@ -278,7 +270,7 @@
 	font-size: 12px;
 	font-weight: 400;
 	letter-spacing: .02em;
-	text-shadow: 0 0 4px rgba(0, 255, 106, .55), 0 0 10px rgba(0, 255, 106, .25);
+	text-shadow: 0 0 4px rgba(0, 217, 255, 0.55), 0 0 10px rgba(0, 238, 255, 0.25);
 	transition: color .15s;
 }
 
