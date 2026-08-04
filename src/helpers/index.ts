@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentsMap, TypeGroupKey, typeGroups } from "@/constants/components";
 import { AnalogNode, ComponentProperties, ComponentType, Presets } from "../types";
-import { XYPosition } from "@xyflow/react";
+import { Connection, XYPosition } from "@xyflow/react";
 import { createRoot } from "react-dom/client";
 
 
@@ -862,4 +862,31 @@ export function formatVoltage(volts: number): string {
 		// Valores extremadamente pequeños
 		return `0.00 V`;
 	}
+}
+
+export function getWireColor(connection: Connection, nodes: AnalogNode[]): string {
+	console.log("connection", connection);
+	console.log("nodes", nodes);
+
+	const customColorNodeDevices = ['Ammeter', 'Voltmeter', 'Ohmmeter'];
+	const sourceNode = nodes.find((node) => node.id === connection.source);
+	const targetNode = nodes.find((node) => node.id === connection.target);
+	const nameNodeSource = sourceNode?.data.name;
+	const nameNodeTarget = targetNode?.data.name;
+	
+	if(customColorNodeDevices.includes(nameNodeSource || "") ) {
+		if(connection.sourceHandle === "1") {
+			return "var(--positive-color)";
+		}
+		return "var(--negative-color)";
+	}
+	if(customColorNodeDevices.includes(nameNodeTarget || "") ) {
+		if(connection.targetHandle === "1") {
+			return "var(--positive-color)";
+		}
+		return "var(--negative-color)";
+	}
+	console.log("nameNodeSource", nameNodeSource);
+	console.log("nameNodeTarget", nameNodeTarget);
+	return "var(--foreground-color)";
 }

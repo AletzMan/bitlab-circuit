@@ -45,6 +45,7 @@ import {
 	removeProbe,
 	MeasurementType,
 	ProbeOrientation,
+	getWireColor,
 } from "@/helpers";
 import { ConfigProvider, theme } from "antd";
 import { useHistory } from "@/contexts/HistoryContext";
@@ -2173,20 +2174,20 @@ export function BoardFlow() {
 
 	const onConnect = useCallback(
 		(connection: Connection) => {
-			console.log(connection);
+			const isCustomColor = getWireColor(connection, nodes);
+			 
 			const edge = {
 				...connection,
-				id: uuid(),
+				id: uuid(), 
 				data: {
 					color:
-						nodes.find((node) => node.id === connection.target)?.data.color ||
-						nodes.find((node) => node.id === connection.source)?.data.color ||
-						"var(--foreground-color)",
+						isCustomColor ??
+							 "var(--foreground-color)",
 				},
 			};
 			addEdge(edge);
 		},
-		[addEdge]
+		[addEdge, nodes]
 	);
 
 	const isConnectionValid = (connection: Edge | Connection) => {
