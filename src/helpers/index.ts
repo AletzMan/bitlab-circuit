@@ -793,14 +793,14 @@ export function clearVoltageView() {
 
 
 export function formatCurrent(amperes: number): string {
-	if (amperes === 0) return `${0.00} A`;
+	if (amperes === 0) return `${"0"}.00 A`;
 
 	const absAmperes = Math.abs(amperes);
 	const sign = amperes < 0 ? "-" : "";
 
 	if (absAmperes >= 1) {
 		// 1 A o más
-		return `${sign}${absAmperes.toFixed(2)} A`;
+		return `${sign}${absAmperes.toFixed(2)} sA`;
 	} else if (absAmperes >= 1e-3) {
 		// Rango de miliamperios (0.001 A a 0.999 A)
 		return `${sign}${(absAmperes * 1e3).toFixed(2)} mA`;
@@ -817,7 +817,7 @@ export function formatCurrent(amperes: number): string {
 }
 
 export function formatResistance(ohms: number): string {
-	if (ohms === 0) return `${0.00} Ω`;
+	if (ohms === 0) return `${0}.00 Ω`;
 
 	const absOhms = Math.abs(ohms);
 	const sign = ohms < 0 ? "-" : "";
@@ -841,7 +841,7 @@ export function formatResistance(ohms: number): string {
 }
 
 export function formatVoltage(volts: number): string {
-	if (volts === 0) return `${0.00} V`;
+	if (volts === 0) return `${0}.00 V`;
 
 	const absVolts = Math.abs(volts);
 	const sign = volts < 0 ? "-" : "";

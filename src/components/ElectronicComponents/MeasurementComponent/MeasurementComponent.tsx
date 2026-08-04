@@ -214,7 +214,7 @@ export function MeasurementComponent({
 					<div className={styles["measurement-header"]}>DC VOLTAGE</div>
 					<div className={styles["measurement-display"]}>
 						{formatVoltage(voltageDrop ?? 0.00).split(" ")[0]}
-						<span className={styles.unit}>{formatVoltage(voltageDrop ?? 0).split(" ")[1]}</span>
+						<span className={styles.unit}>{formatVoltage(voltageDrop ?? 0.00).split(" ")[1]}</span>
 					</div>
 				</div>
 			)}

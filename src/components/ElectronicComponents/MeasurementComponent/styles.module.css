@@ -60,7 +60,8 @@
 
     &.designator_90,
     &.designator_270 {
-        left: -12px;
+        top: 3px;
+        right: -20px;
     }
 }
 
