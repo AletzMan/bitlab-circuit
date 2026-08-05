@@ -5,28 +5,43 @@
 	border: 0px solid transparent;
 	background-color: var(--foreground-color);
 
-	&:after {
+	/*	&:after {
 		content: "";
 		position: absolute;
 		border-radius: 0;
 		border: 0px solid transparent;
 		background-color: var(--foreground-color);
-	}
+	}*/
 
 	&[data-handleid="1"][data-ispolarized="polarized"] {
-		background-color: var(--positive-color); 
+		background-color: var(--positive-color);
+
 		&:after {
 			background-color: var(--positive-color);
 		}
 	}
 
 	&[data-handleid="2"][data-ispolarized="polarized"] {
-		background-color: var(--negative-color); 
+		background-color: var(--negative-color);
+
 		&:after {
 			background-color: var(--negative-color);
 		}
 	}
- 
+
+	svg {
+		position: absolute;
+		top: -1px;
+		left: -2px;
+		width: 10px;
+		height: 10px;  
+
+		& line{
+			stroke: var(--foreground-color);
+			shape-rendering: crispEdges;
+		}
+	}
+
 
 	&[data-handlepos="right"] {
 		&:after {
@@ -47,6 +62,14 @@
 	}
 
 	&[data-handlepos="top"] {
+		svg {
+			top: -1px;
+			left: -8px;
+			width: 10px;
+			height: 10px;
+			transform: rotate(90deg);
+		}
+
 		top: -2px;
 
 		&:after {
@@ -56,7 +79,13 @@
 	}
 
 	&[data-handlepos="bottom"] {
-
+		svg {
+			top: -1px;
+			left: -8px;
+			width: 10px;
+			height: 10px;
+			transform: rotate(90deg);
+		}
 		&:after {
 			width: 1px;
 			height: 5px;
@@ -69,6 +98,12 @@
 	height: 3px;
 	border-radius: 1px;
 	background-color: var(--foreground-color);
+
+	svg {
+		line {
+			stroke: transparent; 
+		}
+	}
 
 	&[data-handleid="1"][data-ispolarized="polarized"] {
 		background-color: var(--positive-color);
