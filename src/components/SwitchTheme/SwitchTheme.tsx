@@ -22,7 +22,7 @@ export function SwitchTheme() {
 	};
 
 	return (
-		<Switch
+		<Switch style={{ borderRadius: "5px"}}
 			value={currentTheme === "light"}
 			checkedChildren={<DarkIcon />}
 			unCheckedChildren={<LightIcon />}

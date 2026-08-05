@@ -1,9 +1,10 @@
 .wire {
-	stroke-width: 1;
+	stroke-width: 1.5;
 	fill: none;
 	stroke-linecap: round;
 	stroke-linejoin: miter;
-	stroke: var(--wire-color, var(--foreground-color));
+	stroke: var(--wire-color, var(--foreground-color)); 
+	shape-rendering:   crispEdges;
 }
 
 .wire_simulation {
