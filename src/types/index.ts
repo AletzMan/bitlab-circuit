@@ -116,7 +116,7 @@ export type ComponentData = {
 	internalResistance?: number;
 	type: ComponentType;
 	category: Categories;
-	rotation: number;
+	rotation: number; 
 	flip: {
 		x: number;
 		y: number;
@@ -220,6 +220,8 @@ export type EdgeData = {
 	flowDirection?: "forward" | "backward";
 	voltage: number;
 	current: number;
+	centerX?: number;
+	centerY?: number;
 };
 
 export type ComponentEdge = Edge<EdgeData, string>;

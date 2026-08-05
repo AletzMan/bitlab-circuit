@@ -4,7 +4,8 @@
 	stroke-linecap: round;
 	stroke-linejoin: miter;
 	stroke: var(--wire-color, var(--foreground-color)); 
-	shape-rendering:   crispEdges;
+	shape-rendering:      crispEdges;
+	vector-effect: non-scaling-stroke;
 }
 
 .wire_simulation {
@@ -40,4 +41,14 @@
 	to {
 		stroke-dashoffset: 10;
 	}
+}
+
+.wire_drag_handle {
+  border-radius: 50%;
+  background: transparent;
+}
+
+.wire_drag_handle:hover {
+  background: var(--wire-color, #888);
+  opacity: 0.6;
 }

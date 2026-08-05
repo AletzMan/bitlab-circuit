@@ -18,7 +18,7 @@ interface IEdgeProps {
 
 export default function EdgeDetails({ setEdges }: IEdgeProps) {
 	const { currentTheme } = useTheme();
-	const { getEdges, getNodes, setNodes } = useReactFlow();
+	const { getEdges, getNodes, setNodes, updateEdgeData } = useReactFlow();
 	const {
 		selectedEdge: edge,
 		isSingleEdgeSelection,
@@ -138,6 +138,7 @@ export default function EdgeDetails({ setEdges }: IEdgeProps) {
 			visitedNodes.add(endNode.id);
 			propagateEdges(endNode.id);
 		}
+ updateEdgeData(edge?.id as string, {...edge,  color: css})
 
 		// También actualizar el edge seleccionado
 		setEdges((prevEdges) =>
@@ -156,7 +157,7 @@ export default function EdgeDetails({ setEdges }: IEdgeProps) {
 					: edgePrev
 			)
 		);
-
+console.log(css)
 		setCurrentColor(css);
 	};
 
