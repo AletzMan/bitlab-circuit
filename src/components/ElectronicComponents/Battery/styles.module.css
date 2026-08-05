@@ -43,13 +43,13 @@
 }
 
 .value_small {
-    bottom: 2px;
+    top: 2px;
     right: -4px;
 
     &.value_90,
     &.value_270 {
         top: 2px;
-        left: 45px;
+        left: 0px;
     }
 }
 

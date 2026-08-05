@@ -1,6 +1,6 @@
 import { Connection, NodeProps, Position, useNodeConnections, useReactFlow } from "@xyflow/react";
 import { AnalogNode, ComponentCollapsed } from "@/types";
-import { LockIcon, UnlockIcon } from "@/icons";
+import { LockIcon, RelaySPSTCloseIcon, RelaySPSTOpenIcon, UnlockIcon } from "@/icons";
 import styles from "./styles.module.css";
 import { Terminal } from "@/components/Terminal/Terminal";
 import { CSSProperties, useEffect, useMemo, useState } from "react";
@@ -263,8 +263,8 @@ export function RelaySPST({
 			>
 				{state
 					? state?.on
-						? ComponentsMap[type]?.icon
-						: ComponentsMap[type]?.icon
+						? <RelaySPSTCloseIcon/>
+						: <RelaySPSTOpenIcon/>
 					: ComponentsMap[type].icon}
 			</div>
 			<Terminal
