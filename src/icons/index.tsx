@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-const STROKE_WIDTH = 2.5;
+const STROKE_WIDTH = 1.5;
 
 export function LogoBitlab(props: SVGProps<SVGSVGElement>) {
 	return (
@@ -37,34 +37,49 @@ export function LogoBitlab(props: SVGProps<SVGSVGElement>) {
 }
 
 export function GroundIcon(props: SVGProps<SVGSVGElement>) {
-	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 400 400">
-			<path
-				strokeWidth={STROKE_WIDTH * 4}
-				fill="none"
-				stroke="currentColor"
-				d="M 200, 0 L 200, 200"
-			></path>
-			<path
-				strokeWidth={STROKE_WIDTH * 4}
-				fill="none"
-				stroke="currentColor"
-				d="M 50, 200 L 350, 200 "
-			></path>
-			<path
-				strokeWidth={STROKE_WIDTH * 4}
-				fill="none"
-				stroke="currentColor"
-				d="M 100, 300 L 300, 300 "
-			></path>
-			<path
-				strokeWidth={STROKE_WIDTH * 4}
-				fill="none"
-				stroke="currentColor"
-				d="M 150, 395 L 250, 395 "
-			></path>
-		</svg>
-	);
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+            {/* Línea vertical principal */}
+            <path
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+                fill="none"
+                stroke="currentColor"
+                d="M 16.5,0 L 16.5,16.5"
+            />
+            {/* Primera barra (Larga) -> Y = 16.5 */}
+            <path
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                d="M 4.5,16.5 L 28.5,16.5"
+            />
+            {/* Segunda barra (Mediana) -> Y = 20.5 (Alineado a .5) */}
+            <path
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                d="M 8.5,20.5 L 24.5,20.5"
+            />
+            {/* Tercera barra (Corta) -> Y = 24.5 (Alineado a .5) */}
+            <path
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                d="M 12.5,24.5 L 20.5,24.5"
+            />
+        </svg>
+    );
 }
 
 export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
@@ -74,14 +89,15 @@ export function ResistorIcon(props: SVGProps<SVGSVGElement>) {
 			height="33px"
 			width="33px"
 			fill="currentColor"
-			version="1.1"
-			viewBox="0 0 600 600"
+			viewBox="0 0 33 33"
 		>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
 				stroke="currentColor"
-				d="M 0,300 L 150,300 L 175,250 L 225,350 L 275,250 L 325,350 L 375,250 L 425,350 L 450,300 L 600,300"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M 0,16.5 L 8.25,16.5 L 9.63,13.75 L 12.38,19.25 L 15.13,13.75 L 17.88,19.25 L 20.63,13.75 L 23.38,19.25 L 24.75,16.5 L 33,16.5"
 			></path>
 		</svg>
 	);
@@ -95,35 +111,35 @@ export function AmmeterIcon(props: SVGProps<SVGSVGElement>) {
 			width="33px"
 			fill="currentColor"
 			version="1.1"
-			viewBox="0 0 600 600"
+			viewBox="0 0 33 33"
 		>
 			<rect
-				x="150"
-				y="200"
-				width="300"
-				height="200"
+				x="8.25"
+				y="11"
+				width="16.5"
+				height="11"
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				rx="20"
+				strokeWidth={STROKE_WIDTH}
+				rx="1.1"
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
 				stroke="currentColor"
-				d="M 0,300 L 150,300"
+				d="M 0,16.5 L 8.25,16.5"
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
 				stroke="currentColor"
-				d="M 450,300 L 600,300"
+				d="M 24.75,16.5 L 33,16.5"
 			/>
 			<text
-				x="300"
-				y="340"
+				x="16.5"
+				y="18.7"
 				textAnchor="middle"
-				fontSize="120"
+				fontSize="6.6"
 				fill="currentColor"
 				stroke="none"
 			>
@@ -141,35 +157,35 @@ export function OhmmeterIcon(props: SVGProps<SVGSVGElement>) {
 			width="33px"
 			fill="currentColor"
 			version="1.1"
-			viewBox="0 0 600 600"
+			viewBox="0 0 33 33"
 		>
 			<rect
-				x="150"
-				y="200"
-				width="300"
-				height="200"
+				x="8.25"
+				y="11"
+				width="16.5"
+				height="11"
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				rx="20"
+				strokeWidth={STROKE_WIDTH}
+				rx="1.1"
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
 				stroke="currentColor"
-				d="M 0,300 L 150,300"
+				d="M 0,16.5 L 8.25,16.5"
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
 				stroke="currentColor"
-				d="M 450,300 L 600,300"
+				d="M 24.75,16.5 L 33,16.5"
 			/>
 			<text
-				x="300"
-				y="340"
+				x="16.5"
+				y="18.7"
 				textAnchor="middle"
-				fontSize="120"
+				fontSize="6.6"
 				fill="currentColor"
 				stroke="none"
 			>
@@ -187,35 +203,35 @@ export function VoltmeterIcon(props: SVGProps<SVGSVGElement>) {
 			width="33px"
 			fill="currentColor"
 			version="1.1"
-			viewBox="0 0 600 600"
+			viewBox="0 0 33 33"
 		>
 			<rect
-				x="150"
-				y="200"
-				width="300"
-				height="200"
+				x="8.25"
+				y="11"
+				width="16.5"
+				height="11"
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				rx="20"
+				strokeWidth={STROKE_WIDTH}
+				rx="1.1"
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
 				stroke="currentColor"
-				d="M 0,300 L 150,300"
+				d="M 0,16.5 L 8.25,16.5"
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
 				stroke="currentColor"
-				d="M 450,300 L 600,300"
+				d="M 24.75,16.5 L 33,16.5"
 			/>
 			<text
-				x="300"
-				y="340"
+				x="16.5"
+				y="18.7"
 				textAnchor="middle"
-				fontSize="120"
+				fontSize="6.6"
 				fill="currentColor"
 				stroke="none"
 			>
@@ -227,20 +243,20 @@ export function VoltmeterIcon(props: SVGProps<SVGSVGElement>) {
 
 export function RheostatIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M 0,300 L 150,300 L 175,250 L 225,350 L 275,250 L 325,350 L 375,250 L 425,350 L 450,300 L 600,300"
+				d="M 0,16.5 L 8.25,16.5 L 9.63,13.75 L 12.38,19.25 L 15.13,13.75 L 17.88,19.25 L 20.63,13.75 L 23.38,19.25 L 24.75,16.5 L 33,16.5"
 			></path>
 			<line
-				x1="150"
-				y1="430"
-				x2="410"
-				y2="180"
+				x1="8.25"
+				y1="23.65"
+				x2="22.55"
+				y2="9.9"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinecap="square"
 				markerEnd="url(#head)"
 			/>
@@ -250,28 +266,28 @@ export function RheostatIcon(props: SVGProps<SVGSVGElement>) {
 
 export function ThermistorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M 0,300 L 150,300 L 175,250 L 225,350 L 275,250 L 325,350 L 375,250 L 425,350 L 450,300 L 600,300"
+				d="M 0,16.5 L 8.25,16.5 L 9.63,13.75 L 12.38,19.25 L 15.13,13.75 L 17.88,19.25 L 20.63,13.75 L 23.38,19.25 L 24.75,16.5 L 33,16.5"
 			></path>
 			<line
-				x1="211"
-				y1="426"
-				x2="396"
-				y2="146"
+				x1="11.61"
+				y1="23.43"
+				x2="21.78"
+				y2="8.03"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="126"
-				y1="423"
-				x2="216"
-				y2="423"
+				x1="6.93"
+				y1="23.27"
+				x2="11.88"
+				y2="23.27"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 		</svg>
 	);
@@ -279,30 +295,30 @@ export function ThermistorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function LDRIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
 				stroke="currentColor"
-				d="M 0,300 L 150,300 L 175,250 L 225,350 L 275,250 L 325,350 L 375,250 L 425,350 L 450,300 L 600,300"
+				d="M 0,16.5 L 8.25,16.5 L 9.63,13.75 L 12.38,19.25 L 15.13,13.75 L 17.88,19.25 L 20.63,13.75 L 23.38,19.25 L 24.75,16.5 L 33,16.5"
 			></path>
 			<path
 				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
-				d="m 186.64 155.41 l -31.738 -55.422 l -7.0547 7.0547 l -32.242 -31.738 l -9.0703 8.5625 l 32.246 32.246 l -7.0547 7.0508 z"
+				d="m 10.27 8.55 l -1.75 -3.05 l -0.39 0.39 l -1.79 -1.75 l -0.5 0.47 l 1.79 1.79 l -0.39 0.39 z"
 			/>
 			<path
 				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
-				d="m 75.3 115.61 l 31.738 32.242 l -7.0547 7.0547 l 55.422 31.738 l -32.246 -54.914 l -7.0508 7.0547 l -32.246 -32.246 z"
+				d="m 4.17 6.34 l 1.75 1.79 l -0.39 0.39 l 3.05 1.75 l -1.79 -3.05 l -0.39 0.39 l -1.79 -1.79 z"
 			/>
 			<circle
-				cx="300"
-				cy="300"
-				r="160"
+				cx="16.5"
+				cy="16.5"
+				r="8.8"
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 		</svg>
 	);
@@ -310,23 +326,23 @@ export function LDRIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PotentiometerIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
-				x1="300"
+				x1="16.5"
 				y1="0"
-				x2="300"
-				y2="180"
+				x2="16.5"
+				y2="9.9"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinecap="square"
 				markerEnd="url(#head)"
 			/>
 
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
 				stroke="currentColor"
-				d="M 0,300 L 150,300 L 175,250 L 225,350 L 275,250 L 325,350 L 375,250 L 425,350 L 450,300 L 600,300"
+				d="M 0,16.5 L 8.25,16.5 L 9.63,13.75 L 12.38,19.25 L 15.13,13.75 L 17.88,19.25 L 20.63,13.75 L 23.38,19.25 L 24.75,16.5 L 33,16.5"
 			></path>
 		</svg>
 	);
@@ -334,40 +350,40 @@ export function PotentiometerIcon(props: SVGProps<SVGSVGElement>) {
 
 export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
 				x1="0"
-				y1="300"
-				x2="265"
-				y2="300"
+				y1="16.5"
+				x2="14.58"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="330"
-				y1="300"
-				x2="600"
-				y2="300"
+				x1="18.15"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="335"
-				y1="180"
-				x2="335"
-				y2="420"
+				x1="18.43"
+				y1="9.9"
+				x2="18.43"
+				y2="23.1"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
 			<line
-				x1="265"
-				y1="180"
-				x2="265"
-				y2="420"
+				x1="14.58"
+				y1="9.9"
+				x2="14.58"
+				y2="23.1"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
@@ -377,43 +393,43 @@ export function CapacitorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PolarisedCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
 				x1="0"
-				y1="300"
-				x2="275"
-				y2="300"
+				y1="16.5"
+				x2="15.13"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="335"
-				y1="300"
-				x2="600"
-				y2="300"
+				x1="18.43"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="335"
-				y1="180"
-				x2="335"
-				y2="420"
+				x1="18.43"
+				y1="9.9"
+				x2="18.43"
+				y2="23.1"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				fill="none"
-				d="M230,180 C275,225 295,350 230,420"
+				d="M12.65,9.9 C15.13,12.38 16.23,19.25 12.65,23.1"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
 			<path
-				d="m 389.52 349.24 v 19.145 h -19.145 v 12.594 h 19.145 v 18.641 h 12.598 v -18.641 h 18.641 v -12.594 h -18.641 v -19.145 z"
+				d="m 21.42 19.21 v 1.05 h -1.05 v 0.69 h 1.05 v 1.02 h 0.69 v -1.02 h 1.02 v -0.69 h -1.02 v -1.05 z"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			></path>
@@ -423,7 +439,7 @@ export function PolarisedCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function VariableCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<defs>
 				<marker id="head" orient="auto" markerWidth="5" markerHeight="3" refX="0.1" refY="1.5">
 					<path d="M 0 0 V 3 L 5 1.5 Z" fill="currentColor" />
@@ -431,47 +447,47 @@ export function VariableCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 			</defs>
 			<line
 				x1="0"
-				y1="300"
-				x2="265"
-				y2="300"
+				y1="16.5"
+				x2="14.58"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="330"
-				y1="300"
-				x2="600"
-				y2="300"
+				x1="18.15"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="335"
-				y1="180"
-				x2="335"
-				y2="420"
+				x1="18.43"
+				y1="9.9"
+				x2="18.43"
+				y2="23.1"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
 			<line
-				x1="265"
-				y1="180"
-				x2="265"
-				y2="420"
+				x1="14.58"
+				y1="9.9"
+				x2="14.58"
+				y2="23.1"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
 			<line
-				x1="150"
-				y1="430"
-				x2="410"
-				y2="180"
+				x1="8.25"
+				y1="23.65"
+				x2="22.55"
+				y2="9.9"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinecap="square"
 				markerEnd="url(#head)"
 			/>
@@ -481,7 +497,7 @@ export function VariableCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<defs>
 				<marker
 					id="headVariable"
@@ -496,47 +512,47 @@ export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 			</defs>
 			<line
 				x1="0"
-				y1="300"
-				x2="265"
-				y2="300"
+				y1="16.5"
+				x2="14.58"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="330"
-				y1="300"
-				x2="600"
-				y2="300"
+				x1="18.15"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="335"
-				y1="180"
-				x2="335"
-				y2="420"
+				x1="18.43"
+				y1="9.9"
+				x2="18.43"
+				y2="23.1"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
 			<line
-				x1="265"
-				y1="180"
-				x2="265"
-				y2="420"
+				x1="14.58"
+				y1="9.9"
+				x2="14.58"
+				y2="23.1"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
 			<line
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
-				x1="150"
-				y1="430"
-				x2="410"
-				y2="180"
+				x1="8.25"
+				y1="23.65"
+				x2="22.55"
+				y2="9.9"
 				strokeLinecap="round"
 				markerEnd="url(#headVariable)"
 			/>
@@ -546,32 +562,32 @@ export function TrimmerCapacitorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
 				x1="0"
-				y1="300"
-				x2="600"
-				y2="300"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="400"
-				y1="200"
-				x2="400"
-				y2="400"
+				x1="22"
+				y1="11"
+				x2="22"
+				y2="22"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
 			<polygon
-				points="210,400 390,300 210,200"
+				points="11.55,22 21.45,16.5 11.55,11"
 				fill="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 		</svg>
 	);
@@ -579,28 +595,28 @@ export function DiodeIcon(props: SVGProps<SVGSVGElement>) {
 
 export function ZenerIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
 				x1="0"
-				y1="300"
-				x2="600"
-				y2="300"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<polygon
-				points="210,400 390,300 210,200"
+				points="11.55,22 21.45,16.5 11.55,11"
 				fill="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M360,200 L400,200 L400,400 L440,400"
+				strokeWidth={STROKE_WIDTH}
+				d="M19.8,11 L22,11 L22,22 L24.2,22"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -613,96 +629,119 @@ interface PropsLED extends SVGProps<SVGSVGElement> {
 }
 
 export function LEDIcon(props: PropsLED) {
-	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<line
-				x1="0"
-				y1="300"
-				x2="210"
-				y2="300"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-			/>
-			<line
-				x1="400"
-				y1="300"
-				x2="600"
-				y2="300"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-			/>
-			<polygon
-				points="210,400 390,300 210,200"
-				fill="transparent"
-				strokeLinejoin="round"
-				strokeLinecap="round"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-			/>
-			<polygon
-				points="210,400 390,300 210,200"
-				fill={props.color_led}
-				strokeLinejoin="round"
-				strokeLinecap="round"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-			/>
-			<path
-				fill="none"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,200 L400,400"
-				strokeLinejoin="miter"
-				strokeLinecap="square"
-			/>
-			<path
-				strokeWidth={STROKE_WIDTH}
-				stroke="currentColor"
-				d="m 291.36 168.81 l 26.195 -37.281 l 8.0625 5.543 l 22.168 -59.449 l -48.871 40.809 l 8.0625 5.5391 l -25.695 37.281 z"
-			></path>
-			<path
-				strokeWidth={STROKE_WIDTH}
-				stroke="currentColor"
-				d="m 328.14 194 l 25.691 -36.777 l 8.5664 5.5391 l 21.664 -59.953 l -48.871 41.312 l 8.5664 5.543 l -26.199 37.281 z"
-			></path>
-		</svg>
-	);
+    return (
+        <svg
+            {...props}
+            height="33px"
+            width="33px"
+            fill="currentColor"
+            viewBox="0 0 33 33"
+        >
+            {/* Terminal de entrada (Ánodo) - Línea recta */}
+            <line
+                x1="0"
+                y1="16.5"
+                x2="11.5"
+                y2="16.5"
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+            />
+
+            {/* Terminal de salida (Cátodo) - Línea recta */}
+            <line
+                x1="22.5"
+                y1="16.5"
+                x2="33"
+                y2="16.5"
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+            />
+
+            {/* Barra vertical del Cátodo - Línea recta */}
+            <path
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+                d="M 22.5,11 L 22.5,22"
+                strokeLinejoin="miter"
+                strokeLinecap="square"
+            />
+
+            {/* Triángulo del Diodo - Diagonales suavemente renderizadas */}
+            <polygon
+                points="11.5,22 21.5,16.5 11.5,11"
+                fill={props.color_led || "transparent"}
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="geometricPrecision"
+            />
+
+            {/* Flecha emisora de luz 1 */}
+            <path
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="geometricPrecision"
+                fill="currentColor"
+                stroke="currentColor"
+                d="M 16.02,9.28 L 17.47,7.23 L 17.91,7.54 L 19.13,4.27 L 16.44,6.51 L 16.88,6.82 L 15.47,8.87 Z"
+            />
+
+            {/* Flecha emisora de luz 2 */}
+            <path
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="geometricPrecision"
+                fill="currentColor"
+                stroke="currentColor"
+                d="M 18.05,10.67 L 19.46,8.65 L 19.93,8.95 L 21.12,5.65 L 18.43,7.92 L 18.90,8.23 L 17.46,10.28 Z"
+            />
+        </svg>
+    );
 }
 
 export function SchottkyIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
 				x1="0"
-				y1="300"
-				x2="600"
-				y2="300"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<line
-				x1="400"
-				y1="200"
-				x2="400"
-				y2="400"
+				x1="22"
+				y1="11"
+				x2="22"
+				y2="22"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
 			/>
 			<polygon
-				points="210,400 390,300 210,200"
+				points="11.55,22 21.45,16.5 11.55,11"
 				fill="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M350,225 L350,200 L400,200 L400,400 L450,400 L450,375"
+				strokeWidth={STROKE_WIDTH}
+				d="M19.25,12.38 L19.25,11 L22,11 L22,22 L24.75,22 L24.75,20.63"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -712,22 +751,22 @@ export function SchottkyIcon(props: SVGProps<SVGSVGElement>) {
 
 export function TunnelIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
 				x1="0"
-				y1="300"
-				x2="600"
-				y2="300"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<polygon
-				points="210,400 390,300 210,200"
+				points="11.55,22 21.45,16.5 11.55,11"
 				fill="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<path
 				fill="none"
@@ -743,40 +782,40 @@ export function TunnelIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PhotoDiodeIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
 				x1="0"
-				y1="300"
-				x2="600"
-				y2="300"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<polygon
-				points="210,400 390,300 210,200"
+				points="11.55,22 21.45,16.5 11.55,11"
 				fill="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,200 L400,400"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,11 L22,22"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH}
+				strokeWidth={STROKE_WIDTH / 4}
 				stroke="currentColor"
-				d="m 394.02 139.29 l -26.195 37.281 l -8.0625 -5.543 l -22.168 59.449 l 48.871 -40.809 l -8.0625 -6.0469 l 25.695 -36.777 z"
+				d="m 21.8 7.66 l -1.44 2.05 l -0.44 -0.3 l -1.22 3.27 l 2.69 -2.24 l -0.44 -0.33 l 1.41 -2.02 z"
 			></path>
 			<path
-				strokeWidth={STROKE_WIDTH}
+				strokeWidth={STROKE_WIDTH / 4}
 				stroke="currentColor"
-				d="m 331.55 150.87 l -8.5625 -5.543 l -21.664 59.953 l 48.867 -41.312 l -8.5625 -5.5391 l 26.199 -37.285 l -10.582 -7.0508 z"
+				d="m 18.35 8.3 l -0.47 -0.3 l -1.19 3.29 l 2.69 -2.26 l -0.47 -0.3 l 1.44 -2.05 l -0.58 -0.39 z"
 			></path>
 		</svg>
 	);
@@ -784,36 +823,36 @@ export function PhotoDiodeIcon(props: SVGProps<SVGSVGElement>) {
 
 export function TVSDiodeIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
 				x1="0"
-				y1="300"
-				x2="600"
-				y2="300"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<polygon
-				points="110,400 290,300 110,200"
+				points="6.05,22 15.95,16.5 6.05,11"
 				fill="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<polygon
-				points="490,400 310,300 490,200"
+				points="26.95,22 17.05,16.5 26.95,11"
 				fill="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M340,200 L300,200 L300,400 L260,400"
+				strokeWidth={STROKE_WIDTH}
+				d="M18.67,11 L16.5,11 L16.5,22 L14.33,22"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -823,36 +862,36 @@ export function TVSDiodeIcon(props: SVGProps<SVGSVGElement>) {
 
 export function VaractorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<line
 				x1="0"
-				y1="300"
-				x2="600"
-				y2="300"
+				y1="16.5"
+				x2="33"
+				y2="16.5"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<polygon
-				points="210,400 390,300 210,200"
+				points="11.55,22 21.45,16.5 11.55,11"
 				fill="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,200 L400,400"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,11 L22,22"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M450,200 L450,400"
+				strokeWidth={STROKE_WIDTH}
+				d="M24.75,11 L24.75,22"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -870,53 +909,53 @@ export function NodeIcon(props: SVGProps<SVGSVGElement>) {
 
 export function BJTNPNIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,300 L250,300"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,16.5 L13.75,16.5"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M250,190 L250,410"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.75,10.45 L13.75,22.55"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M252,250 L400,170 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.86,13.75 L22,9.35 L22,0"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<line
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				x1="252"
-				y1="350"
-				x2="340"
-				y2="400"
+				strokeWidth={STROKE_WIDTH}
+				x1="13.86"
+				y1="19.25"
+				x2="18.7"
+				y2="22"
 				markerEnd="url(#head)"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,450 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,24.75 L22,33"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -926,53 +965,53 @@ export function BJTNPNIcon(props: SVGProps<SVGSVGElement>) {
 
 export function BJTPNPIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,300 L250,300"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,16.5 L13.75,16.5"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M250,190 L250,410"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.75,10.45 L13.75,22.55"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<line
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				x1="400"
-				y1="170"
-				x2="315"
-				y2="220"
+				strokeWidth={STROKE_WIDTH}
+				x1="22"
+				y1="9.35"
+				x2="17.33"
+				y2="12.1"
 				markerEnd="url(#head)"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,170 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,9.35 L22,0"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M252,350 L400,430 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.86,19.25 L22,23.65 L22,33"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -982,36 +1021,36 @@ export function BJTPNPIcon(props: SVGProps<SVGSVGElement>) {
 
 export function JFETNIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,0 L400,200 L275,200 L275,160 L275,440 L275,400 L400,400 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,0 L22,11 L15.13,11 L15.13,8.8 L15.13,24.2 L15.13,22 L22,22 L22,33"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M205,400 L205,400 "
+				strokeWidth={STROKE_WIDTH}
+				d="M11.28,22 L11.28,22 "
 				strokeLinecap="square"
 				markerEnd="url(#head)"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M220,400 L0,400"
+				strokeWidth={STROKE_WIDTH}
+				d="M12.1,22 L0,22"
 				strokeLinecap="square"
 			/>
 		</svg>
@@ -1020,36 +1059,36 @@ export function JFETNIcon(props: SVGProps<SVGSVGElement>) {
 
 export function JFETPIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,0 L400,200 L275,200 L275,160 L275,440 L275,400 L400,400 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,0 L22,11 L15.13,11 L15.13,8.8 L15.13,24.2 L15.13,22 L22,22 L22,33"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M275,400 L240,400"
+				strokeWidth={STROKE_WIDTH}
+				d="M15.13,22 L13.2,22"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M220,400 L0,400"
+				strokeWidth={STROKE_WIDTH}
+				d="M12.1,22 L0,22"
 				strokeLinecap="square"
 			/>
 		</svg>
@@ -1058,48 +1097,48 @@ export function JFETPIcon(props: SVGProps<SVGSVGElement>) {
 
 export function NChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,400 L230,400 L230,200"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,22 L12.67,22 L12.67,11"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M270,170 L270,240 L270,200 L400,200 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M14.85,9.35 L14.85,13.2 L14.85,11 L22,11 L22,0"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M270,270 L270,340 L270,300 L400,300 L400,386"
+				strokeWidth={STROKE_WIDTH}
+				d="M14.85,14.85 L14.85,18.7 L14.85,16.5 L22,16.5 L22,21.23"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M270,370 L270,440 L270,400 L400,400 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M14.85,20.35 L14.85,24.2 L14.85,22 L22,22 L22,33"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M330,300 L320,300 "
+				strokeWidth={STROKE_WIDTH}
+				d="M18.15,16.5 L17.67,16.5 "
 				strokeLinecap="square"
 				markerEnd="url(#headTwo)"
 			/>
@@ -1109,48 +1148,48 @@ export function NChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,400 L230,400 L230,200"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,22 L12.67,22 L12.67,11"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M270,170 L270,240 L270,200 L400,200 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M14.85,9.35 L14.85,13.2 L14.85,11 L22,11 L22,0"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M270,270 L270,340 L270,300 L400,300 L400,386"
+				strokeWidth={STROKE_WIDTH}
+				d="M14.85,14.85 L14.85,18.7 L14.85,16.5 L22,16.5 L22,21.23"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M270,370 L270,440 L270,400 L400,400 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M14.85,20.35 L14.85,24.2 L14.85,22 L22,22 L22,33"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M290,300 L300,300 "
+				strokeWidth={STROKE_WIDTH}
+				d="M15.95,16.5 L16.5,16.5 "
 				strokeLinecap="square"
 				markerEnd="url(#headTwo)"
 			/>
@@ -1160,48 +1199,48 @@ export function PChainEnhMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 
 export function NChainDepMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,400 L230,400 L230,200"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,22 L12.67,22 L12.67,11"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M280,220 L400,220 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M15.4,12.1 L22,12.1 L22,0"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M280,300 L400,300 L400,366"
+				strokeWidth={STROKE_WIDTH}
+				d="M15.4,16.5 L22,16.5 L22,20.13"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M270,360 L270,170 L270,440 L270,380 L400,380 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M14.85,19.8 L14.85,9.35 L14.85,24.2 L14.85,20.9 L22,20.9 L22,33"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M340,300 L320,300 "
+				strokeWidth={STROKE_WIDTH}
+				d="M18.67,16.5 L17.67,16.5 "
 				strokeLinecap="square"
 				markerEnd="url(#headTwo)"
 			/>
@@ -1211,48 +1250,48 @@ export function NChainDepMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PChainDepMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,400 L230,400 L230,200"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,22 L12.67,22 L12.67,11"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M280,220 L400,220 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M15.4,12.1 L22,12.1 L22,0"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M280,300 L400,300 L400,366"
+				strokeWidth={STROKE_WIDTH}
+				d="M15.4,16.5 L22,16.5 L22,20.13"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M270,360 L270,170 L270,440 L270,380 L400,380 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M14.85,19.8 L14.85,9.35 L14.85,24.2 L14.85,20.9 L22,20.9 L22,33"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M290,300  L300,300 "
+				strokeWidth={STROKE_WIDTH}
+				d="M15.95,16.5  L16.5,16.5 "
 				strokeLinecap="square"
 				markerEnd="url(#headTwo)"
 			/>
@@ -1262,12 +1301,12 @@ export function PChainDepMOSFETIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PhotoTransistorNPNIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M50,90 L100,130"
+				strokeWidth={STROKE_WIDTH}
+				d="M2.75,4.95 L5.5,7.15"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -1275,8 +1314,8 @@ export function PhotoTransistorNPNIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M90,40 L140,85"
+				strokeWidth={STROKE_WIDTH}
+				d="M4.95,2.2 L7.7,4.67"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -1284,41 +1323,41 @@ export function PhotoTransistorNPNIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M250,190 L250,410"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.75,10.45 L13.75,22.55"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M252,250 L400,170 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.86,13.75 L22,9.35 L22,0"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<line
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				x1="252"
-				y1="350"
-				x2="340"
-				y2="400"
+				strokeWidth={STROKE_WIDTH}
+				x1="13.86"
+				y1="19.25"
+				x2="18.7"
+				y2="22"
 				markerEnd="url(#head)"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,450 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,24.75 L22,33"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -1328,12 +1367,12 @@ export function PhotoTransistorNPNIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PhotoTransistorPNPIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M50,90 L100,130"
+				strokeWidth={STROKE_WIDTH}
+				d="M2.75,4.95 L5.5,7.15"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -1341,8 +1380,8 @@ export function PhotoTransistorPNPIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M90,40 L140,85"
+				strokeWidth={STROKE_WIDTH}
+				d="M4.95,2.2 L7.7,4.67"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -1350,41 +1389,41 @@ export function PhotoTransistorPNPIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M250,190 L250,410"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.75,10.45 L13.75,22.55"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<line
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				x1="400"
-				y1="170"
-				x2="315"
-				y2="220"
+				strokeWidth={STROKE_WIDTH}
+				x1="22"
+				y1="9.35"
+				x2="17.33"
+				y2="12.1"
 				markerEnd="url(#head)"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,170 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,9.35 L22,0"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M252,350 L400,430 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.86,19.25 L22,23.65 L22,33"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -1394,12 +1433,12 @@ export function PhotoTransistorPNPIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PhotoTransistorNPN3PinsIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M50,90 L100,130"
+				strokeWidth={STROKE_WIDTH}
+				d="M2.75,4.95 L5.5,7.15"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -1407,8 +1446,8 @@ export function PhotoTransistorNPN3PinsIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M90,40 L140,85"
+				strokeWidth={STROKE_WIDTH}
+				d="M4.95,2.2 L7.7,4.67"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -1416,49 +1455,49 @@ export function PhotoTransistorNPN3PinsIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,300 L250,300"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,16.5 L13.75,16.5"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M250,190 L250,410"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.75,10.45 L13.75,22.55"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M252,250 L400,170 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.86,13.75 L22,9.35 L22,0"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<line
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				x1="252"
-				y1="350"
-				x2="340"
-				y2="400"
+				strokeWidth={STROKE_WIDTH}
+				x1="13.86"
+				y1="19.25"
+				x2="18.7"
+				y2="22"
 				markerEnd="url(#head)"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,450 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,24.75 L22,33"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -1468,12 +1507,12 @@ export function PhotoTransistorNPN3PinsIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PhotoTransistorPNP3PinsIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M50,90 L100,130"
+				strokeWidth={STROKE_WIDTH}
+				d="M2.75,4.95 L5.5,7.15"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -1481,8 +1520,8 @@ export function PhotoTransistorPNP3PinsIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M90,40 L140,85"
+				strokeWidth={STROKE_WIDTH}
+				d="M4.95,2.2 L7.7,4.67"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -1490,49 +1529,49 @@ export function PhotoTransistorPNP3PinsIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,300 L250,300"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,16.5 L13.75,16.5"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M250,190 L250,410"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.75,10.45 L13.75,22.55"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<line
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				x1="400"
-				y1="170"
-				x2="315"
-				y2="220"
+				strokeWidth={STROKE_WIDTH}
+				x1="22"
+				y1="9.35"
+				x2="17.33"
+				y2="12.1"
 				markerEnd="url(#head)"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M400,170 L400,0"
+				strokeWidth={STROKE_WIDTH}
+				d="M22,9.35 L22,0"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={170}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={9.35}
+				cx={16.5}
+				cy={16.5}
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M252,350 L400,430 L400,600"
+				strokeWidth={STROKE_WIDTH}
+				d="M13.86,19.25 L22,23.65 L22,33"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 			/>
@@ -1548,13 +1587,13 @@ export function InductorIcon(props: SVGProps<SVGSVGElement>) {
 			width="33px"
 			fill="currentColor"
 			version="1.1"
-			viewBox="0 0 600 600"
+			viewBox="0 0 33 33"
 		>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M0,300 V300 L140,300 A 10 10 1 1 1 220,300 A 10 10 1 1 1 300,300 A 10 10 1 1 1 380,300 A 10 10 1 1 1 460,300 H600 V300"
+				d="M0,16.5 V16.5 L7.7,16.5 A 0.55 0.55 1 1 1 12.1,16.5 A 0.55 0.55 1 1 1 16.5,16.5 A 0.55 0.55 1 1 1 20.9,16.5 A 0.55 0.55 1 1 1 25.3,16.5 H33 V16.5"
 			/>
 		</svg>
 	);
@@ -1562,53 +1601,53 @@ export function InductorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function FerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M0,300 V300 L140,300 A 10 10 1 1 1 220,300 A 10 10 1 1 1 300,300 A 10 10 1 1 1 380,300 A 10 10 1 1 1 460,300 H600 V300"
+				d="M0,16.5 V16.5 L7.7,16.5 A 0.55 0.55 1 1 1 12.1,16.5 A 0.55 0.55 1 1 1 16.5,16.5 A 0.55 0.55 1 1 1 20.9,16.5 A 0.55 0.55 1 1 1 25.3,16.5 H33 V16.5"
 			/>{" "}
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,220 L210,220"></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M230,220 L290,220"></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M310,220 L370,220"></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M390,220 L450,220"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,12.1 L11.55,12.1"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M12.67,12.1 L15.97,12.1"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M17.08,12.1 L20.38,12.1"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M21.5,12.1 L24.8,12.1"></path>
 		</svg>
 	);
 }
 
 export function IronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M0,300 V300 L140,300 A 10 10 1 1 1 220,300 A 10 10 1 1 1 300,300 A 10 10 1 1 1 380,300 A 10 10 1 1 1 460,300 H600 V300"
+				d="M0,16.5 V16.5 L7.7,16.5 A 0.55 0.55 1 1 1 12.1,16.5 A 0.55 0.55 1 1 1 16.5,16.5 A 0.55 0.55 1 1 1 20.9,16.5 A 0.55 0.55 1 1 1 25.3,16.5 H33 V16.5"
 			/>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,220 L450,220"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,12.1 L24.8,12.1"></path>
 		</svg>
 	);
 }
 
 export function PresetFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M0,300 V300 L140,300 A 10 10 1 1 1 220,300 A 10 10 1 1 1 300,300 A 10 10 1 1 1 380,300 A 10 10 1 1 1 460,300 H600 V300"
+				d="M0,16.5 V16.5 L7.7,16.5 A 0.55 0.55 1 1 1 12.1,16.5 A 0.55 0.55 1 1 1 16.5,16.5 A 0.55 0.55 1 1 1 20.9,16.5 A 0.55 0.55 1 1 1 25.3,16.5 H33 V16.5"
 			/>{" "}
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,220 L210,220"></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M230,220 L290,220"></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M310,220 L370,220"></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M390,220 L450,220"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,12.1 L11.55,12.1"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M12.67,12.1 L15.97,12.1"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M17.08,12.1 L20.38,12.1"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M21.5,12.1 L24.8,12.1"></path>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M170,450 L430,120 L390,90 L470, 150"
+				d="M9.35,24.75 L23.65,6.6 L21.5,4.95 L25.85, 8.25"
 			></path>
 		</svg>
 	);
@@ -1616,19 +1655,19 @@ export function PresetFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PresetIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M0,300 V300 L140,300 A 10 10 1 1 1 220,300 A 10 10 1 1 1 300,300 A 10 10 1 1 1 380,300 A 10 10 1 1 1 460,300 H600 V300"
+				d="M0,16.5 V16.5 L7.7,16.5 A 0.55 0.55 1 1 1 12.1,16.5 A 0.55 0.55 1 1 1 16.5,16.5 A 0.55 0.55 1 1 1 20.9,16.5 A 0.55 0.55 1 1 1 25.3,16.5 H33 V16.5"
 			/>{" "}
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,220 L450,220"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,12.1 L24.8,12.1"></path>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M170,450 L430,120 L390,90 L470, 150"
+				d="M9.35,24.75 L23.65,6.6 L21.5,4.95 L25.85, 8.25"
 			></path>
 		</svg>
 	);
@@ -1636,22 +1675,22 @@ export function PresetIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 
 export function VariableFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M0,300 V300 L140,300 A 10 10 1 1 1 220,300 A 10 10 1 1 1 300,300 A 10 10 1 1 1 380,300 A 10 10 1 1 1 460,300 H600 V300"
+				d="M0,16.5 V16.5 L7.7,16.5 A 0.55 0.55 1 1 1 12.1,16.5 A 0.55 0.55 1 1 1 16.5,16.5 A 0.55 0.55 1 1 1 20.9,16.5 A 0.55 0.55 1 1 1 25.3,16.5 H33 V16.5"
 			/>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,220 L210,220"></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M230,220 L290,220"></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M310,220 L370,220"></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M390,220 L450,220"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,12.1 L11.55,12.1"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M12.67,12.1 L15.97,12.1"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M17.08,12.1 L20.38,12.1"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M21.5,12.1 L24.8,12.1"></path>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M170,450 L430,120 "
+				d="M9.35,24.75 L23.65,6.6 "
 				markerEnd="url(#head)"
 			></path>
 		</svg>
@@ -1660,19 +1699,19 @@ export function VariableFerriteCoreInductorIcon(props: SVGProps<SVGSVGElement>) 
 
 export function VariableIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M0,300 V300 L140,300 A 10 10 1 1 1 220,300 A 10 10 1 1 1 300,300 A 10 10 1 1 1 380,300 A 10 10 1 1 1 460,300 H600 V300"
+				d="M0,16.5 V16.5 L7.7,16.5 A 0.55 0.55 1 1 1 12.1,16.5 A 0.55 0.55 1 1 1 16.5,16.5 A 0.55 0.55 1 1 1 20.9,16.5 A 0.55 0.55 1 1 1 25.3,16.5 H33 V16.5"
 			/>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,220 L450,220"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,12.1 L24.8,12.1"></path>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M170,450 L430,120"
+				d="M9.35,24.75 L23.65,6.6"
 				markerEnd="url(#head)"
 			></path>
 		</svg>
@@ -1680,107 +1719,146 @@ export function VariableIronCoreInductorIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 export function SwitchSPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
-	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
-			<path
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				strokeLinejoin="round"
-				strokeLinecap="round"
-				d="m 180,300  260,-150"
-			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="450"
-				r="30"
-			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="150"
-				r="30"
-				x={0}
-				y={0}
-			/>
-		</svg>
-	);
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+            {/* Terminal izquierda recta */}
+            <path
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+                d="M 0,16.5 L 6.6,16.5"
+            />
+            {/* Terminal derecha recta */}
+            <path
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+                d="M 33,16.5 L 26.4,16.5"
+            />
+            {/* Interruptor abierto en diagonal */}
+            <path
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="geometricPrecision"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                d="M 9.9,16.5 L 24.2,8.25"
+            />
+            {/* Círculos de terminales */}
+            <circle
+                fill="transparent"
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="geometricPrecision"
+                cy="16.5"
+                cx="24.75"
+                r="1.65"
+            />
+            <circle
+                fill="transparent"
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="geometricPrecision"
+                cy="16.5"
+                cx="8.25"
+                r="1.65"
+            />
+        </svg>
+    );
 }
 
 export function SwitchSPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
-	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
-			<path
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				strokeLinejoin="round"
-				strokeLinecap="round"
-				d="m 180,300 280,-42"
-			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="450"
-				r="30"
-			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="150"
-				r="30"
-				x={0}
-				y={0}
-			/>
-		</svg>
-	);
+    return (
+        <svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+            {/* Terminales horizontales rectas */}
+            <path
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+                d="M 0,16.5 L 6.6,16.5"
+            />
+            <path
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="crispEdges"
+                d="M 33,16.5 L 26.4,16.5"
+            />
+            {/* Interruptor en diagonal (usa geometricPrecision para suavizado fluido) */}
+            <path
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="geometricPrecision"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                d="M 9.9,16.5 L 25.3,14.19"
+            />
+            {/* Círculos de conexión */}
+            <circle
+                fill="transparent"
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="geometricPrecision"
+                cy="16.5"
+                cx="24.75"
+                r="1.65"
+            />
+            <circle
+                fill="transparent"
+                stroke="currentColor"
+                strokeWidth={STROKE_WIDTH}
+                vectorEffect="non-scaling-stroke"
+                shapeRendering="geometricPrecision"
+                cy="16.5"
+                cx="8.25"
+                r="1.65"
+            />
+        </svg>
+    );
 }
 
 export function PushButtonOpenNOIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,16.5 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,16.5 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 140,200 320,0"
+				d="m 7.7,11 17.6,0"
 			/>
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 300,200 0,-100"
+				d="m 16.5,11 0,-5.5"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
@@ -1790,38 +1868,38 @@ export function PushButtonOpenNOIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PushButtonCloseNOIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,16.5 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,16.5 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 140,258 320,0"
+				d="m 7.7,14.19 17.6,0"
 			/>
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 300,258 0,-100"
+				d="m 16.5,14.19 0,-5.5"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
@@ -1831,38 +1909,38 @@ export function PushButtonCloseNOIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PushButtonOpenNCIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,16.5 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,16.5 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 140,400 320,0"
+				d="m 7.7,22 17.6,0"
 			/>
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 300,400 0,-150"
+				d="m 16.5,22 0,-8.25"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
@@ -1872,38 +1950,38 @@ export function PushButtonOpenNCIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PushButtonCloseNCIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,16.5 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,16.5 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 140,342 320,0"
+				d="m 7.7,18.81 17.6,0"
 			/>
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 300,342 0,-150"
+				d="m 16.5,18.81 0,-8.25"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
@@ -1913,40 +1991,40 @@ export function PushButtonCloseNCIcon(props: SVGProps<SVGSVGElement>) {
 
 export function SwitchSPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,300 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,16.5 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,11 -6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,22 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,300  295,-62"
+				d="m 9.9,16.5  16.23,-3.41"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="8.25"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="400"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="22"
+				cx="24.75"
+				r="1.65"
 			/>
 		</svg>
 	);
@@ -1954,40 +2032,40 @@ export function SwitchSPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
 
 export function SwitchSPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m  0,300 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m  0,16.5 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,11 -6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,22 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,300 295,62"
+				d="m 9.9,16.5 16.23,3.41"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="8.25"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="400"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="22"
+				cx="24.75"
+				r="1.65"
 			/>
 		</svg>
 	);
@@ -1995,67 +2073,67 @@ export function SwitchSPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
 
 export function SwitchDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,11 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,11 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,200  260,-130"
+				d="m 9.9,11  14.3,-7.15"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 300,140  0,190"
-				strokeDasharray="25 35"
+				d="m 16.5,7.7  0,10.45"
+				strokeDasharray="1.38 1.92"
 				strokeDashoffset="0"
 			/>
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,400 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,22 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,22 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,400  260,-130"
+				d="m 9.9,22  14.3,-7.15"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="400"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="22"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="400"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="22"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
@@ -2065,67 +2143,67 @@ export function SwitchDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
 
 export function SwitchDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,11 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,11 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,200 280,-42"
+				d="m 9.9,11 15.4,-2.31"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 300,185 0,190"
-				strokeDasharray="25 35"
+				d="m 16.5,10.18 0,10.45"
+				strokeDasharray="1.38 1.92"
 				strokeDashoffset="0"
 			/>
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,400 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,400 -120,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,22 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,22 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,400 280,-42"
+				d="m 9.9,22 15.4,-2.31"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="400"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="22"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="400"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="22"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
@@ -2135,7 +2213,7 @@ export function SwitchDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
 
 export function SwitchDPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 800">
+		<svg {...props} height="44px" width="44px" fill="currentColor" viewBox="0 0 600 800">
 			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
 			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,100 -120,0" />
 			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
@@ -2307,46 +2385,46 @@ export function SwitchDPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
 
 export function RelaySPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,11 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,11 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 185,200  260,-150"
+				d="m 10.17,11  14.3,-8.25"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M100,600 V500 L140,500 A 10 10 1 1 1 220,500 A 10 10 1 1 1 300,500 A 10 10 1 1 1 380,500  A 10 10 1 1 1 460,500 H500 V600"
+				d="M5.5,33 V27.5 L7.7,27.5 A 0.55 0.55 1 1 1 12.1,27.5 A 0.55 0.55 1 1 1 16.5,27.5 A 0.55 0.55 1 1 1 20.9,27.5  A 0.55 0.55 1 1 1 25.3,27.5 H27.5 V33"
 			></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,420 L450,420"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,23.1 L24.8,23.1"></path>
 			<path
-				strokeWidth={STROKE_WIDTH * 2}
+				strokeWidth={STROKE_WIDTH / 2}
 				stroke="currentColor"
-				d="M300,415 L300,120"
-				strokeDasharray="27 35"
+				d="M16.5,22.83 L16.5,6.6"
+				strokeDasharray="1.48 1.92"
 				strokeDashoffset="0"
 			></path>
 		</svg>
@@ -2355,46 +2433,46 @@ export function RelaySPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
 
 export function RelaySPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,11 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,11 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,200 280,-42"
+				d="m 9.9,11 15.4,-2.31"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="8.25"
+				r="1.65"
 				x={0}
 				y={0}
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M100,600 V500 L140,500 A 10 10 1 1 1 220,500 A 10 10 1 1 1 300,500 A 10 10 1 1 1 380,500  A 10 10 1 1 1 460,500 H500 V600"
+				d="M5.5,33 V27.5 L7.7,27.5 A 0.55 0.55 1 1 1 12.1,27.5 A 0.55 0.55 1 1 1 16.5,27.5 A 0.55 0.55 1 1 1 20.9,27.5  A 0.55 0.55 1 1 1 25.3,27.5 H27.5 V33"
 			></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,420 L450,420"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,23.1 L24.8,23.1"></path>
 			<path
-				strokeWidth={STROKE_WIDTH * 2}
+				strokeWidth={STROKE_WIDTH / 2}
 				stroke="currentColor"
-				d="M300,415 L300,200"
-				strokeDasharray="27 35"
+				d="M16.5,22.83 L16.5,11"
+				strokeDasharray="1.48 1.92"
 				strokeDashoffset="0"
 			></path>
 		</svg>
@@ -2403,203 +2481,181 @@ export function RelaySPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
 
 export function RelayDPSTOpenIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 800">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+		<svg
+			{...props}
+			height="44px"
+			width="33px"
+			fill="currentColor"
+			viewBox="0 0 33 44"
+		>
+			{/* --- Switch 1 (Superior) --- */}
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" d="M 0,11 L 6.6,11" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" d="M 33,11 L 26.4,11" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="geometricPrecision"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,200  260,-150"
+				d="M 9.9,11 L 24.2,2.75"
 			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="450"
-				r="30"
-			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="150"
-				r="30"
-				x={0}
-				y={0}
-			/>
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,500 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,500 -120,0" />
+			<circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="geometricPrecision" cy="11" cx="24.75" r="1.65" />
+			<circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="geometricPrecision" cy="11" cx="8.25" r="1.65" />
+
+			{/* --- Switch 2 (Inferior) --- */}
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" d="M 0,27.5 L 6.6,27.5" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" d="M 33,27.5 L 26.4,27.5" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="geometricPrecision"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,500  260,-150"
+				d="M 9.9,27.5 L 24.2,19.25"
 			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="500"
-				cx="450"
-				r="30"
-			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="500"
-				cx="150"
-				r="30"
-				x={0}
-				y={0}
-			/>
+			<circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="geometricPrecision" cy="27.5" cx="24.75" r="1.65" />
+			<circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="geometricPrecision" cy="27.5" cx="8.25" r="1.65" />
+
+			{/* --- Bobina e Inductancia (Coil) --- */}
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="geometricPrecision"
 				stroke="currentColor"
 				fill="none"
-				d="M100,800 V700 L140,700 A 10 10 1 1 1 220,700 A 10 10 1 1 1 300,700 A 10 10 1 1 1 380,700  A 10 10 1 1 1 460,700 H500 V800"
-			></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,620 L450,620"></path>
+				d="M 5.5,44 V 38.5 L 7.7,38.5 A 2.2 2.2 0 1 1 12.1,38.5 A 2.2 2.2 0 1 1 16.5,38.5 A 2.2 2.2 0 1 1 20.9,38.5 A 2.2 2.2 0 1 1 25.3,38.5 H 27.5 V 44"
+			/>
+			{/* Barra Núcleo del Relé */}
+			<path strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" stroke="currentColor" d="M 8.25,34.1 L 24.75,34.1" />
+
+			{/* Acoplamiento Mecánico Punteado */}
 			<path
-				strokeWidth={STROKE_WIDTH * 2}
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="crispEdges"
 				stroke="currentColor"
-				d="M300,615 L300,120"
-				strokeDasharray="27 35"
-				strokeDashoffset="0"
-			></path>
+				d="M 16.5,33.825 L 16.5,6.6"
+				strokeDasharray="2 2"
+			/>
 		</svg>
 	);
 }
 
 export function RelayDPSTCloseIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 800">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,200 -120,0" />
+		<svg
+			{...props}
+			height="44px"
+			width="33px"
+			fill="currentColor"
+			viewBox="0 0 33 44"
+		>
+			{/* --- Switch 1 (Superior - Cerrado) --- */}
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" d="M 0,11 L 6.6,11" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" d="M 33,11 L 26.4,11" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="geometricPrecision"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,200 280,-42"
+				d="M 9.9,11 L 25.3,8.69"
 			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="450"
-				r="30"
-			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="150"
-				r="30"
-				x={0}
-				y={0}
-			/>
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,500 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,500 -120,0" />
+			<circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="geometricPrecision" cy="11" cx="24.75" r="1.65" />
+			<circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="geometricPrecision" cy="11" cx="8.25" r="1.65" />
+
+			{/* --- Switch 2 (Inferior - Cerrado) --- */}
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" d="M 0,27.5 L 6.6,27.5" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" d="M 33,27.5 L 26.4,27.5" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="geometricPrecision"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,500 280,-42"
+				d="M 9.9,27.5 L 25.3,25.19"
 			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="500"
-				cx="450"
-				r="30"
-			/>
-			<circle
-				fill="transparent"
-				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="500"
-				cx="150"
-				r="30"
-				x={0}
-				y={0}
-			/>
+			<circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="geometricPrecision" cy="27.5" cx="24.75" r="1.65" />
+			<circle fill="transparent" stroke="currentColor" strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="geometricPrecision" cy="27.5" cx="8.25" r="1.65" />
+
+			{/* --- Bobina e Inductancia (Coil) --- */}
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="geometricPrecision"
 				stroke="currentColor"
 				fill="none"
-				d="M100,800 V700 L140,700 A 10 10 1 1 1 220,700 A 10 10 1 1 1 300,700 A 10 10 1 1 1 380,700  A 10 10 1 1 1 460,700 H500 V800"
-			></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,620 L450,620"></path>
+				d="M 5.5,44 V 38.5 L 7.7,38.5 A 2.2 2.2 0 1 1 12.1,38.5 A 2.2 2.2 0 1 1 16.5,38.5 A 2.2 2.2 0 1 1 20.9,38.5 A 2.2 2.2 0 1 1 25.3,38.5 H 27.5 V 44"
+			/>
+			{/* Barra Núcleo del Relé */}
+			<path strokeWidth={STROKE_WIDTH} vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" stroke="currentColor" d="M 8.25,34.1 L 24.75,34.1" />
+
+			{/* Acoplamiento Mecánico Punteado */}
 			<path
-				strokeWidth={STROKE_WIDTH * 2}
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="crispEdges"
 				stroke="currentColor"
-				d="M300,615 L300,200"
-				strokeDasharray="27 35"
-				strokeDashoffset="0"
-			></path>
+				d="M 16.5,33.825 L 16.5,11"
+				strokeDasharray="2 2"
+			/>
 		</svg>
 	);
 }
 
 export function RelaySPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 0,200 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,100 -120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 0,11 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,5.5 -6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,16.5 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,200  295,-62"
+				d="m 9.9,11  16.23,-3.41"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="8.25"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="100"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="5.5"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="24.75"
+				r="1.65"
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M100,600 V500 L140,500 A 10 10 1 1 1 220,500 A 10 10 1 1 1 300,500 A 10 10 1 1 1 380,500  A 10 10 1 1 1 460,500 H500 V600"
+				d="M5.5,33 V27.5 L7.7,27.5 A 0.55 0.55 1 1 1 12.1,27.5 A 0.55 0.55 1 1 1 16.5,27.5 A 0.55 0.55 1 1 1 20.9,27.5  A 0.55 0.55 1 1 1 25.3,27.5 H27.5 V33"
 			></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,420 L450,420"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,23.1 L24.8,23.1"></path>
 			<path
-				strokeWidth={STROKE_WIDTH * 2}
+				strokeWidth={STROKE_WIDTH / 2}
 				stroke="currentColor"
-				d="M300,415 L300,200"
-				strokeDasharray="27 35"
+				d="M16.5,22.83 L16.5,11"
+				strokeDasharray="1.48 1.92"
 				strokeDashoffset="0"
 			></path>
 		</svg>
@@ -2608,53 +2664,53 @@ export function RelaySPDTOpenIcon(props: SVGProps<SVGSVGElement>) {
 
 export function RelaySPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m  0,200 120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,100 -120,0" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="m 600,300 -120,0" />
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m  0,11 6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,5.5 -6.6,0" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="m 33,16.5 -6.6,0" />
 			<path
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="m 180,200 295,62"
+				d="m 9.9,11 16.23,3.41"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="200"
-				cx="150"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="11"
+				cx="8.25"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="100"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="5.5"
+				cx="24.75"
+				r="1.65"
 			/>
 			<circle
 				fill="transparent"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cy="300"
-				cx="450"
-				r="30"
+				strokeWidth={STROKE_WIDTH}
+				cy="16.5"
+				cx="24.75"
+				r="1.65"
 			/>
 			<path
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				stroke="currentColor"
 				fill="none"
-				d="M100,600 V500 L140,500 A 10 10 1 1 1 220,500 A 10 10 1 1 1 300,500 A 10 10 1 1 1 380,500  A 10 10 1 1 1 460,500 H500 V600"
+				d="M5.5,33 V27.5 L7.7,27.5 A 0.55 0.55 1 1 1 12.1,27.5 A 0.55 0.55 1 1 1 16.5,27.5 A 0.55 0.55 1 1 1 20.9,27.5  A 0.55 0.55 1 1 1 25.3,27.5 H27.5 V33"
 			></path>
-			<path strokeWidth={STROKE_WIDTH * 4} stroke="currentColor" d="M150,420 L450,420"></path>
+			<path strokeWidth={STROKE_WIDTH} stroke="currentColor" d="M8.25,23.1 L24.8,23.1"></path>
 			<path
-				strokeWidth={STROKE_WIDTH * 2}
+				strokeWidth={STROKE_WIDTH / 2}
 				stroke="currentColor"
-				d="M300,415 L300,220"
-				strokeDasharray="27 35"
+				d="M16.5,22.83 L16.5,12.1"
+				strokeDasharray="1.48 1.92"
 				strokeDashoffset="0"
 			></path>
 		</svg>
@@ -2849,199 +2905,199 @@ export function RelayDPDTCloseIcon(props: SVGProps<SVGSVGElement>) {
 
 export function ANDIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="M0,200 H100 V100 H300 A 10 10 1 1 1 300,500 H100 V400 H0 100 V100 "
+				d="M0,11 H5.5 V5.5 H16.5 A 0.55 0.55 1 1 1 16.5,27.5 H5.5 V22 H0 5.5 V5.5 "
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="M0,200 H100 V100 H300 A 10 10 1 1 1 300,500 H100 V400 H0 100 V100 "
+				d="M0,11 H5.5 V5.5 H16.5 A 0.55 0.55 1 1 1 16.5,27.5 H5.5 V22 H0 5.5 V5.5 "
 			/>
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M500,300 H600" />
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M500,300 H600" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M27.5,16.5 H33" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M27.5,16.5 H33" />
 		</svg>
 	);
 }
 
 export function ORIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M100,100 C100,100 250,300 100,500 C100,500 350,550 500,300 C500,250 300,50 100,100"
+				strokeWidth={STROKE_WIDTH}
+				d="M5.5,5.5 C5.5,5.5 13.75,16.5 5.5,27.5 C5.5,27.5 19.25,30.25 27.5,16.5 C27.5,13.75 16.5,2.75 5.5,5.5"
 			/>
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,200 H150" />
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,400 H150" />
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M500,300 H600" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,11 H8.25" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,22 H8.25" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M27.5,16.5 H33" />
 		</svg>
 	);
 }
 
 export function NANDIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,200 H100 V100 H300 A 10 10 1 1 1 300,500 H100 V400 H0 100 V200"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,11 H5.5 V5.5 H16.5 A 0.55 0.55 1 1 1 16.5,27.5 H5.5 V22 H0 5.5 V11"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,200 H100 V100 H300 A 10 10 1 1 1 300,500 H100 V400 H0 100 V200"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,11 H5.5 V5.5 H16.5 A 0.55 0.55 1 1 1 16.5,27.5 H5.5 V22 H0 5.5 V11"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cx={532}
-				cy={300}
-				r={25}
+				strokeWidth={STROKE_WIDTH}
+				cx={29.26}
+				cy={16.5}
+				r={1.38}
 			></circle>
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M550,300 H600" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M30.25,16.5 H33" />
 		</svg>
 	);
 }
 
 export function NORIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M100,100 C100,100 250,300 100,500 C100,500 350,550 500,300 C500,250 300,50 100,100"
+				strokeWidth={STROKE_WIDTH}
+				d="M5.5,5.5 C5.5,5.5 13.75,16.5 5.5,27.5 C5.5,27.5 19.25,30.25 27.5,16.5 C27.5,13.75 16.5,2.75 5.5,5.5"
 			/>
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,200 H150" />
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,400 H150" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,11 H8.25" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,22 H8.25" />
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cx={532}
-				cy={300}
-				r={25}
+				strokeWidth={STROKE_WIDTH}
+				cx={29.26}
+				cy={16.5}
+				r={1.38}
 			></circle>
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M550,300 H600" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M30.25,16.5 H33" />
 		</svg>
 	);
 }
 
 export function XORIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M100,100 C100,100 250,300 100,500 C100,500 350,550 500,300 C500,250 300,50 100,100"
+				strokeWidth={STROKE_WIDTH}
+				d="M5.5,5.5 C5.5,5.5 13.75,16.5 5.5,27.5 C5.5,27.5 19.25,30.25 27.5,16.5 C27.5,13.75 16.5,2.75 5.5,5.5"
 			/>
 			<path
 				fill="none"
 				stroke="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M60,100 C60,100 210,300 60,500"
+				strokeWidth={STROKE_WIDTH}
+				d="M3.3,5.5 C3.3,5.5 11.55,16.5 3.3,27.5"
 			/>
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,200 H110" />
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,400 H110" />
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M500,300 H600" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,11 H6.05" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,22 H6.05" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M27.5,16.5 H33" />
 		</svg>
 	);
 }
 
 export function XNORIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M100,100 C100,100 250,300 100,500 C100,500 350,550 500,300 C500,250 300,50 100,100"
+				strokeWidth={STROKE_WIDTH}
+				d="M5.5,5.5 C5.5,5.5 13.75,16.5 5.5,27.5 C5.5,27.5 19.25,30.25 27.5,16.5 C27.5,13.75 16.5,2.75 5.5,5.5"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cx={532}
-				cy={300}
-				r={25}
+				strokeWidth={STROKE_WIDTH}
+				cx={29.26}
+				cy={16.5}
+				r={1.38}
 			></circle>
 			<path
 				fill="none"
 				stroke="currentColor"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M60,100 C60,100 210,300 60,500"
+				strokeWidth={STROKE_WIDTH}
+				d="M3.3,5.5 C3.3,5.5 11.55,16.5 3.3,27.5"
 			/>
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,200 H110" />
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,400 H110" />
-			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M550,300 H600" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,11 H6.05" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,22 H6.05" />
+			<path fill="none" stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M30.25,16.5 H33" />
 		</svg>
 	);
 }
 
 export function NOTIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="M150,125 V475 L450,300 L150,125"
+				d="M8.25,6.88 V26.13 L24.75,16.5 L8.25,6.88"
 			/>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				cx={480}
-				cy={300}
-				r={25}
+				strokeWidth={STROKE_WIDTH}
+				cx={26.4}
+				cy={16.5}
+				r={1.38}
 			></circle>
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,300 H150" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M500,300 H600" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,16.5 H8.25" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M27.5,16.5 H33" />
 		</svg>
 	);
 }
 
 export function BUFFERIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" fill="currentColor" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
+				strokeWidth={STROKE_WIDTH}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				d="M150,125 V475 L450,300 L150,125"
+				d="M8.25,6.88 V26.13 L24.75,16.5 L8.25,6.88"
 			/>
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M0,300 H150" />
-			<path stroke="currentColor" strokeWidth={STROKE_WIDTH * 4} d="M450,300 H600" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M0,16.5 H8.25" />
+			<path stroke="currentColor" strokeWidth={STROKE_WIDTH} d="M24.75,16.5 H33" />
 		</svg>
 	);
 }
@@ -3059,25 +3115,55 @@ export function BoardIcon(props: SVGProps<SVGSVGElement>) {
 
 export function BatteryIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" viewBox="0 0 33 33">
+			{/* 1. Terminal izquierda y primer placa larga */}
 			<path
 				stroke="currentColor"
 				fill="none"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,300 H200 V175 V435 V300  M266,250 V350 M332,175 V425  M400,250 V350 V300 H600 M130,115 V188 V150 H95 H165"
-			></path>
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="crispEdges"
+				d="M0,16.5 H11 V9.63 V24.38"
+			/>
+			{/* 2. Placas intermedias de la batería */}
+			<path
+				stroke="currentColor"
+				fill="none"
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="crispEdges"
+				d="M14.63,13.75 V19.25 M18.26,9.63 V23.38"
+			/>
+			{/* 3. Última placa corta y terminal derecha */}
+			<path
+				stroke="currentColor"
+				fill="none"
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="crispEdges"
+				d="M22,13.75 V19.25 M22,16.5 H33"
+			/>
+			{/* 4. Símbolo de polaridad Positiva (+) */}
+			<path
+				stroke="currentColor"
+				fill="none"
+				strokeWidth={STROKE_WIDTH}
+				vectorEffect="non-scaling-stroke"
+				shapeRendering="crispEdges"
+				d="M7.15,6.32 V10.34 M5.23,8.25 H9.08"
+			/>
 		</svg>
 	);
 }
 
 export function PhotovoltaicCellIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" viewBox="0 0 33 33">
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M50,90 L100,130"
+				strokeWidth={STROKE_WIDTH}
+				d="M2.75,4.95 L5.5,7.15"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -3085,8 +3171,8 @@ export function PhotovoltaicCellIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M90,40 L140,85"
+				strokeWidth={STROKE_WIDTH}
+				d="M4.95,2.2 L7.7,4.68"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
 				markerEnd="url(#head)"
@@ -3094,22 +3180,22 @@ export function PhotovoltaicCellIcon(props: SVGProps<SVGSVGElement>) {
 			<path
 				stroke="currentColor"
 				fill="none"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,300 H200 V250 V350 V300  M266,175 V425 M332,250 V350  M400,175 V425 V300 H600  M480,115 V188 V150 H445 H515"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,16.5 H11 V13.75 V19.25 V16.5  M14.63,9.63 V23.38 M18.26,13.75 V19.25  M22,9.63 V23.38 V16.5 H33  M26.4,6.32 V10.34 V8.25 H24.48 H28.33"
 			></path>
 			<path
 				stroke="currentColor"
 				fill="none"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,300 H200 V250 V350 V300  M266,175 V425 M332,250 V350  M400,175 V425 V300 H600  M480,115 V188 V150 H445 H515"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,16.5 H11 V13.75 V19.25 V16.5  M14.63,9.63 V23.38 M18.26,13.75 V19.25  M22,9.63 V23.38 V16.5 H33  M26.4,6.32 V10.34 V8.25 H24.48 H28.33"
 			></path>
 			<circle
 				fill="none"
 				stroke="currentColor"
-				strokeWidth={STROKE_WIDTH * 4}
-				r={185}
-				cx={300}
-				cy={300}
+				strokeWidth={STROKE_WIDTH}
+				r={10.18}
+				cx={16.5}
+				cy={16.5}
 			/>
 		</svg>
 	);
@@ -3117,14 +3203,14 @@ export function PhotovoltaicCellIcon(props: SVGProps<SVGSVGElement>) {
 
 export function PowerSupplyIcon(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg {...props} height="33px" width="33px" viewBox="0 0 600 600">
+		<svg {...props} height="33px" width="33px" viewBox="0 0 33 33">
 			<path
 				stroke="currentColor"
 				fill="none"
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				strokeWidth={STROKE_WIDTH * 4}
-				d="M0,200 H100 M0,400 H100 M100,100 V500 H500 V100 H100 M500,200 H600 M500,400 H600 M100,500 L500,100 M350,380 H370 M390,380 H410 M430,380 H450 M350,350 H450 M150,250 C150,250 175,200 200,250 C200,250 225,300 250,250"
+				strokeWidth={STROKE_WIDTH}
+				d="M0,11 H5.5 M0,22 H5.5 M5.5,5.5 V27.5 H27.5 V5.5 H5.5 M27.5,11 H33 M27.5,22 H33 M5.5,27.5 L27.5,5.5 M19.25,20.9 H20.35 M21.45,20.9 H22.55 M23.65,20.9 H24.75 M19.25,19.25 H24.75 M8.25,13.75 C8.25,13.75 9.63,11 11,13.75 C11,13.75 12.38,16.5 13.75,13.75"
 			></path>
 		</svg>
 	);
