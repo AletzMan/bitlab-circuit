@@ -1,9 +1,16 @@
 "use client";
 
 import {
+	AppstoreOutlined,
+	CheckOutlined,
+	ClockCircleOutlined,
+	CodeOutlined,
+	CoffeeOutlined,
+	FundOutlined,
 	GithubOutlined,
+	LayoutOutlined,
+	LoadingOutlined,
 	RightOutlined,
-	ExperimentOutlined
 } from "@ant-design/icons";
 import styles from "./styles.module.css";
 import { Link } from "react-router";
@@ -14,48 +21,102 @@ import {
 	DiodeIcon,
 	BJTNPNIcon,
 	InductorIcon,
-	LEDIcon,
-	GroundIcon,
+	LEDIcon, 
 	PotentiometerIcon,
+	BoardIcon,
+	PowerSupplyIcon,
+	SwitchSPDTCloseIcon,
+	ANDIcon,
+	AmmeterIcon,
+	LogoBitlab,
 } from "@/icons";
+import { SwitchTheme } from "@/components/SwitchTheme/SwitchTheme";
+import { useTheme } from "@/store";
 
 export function Home() {
+	const currentTheme = useTheme((state) => state.currentTheme);
+
 	const components = [
 		{ name: "Resistores", icon: <ResistorIcon />, description: "Valores fijos y variables", index: "01" },
-		{ name: "Capacitores", icon: <CapacitorIcon />, description: "Cerámicos y electrolíticos", index: "02" },
-		{ name: "Diodos", icon: <DiodeIcon />, description: "Rectificación y Zener", index: "03" },
-		{ name: "Transistores", icon: <BJTNPNIcon />, description: "BJT y semiconductores base", index: "04" },
-		{ name: "Inductores", icon: <InductorIcon />, description: "Bobinas estándar", index: "05" },
-		{ name: "Ópticos", icon: <LEDIcon />, description: "Emisión de luz y displays", index: "06" },
-		{ name: "Potenciómetros", icon: <PotentiometerIcon />, description: "Control resistivo dinámico", index: "07" },
-		{ name: "Suministro", icon: <GroundIcon />, description: "Fuentes de poder y tierras", index: "08" },
+		{ name: "Capacitores", icon: <CapacitorIcon />, description: "Cerámicos, poliéster y variables", index: "02" },
+		{ name: "Diodos", icon: <DiodeIcon />, description: "Rectificación, Zener y TVS", index: "03" },
+		{ name: "Transistores", icon: <BJTNPNIcon />, description: "BJT, FET y MOSFET", index: "04" },
+		{ name: "Inductores", icon: <InductorIcon />, description: "Bobinas y componentes magnéticos", index: "05" },
+		{ name: "Ópticos", icon: <LEDIcon />, description: "LED, foto-diodos y fototransistores", index: "06" },
+		{ name: "Potenciómetros", icon: <PotentiometerIcon />, description: "Control resistivo intuitivo", index: "07" },
+		{ name: "Conmutación", icon: <SwitchSPDTCloseIcon />, description: "Interruptores y relés", index: "08" },
+		{ name: "Lógica", icon: <ANDIcon />, description: "Puertas digitales básicas", index: "09" },
+		{ name: "Medición", icon: <AmmeterIcon />, description: "Instrumentos de lectura", index: "10" },
+		{ name: "Suministro", icon: <PowerSupplyIcon />, description: "Fuentes DC/AC y baterías", index: "11" },
+		{ name: "Estructura", icon: <BoardIcon />, description: "Nodo, tierra y placa base", index: "12" } 
 	];
 
 	const roadmapCompleted = [
 		{ title: "Motor Analógico Base", description: "Simulación DC funcional y motor de renderizado de componentes.", date: "2025.Q2" },
 		{ title: "Enrutamiento dinámico", description: "Conexión fluida de nodos con trazado inteligente en el canvas.", date: "2025.Q3" },
+		{ title: "Cálculos de circuitos", description: "Simulación de corriente y voltaje en tiempo real para circuitos básicos.", date: "2025.Q4" },
 	];
 
 	const roadmapUpcoming = [
-		{ title: "Almacenamiento persistente", description: "Guardado local de proyectos y exportación de archivos.", date: "2026.Q3" },
+		{ title: "Simulación digital", description: "Compuertas lógicas y circuitos digitales básicos.", date: "2026.Q1" },
+		{ title: "Simulación de potencia", description: "Transistores y análisis de componentes de potencia.", date: "2026.Q2" },
+		{ title: "Exportación de esquemas", description: "Exportación a SVG, PNG y otros formatos de imagen.", date: "2026.Q3" },
+		{ title: "Almacenamiento persistente", description: "Guardado local de proyectos en el navegador.", date: "2026.Q3" },
+		{ title: "Sistema de autenticación", description: "Login y sincronización en la nube para guardar proyectos.", date: "2026.Q4" },
 		{ title: "Osciloscopio virtual", description: "Análisis gráfico para circuitos en corriente alterna.", date: "2026.Q4" },
 	];
 
+	const roadmapStatus = [
+		{
+			title: "Listo",
+			items: [
+				"Lienzo con rejilla y arrastrar / soltar",
+				"Biblioteca de 12 familias de componentes",
+				"Conexiones, nodos y rutas de cables",
+				"Simulación DC: voltaje, corriente y resistencia",
+				"Sondas de medición en tiempo real",
+				"Modo claro y oscuro",
+			],
+		},
+		{
+			title: "En progreso",
+			items: [
+				"Análisis en corriente alterna (AC)",
+				"Osciloscopio virtual",
+				"Deshacer / rehacer ilimitado",
+				"Exportar esquemático a PNG y SVG",
+			],
+		}, 
+		{
+			title: "Próximamente",
+			items: [
+				"Importar y compartir proyectos",
+				"Colaboración en tiempo real",
+				"Diseño de PCB",
+			],
+		},
+	];
+
 	return (
-		<ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
+		<ConfigProvider theme={{ algorithm: currentTheme === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
 			<div className={styles.layout}>
 
 				{/* Header */}
 				<header className={styles.header}>
 					<div className={styles.headerContent}>
 						<div className={styles.logo}>
-							<ExperimentOutlined className={styles.logoIcon} style={{ fontSize: '20px' }} />
+							<LogoBitlab color="var(--primary-color)" width={40} height={40}/>
 							<span className={styles.logoText}>BitLabCircuit</span>
 						</div>
-						<a href="https://github.com/AletzMan/bitlab-circuit" target="_blank" rel="noopener noreferrer" className={styles.githubBtn}>
-							<GithubOutlined style={{ fontSize: '16px' }} />
-							<span>GitHub</span>
-						</a>
+						<div className={styles.headerActions}>
+							<div className={styles.themeSwitch}>
+								<SwitchTheme />
+							</div>
+							<a href="https://github.com/AletzMan/bitlab-circuit" target="_blank" rel="noopener noreferrer" className={styles.githubBtn}>
+								<GithubOutlined style={{ fontSize: '16px' }} />
+								<span>GitHub</span>
+							</a>
+						</div>
 					</div>
 				</header>
 
@@ -63,163 +124,85 @@ export function Home() {
 					{/* Hero Directo y Honesto */}
 					<section className={styles.heroSection}>
 						<div className={styles.heroContainer}>
-							<div className={styles.heroBadge}>
-								Open Source Electronics Workbench
-							</div>
-							<h1 className={styles.heroTitle}>
-								Diseño y simulación<br />de circuitos electrónicos.
-							</h1>
-							<p className={styles.heroDescription}>
-								Herramienta web de código abierto para el prototipado visual de sistemas
-								analógicos y digitales de forma limpia y directa.
-							</p>
-							<div className={styles.heroCta}>
-								<Link to="/board" className={styles.primaryBtn}>
-									Iniciar Entorno <RightOutlined />
-								</Link>
-								<div className={styles.heroStats}>
-									<span className={styles.heroStat}><span className={styles.heroStatValue}>8</span> Tipos de componente</span>
-									<span className={styles.heroStatDivider} />
-									<span className={styles.heroStat}><span className={styles.heroStatValue}>DC</span> Solver activo</span>
-									<span className={styles.heroStatDivider} />
-									<span className={styles.heroStat}><span className={styles.heroStatValue}>v0.2</span> Alpha</span>
-								</div>
-							</div>
-						</div>
-					</section>
-
-					{/* Vista Previa Principal del Canvas */}
-					<section className={styles.previewSection}>
-						<div className={styles.canvasPreview}>
-							<div className={styles.canvasFrame}>
-								<div className={styles.canvasHeaderBar}>
-									<div className={styles.canvasDots}>
-										<span className={styles.canvasDot} />
-										<span className={styles.canvasDot} />
-										<span className={styles.canvasDot} />
+							<div className={styles.heroSplit}>
+								<div className={styles.heroCopy}>
+									<div className={styles.heroBadge}>
+										Editor + simulador · en desarrollo
 									</div>
-									<span>workspace://bitlab-circuit/board</span>
-									<span>[SIM_ACTIVE]</span>
+									<h1 className={styles.heroTitle}>
+										Diseño y simulación de circuitos electrónicos.
+									</h1>
+									<p className={styles.heroDescription}>
+										BitLab Circuit es un editor y simulador de circuitos electrónicos con un lienzo limpio y un motor de simulación que valida tu diseño al instante. Mide voltaje, corriente y resistencia sin salir del esquemático.
+									</p>
+									<div className={styles.heroCta}>
+										<Link to="/board" className={styles.primaryBtn}>
+											Explorar el editor <RightOutlined />
+										</Link>
+										<Link to="/board" className={styles.secondaryBtn}>
+											Ver biblioteca <RightOutlined />
+										</Link>
+									</div>
+									<div className={styles.heroStats}>
+										<span className={styles.heroStat}><span className={styles.heroStatValue}>{components.length}</span> Tipos de componente</span>
+										<span className={styles.heroStatDivider} />
+										<span className={styles.heroStat}><span className={styles.heroStatValue}>DC</span> Solver activo</span>
+										<span className={styles.heroStatDivider} />
+										<span className={styles.heroStat}><span className={styles.heroStatValue}>v0.2</span> Alpha</span>
+									</div>
 								</div>
-								<div className={styles.canvasBody}>
-									{/* Schematic SVG */}
-									<svg className={styles.schematicSvg} viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
-										{/* Grid dots */}
-										<defs>
-											<pattern id="sgrid" width="24" height="24" patternUnits="userSpaceOnUse">
-												<circle cx="12" cy="12" r="0.8" fill="rgba(56,189,248,0.12)" />
-											</pattern>
-										</defs>
-										<rect width="800" height="360" fill="url(#sgrid)" />
-
-										{/* Wire lines */}
-										<g stroke="#38bdf8" strokeWidth="1.5" fill="none" opacity="0.55">
-											{/* Top rail */}
-											<line x1="120" y1="100" x2="680" y2="100" />
-											{/* Bottom rail */}
-											<line x1="120" y1="260" x2="680" y2="260" />
-											{/* Left vertical */}
-											<line x1="120" y1="100" x2="120" y2="260" />
-											{/* Right vertical */}
-											<line x1="680" y1="100" x2="680" y2="260" />
-											{/* Mid junction lines */}
-											<line x1="280" y1="100" x2="280" y2="145" />
-											<line x1="280" y1="215" x2="280" y2="260" />
-											<line x1="480" y1="100" x2="480" y2="145" />
-											<line x1="480" y1="215" x2="480" y2="260" />
-										</g>
-
-										{/* Resistor symbol at center-left */}
-										<g stroke="#38bdf8" strokeWidth="1.5" fill="none" opacity="0.8">
-											<rect x="240" y="148" width="80" height="24" rx="0" />
-											<text x="280" y="143" textAnchor="middle" fontSize="9" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">R1</text>
-											<text x="280" y="188" textAnchor="middle" fontSize="9" fill="rgba(56,189,248,0.7)" fontFamily="JetBrains Mono, monospace">10kΩ</text>
-										</g>
-
-										{/* Capacitor symbol at center-right */}
-										<g stroke="#38bdf8" strokeWidth="1.5" fill="none" opacity="0.8">
-											<line x1="480" y1="145" x2="480" y2="170" />
-											<line x1="455" y1="170" x2="505" y2="170" />
-											<line x1="455" y1="180" x2="505" y2="180" />
-											<line x1="480" y1="180" x2="480" y2="215" />
-											<text x="516" y="178" fontSize="9" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">C1</text>
-											<text x="516" y="192" fontSize="9" fill="rgba(56,189,248,0.7)" fontFamily="JetBrains Mono, monospace">100μF</text>
-										</g>
-
-										{/* Voltage source left */}
-										<g stroke="#38bdf8" strokeWidth="1.5" fill="none" opacity="0.8">
-											<circle cx="120" cy="180" r="28" />
-											<line x1="120" y1="157" x2="120" y2="168" />
-											<line x1="114" y1="163" x2="126" y2="163" />
-											<line x1="114" y1="197" x2="126" y2="197" />
-											<text x="150" y="178" fontSize="9" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">Vs</text>
-											<text x="150" y="192" fontSize="9" fill="rgba(56,189,248,0.7)" fontFamily="JetBrains Mono, monospace">5V DC</text>
-										</g>
-
-										{/* Node dots */}
-										<g fill="#38bdf8" opacity="0.9">
-											<circle cx="280" cy="100" r="3.5" />
-											<circle cx="480" cy="100" r="3.5" />
-											<circle cx="280" cy="260" r="3.5" />
-											<circle cx="480" cy="260" r="3.5" />
-										</g>
-
-										{/* Voltage annotation */}
-										<g fontFamily="JetBrains Mono, monospace" fontSize="10" fill="rgba(56,189,248,0.5)">
-											<text x="590" y="96">+5.00V</text>
-											<text x="590" y="264">GND</text>
-										</g>
-
-										{/* Status label */}
-										<text x="400" y="330" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="rgba(148,163,184,0.4)">// LIENZO DE TRABAJO ACTIVO — entorno interactivo de esquemáticos</text>
-									</svg>
-								</div>
+								<div className={styles.heroPreview}>
+									<div className={styles.canvasFrame}>
+										<header className={styles.canvasHeaderBar}>
+											<div className={styles.canvasDots}>
+												<span className={styles.canvasDot} />
+												<span className={styles.canvasDot} />
+												<span className={styles.canvasDot} />
+											</div> 
+											<span>[SIM_ACTIVE]</span>
+										</header>
+										<div className={styles.canvasBody}>
+											<img className={styles.canvasImage} src="https://raw.githubusercontent.com/AletzMan/ImagesStorage/refs/heads/main/bitlab-circuit/example_light.webp" />
+										</div>
+									</div>
 							</div>
+						</div>
 						</div>
 					</section>
 
-					{/* Sección 1: Prototipado Visual (Texto + Mockup de Producto) */}
+					{/* Sección 2: Simulación en Tiempo Real (Mockup de Producto + Texto) */} 
 					<section className={styles.splitSection}>
+						<div>
+							<div className={styles.featureMockup}> 
+								<div className={styles.mockupBody}>
+									<img src="https://raw.githubusercontent.com/AletzMan/ImagesStorage/refs/heads/main/bitlab-circuit/board_light.webp"/>
+								</div> 
+							</div>
+						</div>
 						<div className={styles.splitContent}>
-							<span className={styles.sectionLabel}>// ENTORNO DE TRABAJO</span>
+							<span className={styles.sectionLabel}><LayoutOutlined className={styles.icon_section}/> Lienzo</span>
 							<h2 className={styles.sectionTitle}>Diseño sin fricción en el canvas</h2>
-							<p className={styles.heroDescription} style={{ fontSize: '16px', margin: '16px 0 24px 0' }}>
-								Un lienzo de trabajo limpio diseñado específicamente para poner tus esquemáticos en el centro,
-								eliminando barras de herramientas saturadas e interfaces invasivas.
+							<p className={styles.sectionSubtitle}>
+								Un lienzo limpio pensado para poner tus esquemáticos en el centro. 
+								Arrastra un componente desde la biblioteca y la rejilla magnética lo alinea al nodo más cercano, 
+								sin barras de herramientas saturadas ni menús que estorban.
 							</p>
 						</div>
-						<div>
-							<div className={styles.featureMockup}>
-								<div className={styles.mockupHeader}>
-									<span>canvas_interaction.tsx</span>
-									<span>[DRAG & DROP]</span>
-								</div>
-								<div className={styles.mockupBody}>
-									[Representación visual de nodos y terminales conectándose dinámicamente]
-								</div>
-							</div>
-						</div>
 					</section>
-
-					{/* Sección 2: Simulación en Tiempo Real (Mockup de Producto + Texto) */}
 					<section className={styles.splitSection}>
 						<div>
-							<div className={styles.featureMockup}>
-								<div className={styles.mockupHeader}>
-									<span>dc_solver_engine.js</span>
-									<span>[STATUS: RUNNING]</span>
-								</div>
+							<div className={styles.featureMockup}> 
 								<div className={styles.mockupBody}>
-									[Gráfica de validación de voltajes y corrientes instantáneas]
-								</div>
+									<img src="https://raw.githubusercontent.com/AletzMan/ImagesStorage/refs/heads/main/bitlab-circuit/validation_light.webp"/>
+								</div> 
 							</div>
 						</div>
 						<div className={styles.splitContent}>
-							<span className={styles.sectionLabel}>// MOTOR DE SIMULACIÓN</span>
+							<span className={styles.sectionLabel}><FundOutlined className={styles.icon_section}/> MOTOR DE SIMULACIÓN</span>
 							<h2 className={styles.sectionTitle}>Validación instantánea</h2>
-							<p className={styles.heroDescription} style={{ fontSize: '16px', margin: '16px 0 24px 0' }}>
-								Ejecuta análisis de corriente continua (DC) directamente en el navegador.
-								Comprueba el comportamiento de los circuitos de forma inmediata al cambiar parámetros.
+							<p className={styles.sectionSubtitle}>
+								Coloca sondas sobre cualquier nodo y observa voltaje, corriente y resistencia en tiempo real.
+								Observa los resultados al instante mientras ajustas el diseño.
 							</p>
 						</div>
 					</section>
@@ -227,7 +210,7 @@ export function Home() {
 					{/* Librería de Componentes */}
 					<section className={styles.sectionWrapper}>
 						<div className={styles.sectionHeader}>
-							<span className={styles.sectionLabel}>// LIBRERÍA</span>
+							<span className={styles.sectionLabel}><AppstoreOutlined className={styles.icon_section}/> LIBRERÍA</span>
 							<h2 className={styles.sectionTitle}>Componentes disponibles</h2>
 						</div>
 
@@ -243,57 +226,48 @@ export function Home() {
 						</div>
 					</section>
 
-					{/* Roadmap / Estado del Proyecto */}
-					<section className={styles.sectionWrapper}>
-						<div className={styles.sectionHeader}>
-							<span className={styles.sectionLabel}>// DESARROLLO</span>
-							<h2 className={styles.sectionTitle}>Estado del proyecto</h2>
-						</div>
-
-						<div className={styles.roadmapGrid}>
-							<div className={styles.roadmapColumn}>
-								<h3 className={styles.cellTitle} style={{ marginBottom: '32px' }}>Implementado</h3>
-								<div className={styles.roadmapList}>
-									{roadmapCompleted.map((item, index) => (
-										<div key={index} className={styles.roadmapItem} data-active="true">
-											<div className={styles.roadmapItemHeader}>
-												<h5 className={styles.roadmapItemTitle}>{item.title}</h5>
-												<span className={styles.roadmapDate}>{item.date}</span>
-											</div>
-											<p className={styles.roadmapItemDesc}>{item.description}</p>
-										</div>
-									))}
-								</div>
+					 
+						<section className={styles.sectionWrapper}>
+							<div className={styles.sectionHeader}>
+								<span className={styles.sectionLabel}><CodeOutlined className={styles.icon_section}/> ESTADO DEL PROYECTO</span>
+								<h2 className={styles.sectionTitle}>Qué funciona hoy y qué viene después</h2>
+								<p className={styles.sectionSubtitle}>BitLab Circuit está en desarrollo activo. Esto es lo que ya puedes usar y lo que estamos construyendo a continuación.</p>
 							</div>
-							<div className={styles.roadmapColumn}>
-								<h3 className={styles.cellTitle} style={{ marginBottom: '32px', color: 'var(--text-secondary)' }}>Próximamente</h3>
-								<div className={styles.roadmapList}>
-									{roadmapUpcoming.map((item, index) => (
-										<div key={index} className={styles.roadmapItem} data-active="false">
-											<div className={styles.roadmapItemHeader}>
-												<h5 className={styles.roadmapItemTitle}>{item.title}</h5>
-												<span className={styles.roadmapDate}>{item.date}</span>
-											</div>
-											<p className={styles.roadmapItemDesc}>{item.description}</p>
+							<div className={styles.statusGrid}>
+								{roadmapStatus.map((column) => (
+									<div key={column.title} className={styles.statusColumn}>
+										<div className={`${styles.statusColumnHeader} ${column.title === "Listo" ? styles.statusColumnHeaderReady : column.title === "En progreso" ? styles.statusColumnHeaderInProgress : styles.statusColumnHeaderUpcoming}`}>
+											<span className={styles.statusColumnIcon} />
+											<h3 className={styles.statusColumnTitle}>{column.title}</h3>
 										</div>
-									))}
-								</div>
+										<div className={styles.statusList}>
+											{column.items.map((item, itemIndex) => (
+												<div key={itemIndex} className={`${styles.statusItem} ${column.title === "Listo" ? styles.statusItemReady : column.title === "En progreso" ? styles.statusItemInProgress : styles.statusItemUpcoming}`}>
+													{column.title === "Listo" && <CheckOutlined className={styles.statusItemIcon}  />}
+													{column.title === "En progreso" && <CoffeeOutlined className={styles.statusItemIcon} />}
+													{column.title === "Próximamente" && <ClockCircleOutlined className={styles.statusItemIcon} />}
+
+													<p>{item}</p>
+												</div>
+											))}
+										</div>
+									</div>
+								))}
+							</div>
+						</section>
+					</main>
+
+					<footer className={styles.footer}>
+						<div className={styles.footerContent}>
+							<div className={styles.logo}>
+								<span className={styles.logoText}>BitLabCircuit</span>
+							</div>
+							<div>
+								Herramienta de simulación electrónica open source.
 							</div>
 						</div>
-					</section>
-				</main>
-
-				<footer className={styles.footer}>
-					<div className={styles.footerContent}>
-						<div className={styles.logo}>
-							<span className={styles.logoText}>BitLabCircuit</span>
-						</div>
-						<div>
-							Herramienta de simulación electrónica open source.
-						</div>
-					</div>
-				</footer>
-			</div>
-		</ConfigProvider>
-	);
-}
+					</footer>
+				</div>
+			</ConfigProvider>
+		);
+	}
