@@ -85,7 +85,7 @@ export function SideTools({ dragOutsideRef }: SideToolsProps) {
 																style={{
 																	margin: "0",
 																}}
-																variant="dashed"
+																variant="solid"
 															/>
 															<div className={styles.components_group}>
 																{category.items.map((component) => (

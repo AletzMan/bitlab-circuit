@@ -41,7 +41,7 @@
 	flex-direction: column;
 	padding: 0 0 0 0 0;
 	border-radius: 1px;
-	border: 1px dashed var(--border-color-tab);
+	border: 1px solid var(--border-color-tab);
 	background-color: var(--board-background-color);
 }
 
