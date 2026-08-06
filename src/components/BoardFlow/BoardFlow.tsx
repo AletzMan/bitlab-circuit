@@ -2739,13 +2739,13 @@ export function BoardFlow() {
 							gap={GRID_SIZE}
 							variant={currentGridType}
 							id="1"
-							size={1.5}
+							size={1.5} 
+							lineWidth={0.5}
 						/>
 						<Background
 							color={"var(--grid-large-color)"}
 							gap={GRID_SIZE * 10}
-							variant={currentGridType}
-							id="2"
+							variant={currentGridType} 
 						/>
 						<svg>
 							<defs>
