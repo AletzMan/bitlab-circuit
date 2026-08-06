@@ -6,32 +6,34 @@ export function LogoBitlab(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}
-			height="40px"
-			width="40px"
-			fill="currentColor"
-			viewBox="0 0 500 500"
-			style={{ backgroundColor: "#FF000015" }}
+			height={props.height}
+			width={props.width}
+			viewBox="0 0 135 135" 
+
 		>
-			<rect
-				x="100"
-				y="100"
-				width="300"
-				height="300"
-				rx="50"
-				ry="50"
-				fill="none"
-				stroke="currentColor"
-				strokeWidth={25}
+			<path
+				stroke="none"
+				fill="currentColor"
+				strokeLinejoin="round"
+				strokeLinecap="round"
+				d="m 42.986006,11.523327 v 66.619189 c -0.01037,0.136718 -0.02002,0.27349 -0.02894,0.410311 0.0089,0.134925 0.01859,0.269802 0.02894,0.404626 v 1.096574 0 c 0.805024,20.748403 17.91584,37.165933 38.679809,37.208063 21.378415,-8e-5 38.708945,-17.330845 38.708745,-38.709263 -8e-5,-21.378217 -17.33053,-38.708666 -38.708745,-38.708748 -3.806308,0.0079 -7.590643,0.57709 -11.230839,1.689303 v 22.901961 c 3.184462,-2.564306 7.142379,-3.976612 11.230839,-4.007508 10.010148,2.2e-5 18.12497,8.114844 18.124992,18.124992 -2.2e-5,10.010148 -8.114844,18.12497 -18.124992,18.124992 C 71.655668,96.677796 63.540846,88.562974 63.540824,78.552827 V 44.458784 11.523327 Z"
+				strokeWidth={1}
+
 			/>
-			<g transform="scale(17) translate(9, 9)">
-				<path
-					fill="#fff"
-					d="M3.15 11.96c-.14 0-.25-.05-.34-.11c-.29-.2-.36-.58-.2-1.03L4.3 6H3.24a.74.74 0 0 1-.62-.32c-.14-.21-.15-.48-.04-.74L4.42.66c.16-.38.57-.66.97-.66H9.1c.26 0 .49.12.62.32a.8.8 0 0 1 .04.74L7.68 5h1.09c.33 0 .58.16.69.42c.05.15.13.53-.34.98l-5.27 5.22c-.28.26-.52.34-.7.34"
-				/>
-			</g>
-			<circle cx="60" cy="60" r="35" fill="currentColor" stroke="currentColor" strokeWidth={1} />
-			<path d="M 60 60 L 200 60" stroke="currentColor" strokeWidth={25} />
-			<circle cx="440" cy="440" r="35" fill="currentColor" stroke="currentColor" strokeWidth={1} />
+			<path
+				stroke="none"
+				fill="currentColor"
+				strokeLinejoin="round"
+				strokeLinecap="round"
+				d="m 12.015738,68.622488 -2e-6,21.141703 c 7.776703,0.53627 15.65743,-0.0037 24.082611,-4.478051 V 62.213406 c -8.69848,6.569475 -16.119811,6.118641 -24.082609,6.409082 z"
+				strokeWidth={1}
+
+			/>
+			<circle
+				fill="currentColor"
+				cx="81.677086"
+				cy="78.569656"
+				r="10.746542" />
 		</svg>
 	);
 }
@@ -778,7 +780,7 @@ export function LEDIcon(props: PropsLED) {
 			{/* Flecha emisora de luz 1 */}
 			<path
 				strokeWidth={STROKE_WIDTH / 2}
-				vectorEffect="non-scaling-stroke" 
+				vectorEffect="non-scaling-stroke"
 				fill="currentColor"
 				stroke="currentColor"
 				d="M 16.02,9.28 L 17.47,7.23 L 17.91,7.54 L 19.13,4.27 L 16.44,6.51 L 16.88,6.82 L 15.47,8.87 Z"
@@ -787,7 +789,7 @@ export function LEDIcon(props: PropsLED) {
 			{/* Flecha emisora de luz 2 */}
 			<path
 				strokeWidth={STROKE_WIDTH / 2}
-				vectorEffect="non-scaling-stroke" 
+				vectorEffect="non-scaling-stroke"
 				fill="currentColor"
 				stroke="currentColor"
 				d="M 18.05,10.67 L 19.46,8.65 L 19.93,8.95 L 21.12,5.65 L 18.43,7.92 L 18.90,8.23 L 17.46,10.28 Z"
@@ -3573,7 +3575,7 @@ export function PhotovoltaicCellIcon(props: SVGProps<SVGSVGElement>) {
 				fill="none"
 				stroke="currentColor"
 				strokeWidth={STROKE_WIDTH}
-				vectorEffect="non-scaling-stroke" 
+				vectorEffect="non-scaling-stroke"
 				d="M2.75,4.95 L5.5,7.15"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
@@ -3583,7 +3585,7 @@ export function PhotovoltaicCellIcon(props: SVGProps<SVGSVGElement>) {
 				fill="none"
 				stroke="currentColor"
 				strokeWidth={STROKE_WIDTH}
-				vectorEffect="non-scaling-stroke" 
+				vectorEffect="non-scaling-stroke"
 				d="M4.95,2.2 L7.7,4.68"
 				strokeLinejoin="miter"
 				strokeLinecap="square"
@@ -3609,7 +3611,7 @@ export function PhotovoltaicCellIcon(props: SVGProps<SVGSVGElement>) {
 				fill="none"
 				stroke="currentColor"
 				strokeWidth={STROKE_WIDTH}
-				vectorEffect="non-scaling-stroke" 
+				vectorEffect="non-scaling-stroke"
 				r={10.18}
 				cx={16.5}
 				cy={16.5}
