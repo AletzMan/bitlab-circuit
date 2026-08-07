@@ -9,7 +9,6 @@ import {
 	FundOutlined,
 	GithubOutlined,
 	LayoutOutlined,
-	LoadingOutlined,
 	RightOutlined,
 } from "@ant-design/icons";
 import styles from "./styles.module.css";
@@ -49,21 +48,6 @@ export function Home() {
 		{ name: "Medición", icon: <AmmeterIcon />, description: "Instrumentos de lectura", index: "10" },
 		{ name: "Suministro", icon: <PowerSupplyIcon />, description: "Fuentes DC/AC y baterías", index: "11" },
 		{ name: "Estructura", icon: <BoardIcon />, description: "Nodo, tierra y placa base", index: "12" } 
-	];
-
-	const roadmapCompleted = [
-		{ title: "Motor Analógico Base", description: "Simulación DC funcional y motor de renderizado de componentes.", date: "2025.Q2" },
-		{ title: "Enrutamiento dinámico", description: "Conexión fluida de nodos con trazado inteligente en el canvas.", date: "2025.Q3" },
-		{ title: "Cálculos de circuitos", description: "Simulación de corriente y voltaje en tiempo real para circuitos básicos.", date: "2025.Q4" },
-	];
-
-	const roadmapUpcoming = [
-		{ title: "Simulación digital", description: "Compuertas lógicas y circuitos digitales básicos.", date: "2026.Q1" },
-		{ title: "Simulación de potencia", description: "Transistores y análisis de componentes de potencia.", date: "2026.Q2" },
-		{ title: "Exportación de esquemas", description: "Exportación a SVG, PNG y otros formatos de imagen.", date: "2026.Q3" },
-		{ title: "Almacenamiento persistente", description: "Guardado local de proyectos en el navegador.", date: "2026.Q3" },
-		{ title: "Sistema de autenticación", description: "Login y sincronización en la nube para guardar proyectos.", date: "2026.Q4" },
-		{ title: "Osciloscopio virtual", description: "Análisis gráfico para circuitos en corriente alterna.", date: "2026.Q4" },
 	];
 
 	const roadmapStatus = [
